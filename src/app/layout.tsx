@@ -9,7 +9,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "GetFitAI — AI Workout Generator",
+  title: {
+    default: "GetFitAI — AI Workout Generator",
+    template: "%s | GetFitAI",
+  },
   description: "Generate personalized workout plans tailored to your goals, experience, and available equipment. No sign-up required. Free AI-powered fitness tool.",
   keywords: ["AI workout generator", "fitness planner", "personalized workout", "gym workout", "home workout"],
   authors: [{ name: "GetFitAI" }],

@@ -3,7 +3,7 @@
 import { WorkoutForm } from "@/components/workout-form";
 import { WorkoutPlan } from "@/components/workout-plan";
 import { useState } from "react";
-import Image from "next/image";
+
 import {
   Zap,
   Shield,
@@ -109,7 +109,7 @@ export default function Home() {
       <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden">
         {/* AI Generated Background */}
         <div className="absolute inset-0 z-0">
-          <Image
+          <img
             src="/images/hero-bg.png"
             alt="Abstract fitness technology background"
             fill
@@ -175,7 +175,7 @@ export default function Home() {
             {/* Right Content - AI Image + Mockup */}
             <div className="relative">
               <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-                <Image
+                <img
                   src="/images/feature-workout.png"
                   alt="AI Workout Planning"
                   width={600}
@@ -341,7 +341,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <Image
+              <img
                 src="/images/bmi-hero.png"
                 alt="Fitness Tools"
                 width={500}
