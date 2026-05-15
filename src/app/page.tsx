@@ -111,7 +111,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/hero-bg.png"
-            alt=""
+            alt="Abstract fitness technology background"
             fill
             className="object-cover opacity-20"
             priority
