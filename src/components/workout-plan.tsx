@@ -27,6 +27,9 @@ interface WorkoutPlanProps {
 export function WorkoutPlan({ plan }: WorkoutPlanProps) {
   const [completed, setCompleted] = useState<Set<number>>(new Set());
   const [saved, setSaved] = useState(false);
+  const [email, setEmail] = useState("");
+  const [emailSending, setEmailSending] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
 
   // Load completed state from localStorage
   useEffect(() => {
@@ -68,6 +71,28 @@ export function WorkoutPlan({ plan }: WorkoutPlanProps) {
     const text = `My workout plan: ${plan.title}\n${plan.exercises.map(e => `- ${e.name}: ${e.sets} sets x ${e.reps}`).join("\n")}`;
     navigator.clipboard.writeText(text);
     alert("Workout plan copied to clipboard!");
+  };
+
+  const sendEmail = async () => {
+    if (!email) return;
+    setEmailSending(true);
+    try {
+      const res = await fetch("/api/send-plan", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, plan }),
+      });
+      if (res.ok) {
+        setEmailSent(true);
+        setTimeout(() => setEmailSent(false), 3000);
+      } else {
+        alert("Failed to send email. Please try again.");
+      }
+    } catch (err) {
+      alert("Failed to send email. Please try again.");
+    } finally {
+      setEmailSending(false);
+    }
   };
 
   const progress = Math.round((completed.size / plan.exercises.length) * 100);
@@ -118,6 +143,33 @@ export function WorkoutPlan({ plan }: WorkoutPlanProps) {
           <Mail className="w-4 h-4" />
           Email
         </a>
+      </div>
+
+      {/* Email Input */}
+      <div className="bg-gray-50 rounded-2xl p-6">
+        <p className="text-sm text-gray-500 mb-3 text-center">
+          Want this plan in your inbox?
+        </p>
+        <div className="flex gap-2 max-w-md mx-auto">
+          <input
+            type="email"
+            placeholder="your@email.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="flex-1 px-4 py-2.5 rounded-full border border-gray-200 focus:border-black focus:ring-1 focus:ring-black outline-none text-sm"
+          />
+          <button
+            onClick={sendEmail}
+            disabled={emailSending || !email}
+            className={`px-5 py-2.5 rounded-full text-sm font-medium transition-colors ${
+              emailSent
+                ? "bg-green-100 text-green-700"
+                : "bg-black text-white hover:bg-gray-800 disabled:opacity-50"
+            }`}
+          >
+            {emailSending ? "Sending..." : emailSent ? "Sent!" : "Send"}
+          </button>
+        </div>
       </div>
 
       {/* Warmup */}
