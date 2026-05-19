@@ -1,5 +1,14 @@
 import { NextRequest } from 'next/server';
 import OpenAI from 'openai';
+import { createRateLimit } from '@/lib/rate-limit';
+
+const rateLimit = createRateLimit(5, "1 m");
+
+function getClientIP(req: NextRequest): string {
+  const forwarded = req.headers.get("x-forwarded-for");
+  if (forwarded) return forwarded.split(",")[0].trim();
+  return req.headers.get("x-real-ip") || "unknown";
+}
 
 function getOpenAI() {
   const apiKey = process.env.DEEPSEEK_API_KEY || process.env.OPENAI_API_KEY;
@@ -86,6 +95,19 @@ Return valid JSON only, no markdown:
 
 export async function POST(req: NextRequest) {
   try {
+    // Rate limit: 5 requests per minute per IP
+    const ip = getClientIP(req);
+    const { success, remaining } = await rateLimit.limit(ip);
+    if (!success) {
+      return new Response(JSON.stringify({ error: "Rate limit exceeded. Try again in a minute." }), {
+        status: 429,
+        headers: {
+          "Content-Type": "application/json",
+          "X-RateLimit-Remaining": String(remaining),
+        },
+      });
+    }
+
     const { goal, experience, duration, equipment, targetArea, notes } = await req.json();
 
     const prompt = buildPrompt({ goal, experience, duration, equipment, targetArea, notes });
