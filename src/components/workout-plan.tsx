@@ -1,15 +1,19 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Dumbbell, Clock, Flame, RotateCcw, CheckCircle2, Download, Share2, Mail, ChevronDown, ChevronUp, Sparkles } from "lucide-react";
-import { useState, useEffect } from "react";
+import {
+  Dumbbell, Clock, Flame, CheckCircle2, Download, Share2, Mail,
+  ChevronDown, ChevronUp, Sparkles, Timer, Settings, X, Play, Pause, RotateCcw,
+} from "lucide-react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 interface Exercise {
   name: string;
   sets: number;
   reps: string;
   rest: string;
+  weight?: string;
   notes?: string;
 }
 
@@ -36,6 +40,34 @@ export function WorkoutPlan({ plan, onRegenerate, onAdjust }: WorkoutPlanProps) 
   const [emailSent, setEmailSent] = useState(false);
   const [adjusting, setAdjusting] = useState(false);
 
+  // Per-exercise editable state
+  const [exerciseData, setExerciseData] = useState<Exercise[]>(plan.exercises);
+  const [editingIndex, setEditingIndex] = useState<number | null>(null);
+
+  // Rest timer state
+  const [activeRestIndex, setActiveRestIndex] = useState<number | null>(null);
+  const [restTimeLeft, setRestTimeLeft] = useState(0);
+  const [restRunning, setRestRunning] = useState(false);
+  const restIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  // Sound
+  const playBeep = useCallback((freq = 800, duration = 0.3) => {
+    try {
+      const ctx = new (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.frequency.value = freq;
+      gain.gain.value = 0.3;
+      osc.start();
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
+      osc.stop(ctx.currentTime + duration);
+    } catch {
+      // Audio not supported
+    }
+  }, []);
+
   useEffect(() => {
     const savedState = localStorage.getItem(`workout-${plan.title}`);
     if (savedState) {
@@ -47,12 +79,59 @@ export function WorkoutPlan({ plan, onRegenerate, onAdjust }: WorkoutPlanProps) 
     localStorage.setItem(`workout-${plan.title}`, JSON.stringify(Array.from(completed)));
   }, [completed, plan.title]);
 
+  // Rest timer effect
+  useEffect(() => {
+    if (restRunning && restTimeLeft > 0) {
+      restIntervalRef.current = setInterval(() => {
+        setRestTimeLeft((prev) => {
+          if (prev <= 1) {
+            setRestRunning(false);
+            playBeep(1200, 0.5);
+            return 0;
+          }
+          if (prev <= 4 && prev > 1) playBeep(1000, 0.15);
+          return prev - 1;
+        });
+      }, 1000);
+    } else {
+      if (restIntervalRef.current) clearInterval(restIntervalRef.current);
+    }
+    return () => {
+      if (restIntervalRef.current) clearInterval(restIntervalRef.current);
+    };
+  }, [restRunning, restTimeLeft, playBeep]);
+
+  const startRest = (index: number, restSeconds: number) => {
+    if (restIntervalRef.current) clearInterval(restIntervalRef.current);
+    setActiveRestIndex(index);
+    setRestTimeLeft(restSeconds);
+    setRestRunning(true);
+    playBeep(600, 0.2);
+  };
+
+  const pauseRest = () => setRestRunning(false);
+  const resumeRest = () => setRestRunning(true);
+  const stopRest = () => {
+    setRestRunning(false);
+    setRestTimeLeft(0);
+    setActiveRestIndex(null);
+  };
+
+  const parseRestSeconds = (rest: string) => {
+    const match = rest.match(/(\d+)/);
+    return match ? parseInt(match[1]) : 60;
+  };
+
   const toggleExercise = (index: number) => {
     const newCompleted = new Set(completed);
     if (newCompleted.has(index)) {
       newCompleted.delete(index);
+      stopRest();
     } else {
       newCompleted.add(index);
+      // Auto-start rest timer for next exercise
+      const restSec = parseRestSeconds(exerciseData[index]?.rest || "60s");
+      startRest(index, restSec);
     }
     setCompleted(newCompleted);
   };
@@ -61,6 +140,7 @@ export function WorkoutPlan({ plan, onRegenerate, onAdjust }: WorkoutPlanProps) 
     const plans = JSON.parse(localStorage.getItem("saved-plans") || "[]");
     const newPlan = {
       ...plan,
+      exercises: exerciseData,
       savedAt: new Date().toISOString(),
       completed: Array.from(completed),
     };
@@ -71,7 +151,7 @@ export function WorkoutPlan({ plan, onRegenerate, onAdjust }: WorkoutPlanProps) 
   };
 
   const sharePlan = () => {
-    const text = `My workout plan: ${plan.title}\n${plan.exercises.map(e => `- ${e.name}: ${e.sets} sets x ${e.reps}`).join("\n")}`;
+    const text = `My workout plan: ${plan.title}\n${exerciseData.map(e => `- ${e.name}: ${e.sets} sets x ${e.reps}${e.weight ? ` @ ${e.weight}` : ""}`).join("\n")}`;
     navigator.clipboard.writeText(text);
     alert("Workout plan copied to clipboard!");
   };
@@ -83,7 +163,7 @@ export function WorkoutPlan({ plan, onRegenerate, onAdjust }: WorkoutPlanProps) 
       const res = await fetch("/api/send-plan", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, plan }),
+        body: JSON.stringify({ email, plan: { ...plan, exercises: exerciseData } }),
       });
       if (res.ok) {
         setEmailSent(true);
@@ -103,9 +183,21 @@ export function WorkoutPlan({ plan, onRegenerate, onAdjust }: WorkoutPlanProps) 
     onAdjust?.(direction);
   };
 
-  const progress = Math.round((completed.size / plan.exercises.length) * 100);
+  const updateExercise = (index: number, field: keyof Exercise, value: string | number) => {
+    const updated = [...exerciseData];
+    updated[index] = { ...updated[index], [field]: value };
+    setExerciseData(updated);
+  };
+
+  const progress = Math.round((completed.size / exerciseData.length) * 100);
 
   if (!plan) return null;
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, "0")}`;
+  };
 
   return (
     <div className="space-y-6">
@@ -155,7 +247,7 @@ export function WorkoutPlan({ plan, onRegenerate, onAdjust }: WorkoutPlanProps) 
           Copy Plan
         </button>
         <a
-          href={`mailto:?subject=My Workout Plan: ${plan.title}&body=${plan.exercises.map(e => `- ${e.name}: ${e.sets} sets x ${e.reps}`).join("%0A")}`}
+          href={`mailto:?subject=My Workout Plan: ${plan.title}&body=${exerciseData.map(e => `- ${e.name}: ${e.sets} sets x ${e.reps}${e.weight ? ` @ ${e.weight}` : ""}`).join("%0A")}`}
           className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium border border-gray-200 hover:bg-gray-50 transition-colors"
         >
           <Mail className="w-4 h-4" />
@@ -193,12 +285,8 @@ export function WorkoutPlan({ plan, onRegenerate, onAdjust }: WorkoutPlanProps) 
       {/* Warmup */}
       {plan.warmup && plan.warmup.length > 0 && (
         <Card className="border-gray-100 shadow-sm">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
-              Warm-up
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
+          <CardContent className="p-5">
+            <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Warm-up</h3>
             <ul className="space-y-2">
               {plan.warmup.map((item, i) => (
                 <li key={i} className="text-sm text-gray-700 flex items-start gap-2">
@@ -217,29 +305,35 @@ export function WorkoutPlan({ plan, onRegenerate, onAdjust }: WorkoutPlanProps) 
           Main Workout — Tap to mark complete
         </h3>
 
-        {plan.exercises.map((exercise, index) => (
+        {exerciseData.map((exercise, index) => (
           <Card
             key={index}
-            className={`border-gray-100 shadow-sm cursor-pointer transition-all duration-300 ${
+            className={`border-gray-100 shadow-sm transition-all duration-300 ${
               completed.has(index)
                 ? "bg-gray-50 border-gray-200"
                 : "bg-white hover:shadow-md"
             }`}
-            onClick={() => toggleExercise(index)}
           >
             <CardContent className="p-5">
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1">
+                  {/* Name + Check */}
                   <div className="flex items-center gap-3 mb-2">
-                    <h4 className={`font-semibold ${completed.has(index) ? "text-gray-400 line-through" : "text-black"}`}>
+                    <button
+                      onClick={() => toggleExercise(index)}
+                      className={`font-semibold text-left transition-colors ${
+                        completed.has(index) ? "text-gray-400 line-through" : "text-black"
+                      }`}
+                    >
                       {exercise.name}
-                    </h4>
+                    </button>
                     {completed.has(index) && (
-                      <CheckCircle2 className="w-5 h-5 text-green-500" />
+                      <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" />
                     )}
                   </div>
 
-                  <div className="flex flex-wrap gap-2">
+                  {/* Metrics */}
+                  <div className="flex flex-wrap gap-2 mb-2">
                     <Badge variant="secondary" className="bg-gray-100 text-gray-700 hover:bg-gray-100">
                       {exercise.sets} sets
                     </Badge>
@@ -249,15 +343,107 @@ export function WorkoutPlan({ plan, onRegenerate, onAdjust }: WorkoutPlanProps) 
                     <Badge variant="secondary" className="bg-gray-100 text-gray-700 hover:bg-gray-100">
                       Rest {exercise.rest}
                     </Badge>
+                    {exercise.weight && (
+                      <Badge variant="secondary" className="bg-blue-50 text-blue-700 hover:bg-blue-50">
+                        {exercise.weight}
+                      </Badge>
+                    )}
                   </div>
 
+                  {/* Notes */}
                   {exercise.notes && (
-                    <p className="text-sm text-gray-500 mt-2">{exercise.notes}</p>
+                    <p className="text-sm text-gray-500">{exercise.notes}</p>
+                  )}
+
+                  {/* Rest Timer */}
+                  {activeRestIndex === index && restTimeLeft > 0 && (
+                    <div className="mt-3 bg-orange-50 rounded-xl p-3 flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Timer className="w-4 h-4 text-orange-600" />
+                        <span className="text-sm text-orange-600 font-medium">Rest Timer</span>
+                        <span className="text-lg font-bold text-orange-800 font-mono">
+                          {formatTime(restTimeLeft)}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <button
+                          onClick={restRunning ? pauseRest : resumeRest}
+                          className="p-1.5 hover:bg-orange-100 rounded-lg transition-colors"
+                        >
+                          {restRunning ? <Pause className="w-4 h-4 text-orange-600" /> : <Play className="w-4 h-4 text-orange-600" />}
+                        </button>
+                        <button
+                          onClick={stopRest}
+                          className="p-1.5 hover:bg-orange-100 rounded-lg transition-colors"
+                        >
+                          <X className="w-4 h-4 text-orange-600" />
+                        </button>
+                      </div>
+                    </div>
                   )}
                 </div>
 
-                <Dumbbell className={`w-5 h-5 mt-1 ${completed.has(index) ? "text-gray-300" : "text-gray-400"}`} />
+                {/* Right side actions */}
+                <div className="flex flex-col items-end gap-2">
+                  <button
+                    onClick={() => setEditingIndex(editingIndex === index ? null : index)}
+                    className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors"
+                  >
+                    <Settings className={`w-4 h-4 ${editingIndex === index ? "text-black" : "text-gray-400"}`} />
+                  </button>
+                  {!completed.has(index) && (
+                    <button
+                      onClick={() => toggleExercise(index)}
+                      className="p-1.5 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
+                    >
+                      <CheckCircle2 className="w-4 h-4" />
+                    </button>
+                  )}
+                </div>
               </div>
+
+              {/* Edit Panel */}
+              {editingIndex === index && (
+                <div className="mt-4 pt-4 border-t border-gray-100 grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  <div>
+                    <label className="block text-xs text-gray-500 mb-1">Sets</label>
+                    <input
+                      type="number"
+                      value={exercise.sets}
+                      onChange={(e) => updateExercise(index, "sets", parseInt(e.target.value) || 1)}
+                      className="w-full px-3 py-2 rounded-lg border border-gray-200 text-sm focus:border-black focus:outline-none"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs text-gray-500 mb-1">Reps</label>
+                    <input
+                      type="text"
+                      value={exercise.reps}
+                      onChange={(e) => updateExercise(index, "reps", e.target.value)}
+                      className="w-full px-3 py-2 rounded-lg border border-gray-200 text-sm focus:border-black focus:outline-none"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs text-gray-500 mb-1">Rest</label>
+                    <input
+                      type="text"
+                      value={exercise.rest}
+                      onChange={(e) => updateExercise(index, "rest", e.target.value)}
+                      className="w-full px-3 py-2 rounded-lg border border-gray-200 text-sm focus:border-black focus:outline-none"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs text-gray-500 mb-1">Weight</label>
+                    <input
+                      type="text"
+                      value={exercise.weight || ""}
+                      onChange={(e) => updateExercise(index, "weight", e.target.value)}
+                      placeholder="e.g. 20kg"
+                      className="w-full px-3 py-2 rounded-lg border border-gray-200 text-sm focus:border-black focus:outline-none"
+                    />
+                  </div>
+                </div>
+              )}
             </CardContent>
           </Card>
         ))}
@@ -266,12 +452,8 @@ export function WorkoutPlan({ plan, onRegenerate, onAdjust }: WorkoutPlanProps) 
       {/* Cooldown */}
       {plan.cooldown && plan.cooldown.length > 0 && (
         <Card className="border-gray-100 shadow-sm">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
-              Cool-down
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
+          <CardContent className="p-5">
+            <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Cool-down</h3>
             <ul className="space-y-2">
               {plan.cooldown.map((item, i) => (
                 <li key={i} className="text-sm text-gray-700 flex items-start gap-2">
@@ -291,7 +473,7 @@ export function WorkoutPlan({ plan, onRegenerate, onAdjust }: WorkoutPlanProps) 
           {progress}%
         </p>
         <p className="text-sm text-gray-500 mt-1">
-          {completed.size} / {plan.exercises.length} exercises completed
+          {completed.size} / {exerciseData.length} exercises completed
         </p>
         <div className="w-full bg-gray-200 rounded-full h-2 mt-4">
           <div

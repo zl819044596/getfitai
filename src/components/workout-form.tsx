@@ -37,6 +37,7 @@ interface Exercise {
   sets: number;
   reps: string;
   rest: string;
+  weight?: string;
   notes?: string;
 }
 
