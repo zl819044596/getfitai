@@ -21,7 +21,7 @@ const tools = [
     icon: <Timer className="w-6 h-6" />,
     title: "Workout Timer",
     description: "Interval timer for HIIT, Tabata, and circuit training.",
-    href: "#",
+    href: "/tools/workout-timer",
   },
   {
     icon: <Dumbbell className="w-6 h-6" />,
