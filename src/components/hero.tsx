@@ -7,7 +7,7 @@ export function Hero() {
       <div className="absolute inset-0 z-0">
         <img
           src="/images/hero-bg.png"
-          alt=""
+          alt="Fitness background with gym equipment"
           className="absolute inset-0 w-full h-full object-cover opacity-20"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/60 to-white" />
