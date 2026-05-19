@@ -87,7 +87,7 @@ Return valid JSON only, no markdown:
   "calories": "Estimated calories (e.g. 200-350 kcal)",
   "warmup": ["5 items max"],
   "exercises": [
-    { "name": "Exercise", "sets": 3, "reps": "10-12", "rest": "60s", "notes": "Form tip" }
+    { "name": "Exercise", "sets": 3, "reps": "10-12", "rest": "60s", "weight": "suggested weight or 'Bodyweight'", "notes": "Form tip" }
   ],
   "cooldown": ["4 items max"]
 }`;

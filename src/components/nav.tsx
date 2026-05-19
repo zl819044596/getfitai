@@ -2,10 +2,21 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Zap, Menu, X } from "lucide-react";
 
 export function Nav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+
+  const handleGetStarted = () => {
+    if (isHome) {
+      document.getElementById("generator")?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.location.href = "/#generator";
+    }
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-xl border-b border-gray-100">
@@ -25,7 +36,7 @@ export function Nav() {
 
         <div className="hidden md:block">
           <button
-            onClick={() => document.getElementById("generator")?.scrollIntoView({ behavior: "smooth" })}
+            onClick={handleGetStarted}
             className="bg-black text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors"
           >
             Get Started
@@ -45,7 +56,7 @@ export function Nav() {
           <button
             onClick={() => {
               setMobileMenuOpen(false);
-              document.getElementById("generator")?.scrollIntoView({ behavior: "smooth" });
+              handleGetStarted();
             }}
             className="w-full bg-black text-white py-3 rounded-full text-sm font-medium"
           >
