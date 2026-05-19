@@ -29,14 +29,14 @@ export function Footer() {
             <ul className="space-y-2 text-sm text-gray-500">
               <li><a href="/blog" className="hover:text-black transition-colors">Blog</a></li>
               <li><a href="/about" className="hover:text-black transition-colors">About</a></li>
-              <li><a href="#" className="hover:text-black transition-colors">Contact</a></li>
+              <li><a href="/contact" className="hover:text-black transition-colors">Contact</a></li>
             </ul>
           </div>
           <div>
             <h4 className="font-semibold mb-4">Legal</h4>
             <ul className="space-y-2 text-sm text-gray-500">
-              <li><a href="#" className="hover:text-black transition-colors">Privacy</a></li>
-              <li><a href="#" className="hover:text-black transition-colors">Terms</a></li>
+              <li><a href="/privacy" className="hover:text-black transition-colors">Privacy</a></li>
+              <li><a href="/terms" className="hover:text-black transition-colors">Terms</a></li>
             </ul>
           </div>
         </div>

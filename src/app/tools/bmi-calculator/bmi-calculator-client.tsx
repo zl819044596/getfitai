@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Activity, ArrowLeft, Calculator, Info, Heart, TrendingUp, AlertCircle } from "lucide-react";
+import { Activity, ArrowLeft, Calculator, Info } from "lucide-react";
+import { Nav } from "@/components/nav";
 
 export function BMICalculatorClient() {
   const [height, setHeight] = useState("");
@@ -26,20 +27,7 @@ export function BMICalculatorClient() {
 
   return (
     <main className="min-h-screen bg-white">
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-xl border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
-              <Activity className="w-5 h-5 text-white" />
-            </div>
-            <span className="font-bold text-lg tracking-tight">GetFitAI</span>
-          </Link>
-          <Link href="/tools" className="flex items-center gap-2 text-sm text-gray-500 hover:text-black transition-colors">
-            <ArrowLeft className="w-4 h-4" />
-            Back to Tools
-          </Link>
-        </div>
-      </nav>
+      <Nav />
 
       <section className="pt-24 pb-12 md:pt-32 md:pb-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">

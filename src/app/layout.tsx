@@ -29,12 +29,19 @@ export const metadata: Metadata = {
     siteName: "GetFitAI",
     locale: "en_US",
     type: "website",
+    images: [{
+      url: "https://getfitai.io/images/og-default.png",
+      width: 1200,
+      height: 630,
+      alt: "GetFitAI - AI Workout Generator",
+    }],
   },
   twitter: {
     card: "summary_large_image",
     title: "GetFitAI — AI Workout Generator",
     description: "Generate personalized workout plans in seconds. No sign-up required.",
     creator: "@getfitai",
+    images: ["https://getfitai.io/images/og-default.png"],
   },
   verification: {
     google: "32QcaLR9reDN-2_rpqpyzjjD-jiH1AsPu3oINwFD",
