@@ -74,13 +74,12 @@ export default function BlogPage() {
                   {post.title}
                 </h2>
                 <p className="text-gray-500 mb-4">{post.excerpt}</p>
-                <a
-                  href={`/blog/${post.slug}`}
-                  className="inline-flex items-center gap-2 text-sm font-medium text-black hover:text-gray-600 transition-colors"
+                <span
+                  className="inline-flex items-center gap-2 text-sm font-medium text-gray-400 cursor-default"
                 >
-                  Read more
+                  Coming soon
                   <ArrowRight className="w-4 h-4" />
-                </a>
+                </span>
               </article>
             ))}
           </div>
