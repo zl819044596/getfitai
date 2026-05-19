@@ -15,7 +15,7 @@ const tools = [
     icon: <TrendingUp className="w-6 h-6" />,
     title: "1RM Calculator",
     description: "Estimate your one-rep max based on your current lifting stats.",
-    href: "#",
+    href: "/tools/one-rep-max",
   },
   {
     icon: <Timer className="w-6 h-6" />,
@@ -27,19 +27,19 @@ const tools = [
     icon: <Dumbbell className="w-6 h-6" />,
     title: "Plate Calculator",
     description: "Figure out which plates to load for your target weight.",
-    href: "#",
+    href: "/tools/plate-calculator",
   },
   {
     icon: <Flame className="w-6 h-6" />,
     title: "Calorie Calculator",
     description: "Estimate your daily calorie needs based on your goals.",
-    href: "#",
+    href: "/tools/tdee-calculator",
   },
   {
     icon: <Activity className="w-6 h-6" />,
     title: "Body Fat Calculator",
     description: "Estimate your body fat percentage using multiple methods.",
-    href: "#",
+    href: "/tools/body-fat-calculator",
   },
 ];
 
