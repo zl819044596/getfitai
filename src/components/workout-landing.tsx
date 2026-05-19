@@ -7,45 +7,11 @@ import Link from "next/link";
 import {
   Zap,
   ArrowLeft,
-  Dumbbell,
-  Clock,
-  Target,
-  Activity,
   ChevronRight,
 } from "lucide-react";
+import { iconMap, type WorkoutConfig } from "@/lib/workout-configs";
 
-interface Benefit {
-  icon: React.ReactNode;
-  text: string;
-}
-
-interface SampleExercise {
-  name: string;
-  muscle: string;
-  sets: string;
-}
-
-interface FAQ {
-  q: string;
-  a: string;
-}
-
-interface WorkoutLandingConfig {
-  badge: { icon: React.ReactNode; text: string };
-  title: string;
-  description: string;
-  benefits: Benefit[];
-  sampleExercises: SampleExercise[];
-  faqs: FAQ[];
-  ctaTitle: string;
-  ctaSubtitle: string;
-  ctaButton: string;
-  defaultEquipment?: string;
-  generatorTitle: string;
-  generatorSubtitle: string;
-}
-
-export function WorkoutLanding({ config }: { config: WorkoutLandingConfig }) {
+export function WorkoutLanding({ config }: { config: WorkoutConfig }) {
   const [plan, setPlan] = useState<any>(null);
 
   const scrollToGenerator = () => {
@@ -62,6 +28,8 @@ export function WorkoutLanding({ config }: { config: WorkoutLandingConfig }) {
   const handleAdjust = (_direction: "easier" | "harder") => {
     scrollToGenerator();
   };
+
+  const BadgeIcon = iconMap[config.badgeIcon];
 
   return (
     <main className="min-h-screen bg-white">
@@ -89,8 +57,8 @@ export function WorkoutLanding({ config }: { config: WorkoutLandingConfig }) {
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 text-sm font-medium text-gray-600 mb-6">
-              {config.badge.icon}
-              <span>{config.badge.text}</span>
+              {BadgeIcon && <BadgeIcon className="w-4 h-4" />}
+              <span>{config.badgeText}</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-black mb-4">
               {config.title}
@@ -102,12 +70,17 @@ export function WorkoutLanding({ config }: { config: WorkoutLandingConfig }) {
 
           {/* Benefits */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
-            {config.benefits.map((benefit, i) => (
-              <div key={i} className="flex items-center gap-3 bg-gray-50 rounded-xl p-4">
-                <div className="text-black">{benefit.icon}</div>
-                <span className="font-medium text-sm">{benefit.text}</span>
-              </div>
-            ))}
+            {config.benefits.map((benefit, i) => {
+              const BenefitIcon = iconMap[benefit.icon];
+              return (
+                <div key={i} className="flex items-center gap-3 bg-gray-50 rounded-xl p-4">
+                  <div className="text-black">
+                    {BenefitIcon && <BenefitIcon className="w-5 h-5" />}
+                  </div>
+                  <span className="font-medium text-sm">{benefit.text}</span>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
