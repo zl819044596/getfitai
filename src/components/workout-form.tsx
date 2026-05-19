@@ -71,10 +71,12 @@ export function WorkoutForm({ onPlanGenerated, defaultEquipment }: WorkoutFormPr
   const [notes, setNotes] = useState("");
   const [loading, setLoading] = useState(false);
   const [streamingText, setStreamingText] = useState("");
+  const [error, setError] = useState<string | null>(null);
 
   const generatePlan = async () => {
     setLoading(true);
     setStreamingText("");
+    setError(null);
     try {
       const res = await fetch("/api/generate-plan", {
         method: "POST",
@@ -108,10 +110,10 @@ export function WorkoutForm({ onPlanGenerated, defaultEquipment }: WorkoutFormPr
       if (plan) {
         onPlanGenerated(plan);
       } else {
-        console.error("Failed to parse plan:", raw);
+        setError("Failed to parse the generated plan. Please try again.");
       }
     } catch (err) {
-      console.error(err);
+      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -156,6 +158,17 @@ export function WorkoutForm({ onPlanGenerated, defaultEquipment }: WorkoutFormPr
 
   return (
     <div className="bg-white rounded-3xl shadow-xl shadow-neutral-100 border border-neutral-100 p-6 sm:p-8 md:p-10 max-w-2xl mx-auto">
+      {error && (
+        <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm">
+          {error}
+          <button
+            onClick={() => setError(null)}
+            className="ml-2 underline hover:no-underline"
+          >
+            Dismiss
+          </button>
+        </div>
+      )}
       {/* Goal */}
       <div className="mb-8">
         <label className="flex items-center gap-2 text-sm font-semibold text-neutral-900 mb-4">

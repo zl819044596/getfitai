@@ -121,6 +121,7 @@ export async function POST(req: NextRequest) {
           controller.close();
         } catch (err) {
           console.error('Stream error:', err);
+          controller.enqueue(encoder.encode('\n\n[Error: Stream interrupted. Please try again.]'));
           controller.close();
         }
       },
