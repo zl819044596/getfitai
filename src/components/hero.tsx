@@ -1,4 +1,5 @@
 import { Star, Users, Award, Clock, Dumbbell, Shield, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export function Hero() {
   return (
@@ -37,13 +38,13 @@ export function Hero() {
                 Generate Workout
                 <ArrowRight className="w-5 h-5 ml-2" />
               </button>
-              <a
+              <Link
                 href="/tools"
                 className="inline-flex items-center px-6 py-3 rounded-full font-medium border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors"
               >
                 <Shield className="w-5 h-5 mr-2" />
                 Free Tools
-              </a>
+              </Link>
             </div>
 
             <div className="flex items-center gap-6 text-sm text-gray-500">
