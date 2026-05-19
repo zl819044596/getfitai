@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Dumbbell, Clock, Flame, RotateCcw, CheckCircle2, Download, Share2, Mail, History } from "lucide-react";
+import { Dumbbell, Clock, Flame, RotateCcw, CheckCircle2, Download, Share2, Mail, ChevronDown, ChevronUp, Sparkles } from "lucide-react";
 import { useState, useEffect } from "react";
 
 interface Exercise {
@@ -21,17 +21,21 @@ interface WorkoutPlanProps {
     exercises: Exercise[];
     warmup?: string[];
     cooldown?: string[];
+    difficulty?: string;
+    calories?: string;
   };
+  onRegenerate?: () => void;
+  onAdjust?: (direction: "easier" | "harder") => void;
 }
 
-export function WorkoutPlan({ plan }: WorkoutPlanProps) {
+export function WorkoutPlan({ plan, onRegenerate, onAdjust }: WorkoutPlanProps) {
   const [completed, setCompleted] = useState<Set<number>>(new Set());
   const [saved, setSaved] = useState(false);
   const [email, setEmail] = useState("");
   const [emailSending, setEmailSending] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
+  const [adjusting, setAdjusting] = useState(false);
 
-  // Load completed state from localStorage
   useEffect(() => {
     const savedState = localStorage.getItem(`workout-${plan.title}`);
     if (savedState) {
@@ -39,9 +43,8 @@ export function WorkoutPlan({ plan }: WorkoutPlanProps) {
     }
   }, [plan.title]);
 
-  // Save completed state to localStorage
   useEffect(() => {
-    localStorage.setItem(`workout-${plan.title}`, JSON.stringify([...completed]));
+    localStorage.setItem(`workout-${plan.title}`, JSON.stringify(Array.from(completed)));
   }, [completed, plan.title]);
 
   const toggleExercise = (index: number) => {
@@ -59,10 +62,10 @@ export function WorkoutPlan({ plan }: WorkoutPlanProps) {
     const newPlan = {
       ...plan,
       savedAt: new Date().toISOString(),
-      completed: [...completed],
+      completed: Array.from(completed),
     };
     plans.unshift(newPlan);
-    localStorage.setItem("saved-plans", JSON.stringify(plans.slice(0, 10))); // Keep last 10
+    localStorage.setItem("saved-plans", JSON.stringify(plans.slice(0, 10)));
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
   };
@@ -88,11 +91,16 @@ export function WorkoutPlan({ plan }: WorkoutPlanProps) {
       } else {
         alert("Failed to send email. Please try again.");
       }
-    } catch (err) {
+    } catch {
       alert("Failed to send email. Please try again.");
     } finally {
       setEmailSending(false);
     }
+  };
+
+  const handleAdjust = (direction: "easier" | "harder") => {
+    setAdjusting(true);
+    onAdjust?.(direction);
   };
 
   const progress = Math.round((completed.size / plan.exercises.length) * 100);
@@ -100,11 +108,11 @@ export function WorkoutPlan({ plan }: WorkoutPlanProps) {
   if (!plan) return null;
 
   return (
-    <div className="space-y-6 animate-fade-in-up">
+    <div className="space-y-6">
       {/* Plan Header */}
       <div className="text-center mb-8">
         <h2 className="text-2xl font-bold text-black mb-3">{plan.title}</h2>
-        <div className="flex items-center justify-center gap-4 text-sm text-gray-500">
+        <div className="flex items-center justify-center gap-4 text-sm text-gray-500 flex-wrap">
           <span className="flex items-center gap-1">
             <Clock className="w-4 h-4" />
             {plan.duration}
@@ -113,10 +121,20 @@ export function WorkoutPlan({ plan }: WorkoutPlanProps) {
             <Flame className="w-4 h-4" />
             {plan.intensity}
           </span>
+          {plan.difficulty && (
+            <span className="px-2 py-0.5 bg-gray-100 rounded-full text-xs font-medium">
+              {plan.difficulty}
+            </span>
+          )}
+          {plan.calories && (
+            <span className="flex items-center gap-1 text-xs text-gray-400">
+              ~{plan.calories}
+            </span>
+          )}
         </div>
       </div>
 
-      {/* CTA Buttons */}
+      {/* Action Buttons */}
       <div className="flex flex-wrap gap-3 justify-center">
         <button
           onClick={savePlan}
@@ -137,7 +155,7 @@ export function WorkoutPlan({ plan }: WorkoutPlanProps) {
           Copy Plan
         </button>
         <a
-          href="mailto:?subject=My Workout Plan&body=Check out my workout plan!"
+          href={`mailto:?subject=My Workout Plan: ${plan.title}&body=${plan.exercises.map(e => `- ${e.name}: ${e.sets} sets x ${e.reps}`).join("%0A")}`}
           className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium border border-gray-200 hover:bg-gray-50 transition-colors"
         >
           <Mail className="w-4 h-4" />
@@ -198,7 +216,7 @@ export function WorkoutPlan({ plan }: WorkoutPlanProps) {
         <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide px-1">
           Main Workout — Tap to mark complete
         </h3>
-        
+
         {plan.exercises.map((exercise, index) => (
           <Card
             key={index}
@@ -220,7 +238,7 @@ export function WorkoutPlan({ plan }: WorkoutPlanProps) {
                       <CheckCircle2 className="w-5 h-5 text-green-500" />
                     )}
                   </div>
-                  
+
                   <div className="flex flex-wrap gap-2">
                     <Badge variant="secondary" className="bg-gray-100 text-gray-700 hover:bg-gray-100">
                       {exercise.sets} sets
@@ -232,12 +250,12 @@ export function WorkoutPlan({ plan }: WorkoutPlanProps) {
                       Rest {exercise.rest}
                     </Badge>
                   </div>
-                  
+
                   {exercise.notes && (
                     <p className="text-sm text-gray-500 mt-2">{exercise.notes}</p>
                   )}
                 </div>
-                
+
                 <Dumbbell className={`w-5 h-5 mt-1 ${completed.has(index) ? "text-gray-300" : "text-gray-400"}`} />
               </div>
             </CardContent>
@@ -286,14 +304,39 @@ export function WorkoutPlan({ plan }: WorkoutPlanProps) {
         )}
       </div>
 
+      {/* Adjust Difficulty */}
+      <div className="bg-white rounded-2xl p-6 border border-gray-100 text-center">
+        <p className="text-sm text-gray-500 mb-4">Not quite right? Adjust the difficulty:</p>
+        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <button
+            onClick={() => handleAdjust("easier")}
+            disabled={adjusting}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium border border-gray-200 hover:bg-gray-50 transition-colors disabled:opacity-50"
+          >
+            <ChevronDown className="w-4 h-4" />
+            Make it Easier
+          </button>
+          <button
+            onClick={() => handleAdjust("harder")}
+            disabled={adjusting}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium border border-gray-200 hover:bg-gray-50 transition-colors disabled:opacity-50"
+          >
+            <ChevronUp className="w-4 h-4" />
+            Make it Harder
+          </button>
+        </div>
+      </div>
+
       {/* Regenerate */}
-      <button
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        className="w-full py-4 text-sm font-medium text-gray-500 hover:text-black transition-colors flex items-center justify-center gap-2"
-      >
-        <RotateCcw className="w-4 h-4" />
-        Generate a different plan
-      </button>
+      {onRegenerate && (
+        <button
+          onClick={onRegenerate}
+          className="w-full py-4 text-sm font-medium text-gray-500 hover:text-black transition-colors flex items-center justify-center gap-2"
+        >
+          <Sparkles className="w-4 h-4" />
+          Generate a completely new plan
+        </button>
+      )}
     </div>
   );
 }

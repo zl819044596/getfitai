@@ -243,3 +243,23 @@
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--fit-gray-200), transparent);
 }
+
+/* Mobile touch optimization */
+@media (max-width: 640px) {
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Safe area for mobile browsers */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Prevent iOS zoom on input focus */
+@media (max-width: 640px) {
+  input, textarea, select {
+    font-size: 16px !important;
+  }
+}

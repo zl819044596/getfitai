@@ -1,8 +1,6 @@
 import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(req: NextRequest) {
   try {
     const { email, plan } = await req.json();
@@ -13,6 +11,15 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
+
+    if (!process.env.RESEND_API_KEY) {
+      return NextResponse.json(
+        { error: "Email service not configured" },
+        { status: 503 }
+      );
+    }
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
 
     // 构建邮件内容
     const exercisesHtml = plan.exercises
