@@ -78,6 +78,12 @@ Design a safe, effective workout:
 5. If bodyweight only, suggest creative alternatives that still challenge the user
 6. Include an estimated difficulty rating (Easy / Moderate / Challenging)
 
+CRITICAL RULES for weight field:
+- Bodyweight exercises: return "BW"
+- Fixed weight: return pure number format like "20kg" or "10-15kg". NO extra words like "Moderate" or "e.g."
+- If intensity level is needed: return format like "M · 20kg" or "L · BW" (L=Light, M=Moderate, H=Heavy)
+- NEVER return sentences or descriptions in the weight field
+
 Return valid JSON only, no markdown:
 {
   "title": "Descriptive workout name",
@@ -87,7 +93,7 @@ Return valid JSON only, no markdown:
   "calories": "Estimated calories (e.g. 200-350 kcal)",
   "warmup": ["5 items max"],
   "exercises": [
-    { "name": "Exercise", "sets": 3, "reps": "10-12", "rest": "60s", "weight": "suggested weight or 'Bodyweight'", "notes": "Form tip" }
+    { "name": "Exercise", "sets": 3, "reps": "10-12", "rest": "60s", "weight": "20kg or BW or M · 15kg", "notes": "1-sentence form tip" }
   ],
   "cooldown": ["4 items max"]
 }`;
