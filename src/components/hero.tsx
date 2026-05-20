@@ -6,7 +6,7 @@ export function Hero() {
     <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden">
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/hero-bg.png"
+          src="/images/hero-bg.webp"
           alt="Fitness background with gym equipment"
           className="absolute inset-0 w-full h-full object-cover opacity-20"
         />
@@ -57,7 +57,7 @@ export function Hero() {
           <div className="relative">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl">
               <img
-                src="/images/feature-workout.png"
+                src="/images/feature-workout.webp"
                 alt="AI Workout Planning"
                 width={600}
                 height={400}

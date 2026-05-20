@@ -8,7 +8,7 @@ export function ToolsPreview() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <img
-              src="/images/bmi-hero.png"
+              src="/images/bmi-hero.webp"
               alt="Fitness Tools"
               width={500}
               height={350}
