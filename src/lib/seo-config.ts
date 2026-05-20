@@ -8,7 +8,7 @@ export const siteConfig = {
 export const pageSEO = {
   home: {
     title: "GetFitAI — AI Workout Generator",
-    description: "Generate personalized workout plans tailored to your goals, experience, and available equipment. No sign-up required. Free AI-powered fitness tool.",
+    description: "Generate personalized workout plans with AI. Tailored to your goals, experience, and equipment. No signup required. Free BMI, TDEE, and 1RM calculators included.",
     keywords: ["AI workout generator", "fitness planner", "personalized workout", "gym workout", "home workout"],
   },
   tools: {

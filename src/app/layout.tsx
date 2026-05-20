@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     default: "GetFitAI — AI Workout Generator",
     template: "%s | GetFitAI",
   },
-  description: "Generate personalized workout plans tailored to your goals, experience, and available equipment. No sign-up required. Free AI-powered fitness tool.",
+  description: "Generate personalized workout plans with AI. Tailored to your goals, experience, and equipment. No signup required. Free BMI, TDEE, and 1RM calculators included.",
   keywords: ["AI workout generator", "fitness planner", "personalized workout", "gym workout", "home workout"],
   authors: [{ name: "GetFitAI" }],
   creator: "GetFitAI",
