@@ -6,6 +6,9 @@ import { Mail, MessageSquare, Clock } from "lucide-react";
 export const metadata: Metadata = {
   title: "Contact Us | GetFitAI",
   description: "Get in touch with the GetFitAI team. We'd love to hear from you.",
+  alternates: {
+    canonical: "https://getfitai.io/contact",
+  },
 };
 
 export default function ContactPage() {

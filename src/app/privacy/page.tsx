@@ -5,6 +5,9 @@ import { Footer } from "@/components/footer";
 export const metadata: Metadata = {
   title: "Privacy Policy | GetFitAI",
   description: "How GetFitAI collects, uses, and protects your personal information.",
+  alternates: {
+    canonical: "https://getfitai.io/privacy",
+  },
 };
 
 export default function PrivacyPage() {
