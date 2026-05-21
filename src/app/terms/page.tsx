@@ -4,7 +4,7 @@ import { Footer } from "@/components/footer";
 
 export const metadata: Metadata = {
   title: "Terms of Service | GetFitAI",
-  description: "Terms and conditions for using GetFitAI services.",
+  description: "Read the terms of service for GetFitAI. By using our AI workout generator and fitness calculators, you agree to these conditions.",
   alternates: {
     canonical: "https://getfitai.io/terms",
   },

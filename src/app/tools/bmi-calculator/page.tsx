@@ -4,7 +4,7 @@ import { ToolContent } from "@/components/tool-content";
 
 export const metadata: Metadata = {
   title: "BMI Calculator | GetFitAI",
-  description: "Calculate your Body Mass Index and understand your weight category.",
+  description: "Calculate your Body Mass Index (BMI) with GetFitAI's free calculator. Understand your weight category and get personalized health insights instantly.",
   alternates: {
     canonical: "https://getfitai.io/tools/bmi-calculator",
   },

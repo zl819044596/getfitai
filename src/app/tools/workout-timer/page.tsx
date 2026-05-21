@@ -4,7 +4,7 @@ import { ToolContent } from "@/components/tool-content";
 
 export const metadata: Metadata = {
   title: "Workout Timer | GetFitAI",
-  description: "Interval timer for HIIT, Tabata, and circuit training.",
+  description: "Use GetFitAI's free workout timer for HIIT, Tabata, and circuit training. Customizable interval timer to optimize your training sessions.",
   alternates: {
     canonical: "https://getfitai.io/tools/workout-timer",
   },

@@ -5,7 +5,7 @@ import { Calendar, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Fitness Blog | Workout Tips & Nutrition Advice | GetFitAI",
-  description: "Expert fitness tips, workout guides, and nutrition advice to help you reach your goals faster.",
+  description: "Read expert fitness tips, workout guides, and nutrition advice on the GetFitAI blog. Science-backed content to help you reach your goals faster.",
   alternates: {
     canonical: "https://getfitai.io/blog",
   },

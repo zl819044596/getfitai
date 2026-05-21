@@ -3,7 +3,7 @@ import { ToolsClient } from "./tools-client";
 
 export const metadata: Metadata = {
   title: "Fitness Tools | GetFitAI",
-  description: "Free fitness calculators and tools to help you track your progress.",
+  description: "Explore GetFitAI's collection of free fitness calculators and tools. BMI, TDEE, 1RM, body fat, plate calculator, and workout timer — all free.",
   alternates: {
     canonical: "https://getfitai.io/tools",
   },

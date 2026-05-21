@@ -4,7 +4,7 @@ import { ToolContent } from "@/components/tool-content";
 
 export const metadata: Metadata = {
   title: "Plate Calculator | GetFitAI",
-  description: "Figure out which plates to load for your target weight.",
+  description: "Calculate barbell plate loading with GetFitAI's free plate calculator. Quickly figure out which weight plates to load for your target lifting weight.",
   alternates: {
     canonical: "https://getfitai.io/tools/plate-calculator",
   },

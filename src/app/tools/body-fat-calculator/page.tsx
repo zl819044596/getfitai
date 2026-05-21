@@ -4,7 +4,7 @@ import { ToolContent } from "@/components/tool-content";
 
 export const metadata: Metadata = {
   title: "Body Fat Calculator | GetFitAI",
-  description: "Estimate your body fat percentage using multiple methods.",
+  description: "Estimate your body fat percentage with GetFitAI's free calculator. Use multiple measurement methods including Navy, Jackson-Pollock, and BMI-based formulas.",
   alternates: {
     canonical: "https://getfitai.io/tools/body-fat-calculator",
   },

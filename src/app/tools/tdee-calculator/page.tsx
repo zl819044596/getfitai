@@ -4,7 +4,7 @@ import { ToolContent } from "@/components/tool-content";
 
 export const metadata: Metadata = {
   title: "Calorie Calculator | GetFitAI",
-  description: "Estimate your daily calorie needs based on your goals.",
+  description: "Estimate your daily calorie needs with GetFitAI's free TDEE calculator. Calculate your Total Daily Energy Expenditure based on activity level and goals.",
   alternates: {
     canonical: "https://getfitai.io/tools/tdee-calculator",
   },

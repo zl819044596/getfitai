@@ -5,7 +5,7 @@ import { Zap, Target, Shield, Users } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "About Us | GetFitAI",
-  description: "Learn about GetFitAI's mission to make personalized fitness accessible to everyone through AI.",
+  description: "Learn about GetFitAI's mission to make personalized fitness accessible to everyone through AI-powered workout plans and free fitness calculators.",
   alternates: {
     canonical: "https://getfitai.io/about",
   },

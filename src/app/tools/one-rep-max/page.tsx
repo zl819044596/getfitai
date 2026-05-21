@@ -4,7 +4,7 @@ import { ToolContent } from "@/components/tool-content";
 
 export const metadata: Metadata = {
   title: "1RM Calculator | GetFitAI",
-  description: "Estimate your one-rep max based on your current lifting stats.",
+  description: "Calculate your one-rep max (1RM) with GetFitAI's free strength calculator. Estimate your maximum lifting capacity based on your current reps and weight.",
   alternates: {
     canonical: "https://getfitai.io/tools/one-rep-max",
   },
