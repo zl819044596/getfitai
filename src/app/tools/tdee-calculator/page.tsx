@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://getfitai.io/tools/tdee-calculator",
   },
+  openGraph: {
+    url: "https://getfitai.io/tools/tdee-calculator",
+  },
 };
 
 export default function TDEECalculatorPage() {

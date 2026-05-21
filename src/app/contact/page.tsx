@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://getfitai.io/contact",
   },
+  openGraph: {
+    url: "https://getfitai.io/contact",
+  },
 };
 
 export default function ContactPage() {

@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://getfitai.io/tools/body-fat-calculator",
   },
+  openGraph: {
+    url: "https://getfitai.io/tools/body-fat-calculator",
+  },
 };
 
 export default function BodyFatCalculatorPage() {

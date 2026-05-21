@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://getfitai.io/privacy",
   },
+  openGraph: {
+    url: "https://getfitai.io/privacy",
+  },
 };
 
 export default function PrivacyPage() {

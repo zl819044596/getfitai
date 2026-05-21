@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://getfitai.io/terms",
   },
+  openGraph: {
+    url: "https://getfitai.io/terms",
+  },
 };
 
 export default function TermsPage() {

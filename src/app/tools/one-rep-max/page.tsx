@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://getfitai.io/tools/one-rep-max",
   },
+  openGraph: {
+    url: "https://getfitai.io/tools/one-rep-max",
+  },
 };
 
 export default function OneRepMaxPage() {

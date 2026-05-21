@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://getfitai.io/tools",
   },
+  openGraph: {
+    url: "https://getfitai.io/tools",
+  },
 };
 
 export default function ToolsPage() {

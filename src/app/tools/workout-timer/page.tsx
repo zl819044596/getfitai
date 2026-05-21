@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://getfitai.io/tools/workout-timer",
   },
+  openGraph: {
+    url: "https://getfitai.io/tools/workout-timer",
+  },
 };
 
 export default function WorkoutTimerPage() {

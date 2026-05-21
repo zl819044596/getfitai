@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://getfitai.io/tools/bmi-calculator",
   },
+  openGraph: {
+    url: "https://getfitai.io/tools/bmi-calculator",
+  },
 };
 
 export default function BMICalculatorPage() {

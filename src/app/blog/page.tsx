@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://getfitai.io/blog",
   },
+  openGraph: {
+    url: "https://getfitai.io/blog",
+  },
 };
 
 const posts = [

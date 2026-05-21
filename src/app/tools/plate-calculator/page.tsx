@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://getfitai.io/tools/plate-calculator",
   },
+  openGraph: {
+    url: "https://getfitai.io/tools/plate-calculator",
+  },
 };
 
 export default function PlateCalculatorPage() {
