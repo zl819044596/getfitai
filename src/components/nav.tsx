@@ -29,9 +29,10 @@ export function Nav() {
         </Link>
 
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-500">
+          <Link href="/workouts/beginner" className="hover:text-black transition-colors">Workouts</Link>
+          <Link href="/tools" className="hover:text-black transition-colors">Tools</Link>
           <Link href="/#how-it-works" className="hover:text-black transition-colors">How it Works</Link>
           <Link href="/#features" className="hover:text-black transition-colors">Features</Link>
-          <Link href="/tools" className="hover:text-black transition-colors">Tools</Link>
         </div>
 
         <div className="hidden md:block">
@@ -48,11 +49,12 @@ export function Nav() {
         </button>
       </div>
 
-      {mobileMenuOpen && (
+        {mobileMenuOpen && (
         <div className="md:hidden bg-white border-b border-gray-100 px-4 py-4 space-y-3">
+          <Link href="/workouts/beginner" className="block py-2 text-gray-600" onClick={() => setMobileMenuOpen(false)}>Workouts</Link>
+          <Link href="/tools" className="block py-2 text-gray-600" onClick={() => setMobileMenuOpen(false)}>Tools</Link>
           <Link href="/#how-it-works" className="block py-2 text-gray-600" onClick={() => setMobileMenuOpen(false)}>How it Works</Link>
           <Link href="/#features" className="block py-2 text-gray-600" onClick={() => setMobileMenuOpen(false)}>Features</Link>
-          <Link href="/tools" className="block py-2 text-gray-600" onClick={() => setMobileMenuOpen(false)}>Tools</Link>
           <button
             onClick={() => {
               setMobileMenuOpen(false);

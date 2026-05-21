@@ -151,6 +151,33 @@ export function WorkoutLanding({ config }: { config: WorkoutConfig }) {
         </div>
       </section>
 
+      {/* Related Workouts */}
+      <section className="py-16 bg-gray-50/50 border-t border-gray-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <h2 className="text-2xl font-bold text-black mb-8 text-center">
+            More Workout Plans
+          </h2>
+          <div className="grid sm:grid-cols-3 gap-4">
+            {[
+              { type: "beginner", title: "Beginner Workout", desc: "Perfect for those just starting their fitness journey" },
+              { type: "home", title: "Home Workout", desc: "No equipment needed, train in your living room" },
+              { type: "gym", title: "Gym Workout", desc: "Maximize your gym time with structured plans" },
+            ]
+              .filter((w) => w.type !== config.type)
+              .map((workout) => (
+                <Link
+                  key={workout.type}
+                  href={`/workouts/${workout.type}`}
+                  className="block bg-white rounded-xl p-6 border border-gray-100 hover:border-gray-300 transition-colors"
+                >
+                  <h3 className="font-semibold mb-2">{workout.title}</h3>
+                  <p className="text-sm text-gray-500">{workout.desc}</p>
+                </Link>
+              ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-16 bg-black text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
