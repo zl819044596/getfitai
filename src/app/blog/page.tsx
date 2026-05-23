@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { Calendar, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Fitness Blog | Workout Tips & Nutrition Advice | GetFitAI",
@@ -16,6 +17,20 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    title: "How to Build Muscle: The Complete Beginner's Guide",
+    excerpt: "Learn the science of muscle growth, the 6 fundamental exercises, a complete workout plan, and nutrition strategies.",
+    date: "May 22, 2025",
+    slug: "how-to-build-muscle",
+    category: "Muscle Building",
+  },
+  {
+    title: "How to Lose Belly Fat: 10 Science-Backed Exercises",
+    excerpt: "Discover 10 proven exercises, a complete 7-day workout plan, and nutrition tips to lose belly fat fast. No gym required.",
+    date: "May 22, 2025",
+    slug: "how-to-lose-belly-fat",
+    category: "Fat Loss",
+  },
+  {
     title: "How to Fix Wrist Pain During Bench Press",
     excerpt: "Common causes and proven solutions for wrist discomfort during pressing movements.",
     date: "May 15, 2025",
@@ -26,7 +41,7 @@ const posts = [
     title: "The Complete Beginner's Guide to Strength Training",
     excerpt: "Everything you need to know to start lifting weights safely and effectively.",
     date: "May 10, 2025",
-    slug: "beginner-strength-training",
+    slug: "how-to-build-muscle",
     category: "Beginner",
   },
   {
@@ -80,12 +95,13 @@ export default function BlogPage() {
                   {post.title}
                 </h2>
                 <p className="text-gray-500 mb-4">{post.excerpt}</p>
-                <span
-                  className="inline-flex items-center gap-2 text-sm font-medium text-gray-400 cursor-default"
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="inline-flex items-center gap-2 text-sm font-medium text-black hover:text-gray-600 transition-colors"
                 >
-                  Coming soon
+                  Read more
                   <ArrowRight className="w-4 h-4" />
-                </span>
+                </Link>
               </article>
             ))}
           </div>
