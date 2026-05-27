@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, Users, Star, Zap, Play } from "lucide-react";
+import { ArrowRight, Sparkles, Users, Star, Zap } from "lucide-react";
 import Link from "next/link";
 
 export function Hero() {
@@ -117,10 +117,6 @@ export function Hero() {
                 Get My Workout Plan
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
-              <button className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-slate-300 bg-slate-900/80 border border-slate-700 hover:border-orange-500/30 hover:text-white rounded-full transition-all duration-300 hover:-translate-y-0.5">
-                <Play className="mr-2 w-5 h-5" />
-                Watch Demo
-              </button>
             </motion.div>
 
             {/* Stats */}
