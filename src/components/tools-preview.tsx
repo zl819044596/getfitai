@@ -38,8 +38,9 @@ const tools = [
 
 export function ToolsPreview() {
   return (
-    <section id="tools" className="py-24 relative bg-gradient-to-b from-secondary/50 to-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="tools" className="py-24 relative bg-slate-950">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-orange-500/5 via-transparent to-transparent" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -47,13 +48,13 @@ export function ToolsPreview() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-1 rounded-full bg-primary/10 text-sm font-medium text-primary mb-4">
+          <span className="inline-block px-4 py-1 rounded-full bg-orange-500/10 text-sm font-medium text-orange-400 mb-4">
             Free Fitness Tools
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
             Accurate, Fast, No Signup Required
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-slate-400 max-w-2xl mx-auto">
             All calculators use validated formulas and provide instant results to help you make informed fitness decisions.
           </p>
         </motion.div>
@@ -71,7 +72,7 @@ export function ToolsPreview() {
               >
                 <Link
                   href={tool.href}
-                  className="group block bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/50 transition-all hover:shadow-xl hover:shadow-primary/10"
+                  className="group block bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-2xl overflow-hidden hover:border-orange-500/50 transition-all hover:shadow-xl hover:shadow-orange-500/10"
                 >
                   {/* Image Header */}
                   <div className="relative h-40 overflow-hidden">
@@ -79,25 +80,25 @@ export function ToolsPreview() {
                       src={tool.image}
                       alt={tool.title}
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500 grayscale"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent" />
                     <div className="absolute bottom-4 left-4">
-                      <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center shadow-lg">
-                        <Icon className="w-6 h-6 text-primary-foreground" />
+                      <div className="w-12 h-12 rounded-xl bg-orange-500 flex items-center justify-center shadow-lg">
+                        <Icon className="w-6 h-6 text-white" />
                       </div>
                     </div>
                   </div>
 
                   {/* Content */}
                   <div className="p-6">
-                    <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                    <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-orange-400 transition-colors">
                       {tool.title}
                     </h3>
-                    <p className="text-muted-foreground leading-relaxed mb-4">
+                    <p className="text-slate-400 leading-relaxed mb-4">
                       {tool.description}
                     </p>
-                    <span className="inline-flex items-center text-sm font-medium text-primary">
+                    <span className="inline-flex items-center text-sm font-medium text-orange-400">
                       Try It Free
                       <ArrowRight className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </span>

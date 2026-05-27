@@ -50,14 +50,9 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section id="testimonials" className="py-24 relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="testimonials" className="py-24 relative overflow-hidden bg-slate-950">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-orange-500/5 via-transparent to-transparent" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -65,10 +60,10 @@ export function Testimonials() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-1 rounded-full bg-primary/10 text-sm font-medium text-primary mb-4">
+          <span className="inline-block px-4 py-1 rounded-full bg-orange-500/10 text-sm font-medium text-orange-400 mb-4">
             Reviews
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white">
             Loved by Fitness Enthusiasts Worldwide
           </h2>
         </motion.div>
@@ -81,22 +76,22 @@ export function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-card border border-border rounded-2xl p-6 relative hover:shadow-xl hover:shadow-primary/5 transition-shadow"
+              className="bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-2xl p-6 relative hover:shadow-xl hover:shadow-orange-500/5 transition-shadow"
             >
               {/* Quote Icon */}
               <div className="absolute top-4 right-4">
-                <Quote className="w-8 h-8 text-primary/20" />
+                <Quote className="w-8 h-8 text-orange-500/20" />
               </div>
 
               {/* Rating */}
               <div className="flex gap-1 mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-primary text-primary" />
+                  <Star key={i} className="w-5 h-5 fill-orange-400 text-orange-400" />
                 ))}
               </div>
 
               {/* Content */}
-              <p className="text-foreground leading-relaxed mb-6">
+              <p className="text-white leading-relaxed mb-6">
                 &ldquo;{testimonial.content}&rdquo;
               </p>
 
@@ -108,10 +103,10 @@ export function Testimonials() {
                   className="w-10 h-10 rounded-full object-cover"
                 />
                 <div>
-                  <div className="font-semibold text-foreground">
+                  <div className="font-semibold text-white">
                     {testimonial.author}
                   </div>
-                  <div className="text-sm text-muted-foreground">
+                  <div className="text-sm text-slate-400">
                     {testimonial.role}
                   </div>
                 </div>

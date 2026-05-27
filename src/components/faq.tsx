@@ -60,8 +60,9 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-24 relative">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-24 relative bg-slate-950">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-orange-500/5 via-transparent to-transparent" />
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -69,10 +70,10 @@ export function FAQ() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-1 rounded-full bg-primary/10 text-sm font-medium text-primary mb-4">
+          <span className="inline-block px-4 py-1 rounded-full bg-orange-500/10 text-sm font-medium text-orange-400 mb-4">
             FAQ
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mt-2">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mt-2">
             Frequently Asked Questions
           </h2>
         </motion.div>
@@ -88,15 +89,15 @@ export function FAQ() {
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full bg-card border border-border rounded-xl p-5 text-left hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 transition-all"
+                className="w-full bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-xl p-5 text-left hover:border-orange-500/50 hover:shadow-lg hover:shadow-orange-500/5 transition-all"
               >
                 <div className="flex items-center justify-between gap-4">
-                  <h3 className="font-medium text-foreground">
+                  <h3 className="font-medium text-white">
                     {faq.question}
                   </h3>
                   <ChevronDown
                     className={cn(
-                      "w-5 h-5 text-muted-foreground shrink-0 transition-transform",
+                      "w-5 h-5 text-slate-500 shrink-0 transition-transform",
                       openIndex === index && "rotate-180"
                     )}
                   />
@@ -110,7 +111,7 @@ export function FAQ() {
                       transition={{ duration: 0.2 }}
                       className="overflow-hidden"
                     >
-                      <p className="text-muted-foreground mt-4 leading-relaxed">
+                      <p className="text-slate-400 mt-4 leading-relaxed">
                         {faq.answer}
                       </p>
                     </motion.div>

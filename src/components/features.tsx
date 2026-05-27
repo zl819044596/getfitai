@@ -39,18 +39,9 @@ const features = [
 
 export function Features() {
   return (
-    <section id="features" className="py-24 relative overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0 -z-10">
-        <Image
-          src="/images/workout-4.jpg"
-          alt="Background"
-          fill
-          className="object-cover opacity-5"
-        />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="features" className="py-24 relative overflow-hidden bg-slate-950">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-orange-500/5 via-transparent to-transparent" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -58,13 +49,13 @@ export function Features() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-1 rounded-full bg-primary/10 text-sm font-medium text-primary mb-4">
+          <span className="inline-block px-4 py-1 rounded-full bg-orange-500/10 text-sm font-medium text-orange-400 mb-4">
             Features
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
             Everything You Need for Your Fitness Journey
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-slate-400 max-w-2xl mx-auto">
             From AI-generated training plans to accurate fitness calculators, GetFitAI provides all the tools you need to reach your goals.
           </p>
         </motion.div>
@@ -79,15 +70,15 @@ export function Features() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group bg-card border border-border rounded-2xl p-6 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5 transition-all"
+                className="group bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-2xl p-6 hover:border-orange-500/50 hover:shadow-xl hover:shadow-orange-500/5 transition-all"
               >
-                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:scale-110 transition-all">
-                  <Icon className="w-7 h-7 text-primary group-hover:text-primary-foreground transition-colors" />
+                <div className="w-14 h-14 rounded-2xl bg-orange-500/10 flex items-center justify-center mb-4 group-hover:bg-orange-500 group-hover:scale-110 transition-all">
+                  <Icon className="w-7 h-7 text-orange-400 group-hover:text-white transition-colors" />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">
+                <h3 className="text-lg font-semibold text-white mb-2">
                   {feature.title}
                 </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p className="text-sm text-slate-400 leading-relaxed">
                   {feature.description}
                 </p>
               </motion.div>

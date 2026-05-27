@@ -7,8 +7,9 @@ import Link from "next/link";
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center pt-16 overflow-hidden bg-gradient-to-b from-primary/[0.03] to-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <section className="relative min-h-screen flex items-center pt-16 overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-orange-500/10 via-transparent to-transparent" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="text-center lg:text-left">
@@ -17,10 +18,10 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 mb-8"
             >
-              <Sparkles className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium text-primary">Trusted by 10,000+ users</span>
+              <Sparkles className="w-4 h-4 text-orange-400" />
+              <span className="text-sm font-medium text-orange-400">Trusted by 10,000+ users</span>
             </motion.div>
 
             {/* Heading */}
@@ -30,7 +31,7 @@ export function Hero() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6 text-balance"
             >
-              <span className="text-foreground">Your Free</span>
+              <span className="text-white">Your Free</span>
               <br />
               <span className="gradient-text">AI Fitness Coach</span>
             </motion.h1>
@@ -40,7 +41,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed"
+              className="text-lg text-slate-400 max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed"
             >
               Use AI to generate personalized training plans and calculate BMI, TDEE, body fat, and 1RM. No signup required, completely free. Start your fitness journey now with a workout plan built specifically for your goals and equipment.
             </motion.p>
@@ -54,12 +55,12 @@ export function Hero() {
             >
               <Link
                 href="/#generator"
-                className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-primary-foreground bg-primary hover:bg-primary/90 rounded-full shadow-xl shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5 group"
+                className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-orange-500 hover:bg-orange-600 rounded-full shadow-xl shadow-orange-500/25 transition-all duration-300 hover:-translate-y-0.5 group"
               >
                 Get My Workout Plan
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
-              <button className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-foreground bg-white border-2 border-border hover:border-primary hover:bg-primary/5 rounded-full transition-all duration-300 hover:-translate-y-0.5">
+              <button className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-slate-800 border-2 border-slate-700 hover:border-orange-500/50 hover:bg-slate-700 rounded-full transition-all duration-300 hover:-translate-y-0.5">
                 <Play className="mr-2 w-5 h-5" />
                 Watch Demo
               </button>
@@ -73,30 +74,30 @@ export function Hero() {
               className="flex flex-wrap items-center justify-center lg:justify-start gap-8"
             >
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <Users className="w-6 h-6 text-primary" />
+                <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center">
+                  <Users className="w-6 h-6 text-orange-400" />
                 </div>
                 <div className="text-left">
-                  <div className="text-2xl font-bold text-foreground">10K+</div>
-                  <div className="text-sm text-muted-foreground">Active Users</div>
+                  <div className="text-2xl font-bold text-white">10K+</div>
+                  <div className="text-sm text-slate-400">Active Users</div>
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <Star className="w-6 h-6 text-primary" />
+                <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center">
+                  <Star className="w-6 h-6 text-orange-400" />
                 </div>
                 <div className="text-left">
-                  <div className="text-2xl font-bold text-foreground">4.9</div>
-                  <div className="text-sm text-muted-foreground">User Rating</div>
+                  <div className="text-2xl font-bold text-white">4.9</div>
+                  <div className="text-sm text-slate-400">User Rating</div>
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <Zap className="w-6 h-6 text-primary" />
+                <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center">
+                  <Zap className="w-6 h-6 text-orange-400" />
                 </div>
                 <div className="text-left">
-                  <div className="text-2xl font-bold text-foreground">30s</div>
-                  <div className="text-sm text-muted-foreground">Quick Generation</div>
+                  <div className="text-2xl font-bold text-white">30s</div>
+                  <div className="text-sm text-slate-400">Quick Generation</div>
                 </div>
               </div>
             </motion.div>
@@ -111,31 +112,31 @@ export function Hero() {
           >
             <div className="grid grid-cols-2 gap-4">
               {/* Main Image */}
-              <div className="col-span-2 relative h-64 rounded-2xl overflow-hidden shadow-2xl">
+              <div className="col-span-2 relative h-64 rounded-2xl overflow-hidden shadow-2xl shadow-black/50">
                 <Image
                   src="/images/hero-fitness.jpg"
                   alt="Fitness Training"
                   fill
-                  className="object-cover"
+                  className="object-cover grayscale"
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent" />
               </div>
               {/* Secondary Images */}
-              <div className="relative h-48 rounded-2xl overflow-hidden shadow-xl">
+              <div className="relative h-48 rounded-2xl overflow-hidden shadow-xl shadow-black/30">
                 <Image
                   src="/images/workout-1.jpg"
                   alt="Strength Training"
                   fill
-                  className="object-cover"
+                  className="object-cover grayscale"
                 />
               </div>
-              <div className="relative h-48 rounded-2xl overflow-hidden shadow-xl">
+              <div className="relative h-48 rounded-2xl overflow-hidden shadow-xl shadow-black/30">
                 <Image
                   src="/images/workout-2.jpg"
                   alt="Yoga Training"
                   fill
-                  className="object-cover"
+                  className="object-cover grayscale"
                 />
               </div>
             </div>
@@ -145,15 +146,15 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.8 }}
-              className="absolute -bottom-6 -left-6 bg-card p-4 rounded-xl shadow-xl border border-border"
+              className="absolute -bottom-6 -left-6 bg-slate-900/80 backdrop-blur-xl p-4 rounded-xl shadow-xl border border-slate-700/50"
             >
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                  <Zap className="w-5 h-5 text-primary" />
+                <div className="w-10 h-10 rounded-full bg-orange-500/20 flex items-center justify-center">
+                  <Zap className="w-5 h-5 text-orange-400" />
                 </div>
                 <div>
-                  <div className="text-sm font-semibold text-foreground">AI Smart Analysis</div>
-                  <div className="text-xs text-muted-foreground">Personalized Plans</div>
+                  <div className="text-sm font-semibold text-white">AI Smart Analysis</div>
+                  <div className="text-xs text-slate-400">Personalized Plans</div>
                 </div>
               </div>
             </motion.div>
