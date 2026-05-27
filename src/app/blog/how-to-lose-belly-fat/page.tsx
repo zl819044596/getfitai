@@ -113,7 +113,7 @@ const faqSchema = {
 
 export default function BlogPost() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-slate-950">
 <JsonLd data={articleSchema} />
       <JsonLd data={faqSchema} />
 
@@ -122,38 +122,38 @@ export default function BlogPost() {
           {/* Header */}
           <header className="mb-12">
             <div className="flex items-center gap-3 mb-4">
-              <span className="px-3 py-1 bg-black text-white text-xs font-medium rounded-full">
+              <span className="px-3 py-1 bg-orange-500/10 text-orange-400 text-xs font-medium rounded-full">
                 Fat Loss
               </span>
-              <span className="text-sm text-gray-400">May 22, 2025</span>
+              <span className="text-sm text-slate-500">May 22, 2025</span>
             </div>
             <div className="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-8">
               <img
                 src="/images/blog/lose-belly-fat.jpg"
                 alt="Person doing plank exercise for belly fat loss"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover grayscale"
               />
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-black mb-6 leading-tight">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
               How to Lose Belly Fat: 10 Science-Backed Exercises That Actually Work
             </h1>
-            <p className="text-xl text-gray-500 leading-relaxed">
+            <p className="text-xl text-slate-400 leading-relaxed">
               Discover the truth about belly fat loss, 10 proven exercises, a complete 7-day workout plan,
               and nutrition tips that actually work.
             </p>
           </header>
 
           {/* CTA Box */}
-          <div className="bg-gray-50 rounded-2xl p-6 md:p-8 mb-12">
-            <h3 className="text-lg font-bold text-black mb-2">
+          <div className="bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-2xl p-6 md:p-8 mb-12">
+            <h3 className="text-lg font-bold text-white mb-2">
               Want a Personalized Plan?
             </h3>
-            <p className="text-gray-500 mb-4">
+            <p className="text-slate-400 mb-4">
               Get a custom belly fat workout plan tailored to your fitness level, goals, and schedule.
             </p>
             <Link
               href="/workouts/home"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white rounded-full font-medium hover:bg-gray-800 transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-full font-medium hover:from-orange-600 hover:to-orange-700 transition-all"
             >
               Generate My Plan
               <ArrowRight className="w-4 h-4" />
@@ -161,7 +161,7 @@ export default function BlogPost() {
           </div>
 
           {/* Article Content */}
-          <div className="prose prose-lg max-w-none prose-headings:text-black prose-p:text-gray-600 prose-strong:text-black prose-li:text-gray-600">
+          <div className="prose prose-lg max-w-none prose-headings:text-white prose-p:text-slate-400 prose-strong:text-white prose-li:text-slate-400">
             <h2>Introduction</h2>
             <p>
               You&apos;ve been doing crunches for weeks. You&apos;ve cut out carbs. You&apos;ve even tried those &quot;belly fat burning&quot; teas. And yet, that stubborn pouch around your midsection refuses to budge. If this sounds familiar, you&apos;re not alone. Belly fat is one of the most frustrating—and misunderstood—areas of weight loss.
@@ -495,16 +495,16 @@ export default function BlogPost() {
           </div>
 
           {/* Bottom CTA */}
-          <div className="mt-16 bg-black rounded-2xl p-8 md:p-12 text-center">
+          <div className="mt-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-8 md:p-12 text-center">
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
               Get Your Personalized Belly Fat Workout Plan
             </h2>
-            <p className="text-gray-300 mb-8 max-w-xl mx-auto">
+            <p className="text-white/80 mb-8 max-w-xl mx-auto">
               Stop guessing. Our AI creates a custom routine based on your fitness level, goals, and available equipment.
             </p>
             <Link
               href="/workouts/home"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-black rounded-full font-bold hover:bg-gray-100 transition-colors"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-slate-950 text-white rounded-full font-bold hover:bg-slate-900 transition-colors"
             >
               Generate My Plan
               <ArrowRight className="w-5 h-5" />
@@ -513,35 +513,35 @@ export default function BlogPost() {
 
           {/* FAQ Section */}
           <section className="mt-16">
-            <h2 className="text-2xl font-bold text-black mb-8">Frequently Asked Questions</h2>
+            <h2 className="text-2xl font-bold text-white mb-8">Frequently Asked Questions</h2>
             <div className="space-y-6">
-              <div className="bg-gray-50 rounded-xl p-6">
-                <h3 className="font-bold text-black mb-2">Can you spot reduce belly fat?</h3>
-                <p className="text-gray-600">
+              <div className="bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-xl p-6">
+                <h3 className="font-bold text-white mb-2">Can you spot reduce belly fat?</h3>
+                <p className="text-slate-400">
                   No, spot reduction is a myth. You cannot target fat loss from your stomach alone. When you lose fat, your body decides where it comes from. The key is overall fat loss through a caloric deficit combined with core strengthening exercises.
                 </p>
               </div>
-              <div className="bg-gray-50 rounded-xl p-6">
-                <h3 className="font-bold text-black mb-2">How long does it take to lose belly fat?</h3>
-                <p className="text-gray-600">
+              <div className="bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-xl p-6">
+                <h3 className="font-bold text-white mb-2">How long does it take to lose belly fat?</h3>
+                <p className="text-slate-400">
                   With consistent exercise and a proper diet, most people start seeing noticeable changes in 4-8 weeks. However, significant belly fat loss typically takes 12-16 weeks of sustained effort. Individual results vary based on starting body fat percentage, genetics, and adherence to the plan.
                 </p>
               </div>
-              <div className="bg-gray-50 rounded-xl p-6">
-                <h3 className="font-bold text-black mb-2">What is the best exercise to lose belly fat?</h3>
-                <p className="text-gray-600">
+              <div className="bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-xl p-6">
+                <h3 className="font-bold text-white mb-2">What is the best exercise to lose belly fat?</h3>
+                <p className="text-slate-400">
                   There is no single best exercise. The most effective approach combines HIIT cardio (like burpees and mountain climbers) with core strengthening exercises (like planks and Russian twists). Compound movements that engage multiple muscle groups burn the most calories.
                 </p>
               </div>
-              <div className="bg-gray-50 rounded-xl p-6">
-                <h3 className="font-bold text-black mb-2">Do I need a gym to lose belly fat?</h3>
-                <p className="text-gray-600">
+              <div className="bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-xl p-6">
+                <h3 className="font-bold text-white mb-2">Do I need a gym to lose belly fat?</h3>
+                <p className="text-slate-400">
                   No. All 10 exercises in this guide can be done at home with no equipment. Bodyweight exercises like planks, mountain climbers, and burpees are highly effective for burning fat and building core strength.
                 </p>
               </div>
-              <div className="bg-gray-50 rounded-xl p-6">
-                <h3 className="font-bold text-black mb-2">How important is diet for losing belly fat?</h3>
-                <p className="text-gray-600">
+              <div className="bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-xl p-6">
+                <h3 className="font-bold text-white mb-2">How important is diet for losing belly fat?</h3>
+                <p className="text-slate-400">
                   Diet is critical. You cannot out-exercise a poor diet. A caloric deficit is non-negotiable for fat loss. Focus on high protein intake, cutting refined carbs and sugar, eating more fiber, and staying hydrated.
                 </p>
               </div>

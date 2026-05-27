@@ -35,31 +35,31 @@ const articleSchema = {
 
 export default function BlogPost() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-slate-950">
 <JsonLd data={articleSchema} />
       <article className="pt-32 pb-20 px-4 sm:px-6">
         <div className="max-w-3xl mx-auto">
           <header className="mb-12">
             <div className="flex items-center gap-3 mb-4">
-              <span className="px-3 py-1 bg-black text-white text-xs font-medium rounded-full">Injury Prevention</span>
-              <span className="text-sm text-gray-400">May 15, 2025</span>
+              <span className="px-3 py-1 bg-orange-500/10 text-orange-400 text-xs font-medium rounded-full">Injury Prevention</span>
+              <span className="text-sm text-slate-500">May 15, 2025</span>
             </div>
             <div className="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-8">
               <img
                 src="/images/blog/bench-press.jpg"
                 alt="Bench press barbell close up"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover grayscale"
               />
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-black mb-6 leading-tight">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
               How to Fix Wrist Pain During Bench Press
             </h1>
-            <p className="text-xl text-gray-500 leading-relaxed">
+            <p className="text-xl text-slate-400 leading-relaxed">
               Wrist pain during bench press is one of the most common complaints among lifters. Here's how to identify the cause and fix it for good.
             </p>
           </header>
 
-          <div className="prose prose-lg max-w-none prose-headings:text-black prose-p:text-gray-600 prose-strong:text-black prose-li:text-gray-600">
+          <div className="prose prose-lg max-w-none prose-headings:text-white prose-p:text-slate-400 prose-strong:text-white prose-li:text-slate-400">
             <h2>Why Your Wrists Hurt During Bench Press</h2>
             <p>
               Wrist pain during bench press usually comes down to one of three things: <strong>bad bar position</strong>, <strong>excessive wrist extension</strong>, or <strong>overloading before your wrists are ready</strong>. Your wrists are not designed to bear heavy loads while bent backward. When the bar sits too high in your palm or your wrists cock back under the weight, the small bones and tendons get compressed.
@@ -136,14 +136,14 @@ export default function BlogPost() {
             </ul>
           </div>
 
-          <div className="mt-16 bg-black rounded-2xl p-8 md:p-12 text-center">
+          <div className="mt-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-8 md:p-12 text-center">
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
               Get a Personalized Strength Plan
             </h2>
-            <p className="text-gray-300 mb-8 max-w-xl mx-auto">
+            <p className="text-white/80 mb-8 max-w-xl mx-auto">
               Fix your form and build strength safely with an AI-generated workout plan tailored to you.
             </p>
-            <Link href="/workouts/gym" className="inline-flex items-center gap-2 px-8 py-4 bg-white text-black rounded-full font-bold hover:bg-gray-100 transition-colors">
+            <Link href="/workouts/gym" className="inline-flex items-center gap-2 px-8 py-4 bg-slate-950 text-white rounded-full font-bold hover:bg-slate-900 transition-colors">
               Generate My Plan
               <ArrowRight className="w-5 h-5" />
             </Link>

@@ -112,8 +112,8 @@ const faqSchema = {
 
 export default function BlogPost() {
   return (
-    <main className="min-h-screen bg-background">
-<JsonLd data={articleSchema} />
+    <main className="min-h-screen bg-slate-950">
+      <JsonLd data={articleSchema} />
       <JsonLd data={faqSchema} />
 
       <article className="pt-32 pb-20 px-4 sm:px-6">
@@ -121,38 +121,38 @@ export default function BlogPost() {
           {/* Header */}
           <header className="mb-12">
             <div className="flex items-center gap-3 mb-4">
-              <span className="px-3 py-1 bg-primary text-primary-foreground text-xs font-medium rounded-full">
+              <span className="px-3 py-1 bg-orange-500/10 text-orange-400 text-xs font-medium rounded-full">
                 Muscle Building
               </span>
-              <span className="text-sm text-muted-foreground">May 22, 2025</span>
+              <span className="text-sm text-slate-500">May 22, 2025</span>
             </div>
             <div className="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-8">
               <img
                 src="/images/blog/build-muscle.jpg"
                 alt="Barbell squat in gym"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover grayscale"
               />
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
               How to Build Muscle: The Complete Beginner's Guide
             </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
+            <p className="text-xl text-slate-400 leading-relaxed">
               Learn the science of muscle growth, the 6 fundamental exercises, a complete workout plan,
               and nutrition strategies to start gaining muscle today.
             </p>
           </header>
 
           {/* CTA Box */}
-          <div className="bg-muted rounded-2xl p-6 md:p-8 mb-12">
-            <h3 className="text-lg font-bold text-foreground mb-2">
+          <div className="bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-2xl p-6 md:p-8 mb-12">
+            <h3 className="text-lg font-bold text-white mb-2">
               Want a Personalized Muscle-Building Plan?
             </h3>
-            <p className="text-muted-foreground mb-4">
+            <p className="text-slate-400 mb-4">
               Get a custom strength training plan tailored to your experience level, goals, and available equipment.
             </p>
             <Link
               href="/workouts/gym"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-full font-medium hover:bg-primary/90 transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-full font-medium hover:from-orange-600 hover:to-orange-700 transition-all"
             >
               Generate My Plan
               <ArrowRight className="w-4 h-4" />
@@ -160,7 +160,7 @@ export default function BlogPost() {
           </div>
 
           {/* Article Content */}
-          <div className="prose prose-lg max-w-none prose-headings:text-foreground prose-p:text-muted-foreground prose-strong:text-foreground prose-li:text-muted-foreground">
+          <div className="prose prose-lg max-w-none prose-headings:text-white prose-p:text-slate-400 prose-strong:text-white prose-li:text-slate-400">
             <h2>Introduction</h2>
             <p>
               You look in the mirror and see the same reflection you've seen for years—lean, maybe a little soft, but definitely not the strong, defined physique you envision. You've tried random workouts before, but nothing stuck. Maybe you're the skinny guy who can't seem to gain weight, or the woman who wants to feel stronger and more confident in her own skin. Here's the truth: <strong>you can change your body</strong>. Building muscle isn't just about looking good—it transforms your metabolism (muscle burns more calories at rest), boosts your confidence, strengthens your bones, and protects you from injury as you age. But let's set realistic expectations: <strong>muscle growth takes time</strong>. You won't look like a fitness model in 30 days. However, with consistent effort, you will see visible changes in 8-12 weeks, and significant transformation in 6 months. This guide will teach you exactly <strong>how to build muscle</strong> from scratch, using proven science and simple strategies that work for both men and women. No fluff, no magic pills—just actionable steps you can start today.
@@ -474,16 +474,16 @@ export default function BlogPost() {
           </div>
 
           {/* Bottom CTA */}
-          <div className="mt-16 bg-primary rounded-2xl p-8 md:p-12 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-primary-foreground mb-4">
+          <div className="mt-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-8 md:p-12 text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
               Get Your Personalized Muscle-Building Plan
             </h2>
-            <p className="text-primary-foreground/80 mb-8 max-w-xl mx-auto">
+            <p className="text-white/80 mb-8 max-w-xl mx-auto">
               Stop guessing. Our AI creates a custom strength training plan based on your experience, goals, and equipment.
             </p>
             <Link
               href="/workouts/gym"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-background text-foreground rounded-full font-bold hover:bg-background/90 transition-colors"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-slate-950 text-white rounded-full font-bold hover:bg-slate-900 transition-colors"
             >
               Generate My Plan
               <ArrowRight className="w-5 h-5" />
@@ -492,35 +492,35 @@ export default function BlogPost() {
 
           {/* FAQ Section */}
           <section className="mt-16">
-            <h2 className="text-2xl font-bold text-foreground mb-8">Frequently Asked Questions</h2>
-            <div className="space-y-6">
-              <div className="bg-muted rounded-xl p-6">
-                <h3 className="font-bold text-foreground mb-2">How long does it take to build muscle as a beginner?</h3>
-                <p className="text-muted-foreground">
+            <h2 className="text-2xl font-bold text-white mb-8">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-xl p-6">
+                <h3 className="font-bold text-white mb-2">How long does it take to build muscle as a beginner?</h3>
+                <p className="text-slate-400">
                   Most beginners see visible changes in 8-12 weeks with consistent training and proper nutrition. Significant transformation typically takes 6 months. The "newbie gains" phase lasts 6-12 months, during which muscle growth is fastest.
                 </p>
               </div>
-              <div className="bg-muted rounded-xl p-6">
-                <h3 className="font-bold text-foreground mb-2">Do I need to lift heavy to build muscle?</h3>
-                <p className="text-muted-foreground">
+              <div className="bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-xl p-6">
+                <h3 className="font-bold text-white mb-2">Do I need to lift heavy to build muscle?</h3>
+                <p className="text-slate-400">
                   Not necessarily. Muscle growth occurs across a range of rep ranges (6-30 reps). The key is training close to failure and applying progressive overload. Beginners should focus on form first, then gradually increase weight.
                 </p>
               </div>
-              <div className="bg-muted rounded-xl p-6">
-                <h3 className="font-bold text-foreground mb-2">How much protein do I need to build muscle?</h3>
-                <p className="text-muted-foreground">
+              <div className="bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-xl p-6">
+                <h3 className="font-bold text-white mb-2">How much protein do I need to build muscle?</h3>
+                <p className="text-slate-400">
                   Aim for 0.7-1 gram of protein per pound of body weight daily. For a 150-pound person, that's 105-150 grams of protein per day. Spread intake across 3-5 meals for optimal muscle protein synthesis.
                 </p>
               </div>
-              <div className="bg-muted rounded-xl p-6">
-                <h3 className="font-bold text-foreground mb-2">Can I build muscle at home without a gym?</h3>
-                <p className="text-muted-foreground">
+              <div className="bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-xl p-6">
+                <h3 className="font-bold text-white mb-2">Can I build muscle at home without a gym?</h3>
+                <p className="text-slate-400">
                   Yes, but it requires creativity. Bodyweight exercises like push-ups, squats, and pull-ups can build muscle, especially for beginners. As you get stronger, you'll need to add resistance through bands, weights, or harder exercise variations.
                 </p>
               </div>
-              <div className="bg-muted rounded-xl p-6">
-                <h3 className="font-bold text-foreground mb-2">How many days a week should I train as a beginner?</h3>
-                <p className="text-muted-foreground">
+              <div className="bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-xl p-6">
+                <h3 className="font-bold text-white mb-2">How many days a week should I train as a beginner?</h3>
+                <p className="text-slate-400">
                   3 days per week is ideal for beginners. A full-body routine 3x weekly allows adequate recovery while providing enough stimulus for growth. Rest at least one day between workouts.
                 </p>
               </div>

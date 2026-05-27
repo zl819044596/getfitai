@@ -68,40 +68,43 @@ const posts = [
 
 export default function BlogPage() {
   return (
-    <main className="min-h-screen bg-background">
-<section className="pt-32 pb-16 px-4 sm:px-6">
+    <main className="min-h-screen bg-slate-950">
+      <section className="pt-32 pb-16 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            <span className="inline-block px-4 py-1 rounded-full bg-orange-500/10 text-sm font-medium text-orange-400 mb-4">
+              Blog
+            </span>
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
               Fitness Blog
             </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
               Expert tips, science-backed advice, and practical guides to level up your fitness journey.
             </p>
           </div>
 
-          <div className="grid gap-8">
+          <div className="grid gap-6">
             {posts.map((post) => (
               <article
                 key={post.slug}
-                className="group bg-muted rounded-2xl p-6 md:p-8 hover:bg-muted/80 transition-colors"
+                className="group bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-2xl p-6 md:p-8 hover:border-orange-500/20 transition-all"
               >
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="px-3 py-1 bg-primary text-primary-foreground text-xs font-medium rounded-full">
+                  <span className="px-3 py-1 bg-orange-500/10 text-orange-400 text-xs font-medium rounded-full">
                     {post.category}
                   </span>
-                  <span className="flex items-center gap-1 text-sm text-muted-foreground">
+                  <span className="flex items-center gap-1 text-sm text-slate-500">
                     <Calendar className="w-4 h-4" />
                     {post.date}
                   </span>
                 </div>
-                <h2 className="text-xl md:text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                <h2 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-orange-400 transition-colors">
                   {post.title}
                 </h2>
-                <p className="text-muted-foreground mb-4">{post.excerpt}</p>
+                <p className="text-slate-400 mb-4">{post.excerpt}</p>
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-orange-400 hover:text-orange-300 transition-colors"
                 >
                   Read more
                   <ArrowRight className="w-4 h-4" />
@@ -111,6 +114,6 @@ export default function BlogPage() {
           </div>
         </div>
       </section>
-</main>
+    </main>
   );
 }

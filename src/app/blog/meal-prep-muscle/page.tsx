@@ -35,31 +35,31 @@ const articleSchema = {
 
 export default function BlogPost() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-slate-950">
 <JsonLd data={articleSchema} />
       <article className="pt-32 pb-20 px-4 sm:px-6">
         <div className="max-w-3xl mx-auto">
           <header className="mb-12">
             <div className="flex items-center gap-3 mb-4">
-              <span className="px-3 py-1 bg-black text-white text-xs font-medium rounded-full">Nutrition</span>
-              <span className="text-sm text-gray-400">Apr 28, 2025</span>
+              <span className="px-3 py-1 bg-orange-500/10 text-orange-400 text-xs font-medium rounded-full">Nutrition</span>
+              <span className="text-sm text-slate-500">Apr 28, 2025</span>
             </div>
             <div className="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-8">
               <img
                 src="/images/blog/meal-prep.jpg"
                 alt="Meal prep containers with healthy food"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover grayscale"
               />
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-black mb-6 leading-tight">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
               How to Meal Prep for Muscle Gain
             </h1>
-            <p className="text-xl text-gray-500 leading-relaxed">
+            <p className="text-xl text-slate-400 leading-relaxed">
               Save time, eat better, and build muscle with these simple meal prep strategies designed for hypertrophy.
             </p>
           </header>
 
-          <div className="prose prose-lg max-w-none prose-headings:text-black prose-p:text-gray-600 prose-strong:text-black prose-li:text-gray-600">
+          <div className="prose prose-lg max-w-none prose-headings:text-white prose-p:text-slate-400 prose-strong:text-white prose-li:text-slate-400">
             <h2>Why Meal Prep Matters for Muscle Gain</h2>
             <p>
               Building muscle requires consistent nutrition. You need enough protein to repair tissue, enough carbs to fuel training, and enough calories to support growth. When you're scrambling for meals at the last minute, you default to whatever is convenient—and convenience rarely aligns with muscle-building goals.
@@ -142,14 +142,14 @@ export default function BlogPost() {
             </ul>
           </div>
 
-          <div className="mt-16 bg-black rounded-2xl p-8 md:p-12 text-center">
+          <div className="mt-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-8 md:p-12 text-center">
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
               Get a Personalized Nutrition Plan
             </h2>
-            <p className="text-gray-300 mb-8 max-w-xl mx-auto">
+            <p className="text-white/80 mb-8 max-w-xl mx-auto">
               GetFitAI calculates your exact calorie and protein needs based on your body, goals, and activity level.
             </p>
-            <Link href="/workouts/gym" className="inline-flex items-center gap-2 px-8 py-4 bg-white text-black rounded-full font-bold hover:bg-gray-100 transition-colors">
+            <Link href="/workouts/gym" className="inline-flex items-center gap-2 px-8 py-4 bg-slate-950 text-white rounded-full font-bold hover:bg-slate-900 transition-colors">
               Generate My Plan
               <ArrowRight className="w-5 h-5" />
             </Link>

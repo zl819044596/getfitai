@@ -43,19 +43,19 @@ const articleSchema = {
 
 export default function IntermittentFastingWorkout() {
   return (
-    <>
+    <main className="min-h-screen bg-slate-950">
       <JsonLd data={articleSchema} />
       <article className="max-w-3xl mx-auto px-4 sm:px-6 py-16 md:py-24">
         <header className="mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-black mb-4 leading-tight">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
             Intermittent Fasting and Workout: The Complete Guide
           </h1>
-          <p className="text-lg text-gray-500">
+          <p className="text-lg text-slate-400">
             How to combine fasting with training for optimal fat loss and muscle preservation.
           </p>
         </header>
 
-        <div className="prose prose-lg max-w-none">
+        <div className="prose prose-lg max-w-none prose-headings:text-white prose-p:text-slate-400 prose-strong:text-white prose-li:text-slate-400">
           <h2>What Is Intermittent Fasting?</h2>
           <p>
             Intermittent fasting (IF) is an eating pattern that cycles between periods of fasting and eating. 
@@ -117,41 +117,41 @@ export default function IntermittentFastingWorkout() {
           </p>
 
           <h2>Sample Schedule: 16:8 Fasting with Workouts</h2>
-          <table className="w-full border-collapse border border-gray-200 my-6">
+          <table className="w-full border-collapse border border-slate-800 my-6">
             <thead>
-              <tr className="bg-gray-50">
-                <th className="border border-gray-200 px-4 py-2 text-left">Time</th>
-                <th className="border border-gray-200 px-4 py-2 text-left">Activity</th>
+              <tr className="bg-slate-900/60">
+                <th className="border border-slate-800 px-4 py-2 text-left text-white">Time</th>
+                <th className="border border-slate-800 px-4 py-2 text-left text-white">Activity</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td className="border border-gray-200 px-4 py-2">6:00 AM</td>
-                <td className="border border-gray-200 px-4 py-2">Wake up, drink water</td>
+                <td className="border border-slate-800 px-4 py-2 text-slate-400">6:00 AM</td>
+                <td className="border border-slate-800 px-4 py-2 text-slate-400">Wake up, drink water</td>
               </tr>
               <tr>
-                <td className="border border-gray-200 px-4 py-2">7:00 AM</td>
-                <td className="border border-gray-200 px-4 py-2">Fasted cardio (30 min)</td>
+                <td className="border border-slate-800 px-4 py-2 text-slate-400">7:00 AM</td>
+                <td className="border border-slate-800 px-4 py-2 text-slate-400">Fasted cardio (30 min)</td>
               </tr>
               <tr>
-                <td className="border border-gray-200 px-4 py-2">12:00 PM</td>
-                <td className="border border-gray-200 px-4 py-2">Break fast - Meal 1 (high protein)</td>
+                <td className="border border-slate-800 px-4 py-2 text-slate-400">12:00 PM</td>
+                <td className="border border-slate-800 px-4 py-2 text-slate-400">Break fast - Meal 1 (high protein)</td>
               </tr>
               <tr>
-                <td className="border border-gray-200 px-4 py-2">3:00 PM</td>
-                <td className="border border-gray-200 px-4 py-2">Strength training session</td>
+                <td className="border border-slate-800 px-4 py-2 text-slate-400">3:00 PM</td>
+                <td className="border border-slate-800 px-4 py-2 text-slate-400">Strength training session</td>
               </tr>
               <tr>
-                <td className="border border-gray-200 px-4 py-2">4:30 PM</td>
-                <td className="border border-gray-200 px-4 py-2">Post-workout meal</td>
+                <td className="border border-slate-800 px-4 py-2 text-slate-400">4:30 PM</td>
+                <td className="border border-slate-800 px-4 py-2 text-slate-400">Post-workout meal</td>
               </tr>
               <tr>
-                <td className="border border-gray-200 px-4 py-2">7:30 PM</td>
-                <td className="border border-gray-200 px-4 py-2">Final meal</td>
+                <td className="border border-slate-800 px-4 py-2 text-slate-400">7:30 PM</td>
+                <td className="border border-slate-800 px-4 py-2 text-slate-400">Final meal</td>
               </tr>
               <tr>
-                <td className="border border-gray-200 px-4 py-2">8:00 PM</td>
-                <td className="border border-gray-200 px-4 py-2">Begin fasting</td>
+                <td className="border border-slate-800 px-4 py-2 text-slate-400">8:00 PM</td>
+                <td className="border border-slate-800 px-4 py-2 text-slate-400">Begin fasting</td>
               </tr>
             </tbody>
           </table>
@@ -175,12 +175,12 @@ export default function IntermittentFastingWorkout() {
           </p>
 
           <p>
-            Use our <a href="/tools/tdee-calculator" className="text-blue-600 hover:underline">TDEE calculator</a> to 
-            determine your caloric needs while fasting, and try our <a href="/" className="text-blue-600 hover:underline">AI workout planner</a> to 
+            Use our <a href="/tools/tdee-calculator" className="text-orange-400 hover:underline">TDEE calculator</a> to 
+            determine your caloric needs while fasting, and try our <a href="/" className="text-orange-400 hover:underline">AI workout planner</a> to 
             create a training program tailored to your fasting schedule.
           </p>
         </div>
       </article>
-    </>
+    </main>
   );
 }
