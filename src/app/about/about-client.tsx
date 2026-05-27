@@ -18,8 +18,12 @@ export function AboutClient() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-            <div className="bg-gray-100 rounded-2xl h-64 flex items-center justify-center">
-              <Zap className="w-16 h-16 text-gray-300" />
+            <div className="bg-gray-100 rounded-2xl h-64 overflow-hidden">
+              <img
+                src="/images/about/team-fitness.jpg"
+                alt="Fitness team working out together"
+                className="w-full h-full object-cover"
+              />
             </div>
             <div>
               <h2 className="text-2xl font-bold text-black mb-4">Our Story</h2>

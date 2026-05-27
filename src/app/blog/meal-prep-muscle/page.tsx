@@ -46,7 +46,7 @@ export default function BlogPost() {
             </div>
             <div className="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-8">
               <img
-                src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1200&q=80"
+                src="/images/blog/meal-prep.jpg"
                 alt="Meal prep containers with healthy food"
                 className="w-full h-full object-cover"
               />

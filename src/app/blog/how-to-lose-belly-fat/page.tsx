@@ -129,7 +129,7 @@ export default function BlogPost() {
             </div>
             <div className="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-8">
               <img
-                src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1200&q=80"
+                src="/images/blog/lose-belly-fat.jpg"
                 alt="Person doing plank exercise for belly fat loss"
                 className="w-full h-full object-cover"
               />
