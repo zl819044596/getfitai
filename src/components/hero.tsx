@@ -1,81 +1,163 @@
-import { Star, Users, Award, Clock, Dumbbell, Shield, ArrowRight } from "lucide-react";
+"use client";
+
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { ArrowRight, Sparkles, Users, Star, Zap, Play } from "lucide-react";
 import Link from "next/link";
 
 export function Hero() {
   return (
-    <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden">
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/images/hero-bg.webp"
-          alt="Fitness background with gym equipment"
-          className="absolute inset-0 w-full h-full object-cover opacity-20"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/60 to-white" />
-      </div>
+    <section className="relative min-h-screen flex items-center pt-16 overflow-hidden bg-gradient-to-b from-primary/[0.03] to-background">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left Content */}
+          <div className="text-center lg:text-left">
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8"
+            >
+              <Sparkles className="w-4 h-4 text-primary" />
+              <span className="text-sm font-medium text-primary">Trusted by 10,000+ users</span>
+            </motion.div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <div className="max-w-xl">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 text-sm font-medium text-gray-600 mb-6">
-              <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
-              <span>Trusted by 10,000+ users</span>
-            </div>
+            {/* Heading */}
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6 text-balance"
+            >
+              <span className="text-foreground">Your Free</span>
+              <br />
+              <span className="gradient-text">AI Fitness Coach</span>
+            </motion.h1>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black mb-6 leading-tight">
-              Your personal<br />
-              <span className="text-gray-400">AI trainer.</span>
-            </h1>
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed"
+            >
+              Use AI to generate personalized training plans and calculate BMI, TDEE, body fat, and 1RM. No signup required, completely free. Start your fitness journey now with a workout plan built specifically for your goals and equipment.
+            </motion.p>
 
-            <p className="text-lg text-gray-500 mb-8 max-w-md">
-              Generate personalized workout plans tailored to your goals, experience, and available equipment. No sign-up required.
-            </p>
-
-            <div className="flex flex-wrap gap-4 mb-8">
-              <button
-                onClick={() => document.getElementById("generator")?.scrollIntoView({ behavior: "smooth" })}
-                className="inline-flex items-center bg-black text-white px-6 py-3 rounded-full font-medium hover:bg-gray-800 transition-colors"
-              >
-                Generate Workout
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </button>
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10"
+            >
               <Link
-                href="/tools"
-                className="inline-flex items-center px-6 py-3 rounded-full font-medium border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors"
+                href="/#generator"
+                className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-primary-foreground bg-primary hover:bg-primary/90 rounded-full shadow-xl shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5 group"
               >
-                <Shield className="w-5 h-5 mr-2" />
-                Free Tools
+                Get My Workout Plan
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
-            </div>
+              <button className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-foreground bg-white border-2 border-border hover:border-primary hover:bg-primary/5 rounded-full transition-all duration-300 hover:-translate-y-0.5">
+                <Play className="mr-2 w-5 h-5" />
+                Watch Demo
+              </button>
+            </motion.div>
 
-            <div className="flex items-center gap-6 text-sm text-gray-500">
-              <div className="flex items-center gap-2"><Users className="w-4 h-4" /><span>10K+ Users</span></div>
-              <div className="flex items-center gap-2"><Award className="w-4 h-4" /><span>4.9 Rating</span></div>
-              <div className="flex items-center gap-2"><Clock className="w-4 h-4" /><span>30 Seconds</span></div>
-            </div>
-          </div>
-
-          <div className="relative">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-              <img
-                src="/images/feature-workout.webp"
-                alt="AI Workout Planning"
-                width={600}
-                height={400}
-                className="w-full h-auto"
-              />
-              <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur rounded-2xl p-4 shadow-lg">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="font-semibold text-sm">Upper Body Strength</p>
-                    <p className="text-xs text-gray-500">45 min • Intermediate</p>
-                  </div>
-                  <div className="w-10 h-10 bg-black rounded-xl flex items-center justify-center">
-                    <Dumbbell className="w-5 h-5 text-white" />
-                  </div>
+            {/* Stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="flex flex-wrap items-center justify-center lg:justify-start gap-8"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <Users className="w-6 h-6 text-primary" />
+                </div>
+                <div className="text-left">
+                  <div className="text-2xl font-bold text-foreground">10K+</div>
+                  <div className="text-sm text-muted-foreground">Active Users</div>
                 </div>
               </div>
-            </div>
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <Star className="w-6 h-6 text-primary" />
+                </div>
+                <div className="text-left">
+                  <div className="text-2xl font-bold text-foreground">4.9</div>
+                  <div className="text-sm text-muted-foreground">User Rating</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <Zap className="w-6 h-6 text-primary" />
+                </div>
+                <div className="text-left">
+                  <div className="text-2xl font-bold text-foreground">30s</div>
+                  <div className="text-sm text-muted-foreground">Quick Generation</div>
+                </div>
+              </div>
+            </motion.div>
           </div>
+
+          {/* Right Image Grid */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="relative hidden lg:block"
+          >
+            <div className="grid grid-cols-2 gap-4">
+              {/* Main Image */}
+              <div className="col-span-2 relative h-64 rounded-2xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/images/hero-fitness.jpg"
+                  alt="Fitness Training"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 to-transparent" />
+              </div>
+              {/* Secondary Images */}
+              <div className="relative h-48 rounded-2xl overflow-hidden shadow-xl">
+                <Image
+                  src="/images/workout-1.jpg"
+                  alt="Strength Training"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="relative h-48 rounded-2xl overflow-hidden shadow-xl">
+                <Image
+                  src="/images/workout-2.jpg"
+                  alt="Yoga Training"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </div>
+
+            {/* Floating Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.8 }}
+              className="absolute -bottom-6 -left-6 bg-card p-4 rounded-xl shadow-xl border border-border"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                  <Zap className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <div className="text-sm font-semibold text-foreground">AI Smart Analysis</div>
+                  <div className="text-xs text-muted-foreground">Personalized Plans</div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>

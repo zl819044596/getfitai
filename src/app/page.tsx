@@ -1,49 +1,18 @@
-import { Metadata } from "next";
-import { HomeClient } from "./home-client";
-import { JsonLd } from "@/components/json-ld";
+import type { Metadata } from "next";
+import HomeClient from "./home-client";
 
 export const metadata: Metadata = {
-  title: "GetFitAI - AI Workout Generator",
-  description: "Generate personalized workout plans with AI. No signup required.",
+  title: "GetFitAI - Free AI Workout Plans & Fitness Calculators",
+  description:
+    "GetFitAI: Free AI-powered workout plans and fitness calculators including BMI, TDEE, body fat, and 1RM. No signup required. Build muscle, lose fat, and get stronger with personalized training plans.",
   alternates: {
     canonical: "https://getfitai.io",
   },
-};
-
-const websiteSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: "GetFitAI",
-  url: "https://getfitai.io",
-  description: "AI-powered workout plan generator",
-  potentialAction: {
-    "@type": "SearchAction",
-    target: "https://getfitai.io/tools?q={search_term_string}",
-    "query-input": "required name=search_term_string",
-  },
-};
-
-const appSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  name: "GetFitAI",
-  url: "https://getfitai.io",
-  description: "Generate personalized workout plans with AI",
-  applicationCategory: "HealthApplication",
-  operatingSystem: "Any",
-  offers: {
-    "@type": "Offer",
-    price: "0",
-    priceCurrency: "USD",
+  openGraph: {
+    url: "https://getfitai.io",
   },
 };
 
 export default function Home() {
-  return (
-    <>
-      <JsonLd data={websiteSchema} />
-      <JsonLd data={appSchema} />
-      <HomeClient />
-    </>
-  );
+  return <HomeClient />;
 }

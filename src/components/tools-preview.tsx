@@ -1,34 +1,111 @@
-import { ArrowRight } from "lucide-react";
+"use client";
+
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { ArrowRight, Scale, Flame, Percent, Dumbbell } from "lucide-react";
 import Link from "next/link";
+
+const tools = [
+  {
+    icon: Scale,
+    title: "BMI Calculator",
+    description: "Quickly check if your weight is in a healthy range. Enter height and weight to get your BMI index and personalized recommendations instantly.",
+    href: "/tools/bmi-calculator",
+    image: "/images/workout-1.jpg",
+  },
+  {
+    icon: Flame,
+    title: "TDEE Calculator",
+    description: "Accurately calculate your daily total energy expenditure. Get precise calorie needs based on age, gender, weight, height, and activity level.",
+    href: "/tools/tdee-calculator",
+    image: "/images/workout-4.jpg",
+  },
+  {
+    icon: Percent,
+    title: "Body Fat Calculator",
+    description: "Track what really matters. Estimate body fat percentage using multiple validated formulas, focusing on fat loss rather than just scale weight.",
+    href: "/tools/body-fat-calculator",
+    image: "/images/workout-5.jpg",
+  },
+  {
+    icon: Dumbbell,
+    title: "1RM Calculator",
+    description: "Train smart, progress safely. Predict your maximum strength for any exercise and program workouts at optimal intensity.",
+    href: "/tools/one-rep-max",
+    image: "/images/workout-3.jpg",
+  },
+];
 
 export function ToolsPreview() {
   return (
-    <section className="py-16 md:py-20 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <img
-              src="/images/bmi-hero.webp"
-              alt="Fitness Tools"
-              width={500}
-              height={350}
-              className="rounded-3xl shadow-xl w-full"
-            />
-          </div>
-          <div>
-            <span className="text-sm font-medium text-gray-400 uppercase tracking-wider mb-3 block">Free Tools</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">More than just workouts</h2>
-            <p className="text-gray-500 mb-6 leading-relaxed">
-              Explore our collection of free fitness calculators and tools to help you track your progress and optimize your training.
-            </p>
-            <Link
-              href="/tools"
-              className="inline-flex items-center bg-black text-white px-6 py-3 rounded-full font-medium hover:bg-gray-800 transition-colors"
-            >
-              Explore Tools
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </Link>
-          </div>
+    <section id="tools" className="py-24 relative bg-gradient-to-b from-secondary/50 to-background">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
+          <span className="inline-block px-4 py-1 rounded-full bg-primary/10 text-sm font-medium text-primary mb-4">
+            Free Fitness Tools
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+            Accurate, Fast, No Signup Required
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            All calculators use validated formulas and provide instant results to help you make informed fitness decisions.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          {tools.map((tool, index) => {
+            const Icon = tool.icon;
+            return (
+              <motion.div
+                key={tool.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Link
+                  href={tool.href}
+                  className="group block bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/50 transition-all hover:shadow-xl hover:shadow-primary/10"
+                >
+                  {/* Image Header */}
+                  <div className="relative h-40 overflow-hidden">
+                    <Image
+                      src={tool.image}
+                      alt={tool.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
+                    <div className="absolute bottom-4 left-4">
+                      <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center shadow-lg">
+                        <Icon className="w-6 h-6 text-primary-foreground" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                      {tool.title}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed mb-4">
+                      {tool.description}
+                    </p>
+                    <span className="inline-flex items-center text-sm font-medium text-primary">
+                      Try It Free
+                      <ArrowRight className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </div>
+                </Link>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -2,14 +2,11 @@
 
 import Link from "next/link";
 import { Activity, ArrowRight, Mail, Zap, Target, Heart, MessageSquare, Code } from "lucide-react";
-import { Nav } from "@/components/nav";
 
 export function AboutClient() {
   return (
     <main className="min-h-screen bg-white">
-      <Nav />
-
-      <section className="pt-24 pb-12 md:pt-32 md:pb-16">
+<section className="pt-24 pb-12 md:pt-32 md:pb-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold text-black mb-4">

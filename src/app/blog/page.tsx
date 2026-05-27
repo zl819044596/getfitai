@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
-import { Nav } from "@/components/nav";
-import { Footer } from "@/components/footer";
 import { Calendar, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Fitness Blog | Workout Tips & Nutrition Advice | GetFitAI",
+  title: "Fitness Blog | Workout Tips & Nutrition Advice",
   description: "Read expert fitness tips, workout guides, and nutrition advice on the GetFitAI blog. Science-backed content to help you reach your goals faster.",
   alternates: {
     canonical: "https://getfitai.io/blog",
   },
   openGraph: {
+    title: "Fitness Blog | Workout Tips & Nutrition Advice",
     url: "https://getfitai.io/blog",
   },
 };
@@ -58,20 +57,25 @@ const posts = [
     slug: "meal-prep-muscle",
     category: "Nutrition",
   },
+  {
+    title: "Intermittent Fasting and Workout: The Complete Guide",
+    excerpt: "Learn how to combine intermittent fasting with your workout routine for optimal fat loss and muscle gain. Science-backed guide with practical tips.",
+    date: "May 24, 2026",
+    slug: "intermittent-fasting-workout",
+    category: "Nutrition",
+  },
 ];
 
 export default function BlogPage() {
   return (
-    <main className="min-h-screen bg-white">
-      <Nav />
-
-      <section className="pt-32 pb-16 px-4 sm:px-6">
+    <main className="min-h-screen bg-background">
+<section className="pt-32 pb-16 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold text-black mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               Fitness Blog
             </h1>
-            <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Expert tips, science-backed advice, and practical guides to level up your fitness journey.
             </p>
           </div>
@@ -80,24 +84,24 @@ export default function BlogPage() {
             {posts.map((post) => (
               <article
                 key={post.slug}
-                className="group bg-gray-50 rounded-2xl p-6 md:p-8 hover:bg-gray-100 transition-colors"
+                className="group bg-muted rounded-2xl p-6 md:p-8 hover:bg-muted/80 transition-colors"
               >
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="px-3 py-1 bg-black text-white text-xs font-medium rounded-full">
+                  <span className="px-3 py-1 bg-primary text-primary-foreground text-xs font-medium rounded-full">
                     {post.category}
                   </span>
-                  <span className="flex items-center gap-1 text-sm text-gray-400">
+                  <span className="flex items-center gap-1 text-sm text-muted-foreground">
                     <Calendar className="w-4 h-4" />
                     {post.date}
                   </span>
                 </div>
-                <h2 className="text-xl md:text-2xl font-bold text-black mb-2 group-hover:text-gray-700 transition-colors">
+                <h2 className="text-xl md:text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
                   {post.title}
                 </h2>
-                <p className="text-gray-500 mb-4">{post.excerpt}</p>
+                <p className="text-muted-foreground mb-4">{post.excerpt}</p>
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="inline-flex items-center gap-2 text-sm font-medium text-black hover:text-gray-600 transition-colors"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
                 >
                   Read more
                   <ArrowRight className="w-4 h-4" />
@@ -107,8 +111,6 @@ export default function BlogPage() {
           </div>
         </div>
       </section>
-
-      <Footer />
-    </main>
+</main>
   );
 }

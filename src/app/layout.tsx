@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { GoogleAnalytics } from "@/components/google-analytics";
-import { GoogleAdSense } from "@/components/google-adsense";
+import { Nav } from "@/components/nav";
+import { Footer } from "@/components/footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -11,58 +11,64 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: {
-    default: "GetFitAI — AI Workout Generator",
-    template: "%s | GetFitAI",
-  },
-  description: "Generate personalized workout plans with AI. Tailored to your goals, experience, and equipment. No signup required. Free BMI, TDEE, and 1RM calculators included.",
-  keywords: ["AI workout generator", "fitness planner", "personalized workout", "gym workout", "home workout"],
-  authors: [{ name: "GetFitAI" }],
-  creator: "GetFitAI",
-  publisher: "GetFitAI",
-  robots: "index, follow",
-  alternates: {
-    canonical: "https://getfitai.io",
-  },
+  title: "GetFitAI - Free AI Workout Plans & Fitness Calculators",
+  description:
+    "GetFitAI: Free AI-powered workout plans and fitness calculators including BMI, TDEE, body fat, and 1RM. No signup required. Build muscle, lose fat, and get stronger with personalized training plans.",
+  keywords: [
+    "AI workout planner",
+    "free fitness tools",
+    "BMI calculator",
+    "TDEE calculator",
+    "body fat calculator",
+    "1RM calculator",
+    "workout plan generator",
+    "fitness AI",
+    "personalized training",
+    "free workout plans",
+  ],
   openGraph: {
-    title: "GetFitAI — AI Workout Generator",
-    description: "Generate personalized workout plans in seconds. No sign-up required.",
+    title: "GetFitAI - Free AI Workout Plans & Fitness Calculators",
+    description:
+      "Free AI-powered workout plans and fitness calculators. No signup required.",
     url: "https://getfitai.io",
     siteName: "GetFitAI",
-    locale: "en_US",
     type: "website",
-    images: [{
-      url: "https://getfitai.io/images/og-default.png",
-      width: 1200,
-      height: 630,
-      alt: "GetFitAI - AI Workout Generator",
-    }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "GetFitAI — AI Workout Generator",
-    description: "Generate personalized workout plans in seconds. No sign-up required.",
-    creator: "@getfitai",
-    images: ["https://getfitai.io/images/og-default.png"],
-  },
-  verification: {
-    google: "32QcaLR9reDN-2_rpqpyzjjD-jiH1AsPu3oINwFD",
+    title: "GetFitAI - Free AI Workout Plans & Fitness Calculators",
+    description:
+      "Free AI-powered workout plans and fitness calculators. No signup required.",
   },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en" className={inter.variable}>
       <head>
-        <GoogleAnalytics />
-        <GoogleAdSense />
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-MFH7XYRCCT"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-MFH7XYRCCT');
+            `,
+          }}
+        />
       </head>
-      <body className={`${inter.className} min-h-screen`}>
-        {children}
+      <body className={`${inter.className} antialiased`}>
+        <Nav />
+      {children}
+      <Footer />
       </body>
     </html>
   );

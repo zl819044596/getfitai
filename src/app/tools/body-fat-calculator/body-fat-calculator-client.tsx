@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, Activity, Info } from "lucide-react";
-import { Nav } from "@/components/nav";
 
 export function BodyFatCalculatorClient() {
   const [gender, setGender] = useState("male");
@@ -73,15 +72,13 @@ export function BodyFatCalculatorClient() {
   };
 
   return (
-    <main className="min-h-screen bg-white">
-      <Nav />
-
-      <section className="pt-24 pb-12 md:pt-32 md:pb-16">
+    <main className="min-h-screen bg-background">
+<section className="pt-24 pb-12 md:pt-32 md:pb-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <div className="mb-8">
             <Link
               href="/tools"
-              className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-black transition-colors"
+              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               Back to Tools
@@ -89,26 +86,26 @@ export function BodyFatCalculatorClient() {
           </div>
 
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 text-sm font-medium text-gray-600 mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted/80 text-sm font-medium text-muted-foreground mb-6">
               <Activity className="w-4 h-4" />
               <span>Body Fat Calculator</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-black mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               Calculate Your Body Fat
             </h1>
-            <p className="text-lg text-gray-500">
+            <p className="text-lg text-muted-foreground">
               Estimate your body fat percentage using the US Navy method.
             </p>
           </div>
 
-          <div className="bg-gray-50 rounded-2xl p-8 mb-8">
+          <div className="bg-muted rounded-2xl p-8 mb-8">
             <div className="mb-6">
               <label className="block text-sm font-medium mb-2">Gender</label>
               <div className="flex gap-2">
                 <button
                   onClick={() => setGender("male")}
                   className={`flex-1 py-3 rounded-xl font-medium transition-colors ${
-                    gender === "male" ? "bg-black text-white" : "bg-white border border-gray-200"
+                    gender === "male" ? "bg-primary text-primary-foreground" : "bg-background border border-border"
                   }`}
                 >
                   Male
@@ -116,7 +113,7 @@ export function BodyFatCalculatorClient() {
                 <button
                   onClick={() => setGender("female")}
                   className={`flex-1 py-3 rounded-xl font-medium transition-colors ${
-                    gender === "female" ? "bg-black text-white" : "bg-white border border-gray-200"
+                    gender === "female" ? "bg-primary text-primary-foreground" : "bg-background border border-border"
                   }`}
                 >
                   Female
@@ -131,7 +128,7 @@ export function BodyFatCalculatorClient() {
                   type="number"
                   value={waist}
                   onChange={(e) => setWaist(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-black"
+                  className="w-full px-4 py-3 rounded-xl border border-border focus:outline-none focus:ring-2 focus:ring-black"
                   placeholder="80"
                 />
               </div>
@@ -141,7 +138,7 @@ export function BodyFatCalculatorClient() {
                   type="number"
                   value={neck}
                   onChange={(e) => setNeck(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-black"
+                  className="w-full px-4 py-3 rounded-xl border border-border focus:outline-none focus:ring-2 focus:ring-black"
                   placeholder="38"
                 />
               </div>
@@ -152,7 +149,7 @@ export function BodyFatCalculatorClient() {
                     type="number"
                     value={hip}
                     onChange={(e) => setHip(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-black"
+                    className="w-full px-4 py-3 rounded-xl border border-border focus:outline-none focus:ring-2 focus:ring-black"
                     placeholder="95"
                   />
                 </div>
@@ -163,7 +160,7 @@ export function BodyFatCalculatorClient() {
                   type="number"
                   value={height}
                   onChange={(e) => setHeight(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-black"
+                  className="w-full px-4 py-3 rounded-xl border border-border focus:outline-none focus:ring-2 focus:ring-black"
                   placeholder="175"
                 />
               </div>
@@ -171,7 +168,7 @@ export function BodyFatCalculatorClient() {
 
             <button
               onClick={calculate}
-              className="w-full py-4 bg-black text-white rounded-xl font-medium hover:bg-gray-800 transition-colors"
+              className="w-full py-4 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary/90 transition-colors"
             >
               Calculate Body Fat
             </button>
@@ -186,24 +183,24 @@ export function BodyFatCalculatorClient() {
               </div>
 
               <div className="grid sm:grid-cols-2 gap-4">
-                <div className="bg-gray-50 rounded-xl p-6 text-center">
-                  <div className="text-sm text-gray-500 mb-1">Lean Mass</div>
+                <div className="bg-muted rounded-xl p-6 text-center">
+                  <div className="text-sm text-muted-foreground mb-1">Lean Mass</div>
                   <div className="text-2xl font-bold">{result.leanMass}kg</div>
                 </div>
-                <div className="bg-gray-50 rounded-xl p-6 text-center">
-                  <div className="text-sm text-gray-500 mb-1">Fat Mass</div>
+                <div className="bg-muted rounded-xl p-6 text-center">
+                  <div className="text-sm text-muted-foreground mb-1">Fat Mass</div>
                   <div className="text-2xl font-bold">{result.fatMass}kg</div>
                 </div>
               </div>
             </div>
           )}
 
-          <div className="bg-gray-50 rounded-2xl p-6">
+          <div className="bg-muted rounded-2xl p-6">
             <h3 className="font-semibold mb-4 flex items-center gap-2">
               <Info className="w-5 h-5" />
               How It Works
             </h3>
-            <p className="text-gray-500 text-sm leading-relaxed">
+            <p className="text-muted-foreground text-sm leading-relaxed">
               We use the US Navy method which estimates body fat based on neck, waist, 
               and hip (for women) circumference measurements. This is a reliable field 
               method that does not require specialized equipment.
@@ -211,6 +208,6 @@ export function BodyFatCalculatorClient() {
           </div>
         </div>
       </section>
-    </main>
+</main>
   );
 }

@@ -1,30 +1,30 @@
-"use client";
+"use client"
 
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { useState, useEffect, useCallback, useRef } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import {
   Dumbbell, Clock, Flame, CheckCircle2, Download, Share2, Mail,
   ChevronDown, ChevronUp, Sparkles, Timer, Settings, X, Play, Pause, RotateCcw,
-  HelpCircle, ExternalLink, AlertTriangle,
-} from "lucide-react";
-import { useState, useEffect, useCallback, useRef } from "react";
+  HelpCircle, ExternalLink, AlertTriangle, Zap, ArrowRight,
+} from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
 interface Exercise {
-  name: string;
-  sets: number;
-  reps: string;
-  rest: string;
-  weight?: string;
-  notes?: string;
+  name: string
+  sets: number
+  reps: string
+  rest: string
+  weight?: string
+  notes?: string
 }
 
 interface ExerciseDetail {
-  steps: string[];
-  mistakes: string[];
-  videoQuery: string;
+  steps: string[]
+  mistakes: string[]
+  videoQuery: string
 }
 
-// Built-in exercise knowledge base for common movements
 const EXERCISE_DETAILS: Record<string, ExerciseDetail> = {
   "push-up": {
     steps: ["Hands shoulder-width apart, body in a straight line", "Lower down with control, chest close to floor", "Push back up, arms straight but not locked"],
@@ -126,263 +126,270 @@ const EXERCISE_DETAILS: Record<string, ExerciseDetail> = {
     mistakes: ["Elbows too straight", "Range of motion too small", "Using shoulders instead of chest"],
     videoQuery: "chest fly proper form tutorial",
   },
-};
+}
 
 function getExerciseDetail(name: string): ExerciseDetail | null {
   const key = Object.keys(EXERCISE_DETAILS).find(k =>
     name.toLowerCase().includes(k)
-  );
-  return key ? EXERCISE_DETAILS[key] : null;
+  )
+  return key ? EXERCISE_DETAILS[key] : null
 }
 
 function getYouTubeSearchUrl(query: string): string {
-  return `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`;
+  return `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`
 }
 
 interface WorkoutPlanProps {
   plan: {
-    title: string;
-    duration: string;
-    intensity: string;
-    exercises: Exercise[];
-    warmup?: string[];
-    cooldown?: string[];
-    difficulty?: string;
-    calories?: string;
-  };
-  onRegenerate?: () => void;
-  onAdjust?: (direction: "easier" | "harder") => void;
+    title: string
+    duration: string
+    intensity: string
+    exercises: Exercise[]
+    warmup?: string[]
+    cooldown?: string[]
+    difficulty?: string
+    calories?: string
+  }
+  onRegenerate?: () => void
+  onAdjust?: (direction: "easier" | "harder") => void
 }
 
 export function WorkoutPlan({ plan, onRegenerate, onAdjust }: WorkoutPlanProps) {
-  const [completed, setCompleted] = useState<Set<number>>(new Set());
-  const [saved, setSaved] = useState(false);
-  const [email, setEmail] = useState("");
-  const [emailSending, setEmailSending] = useState(false);
-  const [emailSent, setEmailSent] = useState(false);
-  const [adjusting, setAdjusting] = useState(false);
+  const [completed, setCompleted] = useState<Set<number>>(new Set())
+  const [saved, setSaved] = useState(false)
+  const [email, setEmail] = useState("")
+  const [emailSending, setEmailSending] = useState(false)
+  const [emailSent, setEmailSent] = useState(false)
+  const [adjusting, setAdjusting] = useState(false)
+  const [exerciseData, setExerciseData] = useState<Exercise[]>(plan.exercises)
+  const [editingIndex, setEditingIndex] = useState<number | null>(null)
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
+  const [activeRestIndex, setActiveRestIndex] = useState<number | null>(null)
+  const [restTimeLeft, setRestTimeLeft] = useState(0)
+  const [restRunning, setRestRunning] = useState(false)
+  const restIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
-  // Per-exercise editable state
-  const [exerciseData, setExerciseData] = useState<Exercise[]>(plan.exercises);
-  const [editingIndex, setEditingIndex] = useState<number | null>(null);
-
-  // Detail expand state
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-
-  // Rest timer state
-  const [activeRestIndex, setActiveRestIndex] = useState<number | null>(null);
-  const [restTimeLeft, setRestTimeLeft] = useState(0);
-  const [restRunning, setRestRunning] = useState(false);
-  const restIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  // Sound
   const playBeep = useCallback((freq = 800, duration = 0.3) => {
     try {
-      const ctx = new (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)();
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.frequency.value = freq;
-      gain.gain.value = 0.3;
-      osc.start();
-      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
-      osc.stop(ctx.currentTime + duration);
+      const ctx = new (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)()
+      const osc = ctx.createOscillator()
+      const gain = ctx.createGain()
+      osc.connect(gain)
+      gain.connect(ctx.destination)
+      osc.frequency.value = freq
+      gain.gain.value = 0.3
+      osc.start()
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration)
+      osc.stop(ctx.currentTime + duration)
     } catch {
       // Audio not supported
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
-    const savedState = localStorage.getItem(`workout-${plan.title}`);
+    const savedState = localStorage.getItem(`workout-${plan.title}`)
     if (savedState) {
-      setCompleted(new Set(JSON.parse(savedState)));
+      setCompleted(new Set(JSON.parse(savedState)))
     }
-  }, [plan.title]);
+  }, [plan.title])
 
   useEffect(() => {
-    localStorage.setItem(`workout-${plan.title}`, JSON.stringify(Array.from(completed)));
-  }, [completed, plan.title]);
+    localStorage.setItem(`workout-${plan.title}`, JSON.stringify(Array.from(completed)))
+  }, [completed, plan.title])
 
-  // Rest timer effect
   useEffect(() => {
     if (restRunning && restTimeLeft > 0) {
       restIntervalRef.current = setInterval(() => {
         setRestTimeLeft((prev) => {
           if (prev <= 1) {
-            setRestRunning(false);
-            playBeep(1200, 0.5);
-            return 0;
+            setRestRunning(false)
+            playBeep(1200, 0.5)
+            return 0
           }
-          if (prev <= 4 && prev > 1) playBeep(1000, 0.15);
-          return prev - 1;
-        });
-      }, 1000);
+          if (prev <= 4 && prev > 1) playBeep(1000, 0.15)
+          return prev - 1
+        })
+      }, 1000)
     } else {
-      if (restIntervalRef.current) clearInterval(restIntervalRef.current);
+      if (restIntervalRef.current) clearInterval(restIntervalRef.current)
     }
     return () => {
-      if (restIntervalRef.current) clearInterval(restIntervalRef.current);
-    };
-  }, [restRunning, restTimeLeft, playBeep]);
+      if (restIntervalRef.current) clearInterval(restIntervalRef.current)
+    }
+  }, [restRunning, restTimeLeft, playBeep])
 
   const startRest = (index: number, restSeconds: number) => {
-    if (restIntervalRef.current) clearInterval(restIntervalRef.current);
-    setActiveRestIndex(index);
-    setRestTimeLeft(restSeconds);
-    setRestRunning(true);
-    playBeep(600, 0.2);
-  };
+    if (restIntervalRef.current) clearInterval(restIntervalRef.current)
+    setActiveRestIndex(index)
+    setRestTimeLeft(restSeconds)
+    setRestRunning(true)
+    playBeep(600, 0.2)
+  }
 
-  const pauseRest = () => setRestRunning(false);
-  const resumeRest = () => setRestRunning(true);
+  const pauseRest = () => setRestRunning(false)
+  const resumeRest = () => setRestRunning(true)
   const stopRest = () => {
-    setRestRunning(false);
-    setRestTimeLeft(0);
-    setActiveRestIndex(null);
-  };
+    setRestRunning(false)
+    setRestTimeLeft(0)
+    setActiveRestIndex(null)
+  }
 
   const parseRestSeconds = (rest: string) => {
-    const match = rest.match(/(\d+)/);
-    return match ? parseInt(match[1]) : 60;
-  };
+    const match = rest.match(/(\d+)/)
+    return match ? parseInt(match[1]) : 60
+  }
 
   const toggleExercise = (index: number) => {
-    const newCompleted = new Set(completed);
+    const newCompleted = new Set(completed)
     if (newCompleted.has(index)) {
-      newCompleted.delete(index);
-      stopRest();
+      newCompleted.delete(index)
+      stopRest()
     } else {
-      newCompleted.add(index);
-      // Auto-start rest timer for next exercise
-      const restSec = parseRestSeconds(exerciseData[index]?.rest || "60s");
-      startRest(index, restSec);
+      newCompleted.add(index)
+      const restSec = parseRestSeconds(exerciseData[index]?.rest || "60s")
+      startRest(index, restSec)
     }
-    setCompleted(newCompleted);
-  };
+    setCompleted(newCompleted)
+  }
 
   const savePlan = () => {
-    const plans = JSON.parse(localStorage.getItem("saved-plans") || "[]");
+    const plans = JSON.parse(localStorage.getItem("saved-plans") || "[]")
     const newPlan = {
       ...plan,
       exercises: exerciseData,
       savedAt: new Date().toISOString(),
       completed: Array.from(completed),
-    };
-    plans.unshift(newPlan);
-    localStorage.setItem("saved-plans", JSON.stringify(plans.slice(0, 10)));
-    setSaved(true);
-    setTimeout(() => setSaved(false), 2000);
-  };
+    }
+    plans.unshift(newPlan)
+    localStorage.setItem("saved-plans", JSON.stringify(plans.slice(0, 10)))
+    setSaved(true)
+    setTimeout(() => setSaved(false), 2000)
+  }
 
   const sharePlan = () => {
-    const text = `My workout plan: ${plan.title}\n${exerciseData.map(e => `- ${e.name}: ${e.sets} sets x ${e.reps}${e.weight ? ` @ ${e.weight}` : ""}`).join("\n")}`;
-    navigator.clipboard.writeText(text);
-    alert("Workout plan copied to clipboard!");
-  };
+    const text = `My workout plan: ${plan.title}\n${exerciseData.map(e => `- ${e.name}: ${e.sets} sets x ${e.reps}${e.weight ? ` @ ${e.weight}` : ""}`).join("\n")}`
+    navigator.clipboard.writeText(text)
+    alert("Workout plan copied to clipboard!")
+  }
 
   const sendEmail = async () => {
-    if (!email) return;
-    setEmailSending(true);
+    if (!email) return
+    setEmailSending(true)
+    setEmailSent(false)
     try {
       const res = await fetch("/api/send-plan", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, plan: { ...plan, exercises: exerciseData } }),
-      });
-      if (res.ok) {
-        setEmailSent(true);
-        setTimeout(() => setEmailSent(false), 3000);
+      })
+      const data = await res.json().catch(() => ({}))
+      if (res.ok && data.success) {
+        setEmailSent(true)
+        setEmail("")
+        setTimeout(() => setEmailSent(false), 3000)
       } else {
-        alert("Failed to send email. Please try again.");
+        alert(data.error || "Failed to send email. Please try again.")
       }
     } catch {
-      alert("Failed to send email. Please try again.");
+      alert("Failed to send email. Please try again.")
     } finally {
-      setEmailSending(false);
+      setEmailSending(false)
     }
-  };
+  }
 
   const handleAdjust = (direction: "easier" | "harder") => {
-    setAdjusting(true);
-    onAdjust?.(direction);
-  };
+    setAdjusting(true)
+    onAdjust?.(direction)
+  }
 
   const updateExercise = (index: number, field: keyof Exercise, value: string | number) => {
-    const updated = [...exerciseData];
-    updated[index] = { ...updated[index], [field]: value };
-    setExerciseData(updated);
-  };
+    const updated = [...exerciseData]
+    updated[index] = { ...updated[index], [field]: value }
+    setExerciseData(updated)
+  }
 
-  const progress = Math.round((completed.size / exerciseData.length) * 100);
+  const progress = Math.round((completed.size / exerciseData.length) * 100)
 
-  if (!plan) return null;
+  if (!plan) return null
 
   const formatTime = (seconds: number) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins}:${secs.toString().padStart(2, "0")}`;
-  };
+    const mins = Math.floor(seconds / 60)
+    const secs = seconds % 60
+    return `${mins}:${secs.toString().padStart(2, "0")}`
+  }
 
   return (
-    <div className="space-y-6">
-      {/* Plan Header */}
-      <div className="text-center mb-8">
-        <h2 className="text-2xl font-bold text-black mb-3">{plan.title}</h2>
-        <div className="flex items-center justify-center gap-4 text-sm text-gray-500 flex-wrap">
-          <span className="flex items-center gap-1">
-            <Clock className="w-4 h-4" />
-            {plan.duration}
-          </span>
-          <span className="flex items-center gap-1">
-            <Flame className="w-4 h-4" />
-            {plan.intensity}
-          </span>
-          {plan.difficulty && (
-            <span className="px-2 py-0.5 bg-gray-100 rounded-full text-xs font-medium">
-              {plan.difficulty}
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="space-y-6"
+    >
+      {/* Plan Header - Orange Card */}
+      <div className="bg-primary text-primary-foreground rounded-2xl p-6">
+        <div className="text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-3">{plan.title}</h2>
+          <div className="flex items-center justify-center gap-3 text-sm flex-wrap">
+            <span className="inline-flex items-center gap-1 bg-primary-foreground/20 px-3 py-1 rounded-full">
+              <Clock className="w-4 h-4" />
+              {plan.duration}
             </span>
-          )}
-          {plan.calories && (
-            <span className="flex items-center gap-1 text-xs text-gray-400">
-              ~{plan.calories}
+            <span className="inline-flex items-center gap-1 bg-primary-foreground/20 px-3 py-1 rounded-full">
+              <Flame className="w-4 h-4" />
+              {plan.intensity}
             </span>
-          )}
+            {plan.difficulty && (
+              <span className="inline-flex items-center gap-1 bg-primary-foreground/20 px-3 py-1 rounded-full">
+                {plan.difficulty}
+              </span>
+            )}
+            {plan.calories && (
+              <span className="inline-flex items-center gap-1 bg-primary-foreground/20 px-3 py-1 rounded-full">
+                ~{plan.calories}
+              </span>
+            )}
+          </div>
         </div>
       </div>
 
       {/* Action Buttons */}
       <div className="flex flex-wrap gap-3 justify-center">
-        <button
+        <Button
           onClick={savePlan}
-          className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-colors ${
+          variant={saved ? "default" : "default"}
+          className={cn(
+            "rounded-full px-5 py-2.5 text-sm font-medium",
             saved
-              ? "bg-green-100 text-green-700"
-              : "bg-black text-white hover:bg-gray-800"
-          }`}
+              ? "bg-green-100 text-green-700 hover:bg-green-100"
+              : "bg-primary text-primary-foreground hover:bg-primary/90"
+          )}
         >
-          <Download className="w-4 h-4" />
+          <Download className="w-4 h-4 mr-2" />
           {saved ? "Saved!" : "Save Plan"}
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={sharePlan}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium border border-gray-200 hover:bg-gray-50 transition-colors"
+          variant="outline"
+          className="rounded-full px-5 py-2.5 text-sm font-medium border-border hover:bg-secondary"
         >
-          <Share2 className="w-4 h-4" />
+          <Share2 className="w-4 h-4 mr-2" />
           Copy Plan
-        </button>
-        <a
-          href={`mailto:?subject=My Workout Plan: ${plan.title}&body=${exerciseData.map(e => `- ${e.name}: ${e.sets} sets x ${e.reps}${e.weight ? ` @ ${e.weight}` : ""}`).join("%0A")}`}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium border border-gray-200 hover:bg-gray-50 transition-colors"
+        </Button>
+        <Button
+          variant="outline"
+          className="rounded-full px-5 py-2.5 text-sm font-medium border-border hover:bg-secondary"
+          onClick={() => {
+            window.location.href = `mailto:?subject=My Workout Plan: ${plan.title}&body=${exerciseData.map(e => `- ${e.name}: ${e.sets} sets x ${e.reps}${e.weight ? ` @ ${e.weight}` : ""}`).join("%0A")}`
+          }}
         >
-          <Mail className="w-4 h-4" />
+          <Mail className="w-4 h-4 mr-2" />
           Email
-        </a>
+        </Button>
       </div>
 
       {/* Email Input */}
-      <div className="bg-gray-50 rounded-2xl p-6">
-        <p className="text-sm text-gray-500 mb-3 text-center">
+      <div className="bg-card border border-border rounded-2xl p-6">
+        <p className="text-sm text-muted-foreground mb-3 text-center">
           Want this plan in your inbox?
         </p>
         <div className="flex gap-2 max-w-md mx-auto">
@@ -391,187 +398,193 @@ export function WorkoutPlan({ plan, onRegenerate, onAdjust }: WorkoutPlanProps) 
             placeholder="your@email.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="flex-1 px-4 py-2.5 rounded-full border border-gray-200 focus:border-black focus:ring-1 focus:ring-black outline-none text-sm"
+            className="flex-1 px-4 py-2.5 rounded-full border border-border bg-background focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm"
           />
-          <button
+          <Button
             onClick={sendEmail}
             disabled={emailSending || !email}
-            className={`px-5 py-2.5 rounded-full text-sm font-medium transition-colors ${
+            className={cn(
+              "rounded-full px-5 py-2.5 text-sm font-medium",
               emailSent
-                ? "bg-green-100 text-green-700"
-                : "bg-black text-white hover:bg-gray-800 disabled:opacity-50"
-            }`}
+                ? "bg-green-100 text-green-700 hover:bg-green-100"
+                : "bg-primary text-primary-foreground hover:bg-primary/90"
+            )}
           >
             {emailSending ? "Sending..." : emailSent ? "Sent!" : "Send"}
-          </button>
+          </Button>
         </div>
       </div>
 
       {/* Warmup */}
       {plan.warmup && plan.warmup.length > 0 && (
-        <Card className="border-gray-100 shadow-sm">
-          <CardContent className="p-5">
-            <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Warm-up</h3>
-            <ul className="space-y-2">
-              {plan.warmup.map((item, i) => (
-                <li key={i} className="text-sm text-gray-700 flex items-start gap-2">
-                  <span className="text-gray-400 mt-0.5">•</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
+        <div className="bg-card border border-border rounded-2xl p-6">
+          <h4 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+            <span className="w-8 h-8 rounded-lg bg-orange-100 flex items-center justify-center text-orange-600 text-sm font-bold">W</span>
+            Warm-up
+          </h4>
+          <ul className="space-y-2">
+            {plan.warmup.map((item, i) => (
+              <li key={i} className="flex items-start gap-3 text-muted-foreground">
+                <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
 
       {/* Exercises */}
-      <div className="space-y-3">
-        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide px-1">
+      <div className="space-y-4">
+        <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide px-1">
           Main Workout — Tap to mark complete
-        </h3>
+        </h4>
 
         {exerciseData.map((exercise, index) => {
-          const detail = getExerciseDetail(exercise.name);
-          const isExpanded = expandedIndex === index;
+          const detail = getExerciseDetail(exercise.name)
+          const isExpanded = expandedIndex === index
+          const isCompleted = completed.has(index)
 
           return (
-            <Card
+            <motion.div
               key={index}
-              className={`border-gray-100 shadow-sm transition-all duration-300 ${
-                completed.has(index)
-                  ? "bg-gray-50 border-gray-200"
-                  : "bg-white hover:shadow-md"
-              }`}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.05 }}
+              className={cn(
+                "bg-card border rounded-2xl p-5 transition-all duration-300",
+                isCompleted
+                  ? "border-green-200 bg-green-50/50"
+                  : "border-border hover:shadow-md"
+              )}
             >
-              <CardContent className="p-5">
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex-1">
-                    {/* Name + Check + How-to */}
-                    <div className="flex items-center gap-2 mb-2 flex-wrap">
-                      <button
-                        onClick={() => toggleExercise(index)}
-                        className={`font-semibold text-left transition-colors ${
-                          completed.has(index) ? "text-gray-400 line-through" : "text-black"
-                        }`}
-                      >
-                        {exercise.name}
-                      </button>
-                      {completed.has(index) && (
-                        <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" />
-                      )}
-                      {detail && (
-                        <button
-                          onClick={() => setExpandedIndex(isExpanded ? null : index)}
-                          className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium transition-colors ${
-                            isExpanded
-                              ? "bg-black text-white"
-                              : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                          }`}
-                        >
-                          <HelpCircle className="w-3 h-3" />
-                          {isExpanded ? "Close" : "How to"}
-                        </button>
-                      )}
-                    </div>
-
-                    {/* Metrics */}
-                    <div className="flex flex-wrap gap-2 mb-2">
-                      <Badge variant="secondary" className="bg-gray-100 text-gray-700 hover:bg-gray-100">
-                        {exercise.sets} sets
-                      </Badge>
-                      <Badge variant="secondary" className="bg-gray-100 text-gray-700 hover:bg-gray-100">
-                        {exercise.reps}
-                      </Badge>
-                      <Badge variant="secondary" className="bg-gray-100 text-gray-700 hover:bg-gray-100">
-                        Rest {exercise.rest}
-                      </Badge>
-                      {exercise.weight && (
-                        <Badge variant="secondary" className="bg-blue-50 text-blue-700 hover:bg-blue-50">
-                          {exercise.weight}
-                        </Badge>
-                      )}
-                    </div>
-
-                    {/* Notes — 1 sentence key tip */}
-                    {exercise.notes && (
-                      <p className="text-sm text-gray-500">{exercise.notes}</p>
-                    )}
-
-                    {/* Rest Timer */}
-                    {activeRestIndex === index && restTimeLeft > 0 && (
-                      <div className="mt-3 bg-orange-50 rounded-xl p-3 flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <Timer className="w-4 h-4 text-orange-600" />
-                          <span className="text-sm text-orange-600 font-medium">Rest Timer</span>
-                          <span className="text-lg font-bold text-orange-800 font-mono">
-                            {formatTime(restTimeLeft)}
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <button
-                            onClick={restRunning ? pauseRest : resumeRest}
-                            className="p-1.5 hover:bg-orange-100 rounded-lg transition-colors"
-                          >
-                            {restRunning ? <Pause className="w-4 h-4 text-orange-600" /> : <Play className="w-4 h-4 text-orange-600" />}
-                          </button>
-                          <button
-                            onClick={stopRest}
-                            className="p-1.5 hover:bg-orange-100 rounded-lg transition-colors"
-                          >
-                            <X className="w-4 h-4 text-orange-600" />
-                          </button>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Right side actions */}
-                  <div className="flex flex-col items-end gap-2">
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex-1">
+                  {/* Name + Check + How-to */}
+                  <div className="flex items-center gap-2 mb-2 flex-wrap">
                     <button
-                      onClick={() => setEditingIndex(editingIndex === index ? null : index)}
-                      className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors"
+                      onClick={() => toggleExercise(index)}
+                      className={cn(
+                        "font-semibold text-left transition-colors",
+                        isCompleted ? "text-green-600 line-through" : "text-foreground"
+                      )}
                     >
-                      <Settings className={`w-4 h-4 ${editingIndex === index ? "text-black" : "text-gray-400"}`} />
+                      {exercise.name}
                     </button>
-                    {!completed.has(index) && (
+                    {isCompleted && (
+                      <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" />
+                    )}
+                    {detail && (
                       <button
-                        onClick={() => toggleExercise(index)}
-                        className="p-1.5 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
+                        onClick={() => setExpandedIndex(isExpanded ? null : index)}
+                        className={cn(
+                          "inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium transition-colors",
+                          isExpanded
+                            ? "bg-primary text-primary-foreground"
+                            : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                        )}
                       >
-                        <CheckCircle2 className="w-4 h-4" />
+                        <HelpCircle className="w-3 h-3" />
+                        {isExpanded ? "Close" : "How to"}
                       </button>
                     )}
                   </div>
+
+                  {/* Metrics */}
+                  <div className="flex flex-wrap gap-2 mb-2">
+                    <span className="bg-muted px-2 py-0.5 rounded-full text-xs text-muted-foreground">{exercise.sets} sets</span>
+                    <span className="bg-muted px-2 py-0.5 rounded-full text-xs text-muted-foreground">{exercise.reps}</span>
+                    <span className="bg-muted px-2 py-0.5 rounded-full text-xs text-muted-foreground">Rest {exercise.rest}</span>
+                    {exercise.weight && (
+                      <span className="bg-primary/10 text-primary px-2 py-0.5 rounded-full text-xs font-medium">
+                        {exercise.weight}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Notes */}
+                  {exercise.notes && (
+                    <p className="text-sm text-muted-foreground">{exercise.notes}</p>
+                  )}
+
+                  {/* Rest Timer */}
+                  {activeRestIndex === index && restTimeLeft > 0 && (
+                    <div className="mt-3 bg-orange-50 rounded-xl p-3 flex items-center justify-between border border-orange-200">
+                      <div className="flex items-center gap-2">
+                        <Timer className="w-4 h-4 text-orange-600" />
+                        <span className="text-sm text-orange-600 font-medium">Rest Timer</span>
+                        <span className="text-lg font-bold text-orange-800 font-mono">
+                          {formatTime(restTimeLeft)}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <button
+                          onClick={restRunning ? pauseRest : resumeRest}
+                          className="p-1.5 hover:bg-orange-100 rounded-lg transition-colors"
+                        >
+                          {restRunning ? <Pause className="w-4 h-4 text-orange-600" /> : <Play className="w-4 h-4 text-orange-600" />}
+                        </button>
+                        <button
+                          onClick={stopRest}
+                          className="p-1.5 hover:bg-orange-100 rounded-lg transition-colors"
+                        >
+                          <X className="w-4 h-4 text-orange-600" />
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
-                {/* Exercise Detail Panel */}
+                {/* Right side actions */}
+                <div className="flex flex-col items-end gap-2">
+                  <button
+                    onClick={() => setEditingIndex(editingIndex === index ? null : index)}
+                    className="p-1.5 hover:bg-secondary rounded-lg transition-colors"
+                  >
+                    <Settings className={cn("w-4 h-4", editingIndex === index ? "text-foreground" : "text-muted-foreground")} />
+                  </button>
+                  {!isCompleted && (
+                    <button
+                      onClick={() => toggleExercise(index)}
+                      className="p-1.5 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+                    >
+                      <CheckCircle2 className="w-4 h-4" />
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              {/* Exercise Detail Panel */}
+              <AnimatePresence>
                 {isExpanded && detail && (
-                  <div className="mt-4 pt-4 border-t border-gray-100 space-y-4">
-                    {/* Steps */}
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="mt-4 pt-4 border-t border-border space-y-4 overflow-hidden"
+                  >
                     <div>
-                      <h4 className="text-sm font-semibold text-black mb-2 flex items-center gap-1.5">
+                      <h4 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-1.5">
                         <Dumbbell className="w-4 h-4" />
                         Steps
                       </h4>
                       <ol className="space-y-1.5">
                         {detail.steps.map((step, i) => (
-                          <li key={i} className="text-sm text-gray-700 flex items-start gap-2">
-                            <span className="text-xs text-gray-400 font-mono mt-0.5 shrink-0">{i + 1}.</span>
+                          <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
+                            <span className="text-xs text-muted-foreground font-mono mt-0.5 shrink-0">{i + 1}.</span>
                             {step}
                           </li>
                         ))}
                       </ol>
                     </div>
 
-                    {/* Common Mistakes */}
                     <div>
-                      <h4 className="text-sm font-semibold text-black mb-2 flex items-center gap-1.5">
+                      <h4 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-1.5">
                         <AlertTriangle className="w-4 h-4 text-amber-500" />
                         Common Mistakes
                       </h4>
                       <ul className="space-y-1">
                         {detail.mistakes.map((m, i) => (
-                          <li key={i} className="text-sm text-gray-600 flex items-start gap-2">
+                          <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
                             <span className="text-amber-400 mt-0.5 shrink-0">✗</span>
                             {m}
                           </li>
@@ -579,96 +592,103 @@ export function WorkoutPlan({ plan, onRegenerate, onAdjust }: WorkoutPlanProps) 
                       </ul>
                     </div>
 
-                    {/* Video Link */}
                     <a
                       href={getYouTubeSearchUrl(detail.videoQuery)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-sm text-blue-600 hover:text-blue-800 font-medium"
+                      className="inline-flex items-center gap-1.5 text-sm text-primary hover:text-primary/80 font-medium"
                     >
                       <ExternalLink className="w-4 h-4" />
                       Watch video tutorial on YouTube
                     </a>
-                  </div>
+                  </motion.div>
                 )}
+              </AnimatePresence>
 
-                {/* Edit Panel */}
+              {/* Edit Panel */}
+              <AnimatePresence>
                 {editingIndex === index && (
-                  <div className="mt-4 pt-4 border-t border-gray-100 grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="mt-4 pt-4 border-t border-border grid grid-cols-2 sm:grid-cols-4 gap-3 overflow-hidden"
+                  >
                     <div>
-                      <label className="block text-xs text-gray-500 mb-1">Sets</label>
+                      <label className="block text-xs text-muted-foreground mb-1">Sets</label>
                       <input
                         type="number"
                         value={exercise.sets}
                         onChange={(e) => updateExercise(index, "sets", parseInt(e.target.value) || 1)}
-                        className="w-full px-3 py-2 rounded-lg border border-gray-200 text-sm focus:border-black focus:outline-none"
+                        className="w-full px-3 py-2 rounded-lg border border-border bg-background text-sm focus:border-primary focus:outline-none"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs text-gray-500 mb-1">Reps</label>
+                      <label className="block text-xs text-muted-foreground mb-1">Reps</label>
                       <input
                         type="text"
                         value={exercise.reps}
                         onChange={(e) => updateExercise(index, "reps", e.target.value)}
-                        className="w-full px-3 py-2 rounded-lg border border-gray-200 text-sm focus:border-black focus:outline-none"
+                        className="w-full px-3 py-2 rounded-lg border border-border bg-background text-sm focus:border-primary focus:outline-none"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs text-gray-500 mb-1">Rest</label>
+                      <label className="block text-xs text-muted-foreground mb-1">Rest</label>
                       <input
                         type="text"
                         value={exercise.rest}
                         onChange={(e) => updateExercise(index, "rest", e.target.value)}
-                        className="w-full px-3 py-2 rounded-lg border border-gray-200 text-sm focus:border-black focus:outline-none"
+                        className="w-full px-3 py-2 rounded-lg border border-border bg-background text-sm focus:border-primary focus:outline-none"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs text-gray-500 mb-1">Weight</label>
+                      <label className="block text-xs text-muted-foreground mb-1">Weight</label>
                       <input
                         type="text"
                         value={exercise.weight || ""}
                         onChange={(e) => updateExercise(index, "weight", e.target.value)}
                         placeholder="e.g. 20kg"
-                        className="w-full px-3 py-2 rounded-lg border border-gray-200 text-sm focus:border-black focus:outline-none"
+                        className="w-full px-3 py-2 rounded-lg border border-border bg-background text-sm focus:border-primary focus:outline-none"
                       />
                     </div>
-                  </div>
+                  </motion.div>
                 )}
-              </CardContent>
-            </Card>
-          );
+              </AnimatePresence>
+            </motion.div>
+          )
         })}
       </div>
 
       {/* Cooldown */}
       {plan.cooldown && plan.cooldown.length > 0 && (
-        <Card className="border-gray-100 shadow-sm">
-          <CardContent className="p-5">
-            <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Cool-down</h3>
-            <ul className="space-y-2">
-              {plan.cooldown.map((item, i) => (
-                <li key={i} className="text-sm text-gray-700 flex items-start gap-2">
-                  <span className="text-gray-400 mt-0.5">•</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
+        <div className="bg-card border border-border rounded-2xl p-6">
+          <h4 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+            <span className="w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center text-green-600 text-sm font-bold">C</span>
+            Cool-down
+          </h4>
+          <ul className="space-y-2">
+            {plan.cooldown.map((item, i) => (
+              <li key={i} className="flex items-start gap-3 text-muted-foreground">
+                <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0 mt-0.5" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
 
       {/* Progress */}
-      <div className="bg-gray-50 rounded-2xl p-6 text-center">
-        <p className="text-sm text-gray-500 mb-2">Workout Progress</p>
-        <p className="text-3xl font-bold text-black">
+      <div className="bg-card border border-border rounded-2xl p-6 text-center">
+        <p className="text-sm text-muted-foreground mb-2">Workout Progress</p>
+        <p className="text-3xl font-bold text-foreground">
           {progress}%
         </p>
-        <p className="text-sm text-gray-500 mt-1">
+        <p className="text-sm text-muted-foreground mt-1">
           {completed.size} / {exerciseData.length} exercises completed
         </p>
-        <div className="w-full bg-gray-200 rounded-full h-2 mt-4">
+        <div className="w-full bg-secondary rounded-full h-2 mt-4">
           <div
-            className="bg-black h-2 rounded-full transition-all duration-500"
+            className="bg-primary h-2 rounded-full transition-all duration-500"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -678,25 +698,27 @@ export function WorkoutPlan({ plan, onRegenerate, onAdjust }: WorkoutPlanProps) 
       </div>
 
       {/* Adjust Difficulty */}
-      <div className="bg-white rounded-2xl p-6 border border-gray-100 text-center">
-        <p className="text-sm text-gray-500 mb-4">Not quite right? Adjust the difficulty:</p>
+      <div className="bg-card border border-border rounded-2xl p-6 text-center">
+        <p className="text-sm text-muted-foreground mb-4">Not quite right? Adjust the difficulty:</p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <button
+          <Button
             onClick={() => handleAdjust("easier")}
             disabled={adjusting}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium border border-gray-200 hover:bg-gray-50 transition-colors disabled:opacity-50"
+            variant="outline"
+            className="rounded-full px-5 py-2.5 border-border hover:bg-secondary"
           >
-            <ChevronDown className="w-4 h-4" />
+            <ChevronDown className="w-4 h-4 mr-2" />
             Make it Easier
-          </button>
-          <button
+          </Button>
+          <Button
             onClick={() => handleAdjust("harder")}
             disabled={adjusting}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium border border-gray-200 hover:bg-gray-50 transition-colors disabled:opacity-50"
+            variant="outline"
+            className="rounded-full px-5 py-2.5 border-border hover:bg-secondary"
           >
-            <ChevronUp className="w-4 h-4" />
+            <ChevronUp className="w-4 h-4 mr-2" />
             Make it Harder
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -704,12 +726,12 @@ export function WorkoutPlan({ plan, onRegenerate, onAdjust }: WorkoutPlanProps) 
       {onRegenerate && (
         <button
           onClick={onRegenerate}
-          className="w-full py-4 text-sm font-medium text-gray-500 hover:text-black transition-colors flex items-center justify-center gap-2"
+          className="w-full py-4 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center justify-center gap-2"
         >
           <Sparkles className="w-4 h-4" />
           Generate a completely new plan
         </button>
       )}
-    </div>
-  );
+    </motion.div>
+  )
 }

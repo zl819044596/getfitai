@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { Activity, Calculator, ArrowRight, TrendingUp, Timer, Dumbbell, Flame } from "lucide-react";
-import { Nav } from "@/components/nav";
 
 const tools = [
   {
@@ -45,14 +44,12 @@ const tools = [
 
 export function ToolsClient() {
   return (
-    <main className="min-h-screen bg-white">
-      <Nav />
-
+    <main className="min-h-screen bg-background">
       <section className="pt-24 pb-12 md:pt-32 md:pb-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-black mb-4">Fitness Tools</h1>
-            <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Fitness Tools</h1>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Free calculators and tools to help you track your fitness journey.
             </p>
           </div>
@@ -62,14 +59,14 @@ export function ToolsClient() {
               <Link
                 key={i}
                 href={tool.href}
-                className="flex items-start gap-4 bg-gray-50 rounded-2xl p-6 hover:bg-gray-100 transition-colors"
+                className="flex items-start gap-4 bg-muted rounded-2xl p-6 hover:bg-muted/80 transition-colors"
               >
-                <div className="text-black">{tool.icon}</div>
+                <div className="text-primary">{tool.icon}</div>
                 <div className="flex-1">
-                  <h3 className="font-semibold text-lg mb-1">{tool.title}</h3>
-                  <p className="text-gray-500 text-sm">{tool.description}</p>
+                  <h3 className="font-semibold text-lg mb-1 text-foreground">{tool.title}</h3>
+                  <p className="text-muted-foreground text-sm">{tool.description}</p>
                 </div>
-                <ArrowRight className="w-5 h-5 text-gray-400" />
+                <ArrowRight className="w-5 h-5 text-muted-foreground" />
               </Link>
             ))}
           </div>

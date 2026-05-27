@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { Nav } from "@/components/nav";
-import { Footer } from "@/components/footer";
 import { JsonLd } from "@/components/json-ld";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
@@ -116,8 +114,7 @@ const faqSchema = {
 export default function BlogPost() {
   return (
     <main className="min-h-screen bg-white">
-      <Nav />
-      <JsonLd data={articleSchema} />
+<JsonLd data={articleSchema} />
       <JsonLd data={faqSchema} />
 
       <article className="pt-32 pb-20 px-4 sm:px-6">
@@ -552,8 +549,6 @@ export default function BlogPost() {
           </section>
         </div>
       </article>
-
-      <Footer />
-    </main>
+</main>
   );
 }

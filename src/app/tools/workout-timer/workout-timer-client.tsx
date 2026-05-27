@@ -3,7 +3,6 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import { ArrowLeft, Timer, Play, Pause, RotateCcw, Volume2, VolumeX, Plus, Minus } from "lucide-react";
-import { Nav } from "@/components/nav";
 
 const PRESETS = [
   { name: "Tabata", work: 20, rest: 10, rounds: 8 },
@@ -145,8 +144,8 @@ export function WorkoutTimerClient() {
     : (currentRound - 1) * (workTime + restTime) + (phase === "work" ? workTime - timeLeft : workTime + restTime - timeLeft);
   const progress = totalTime > 0 ? (elapsedTime / totalTime) * 100 : 0;
 
-  const phaseColor = phase === "work" ? "text-orange-600" : phase === "rest" ? "text-blue-600" : phase === "done" ? "text-green-600" : "text-gray-600";
-  const phaseBg = phase === "work" ? "bg-orange-50" : phase === "rest" ? "bg-blue-50" : phase === "done" ? "bg-green-50" : "bg-gray-50";
+  const phaseColor = phase === "work" ? "text-primary" : phase === "rest" ? "text-primary" : phase === "done" ? "text-primary" : "text-muted-foreground";
+  const phaseBg = phase === "work" ? "bg-primary/10" : phase === "rest" ? "bg-primary/10" : phase === "done" ? "bg-primary/10" : "bg-muted";
 
   const loadPreset = (preset: typeof PRESETS[0]) => {
     setWorkTime(preset.work);
@@ -160,15 +159,13 @@ export function WorkoutTimerClient() {
   };
 
   return (
-    <main className="min-h-screen bg-white">
-      <Nav />
-
-      <section className="pt-24 pb-12 md:pt-32 md:pb-16">
+    <main className="min-h-screen bg-background">
+<section className="pt-24 pb-12 md:pt-32 md:pb-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <div className="mb-8">
             <Link
               href="/tools"
-              className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-black transition-colors"
+              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               Back to Tools
@@ -176,14 +173,14 @@ export function WorkoutTimerClient() {
           </div>
 
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 text-sm font-medium text-gray-600 mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted/80 text-sm font-medium text-muted-foreground mb-6">
               <Timer className="w-4 h-4" />
               <span>Workout Timer</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-black mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               Interval Timer
             </h1>
-            <p className="text-lg text-gray-500">
+            <p className="text-lg text-muted-foreground">
               HIIT, Tabata, and circuit training timer.
             </p>
           </div>
@@ -194,7 +191,7 @@ export function WorkoutTimerClient() {
               <button
                 key={preset.name}
                 onClick={() => loadPreset(preset)}
-                className="px-4 py-2 bg-gray-100 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors"
+                className="px-4 py-2 bg-muted/80 rounded-full text-sm font-medium hover:bg-muted/60 transition-colors"
               >
                 {preset.name}
               </button>
@@ -217,10 +214,10 @@ export function WorkoutTimerClient() {
 
             {/* Progress bar */}
             {phase !== "idle" && (
-              <div className="w-full bg-gray-200 rounded-full h-2 mb-6 overflow-hidden">
+              <div className="w-full bg-muted/60 rounded-full h-2 mb-6 overflow-hidden">
                 <div
                   className={`h-full rounded-full transition-all duration-1000 ${
-                    phase === "work" ? "bg-orange-500" : phase === "rest" ? "bg-blue-500" : "bg-green-500"
+                    phase === "work" ? "bg-primary/100" : phase === "rest" ? "bg-primary" : "bg-primary"
                   }`}
                   style={{ width: `${progress}%` }}
                 />
@@ -232,7 +229,7 @@ export function WorkoutTimerClient() {
               {phase === "idle" || phase === "done" ? (
                 <button
                   onClick={startWorkout}
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-black text-white rounded-full font-semibold hover:bg-gray-800 transition-colors"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-full font-semibold hover:bg-primary/90 transition-colors"
                 >
                   <Play className="w-5 h-5" />
                   {phase === "done" ? "Restart" : "Start"}
@@ -241,14 +238,14 @@ export function WorkoutTimerClient() {
                 <>
                   <button
                     onClick={isRunning ? pauseWorkout : resumeWorkout}
-                    className="inline-flex items-center gap-2 px-8 py-4 bg-black text-white rounded-full font-semibold hover:bg-gray-800 transition-colors"
+                    className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-full font-semibold hover:bg-primary/90 transition-colors"
                   >
                     {isRunning ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
                     {isRunning ? "Pause" : "Resume"}
                   </button>
                   <button
                     onClick={resetWorkout}
-                    className="p-4 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors"
+                    className="p-4 bg-muted/60 rounded-full hover:bg-gray-300 transition-colors"
                   >
                     <RotateCcw className="w-5 h-5" />
                   </button>
@@ -256,7 +253,7 @@ export function WorkoutTimerClient() {
               )}
               <button
                 onClick={() => setSoundEnabled(!soundEnabled)}
-                className="p-4 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors"
+                className="p-4 bg-muted/60 rounded-full hover:bg-gray-300 transition-colors"
               >
                 {soundEnabled ? <Volume2 className="w-5 h-5" /> : <VolumeX className="w-5 h-5" />}
               </button>
@@ -265,24 +262,24 @@ export function WorkoutTimerClient() {
 
           {/* Settings */}
           {phase === "idle" && (
-            <div className="bg-gray-50 rounded-2xl p-8 space-y-6">
+            <div className="bg-muted rounded-2xl p-8 space-y-6">
               <h3 className="font-semibold text-center">Timer Settings</h3>
 
               <div className="grid sm:grid-cols-3 gap-6">
                 {/* Work */}
                 <div className="text-center">
-                  <label className="block text-sm font-medium text-gray-500 mb-3">Work (sec)</label>
+                  <label className="block text-sm font-medium text-muted-foreground mb-3">Work (sec)</label>
                   <div className="flex items-center justify-center gap-3">
                     <button
                       onClick={() => adjust(setWorkTime, workTime, -5)}
-                      className="p-2 bg-white rounded-lg border border-gray-200 hover:bg-gray-100"
+                      className="p-2 bg-background rounded-lg border border-border hover:bg-muted/80"
                     >
                       <Minus className="w-4 h-4" />
                     </button>
                     <span className="text-2xl font-bold w-16">{workTime}</span>
                     <button
                       onClick={() => adjust(setWorkTime, workTime, 5)}
-                      className="p-2 bg-white rounded-lg border border-gray-200 hover:bg-gray-100"
+                      className="p-2 bg-background rounded-lg border border-border hover:bg-muted/80"
                     >
                       <Plus className="w-4 h-4" />
                     </button>
@@ -291,18 +288,18 @@ export function WorkoutTimerClient() {
 
                 {/* Rest */}
                 <div className="text-center">
-                  <label className="block text-sm font-medium text-gray-500 mb-3">Rest (sec)</label>
+                  <label className="block text-sm font-medium text-muted-foreground mb-3">Rest (sec)</label>
                   <div className="flex items-center justify-center gap-3">
                     <button
                       onClick={() => adjust(setRestTime, restTime, -5, 0)}
-                      className="p-2 bg-white rounded-lg border border-gray-200 hover:bg-gray-100"
+                      className="p-2 bg-background rounded-lg border border-border hover:bg-muted/80"
                     >
                       <Minus className="w-4 h-4" />
                     </button>
                     <span className="text-2xl font-bold w-16">{restTime}</span>
                     <button
                       onClick={() => adjust(setRestTime, restTime, 5)}
-                      className="p-2 bg-white rounded-lg border border-gray-200 hover:bg-gray-100"
+                      className="p-2 bg-background rounded-lg border border-border hover:bg-muted/80"
                     >
                       <Plus className="w-4 h-4" />
                     </button>
@@ -311,18 +308,18 @@ export function WorkoutTimerClient() {
 
                 {/* Rounds */}
                 <div className="text-center">
-                  <label className="block text-sm font-medium text-gray-500 mb-3">Rounds</label>
+                  <label className="block text-sm font-medium text-muted-foreground mb-3">Rounds</label>
                   <div className="flex items-center justify-center gap-3">
                     <button
                       onClick={() => adjust(setRounds, rounds, -1)}
-                      className="p-2 bg-white rounded-lg border border-gray-200 hover:bg-gray-100"
+                      className="p-2 bg-background rounded-lg border border-border hover:bg-muted/80"
                     >
                       <Minus className="w-4 h-4" />
                     </button>
                     <span className="text-2xl font-bold w-16">{rounds}</span>
                     <button
                       onClick={() => adjust(setRounds, rounds, 1)}
-                      className="p-2 bg-white rounded-lg border border-gray-200 hover:bg-gray-100"
+                      className="p-2 bg-background rounded-lg border border-border hover:bg-muted/80"
                     >
                       <Plus className="w-4 h-4" />
                     </button>
@@ -333,6 +330,6 @@ export function WorkoutTimerClient() {
           )}
         </div>
       </section>
-    </main>
+</main>
   );
 }

@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, Dumbbell, Info } from "lucide-react";
-import { Nav } from "@/components/nav";
 
 const STANDARD_PLATES = [20, 15, 10, 5, 2.5, 1.25, 0.5];
 const BUMPER_PLATES = [25, 20, 15, 10, 5, 2.5];
@@ -44,15 +43,13 @@ export function PlateCalculatorClient() {
   };
 
   return (
-    <main className="min-h-screen bg-white">
-      <Nav />
-
-      <section className="pt-24 pb-12 md:pt-32 md:pb-16">
+    <main className="min-h-screen bg-background">
+<section className="pt-24 pb-12 md:pt-32 md:pb-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <div className="mb-8">
             <Link
               href="/tools"
-              className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-black transition-colors"
+              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               Back to Tools
@@ -60,19 +57,19 @@ export function PlateCalculatorClient() {
           </div>
 
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 text-sm font-medium text-gray-600 mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted/80 text-sm font-medium text-muted-foreground mb-6">
               <Dumbbell className="w-4 h-4" />
               <span>Plate Calculator</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-black mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               Calculate Your Plates
             </h1>
-            <p className="text-lg text-gray-500">
+            <p className="text-lg text-muted-foreground">
               Figure out which plates to load for your target weight.
             </p>
           </div>
 
-          <div className="bg-gray-50 rounded-2xl p-8 mb-8">
+          <div className="bg-muted rounded-2xl p-8 mb-8">
             <div className="grid sm:grid-cols-2 gap-4 mb-6">
               <div>
                 <label className="block text-sm font-medium mb-2">Target Weight (kg)</label>
@@ -80,7 +77,7 @@ export function PlateCalculatorClient() {
                   type="number"
                   value={targetWeight}
                   onChange={(e) => setTargetWeight(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-black"
+                  className="w-full px-4 py-3 rounded-xl border border-border focus:outline-none focus:ring-2 focus:ring-black"
                   placeholder="100"
                 />
               </div>
@@ -89,7 +86,7 @@ export function PlateCalculatorClient() {
                 <select
                   value={barWeight}
                   onChange={(e) => setBarWeight(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-black bg-white"
+                  className="w-full px-4 py-3 rounded-xl border border-border focus:outline-none focus:ring-2 focus:ring-black bg-background"
                 >
                   <option value="20">Olympic Bar (20kg)</option>
                   <option value="15">Women&apos;s Bar (15kg)</option>
@@ -104,7 +101,7 @@ export function PlateCalculatorClient() {
                 <button
                   onClick={() => setPlateType("standard")}
                   className={`flex-1 py-3 rounded-xl font-medium transition-colors ${
-                    plateType === "standard" ? "bg-black text-white" : "bg-white border border-gray-200"
+                    plateType === "standard" ? "bg-primary text-primary-foreground" : "bg-background border border-border"
                   }`}
                 >
                   Standard
@@ -112,7 +109,7 @@ export function PlateCalculatorClient() {
                 <button
                   onClick={() => setPlateType("bumper")}
                   className={`flex-1 py-3 rounded-xl font-medium transition-colors ${
-                    plateType === "bumper" ? "bg-black text-white" : "bg-white border border-gray-200"
+                    plateType === "bumper" ? "bg-primary text-primary-foreground" : "bg-background border border-border"
                   }`}
                 >
                   Bumper
@@ -122,7 +119,7 @@ export function PlateCalculatorClient() {
 
             <button
               onClick={calculate}
-              className="w-full py-4 bg-black text-white rounded-xl font-medium hover:bg-gray-800 transition-colors"
+              className="w-full py-4 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary/90 transition-colors"
             >
               Calculate Plates
             </button>
@@ -130,8 +127,8 @@ export function PlateCalculatorClient() {
 
           {result && (
             <div className="space-y-6 mb-8">
-              <div className="bg-blue-50 rounded-2xl p-8 text-center">
-                <p className="text-sm text-blue-600 mb-2">Weight Per Side</p>
+              <div className="bg-primary/10 rounded-2xl p-8 text-center">
+                <p className="text-sm text-primary mb-2">Weight Per Side</p>
                 <p className="text-5xl font-bold text-blue-800">{result.perSide}kg</p>
               </div>
 
@@ -140,17 +137,17 @@ export function PlateCalculatorClient() {
                 {result.plates.length > 0 ? (
                   <div className="space-y-3">
                     {result.plates.map((p) => (
-                      <div key={p.weight} className="flex justify-between items-center p-4 bg-gray-50 rounded-xl">
+                      <div key={p.weight} className="flex justify-between items-center p-4 bg-muted rounded-xl">
                         <span className="font-medium">{p.weight}kg plate</span>
                         <span className="text-xl font-bold">× {p.count}</span>
                       </div>
                     ))}
                   </div>
                 ) : (
-                  <p className="text-gray-500">No plates needed.</p>
+                  <p className="text-muted-foreground">No plates needed.</p>
                 )}
                 {result.remainder > 0 && (
-                  <p className="mt-4 text-sm text-yellow-600">
+                  <p className="mt-4 text-sm text-primary">
                     Remainder: {result.remainder}kg (adjust with smaller plates or micro plates)
                   </p>
                 )}
@@ -158,12 +155,12 @@ export function PlateCalculatorClient() {
             </div>
           )}
 
-          <div className="bg-gray-50 rounded-2xl p-6">
+          <div className="bg-muted rounded-2xl p-6">
             <h3 className="font-semibold mb-4 flex items-center gap-2">
               <Info className="w-5 h-5" />
               How It Works
             </h3>
-            <p className="text-gray-500 text-sm leading-relaxed">
+            <p className="text-muted-foreground text-sm leading-relaxed">
               Enter your target weight and bar type. We calculate the optimal plate 
               combination per side using standard Olympic plate sizes. Standard plates 
               include 20, 15, 10, 5, 2.5, 1.25, 0.5kg. Bumper plates include 25, 20, 15, 10, 5, 2.5kg.
@@ -171,6 +168,6 @@ export function PlateCalculatorClient() {
           </div>
         </div>
       </section>
-    </main>
+</main>
   );
 }

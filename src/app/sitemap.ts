@@ -1,4 +1,6 @@
 import { MetadataRoute } from "next";
+import fs from "fs";
+import path from "path";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://getfitai.io";
@@ -21,6 +23,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const workoutTypes = ["gym", "home", "beginner"];
 
+  // 动态获取博客文章
+  const blogDir = path.join(process.cwd(), "src/app/blog");
+  const blogPosts: string[] = [];
+  
+  if (fs.existsSync(blogDir)) {
+    const entries = fs.readdirSync(blogDir, { withFileTypes: true });
+    for (const entry of entries) {
+      if (entry.isDirectory()) {
+        blogPosts.push(entry.name);
+      }
+    }
+  }
+
   const pages = [
     ...staticPages.map((page) => ({
       url: `${baseUrl}${page.path}`,
@@ -33,6 +48,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.9,
+    })),
+    ...blogPosts.map((slug) => ({
+      url: `${baseUrl}/blog/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
     })),
   ];
 

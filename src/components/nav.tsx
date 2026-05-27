@@ -1,71 +1,97 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Zap, Menu, X } from "lucide-react";
+import { useState } from "react";
+import { Menu, X, Dumbbell } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
+const navLinks = [
+  { href: "/#generator", label: "Workout Plans" },
+  { href: "/tools", label: "Fitness Tools" },
+  { href: "/#features", label: "Features" },
+  { href: "/#testimonials", label: "Reviews" },
+];
 
 export function Nav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const pathname = usePathname();
-  const isHome = pathname === "/";
-
-  const handleGetStarted = () => {
-    if (isHome) {
-      document.getElementById("generator")?.scrollIntoView({ behavior: "smooth" });
-    } else {
-      window.location.href = "/#generator";
-    }
-  };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-xl border-b border-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
-            <Zap className="w-5 h-5 text-white" />
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2">
+            <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shadow-lg shadow-primary/25">
+              <Dumbbell className="w-5 h-5 text-primary-foreground" />
+            </div>
+            <span className="text-xl font-bold text-foreground">GetFitAI</span>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* CTA Button */}
+          <div className="hidden md:flex items-center">
+            <Link
+              href="/#generator"
+              className="inline-flex items-center px-4 py-2 text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg shadow-lg shadow-primary/25 transition-colors"
+            >
+              Get Started
+            </Link>
           </div>
-          <span className="font-bold text-lg tracking-tight">GetFitAI</span>
-        </Link>
 
-        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-500">
-          <Link href="/workouts/beginner" className="hover:text-black transition-colors">Workouts</Link>
-          <Link href="/tools" className="hover:text-black transition-colors">Tools</Link>
-          <Link href="/#how-it-works" className="hover:text-black transition-colors">How it Works</Link>
-          <Link href="/#features" className="hover:text-black transition-colors">Features</Link>
-        </div>
-
-        <div className="hidden md:block">
+          {/* Mobile Menu Button */}
           <button
-            onClick={handleGetStarted}
-            className="bg-black text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors"
+            className="md:hidden p-2 text-foreground"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            Get Started
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
-
-        <button className="md:hidden p-2" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
       </div>
 
+      {/* Mobile Menu */}
+      <AnimatePresence>
         {mobileMenuOpen && (
-        <div className="md:hidden bg-white border-b border-gray-100 px-4 py-4 space-y-3">
-          <Link href="/workouts/beginner" className="block py-2 text-gray-600" onClick={() => setMobileMenuOpen(false)}>Workouts</Link>
-          <Link href="/tools" className="block py-2 text-gray-600" onClick={() => setMobileMenuOpen(false)}>Tools</Link>
-          <Link href="/#how-it-works" className="block py-2 text-gray-600" onClick={() => setMobileMenuOpen(false)}>How it Works</Link>
-          <Link href="/#features" className="block py-2 text-gray-600" onClick={() => setMobileMenuOpen(false)}>Features</Link>
-          <button
-            onClick={() => {
-              setMobileMenuOpen(false);
-              handleGetStarted();
-            }}
-            className="w-full bg-black text-white py-3 rounded-full text-sm font-medium"
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-background border-t border-border"
           >
-            Get Started
-          </button>
-        </div>
-      )}
-    </nav>
+            <div className="px-4 py-4 space-y-4">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="block text-muted-foreground hover:text-primary transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <div className="pt-4 border-t border-border">
+                <Link
+                  href="/#generator"
+                  className="block w-full text-center bg-primary text-primary-foreground py-3 rounded-lg shadow-lg shadow-primary/25"
+                >
+                  Get Started
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
   );
 }
