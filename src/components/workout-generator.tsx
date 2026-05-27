@@ -432,19 +432,10 @@ export function WorkoutGenerator() {
         {/* Top bar */}
         <div className="flex items-center justify-between mb-12">
           <div className="flex items-center gap-2">
-            <div className="w-9 h-9 bg-orange-500 rounded-lg flex items-center justify-center text-white font-bold text-lg">G</div>
-            <span className="font-bold text-xl text-white">GetFitAI</span>
-          </div>
-          <div className="flex items-center gap-3 text-sm text-slate-400">
-            <div className="flex -space-x-2">
-              <div className="w-7 h-7 rounded-full bg-blue-500 border-2 border-slate-900" />
-              <div className="w-7 h-7 rounded-full bg-green-500 border-2 border-slate-900" />
-              <div className="w-7 h-7 rounded-full bg-purple-500 border-2 border-slate-900" />
+            <div className="w-9 h-9 bg-slate-800 border border-slate-700 rounded-lg flex items-center justify-center">
+              <Dumbbell className="w-5 h-5 text-orange-400" />
             </div>
-            <span className="flex items-center gap-1">
-              <Users className="w-4 h-4" />
-              12,847 plans today
-            </span>
+            <span className="font-bold text-xl text-white">GetFitAI</span>
           </div>
         </div>
 
