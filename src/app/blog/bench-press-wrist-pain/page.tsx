@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/json-ld";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "How to Fix Wrist Pain During Bench Press | GetFitAI",
@@ -136,17 +136,35 @@ export default function BlogPost() {
             </ul>
           </div>
 
-          <div className="mt-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-8 md:p-12 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-              Get a Personalized Strength Plan
-            </h2>
-            <p className="text-white/80 mb-8 max-w-xl mx-auto">
-              Fix your form and build strength safely with an AI-generated workout plan tailored to you.
-            </p>
-            <Link href="/workouts/gym" className="inline-flex items-center gap-2 px-8 py-4 bg-slate-950 text-white rounded-full font-bold hover:bg-slate-900 transition-colors">
-              Generate My Plan
-              <ArrowRight className="w-5 h-5" />
-            </Link>
+          <div className="mt-16 relative overflow-hidden rounded-2xl">
+            <div className="absolute inset-0 bg-gradient-to-br from-orange-500 via-orange-500 to-orange-600" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-yellow-400/20 via-transparent to-transparent" />
+            
+            <div className="absolute inset-0 opacity-10"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+              }}
+            />
+            
+            <div className="relative p-8 md:p-12 text-center">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6">
+                <Sparkles className="w-4 h-4 text-yellow-300" />
+                <span className="text-sm font-medium text-white/90">AI-Powered</span>
+              </div>
+              
+              <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
+                Get a Personalized
+                <br className="hidden md:block" />
+                Strength Plan
+              </h2>
+              <p className="text-white/80 mb-8 max-w-xl mx-auto text-base md:text-lg">
+                Fix your form and build strength safely with an AI-generated workout plan tailored to you.
+              </p>
+              <Link href="/workouts/gym" className="inline-flex items-center gap-2 px-8 py-4 bg-white text-orange-600 rounded-full font-bold hover:bg-slate-100 transition-colors shadow-xl shadow-black/20">
+                Generate My Plan
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </div>
           </div>
         </div>
       </article>
