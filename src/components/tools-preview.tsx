@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, Scale, Flame, Percent, Dumbbell } from "lucide-react";
 import { ArrowRight, Activity, Flame, PercentCircle, Gauge } from "lucide-react";
+import Link from "next/link";
 
 const tools = [
   {
