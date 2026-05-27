@@ -1,31 +1,31 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Shield, Clock, Zap, Heart, Award } from "lucide-react";
+import { Shield, Clock, Zap, Heart, Award, Sparkles, Lock, Timer, Brain, Trophy } from "lucide-react";
 
 const reasons = [
   {
-    icon: Shield,
+    icon: Lock,
     title: "100% Free",
     description: "No hidden fees, no credit card required. All features including the AI workout plan generator and personalized fitness calculators are completely free to use. Generate unlimited workout plans at zero cost.",
   },
   {
-    icon: Clock,
+    icon: Timer,
     title: "No Signup Required",
     description: "Start using GetFitAI immediately. No account creation, no email verification, no data collection. Just open the site and get your free personalized training plan in under 60 seconds.",
   },
   {
-    icon: Zap,
+    icon: Sparkles,
     title: "AI-Powered Personalization",
     description: "Advanced AI algorithms create personalized training plans based on your specific goals, fitness level, and equipment. Unlike generic workout plans, GetFitAI adapts to your body and schedule.",
   },
   {
-    icon: Heart,
+    icon: Brain,
     title: "Science-Based Training",
     description: "All workout plans follow established exercise science principles including progressive overload, periodization, and optimal recovery. Train smarter, not just harder, with evidence-based fitness programming.",
   },
   {
-    icon: Award,
+    icon: Trophy,
     title: "Trusted by Users Worldwide",
     description: "Join over 10,000 users who have already achieved their fitness goals with GetFitAI. From beginners to advanced athletes, our AI workout plans deliver real results for every fitness level.",
   },
@@ -63,7 +63,7 @@ export function WhyChoose() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="flex gap-4 p-6 rounded-2xl bg-slate-900/60 backdrop-blur-sm border border-slate-800 hover:border-orange-500/30 transition-colors"
               >
-                <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center shrink-0">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500/20 to-orange-600/10 border border-orange-500/30 flex items-center justify-center shrink-0 shadow-lg shadow-orange-500/10">
                   <Icon className="w-6 h-6 text-orange-400" />
                 </div>
                 <div>

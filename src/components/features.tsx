@@ -2,16 +2,16 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Brain, Calculator, Target, Dumbbell, Clock, TrendingUp } from "lucide-react";
+import { Brain, Calculator, Target, Dumbbell, Clock, TrendingUp, Sparkles, BarChart3, Layers, Timer, Zap } from "lucide-react";
 
 const features = [
   {
-    icon: Brain,
+    icon: Sparkles,
     title: "AI Workout Plans",
     description: "Stop guessing which exercises to do. Our AI generates scientifically personalized training plans based on your fitness goals, experience level, and available equipment. Every workout plan is tailored specifically to you.",
   },
   {
-    icon: Calculator,
+    icon: BarChart3,
     title: "Free Fitness Calculators",
     description: "Accurately calculate BMI, TDEE, body fat percentage, and one-rep max without complex formulas. Get data-driven support for your training and diet decisions with our free fitness calculator suite.",
   },
@@ -21,17 +21,17 @@ const features = [
     description: "Every body is unique. Our AI analyzes your data to provide personalized fitness recommendations and workout plans that truly work for your specific body type, schedule, and training history.",
   },
   {
-    icon: Dumbbell,
+    icon: Layers,
     title: "Equipment Adaptation",
     description: "Whether you have a full commercial gym, only dumbbells at home, or just your bodyweight, GetFitAI creates efficient workout plans tailored to your exact equipment situation. No excuses.",
   },
   {
-    icon: Clock,
+    icon: Timer,
     title: "Time Optimization",
     description: "15 minutes or 90 minutes? Our AI optimizes every minute of your workout based on your schedule. Get maximum results in minimum time with personalized training plans that fit your life.",
   },
   {
-    icon: TrendingUp,
+    icon: Zap,
     title: "Progressive Training",
     description: "All workout plans follow progressive overload principles to ensure continuous improvement while avoiding injury and plateaus. Your personalized plan grows with you as you get stronger.",
   },
@@ -72,7 +72,7 @@ export function Features() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="group bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-2xl p-6 hover:border-orange-500/30 hover:shadow-lg hover:shadow-orange-500/5 transition-all"
               >
-                <div className="w-14 h-14 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center mb-4 group-hover:bg-orange-500/10 group-hover:border-orange-500/30 transition-all">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500/20 to-orange-600/10 border border-orange-500/30 flex items-center justify-center mb-4 group-hover:from-orange-500/30 group-hover:to-orange-600/20 group-hover:border-orange-500/50 transition-all shadow-lg shadow-orange-500/10">
                   <Icon className="w-7 h-7 text-orange-400 transition-colors" />
                 </div>
                 <h3 className="text-lg font-semibold text-white mb-2">

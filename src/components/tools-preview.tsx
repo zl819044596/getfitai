@@ -3,11 +3,11 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, Scale, Flame, Percent, Dumbbell } from "lucide-react";
-import Link from "next/link";
+import { ArrowRight, Activity, Flame, PercentCircle, Gauge } from "lucide-react";
 
 const tools = [
   {
-    icon: Scale,
+    icon: Activity,
     title: "BMI Calculator",
     description: "Quickly check if your weight is in a healthy range. Enter height and weight to get your BMI index and personalized recommendations instantly.",
     href: "/tools/bmi-calculator",
@@ -21,14 +21,14 @@ const tools = [
     image: "/images/blog/lose-belly-fat.jpg",
   },
   {
-    icon: Percent,
+    icon: PercentCircle,
     title: "Body Fat Calculator",
     description: "Track what really matters. Estimate body fat percentage using multiple validated formulas, focusing on fat loss rather than just scale weight.",
     href: "/tools/body-fat-calculator",
     image: "/images/blog/home-vs-gym.jpg",
   },
   {
-    icon: Dumbbell,
+    icon: Gauge,
     title: "1RM Calculator",
     description: "Train smart, progress safely. Predict your maximum strength for any exercise and program workouts at optimal intensity.",
     href: "/tools/one-rep-max",
@@ -84,9 +84,9 @@ export function ToolsPreview() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent" />
                     <div className="absolute bottom-4 left-4">
-                      <div className="w-12 h-12 rounded-xl bg-orange-500 flex items-center justify-center shadow-lg">
-                        <Icon className="w-6 h-6 text-white" />
-                      </div>
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center shadow-lg shadow-orange-500/30">
+                      <Icon className="w-6 h-6 text-white" />
+                    </div>
                     </div>
                   </div>
 
