@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GetFitAI - Stepper Wizard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+    .step-content { animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .option-card { transition: all 0.2s ease; }
+    .option-card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+    .option-card.selected { border-color: #f97316; background: #fff7ed; }
+    .progress-bar { transition: width 0.4s ease; }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <div class="max-w-6xl mx-auto p-6 lg:p-12">
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">Create Your Workout Plan</h1>
+      <p class="text-gray-500">5 quick questions → AI-generated program</p>
+    </div>
+
+    <!-- Stepper -->
+    <div class="max-w-2xl mx-auto mb-8">
+      <div class="flex items-center justify-between mb-2">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full bg-orange-500 text-white flex items-center justify-center text-sm font-bold">1</div>
+          <span class="text-sm font-medium text-gray-900">Goal</span>
+        </div>
+        <div class="flex-1 h-1 bg-gray-200 mx-3 rounded"><div class="h-full bg-orange-500 rounded progress-bar" style="width: 0%"></div></div>
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center text-sm font-bold">2</div>
+          <span class="text-sm text-gray-400">Area</span>
+        </div>
+        <div class="flex-1 h-1 bg-gray-200 mx-3 rounded"></div>
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center text-sm font-bold">3</div>
+          <span class="text-sm text-gray-400">Level</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid lg:grid-cols-5 gap-8 items-start">
+      <!-- Left: Visual -->
+      <div class="lg:col-span-2 relative">
+        <div class="rounded-2xl overflow-hidden shadow-lg">
+          <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=800&fit=crop" 
+               alt="Fitness" class="w-full h-[480px] object-cover">
+          <div class="absolute bottom-4 left-4 right-4">
+            <div class="bg-white/90 backdrop-blur rounded-xl p-4 shadow-lg">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center">
+                  <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500">Average Duration</p>
+                  <p class="text-lg font-bold text-orange-500">45 min</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Social proof -->
+        <div class="mt-4 flex items-center gap-2 text-sm text-gray-500">
+          <div class="flex -space-x-2">
+            <div class="w-6 h-6 rounded-full bg-blue-400 border-2 border-white"></div>
+            <div class="w-6 h-6 rounded-full bg-green-400 border-2 border-white"></div>
+            <div class="w-6 h-6 rounded-full bg-purple-400 border-2 border-white"></div>
+          </div>
+          <span>12,847 plans generated today</span>
+        </div>
+      </div>
+
+      <!-- Right: Form Step 1 -->
+      <div class="lg:col-span-3">
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+          <div class="step-content">
+            <h2 class="text-xl font-bold text-gray-900 mb-2">What's your fitness goal?</h2>
+            <p class="text-gray-500 mb-6">Select one — we'll tailor everything around this</p>
+            
+            <div class="grid grid-cols-2 gap-4">
+              <button class="option-card selected border-2 border-orange-500 rounded-xl p-5 text-left">
+                <div class="text-3xl mb-2">💪</div>
+                <div class="font-semibold text-gray-900">Muscle Gain</div>
+                <div class="text-sm text-gray-500 mt-1">Build size and strength</div>
+              </button>
+              <button class="option-card border-2 border-gray-200 rounded-xl p-5 text-left hover:border-gray-300">
+                <div class="text-3xl mb-2">🔥</div>
+                <div class="font-semibold text-gray-900">Fat Loss</div>
+                <div class="text-sm text-gray-500 mt-1">Burn calories, get lean</div>
+              </button>
+              <button class="option-card border-2 border-gray-200 rounded-xl p-5 text-left hover:border-gray-300">
+                <div class="text-3xl mb-2">⚡</div>
+                <div class="font-semibold text-gray-900">Strength</div>
+                <div class="text-sm text-gray-500 mt-1">Lift heavier weights</div>
+              </button>
+              <button class="option-card border-2 border-gray-200 rounded-xl p-5 text-left hover:border-gray-300">
+                <div class="text-3xl mb-2">🏃</div>
+                <div class="font-semibold text-gray-900">Endurance</div>
+                <div class="text-sm text-gray-500 mt-1">Stamina and conditioning</div>
+              </button>
+            </div>
+
+            <div class="mt-8 flex justify-end">
+              <button class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-xl font-semibold transition">
+                Next: Target Area →
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -5,15 +5,15 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Slider } from "@/components/ui/slider"
 import { motion, AnimatePresence } from "framer-motion"
-import { Sparkles, Dumbbell, Timer, Target, Activity, Loader2, CheckCircle, Flame, RotateCcw, Play, Pause, X, Info } from "lucide-react"
+import { Sparkles, Dumbbell, Timer, Target, Activity, Loader2, CheckCircle, Flame, RotateCcw, Play, Pause, X, ChevronRight, ChevronLeft, Users } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const goals = [
-  { id: "muscle", label: "Muscle Gain", icon: "💪" },
-  { id: "fatloss", label: "Fat Loss", icon: "🔥" },
-  { id: "strength", label: "Strength", icon: "⚡" },
-  { id: "endurance", label: "Endurance", icon: "🏃" },
-  { id: "maintain", label: "Maintain", icon: "⚖️" },
+  { id: "muscle", label: "Muscle Gain", desc: "Build size and strength", icon: "💪", color: "bg-orange-100 text-orange-600" },
+  { id: "fatloss", label: "Fat Loss", desc: "Burn calories, get lean", icon: "🔥", color: "bg-red-100 text-red-600" },
+  { id: "strength", label: "Strength", desc: "Lift heavier weights", icon: "⚡", color: "bg-yellow-100 text-yellow-600" },
+  { id: "endurance", label: "Endurance", desc: "Stamina and conditioning", icon: "🏃", color: "bg-blue-100 text-blue-600" },
+  { id: "maintain", label: "Maintain", desc: "Keep current fitness", icon: "⚖️", color: "bg-green-100 text-green-600" },
 ]
 
 const targetAreas = [
@@ -54,6 +54,14 @@ interface WorkoutPlan {
   exercises: Exercise[]
   cooldown: string[]
 }
+
+const steps = [
+  { id: "goal", label: "Goal" },
+  { id: "area", label: "Target" },
+  { id: "level", label: "Level" },
+  { id: "equipment", label: "Equipment" },
+  { id: "duration", label: "Duration" },
+]
 
 function RestTimer({ restSeconds, onComplete }: { restSeconds: number; onComplete?: () => void }) {
   const [timeLeft, setTimeLeft] = useState(restSeconds)
@@ -110,6 +118,7 @@ function RestTimer({ restSeconds, onComplete }: { restSeconds: number; onComplet
 }
 
 export function WorkoutGenerator() {
+  const [currentStep, setCurrentStep] = useState(0)
   const [selectedGoal, setSelectedGoal] = useState<string>("")
   const [selectedArea, setSelectedArea] = useState<string>("")
   const [selectedLevel, setSelectedLevel] = useState<string>("")
@@ -125,6 +134,31 @@ export function WorkoutGenerator() {
   const resultRef = useRef<HTMLDivElement>(null)
 
   const isFormValid = selectedGoal && selectedArea && selectedLevel && selectedEquipment
+
+  const progress = ((currentStep + 1) / steps.length) * 100
+
+  function canProceed(step: number) {
+    switch (step) {
+      case 0: return !!selectedGoal
+      case 1: return !!selectedArea
+      case 2: return !!selectedLevel
+      case 3: return !!selectedEquipment
+      case 4: return true
+      default: return false
+    }
+  }
+
+  function handleNext() {
+    if (currentStep < steps.length - 1 && canProceed(currentStep)) {
+      setCurrentStep(currentStep + 1)
+    }
+  }
+
+  function handleBack() {
+    if (currentStep > 0) {
+      setCurrentStep(currentStep - 1)
+    }
+  }
 
   async function handleGenerate() {
     if (!isFormValid) return
@@ -187,6 +221,13 @@ export function WorkoutGenerator() {
     setError("")
     setCompletedExercises(new Set())
     setActiveTimer(null)
+    setCurrentStep(0)
+    setSelectedGoal("")
+    setSelectedArea("")
+    setSelectedLevel("")
+    setSelectedEquipment("")
+    setDuration([45])
+    setNotes("")
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
@@ -210,6 +251,179 @@ export function WorkoutGenerator() {
   function parseRestSeconds(restStr: string): number {
     const match = restStr.match(/(\d+)/)
     return match ? parseInt(match[1], 10) : 60
+  }
+
+  const renderStepContent = () => {
+    switch (currentStep) {
+      case 0:
+        return (
+          <div className="space-y-4">
+            <div>
+              <h3 className="text-xl font-bold text-foreground mb-1">What's your fitness goal?</h3>
+              <p className="text-sm text-muted-foreground">Select one — we'll tailor everything around this</p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {goals.map((goal) => (
+                <button
+                  key={goal.id}
+                  onClick={() => setSelectedGoal(goal.id)}
+                  className={cn(
+                    "flex items-start gap-3 p-4 rounded-xl border-2 text-left transition-all",
+                    selectedGoal === goal.id
+                      ? "border-primary bg-primary/5 shadow-lg"
+                      : "border-border hover:border-primary/30 hover:shadow-md"
+                  )}
+                >
+                  <div className={cn("w-10 h-10 rounded-lg flex items-center justify-center text-xl shrink-0", goal.color)}>
+                    {goal.icon}
+                  </div>
+                  <div>
+                    <div className="font-semibold text-foreground">{goal.label}</div>
+                    <div className="text-sm text-muted-foreground">{goal.desc}</div>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        )
+      case 1:
+        return (
+          <div className="space-y-4">
+            <div>
+              <h3 className="text-xl font-bold text-foreground mb-1">Target Area</h3>
+              <p className="text-sm text-muted-foreground">Which body parts do you want to focus on?</p>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              {targetAreas.map((area) => {
+                const Icon = area.icon
+                return (
+                  <button
+                    key={area.id}
+                    onClick={() => setSelectedArea(area.id)}
+                    className={cn(
+                      "flex flex-col items-center gap-2 p-5 rounded-xl border-2 text-center transition-all",
+                      selectedArea === area.id
+                        ? "border-primary bg-primary/5 shadow-lg"
+                        : "border-border hover:border-primary/30 hover:shadow-md"
+                    )}
+                  >
+                    <Icon className={cn("w-8 h-8", selectedArea === area.id ? "text-primary" : "text-muted-foreground")} />
+                    <span className="font-medium text-foreground">{area.label}</span>
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+        )
+      case 2:
+        return (
+          <div className="space-y-4">
+            <div>
+              <h3 className="text-xl font-bold text-foreground mb-1">Experience Level</h3>
+              <p className="text-sm text-muted-foreground">How long have you been training?</p>
+            </div>
+            <div className="space-y-3">
+              {levels.map((level) => (
+                <button
+                  key={level.id}
+                  onClick={() => setSelectedLevel(level.id)}
+                  className={cn(
+                    "w-full flex items-center gap-4 p-4 rounded-xl border-2 text-left transition-all",
+                    selectedLevel === level.id
+                      ? "border-primary bg-primary/5 shadow-lg"
+                      : "border-border hover:border-primary/30 hover:shadow-md"
+                  )}
+                >
+                  <div className={cn(
+                    "w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0",
+                    selectedLevel === level.id ? "border-primary bg-primary" : "border-muted-foreground"
+                  )}>
+                    {selectedLevel === level.id && <div className="w-2.5 h-2.5 rounded-full bg-white" />}
+                  </div>
+                  <div>
+                    <div className="font-semibold text-foreground">{level.label}</div>
+                    <div className="text-sm text-muted-foreground">{level.desc}</div>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        )
+      case 3:
+        return (
+          <div className="space-y-4">
+            <div>
+              <h3 className="text-xl font-bold text-foreground mb-1">Available Equipment</h3>
+              <p className="text-sm text-muted-foreground">What do you have access to?</p>
+            </div>
+            <div className="space-y-3">
+              {equipment.map((eq) => (
+                <button
+                  key={eq.id}
+                  onClick={() => setSelectedEquipment(eq.id)}
+                  className={cn(
+                    "w-full flex items-center gap-4 p-4 rounded-xl border-2 text-left transition-all",
+                    selectedEquipment === eq.id
+                      ? "border-primary bg-primary/5 shadow-lg"
+                      : "border-border hover:border-primary/30 hover:shadow-md"
+                  )}
+                >
+                  <div className={cn(
+                    "w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0",
+                    selectedEquipment === eq.id ? "border-primary bg-primary" : "border-muted-foreground"
+                  )}>
+                    {selectedEquipment === eq.id && <div className="w-2.5 h-2.5 rounded-full bg-white" />}
+                  </div>
+                  <span className="font-semibold text-foreground">{eq.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )
+      case 4:
+        return (
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-xl font-bold text-foreground mb-1">Workout Duration</h3>
+              <p className="text-sm text-muted-foreground">How much time do you have?</p>
+            </div>
+            <div className="bg-secondary/50 rounded-xl p-6">
+              <div className="text-center mb-6">
+                <span className="text-4xl font-bold text-primary">{duration[0]}</span>
+                <span className="text-lg text-muted-foreground ml-1">minutes</span>
+              </div>
+              <div className="px-2">
+                <Slider
+                  value={duration}
+                  onValueChange={setDuration}
+                  min={15}
+                  max={90}
+                  step={5}
+                  className="w-full"
+                />
+                <div className="flex justify-between text-xs text-muted-foreground mt-2">
+                  <span>15 min</span>
+                  <span>90 min</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-foreground mb-2">
+                Special Needs or Injuries <span className="text-muted-foreground font-normal">(Optional)</span>
+              </label>
+              <textarea
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+                placeholder="Example: Lower back issues, avoid deep squats..."
+                className="w-full bg-secondary border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 resize-none"
+                rows={2}
+              />
+            </div>
+          </div>
+        )
+      default:
+        return null
+    }
   }
 
   return (
@@ -246,6 +460,18 @@ export function WorkoutGenerator() {
                 </div>
               </div>
             </div>
+            {/* Social Proof */}
+            <div className="mt-4 flex items-center gap-3 text-sm text-muted-foreground">
+              <div className="flex -space-x-2">
+                <div className="w-7 h-7 rounded-full bg-blue-400 border-2 border-background" />
+                <div className="w-7 h-7 rounded-full bg-green-400 border-2 border-background" />
+                <div className="w-7 h-7 rounded-full bg-purple-400 border-2 border-background" />
+              </div>
+              <span className="flex items-center gap-1">
+                <Users className="w-4 h-4" />
+                12,847 plans generated today
+              </span>
+            </div>
           </motion.div>
 
           {/* Right - Form + Result */}
@@ -255,179 +481,133 @@ export function WorkoutGenerator() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
+            {/* Header */}
             <div className="mb-8">
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-              Create Your Personalized Workout Plan
-            </h2>
-            <p className="text-muted-foreground">
-              Answer a few simple questions and our AI will generate a personalized workout plan for you in seconds. Whether you want to build muscle, lose fat, or improve endurance, GetFitAI creates a free training program tailored to your fitness level and available equipment.
-            </p>
+              <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-2">
+                Create Your Workout Plan
+              </h2>
+              <p className="text-muted-foreground">
+                5 quick questions → AI-generated program in seconds
+              </p>
             </div>
+
+            {/* Stepper */}
+            {!plan && (
+              <div className="mb-6">
+                <div className="flex items-center justify-between mb-2">
+                  {steps.map((step, index) => (
+                    <div key={step.id} className="flex items-center">
+                      <div className="flex flex-col items-center">
+                        <div
+                          className={cn(
+                            "w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all",
+                            index < currentStep
+                              ? "bg-primary text-primary-foreground"
+                              : index === currentStep
+                                ? "bg-primary text-primary-foreground ring-2 ring-primary/30"
+                                : "bg-secondary text-muted-foreground"
+                          )}
+                        >
+                          {index < currentStep ? (
+                            <CheckCircle className="w-4 h-4" />
+                          ) : (
+                            index + 1
+                          )}
+                        </div>
+                        <span
+                          className={cn(
+                            "text-xs mt-1 hidden sm:block",
+                            index <= currentStep ? "text-foreground font-medium" : "text-muted-foreground"
+                          )}
+                        >
+                          {step.label}
+                        </span>
+                      </div>
+                      {index < steps.length - 1 && (
+                        <div
+                          className={cn(
+                            "w-8 sm:w-12 h-0.5 mx-1 transition-all",
+                            index < currentStep ? "bg-primary" : "bg-secondary"
+                          )}
+                        />
+                      )}
+                    </div>
+                  ))}
+                </div>
+                {/* Progress bar */}
+                <div className="w-full h-1 bg-secondary rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-primary transition-all duration-300 ease-out"
+                    style={{ width: `${progress}%` }}
+                  />
+                </div>
+              </div>
+            )}
 
             {/* Form Card */}
-            <div className="bg-card border border-border rounded-2xl p-6 shadow-lg space-y-6">
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-3">
-                  What is your fitness goal?
-                </label>
-                <div className="flex flex-wrap gap-2">
-                  {goals.map((goal) => (
-                    <button
-                      key={goal.id}
-                      onClick={() => setSelectedGoal(goal.id)}
-                      className={cn(
-                        "px-4 py-2 rounded-xl text-sm font-medium transition-all",
-                        selectedGoal === goal.id
-                          ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
-                          : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-                      )}
+            {!plan && (
+              <div className="bg-card border border-border rounded-2xl p-6 shadow-lg">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentStep}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {renderStepContent()}
+                  </motion.div>
+                </AnimatePresence>
+
+                {/* Navigation Buttons */}
+                <div className="mt-6 flex items-center justify-between">
+                  <Button
+                    variant="outline"
+                    onClick={handleBack}
+                    disabled={currentStep === 0}
+                    className="rounded-xl px-6"
+                  >
+                    <ChevronLeft className="w-4 h-4 mr-1" />
+                    Back
+                  </Button>
+
+                  {currentStep < steps.length - 1 ? (
+                    <Button
+                      onClick={handleNext}
+                      disabled={!canProceed(currentStep)}
+                      className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl px-6"
                     >
-                      {goal.icon} {goal.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-3">
-                  Target Area
-                </label>
-                <div className="grid grid-cols-2 gap-3">
-                  {targetAreas.map((area) => {
-                    const Icon = area.icon
-                    return (
-                      <button
-                        key={area.id}
-                        onClick={() => setSelectedArea(area.id)}
-                        className={cn(
-                          "flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-medium transition-all",
-                          selectedArea === area.id
-                            ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
-                            : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-                        )}
-                      >
-                        <Icon className="w-4 h-4" />
-                        {area.label}
-                      </button>
-                    )
-                  })}
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-3">
-                  Experience Level
-                </label>
-                <div className="grid grid-cols-3 gap-2">
-                  {levels.map((level) => (
-                    <button
-                      key={level.id}
-                      onClick={() => setSelectedLevel(level.id)}
-                      className={cn(
-                        "flex flex-col items-center px-3 py-3 rounded-xl text-center transition-all",
-                        selectedLevel === level.id
-                          ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
-                          : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-                      )}
+                      Next
+                      <ChevronRight className="w-4 h-4 ml-1" />
+                    </Button>
+                  ) : (
+                    <Button
+                      onClick={handleGenerate}
+                      disabled={!isFormValid || loading}
+                      className="bg-primary text-primary-foreground hover:bg-primary/90 py-6 px-8 text-lg shadow-xl shadow-primary/25 rounded-xl disabled:opacity-50"
                     >
-                      <span className="font-medium text-sm">{level.label}</span>
-                      <span className={cn(
-                        "text-xs mt-1",
-                        selectedLevel === level.id ? "text-primary-foreground/80" : "text-muted-foreground"
-                      )}>
-                        {level.desc}
-                      </span>
-                    </button>
-                  ))}
+                      {loading ? (
+                        <>
+                          <Loader2 className="mr-2 w-5 h-5 animate-spin" />
+                          Generating...
+                        </>
+                      ) : (
+                        <>
+                          <Sparkles className="mr-2 w-5 h-5" />
+                          Generate Plan
+                        </>
+                      )}
+                    </Button>
+                  )}
                 </div>
-              </div>
 
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-3">
-                  Duration: <span className="text-primary font-bold">{duration[0]}</span> min
-                </label>
-                <div className="px-2">
-                  <Slider
-                    value={duration}
-                    onValueChange={setDuration}
-                    min={15}
-                    max={90}
-                    step={5}
-                    className="w-full"
-                  />
-                  <div className="flex justify-between text-xs text-muted-foreground mt-2">
-                    <span>15 min</span>
-                    <span>90 min</span>
+                {error && (
+                  <div className="mt-4 p-4 rounded-xl bg-destructive/10 text-destructive text-sm text-center">
+                    {error}
                   </div>
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-3">
-                  Available Equipment
-                </label>
-                <div className="flex flex-wrap gap-2">
-                  {equipment.map((eq) => (
-                    <button
-                      key={eq.id}
-                      onClick={() => setSelectedEquipment(eq.id)}
-                      className={cn(
-                        "px-4 py-2 rounded-xl text-sm font-medium transition-all",
-                        selectedEquipment === eq.id
-                          ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
-                          : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-                      )}
-                    >
-                      {eq.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-3">
-                  Special Needs or Injuries <span className="text-muted-foreground font-normal">(Optional)</span>
-                </label>
-                <textarea
-                  value={notes}
-                  onChange={(e) => setNotes(e.target.value)}
-                  placeholder="Example: Lower back issues, avoid deep squats..."
-                  className="w-full bg-secondary border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 resize-none"
-                  rows={2}
-                />
-              </div>
-
-              <Button
-                size="lg"
-                onClick={handleGenerate}
-                disabled={!isFormValid || loading}
-                className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-6 text-lg shadow-xl shadow-primary/25 group rounded-xl disabled:opacity-50"
-              >
-                {loading ? (
-                  <>
-                    <Loader2 className="mr-2 w-5 h-5 animate-spin" />
-                    Generating...
-                  </>
-                ) : (
-                  <>
-                    <Sparkles className="mr-2 w-5 h-5" />
-                    Generate Workout Plan
-                  </>
                 )}
-              </Button>
-
-              {!isFormValid && (
-                <p className="text-xs text-muted-foreground text-center">
-                  Please select all options above to generate your plan
-                </p>
-              )}
-
-              {error && (
-                <div className="p-4 rounded-xl bg-destructive/10 text-destructive text-sm text-center">
-                  {error}
-                </div>
-              )}
-            </div>
+              </div>
+            )}
 
             {/* Generated Plan Result */}
             <AnimatePresence>

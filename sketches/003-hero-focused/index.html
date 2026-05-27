@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GetFitAI - Hero Focused</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+    .hero-bg { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); }
+    .glass { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); }
+    .pulse { animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+    .option-btn { transition: all 0.3s; }
+    .option-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(249,115,22,0.3); }
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <div class="hero-bg text-white min-h-screen">
+    <div class="max-w-7xl mx-auto px-6 py-8">
+      <!-- Nav -->
+      <div class="flex items-center justify-between mb-16">
+        <div class="flex items-center gap-2">
+          <div class="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center font-bold text-xl">G</div>
+          <span class="font-bold text-2xl">GetFitAI</span>
+        </div>
+        <div class="flex items-center gap-4 text-sm">
+          <span class="text-gray-400">12,847 plans today</span>
+          <div class="flex -space-x-2">
+            <div class="w-8 h-8 rounded-full bg-blue-400 border-2 border-[#1a1a2e]"></div>
+            <div class="w-8 h-8 rounded-full bg-green-400 border-2 border-[#1a1a2e]"></div>
+            <div class="w-8 h-8 rounded-full bg-purple-400 border-2 border-[#1a1a2e]"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <!-- Left: Big headline + quick select -->
+        <div>
+          <h1 class="text-5xl lg:text-6xl font-bold leading-tight mb-6">
+            AI builds your<br>
+            <span class="text-orange-500">perfect workout</span>
+          </h1>
+          <p class="text-xl text-gray-400 mb-10">
+            Answer 3 questions. Get a personalized program in seconds. Free.
+          </p>
+
+          <!-- Quick Goal Selector -->
+          <div class="mb-8">
+            <p class="text-sm text-gray-500 mb-4 uppercase tracking-wider">I want to...</p>
+            <div class="grid grid-cols-2 gap-3">
+              <button class="option-btn glass rounded-xl p-4 text-left hover:bg-orange-500/20">
+                <div class="text-2xl mb-1">💪</div>
+                <div class="font-semibold">Build Muscle</div>
+              </button>
+              <button class="option-btn glass rounded-xl p-4 text-left hover:bg-orange-500/20">
+                <div class="text-2xl mb-1">🔥</div>
+                <div class="font-semibold">Lose Fat</div>
+              </button>
+              <button class="option-btn glass rounded-xl p-4 text-left hover:bg-orange-500/20">
+                <div class="text-2xl mb-1">⚡</div>
+                <div class="font-semibold">Get Stronger</div>
+              </button>
+              <button class="option-btn glass rounded-xl p-4 text-left hover:bg-orange-500/20">
+                <div class="text-2xl mb-1">🏃</div>
+                <div class="font-semibold">Boost Endurance</div>
+              </button>
+            </div>
+          </div>
+
+          <button class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition flex items-center gap-2">
+            Generate My Plan
+            <span class="pulse">⚡</span>
+          </button>
+        </div>
+
+        <!-- Right: Hero Image with floating UI -->
+        <div class="relative">
+          <div class="rounded-3xl overflow-hidden shadow-2xl">
+            <img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=600&h=750&fit=crop" 
+                 alt="Athlete" class="w-full h-[600px] object-cover">
+          </div>
+          
+          <!-- Floating workout card -->
+          <div class="absolute -left-8 top-20 glass rounded-2xl p-4 text-white shadow-xl">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+              </div>
+              <div>
+                <div class="text-xs text-gray-400">Today's Plan</div>
+                <div class="font-bold">Upper Body Power</div>
+              </div>
+            </div>
+            <div class="flex gap-4 text-sm">
+              <div>
+                <div class="text-gray-400">Exercises</div>
+                <div class="font-bold text-orange-400">6</div>
+              </div>
+              <div>
+                <div class="text-gray-400">Duration</div>
+                <div class="font-bold text-orange-400">45m</div>
+              </div>
+              <div>
+                <div class="text-gray-400">Intensity</div>
+                <div class="font-bold text-orange-400">High</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Progress ring -->
+          <div class="absolute -right-4 bottom-32 glass rounded-full w-24 h-24 flex items-center justify-center">
+            <div class="text-center">
+              <div class="text-2xl font-bold text-orange-400">75%</div>
+              <div class="text-xs text-gray-400">Complete</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

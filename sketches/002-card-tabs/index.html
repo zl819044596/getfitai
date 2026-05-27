@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GetFitAI - Card Tabs</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+    .tab-active { background: #f97316; color: white; }
+    .tab-inactive { background: #f3f4f6; color: #6b7280; }
+    .tab-inactive:hover { background: #e5e7eb; }
+    .goal-card { transition: all 0.2s; }
+    .goal-card:hover { transform: scale(1.02); }
+    .goal-card.selected { ring: 2px; ring-color: #f97316; background: #fff7ed; }
+  </style>
+</head>
+<body class="bg-white min-h-screen">
+  <div class="max-w-7xl mx-auto p-6 lg:p-10">
+    <!-- Top bar -->
+    <div class="flex items-center justify-between mb-8">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center text-white font-bold">G</div>
+        <span class="font-bold text-xl">GetFitAI</span>
+      </div>
+      <div class="text-sm text-gray-500">12,847 plans generated today</div>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-10 items-center min-h-[600px]">
+      <!-- Left: Big visual with floating stats -->
+      <div class="relative">
+        <div class="rounded-3xl overflow-hidden shadow-2xl">
+          <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=700&h=900&fit=crop" 
+               alt="Workout" class="w-full h-[560px] object-cover">
+        </div>
+        <!-- Floating cards -->
+        <div class="absolute -right-4 top-8 bg-white rounded-xl shadow-lg p-3 flex items-center gap-3">
+          <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center text-xl">🔥</div>
+          <div>
+            <div class="text-xs text-gray-500">Calories</div>
+            <div class="font-bold text-gray-900">340 kcal</div>
+          </div>
+        </div>
+        <div class="absolute -left-4 bottom-20 bg-white rounded-xl shadow-lg p-3 flex items-center gap-3">
+          <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-xl">⏱️</div>
+          <div>
+            <div class="text-xs text-gray-500">Duration</div>
+            <div class="font-bold text-gray-900">45 min</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Tabbed form -->
+      <div>
+        <h1 class="text-4xl font-bold text-gray-900 mb-3">Build your plan</h1>
+        <p class="text-gray-500 mb-8">Tell us about yourself and we'll create the perfect program</p>
+
+        <!-- Tabs -->
+        <div class="flex gap-2 mb-6">
+          <button class="tab-active px-4 py-2 rounded-full text-sm font-medium transition">Goal</button>
+          <button class="tab-inactive px-4 py-2 rounded-full text-sm font-medium transition">Target</button>
+          <button class="tab-inactive px-4 py-2 rounded-full text-sm font-medium transition">Level</button>
+          <button class="tab-inactive px-4 py-2 rounded-full text-sm font-medium transition">Equipment</button>
+        </div>
+
+        <!-- Goal selection -->
+        <div class="space-y-3 mb-8">
+          <button class="goal-card selected w-full flex items-center gap-4 p-4 rounded-xl border-2 border-orange-500 bg-orange-50 text-left">
+            <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center text-2xl">💪</div>
+            <div class="flex-1">
+              <div class="font-semibold text-gray-900">Muscle Gain</div>
+              <div class="text-sm text-gray-500">Hypertrophy-focused training</div>
+            </div>
+            <div class="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center text-white text-xs">✓</div>
+          </button>
+
+          <button class="goal-card w-full flex items-center gap-4 p-4 rounded-xl border-2 border-gray-100 hover:border-gray-300 text-left">
+            <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center text-2xl">🔥</div>
+            <div class="flex-1">
+              <div class="font-semibold text-gray-900">Fat Loss</div>
+              <div class="text-sm text-gray-500">High-intensity calorie burn</div>
+            </div>
+          </button>
+
+          <button class="goal-card w-full flex items-center gap-4 p-4 rounded-xl border-2 border-gray-100 hover:border-gray-300 text-left">
+            <div class="w-12 h-12 bg-yellow-100 rounded-xl flex items-center justify-center text-2xl">⚡</div>
+            <div class="flex-1">
+              <div class="font-semibold text-gray-900">Strength</div>
+              <div class="text-sm text-gray-500">Powerlifting progression</div>
+            </div>
+          </button>
+
+          <button class="goal-card w-full flex items-center gap-4 p-4 rounded-xl border-2 border-gray-100 hover:border-gray-300 text-left">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-2xl">🏃</div>
+            <div class="flex-1">
+              <div class="font-semibold text-gray-900">Endurance</div>
+              <div class="text-sm text-gray-500">Cardio and conditioning</div>
+            </div>
+          </button>
+        </div>
+
+        <button class="w-full bg-orange-500 hover:bg-orange-600 text-white py-4 rounded-xl font-semibold text-lg transition">
+          Continue to Target Area →
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
