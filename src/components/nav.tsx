@@ -44,7 +44,7 @@ export function Nav() {
           <div className="hidden md:flex items-center">
             <Link
               href="/#generator"
-              className="inline-flex items-center px-4 py-2 text-sm font-medium bg-orange-500 text-white hover:bg-orange-600 rounded-lg shadow-lg shadow-orange-500/25 transition-colors"
+              className="inline-flex items-center px-4 py-2 text-sm font-medium bg-slate-800 border border-slate-700 text-white hover:border-orange-500/30 hover:bg-slate-700 rounded-lg transition-colors"
             >
               Get Started
             </Link>
@@ -83,7 +83,7 @@ export function Nav() {
               <div className="pt-4 border-t border-slate-800">
                 <Link
                   href="/#generator"
-                  className="block w-full text-center bg-orange-500 text-white py-3 rounded-lg shadow-lg shadow-orange-500/25"
+                  className="block w-full text-center bg-slate-800 border border-slate-700 text-white py-3 rounded-lg hover:border-orange-500/30"
                 >
                   Get Started
                 </Link>
