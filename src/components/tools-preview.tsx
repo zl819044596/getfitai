@@ -11,28 +11,28 @@ const tools = [
     title: "BMI Calculator",
     description: "Quickly check if your weight is in a healthy range. Enter height and weight to get your BMI index and personalized recommendations instantly.",
     href: "/tools/bmi-calculator",
-    image: "/images/workout-1.jpg",
+    image: "/images/blog/build-muscle.jpg",
   },
   {
     icon: Flame,
     title: "TDEE Calculator",
     description: "Accurately calculate your daily total energy expenditure. Get precise calorie needs based on age, gender, weight, height, and activity level.",
     href: "/tools/tdee-calculator",
-    image: "/images/workout-4.jpg",
+    image: "/images/blog/lose-belly-fat.jpg",
   },
   {
     icon: Percent,
     title: "Body Fat Calculator",
     description: "Track what really matters. Estimate body fat percentage using multiple validated formulas, focusing on fat loss rather than just scale weight.",
     href: "/tools/body-fat-calculator",
-    image: "/images/workout-5.jpg",
+    image: "/images/blog/home-vs-gym.jpg",
   },
   {
     icon: Dumbbell,
     title: "1RM Calculator",
     description: "Train smart, progress safely. Predict your maximum strength for any exercise and program workouts at optimal intensity.",
     href: "/tools/one-rep-max",
-    image: "/images/workout-3.jpg",
+    image: "/images/blog/meal-prep.jpg",
   },
 ];
 

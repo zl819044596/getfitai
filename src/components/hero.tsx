@@ -33,7 +33,7 @@ export function Hero() {
               {/* Secondary Images */}
               <div className="relative h-48 rounded-2xl overflow-hidden shadow-xl shadow-black/30">
                 <Image
-                  src="/images/workout-1.jpg"
+                  src="/images/workout-3.jpg"
                   alt="Strength Training"
                   fill
                   className="object-cover grayscale"
@@ -41,7 +41,7 @@ export function Hero() {
               </div>
               <div className="relative h-48 rounded-2xl overflow-hidden shadow-xl shadow-black/30">
                 <Image
-                  src="/images/workout-2.jpg"
+                  src="/images/workout-4.jpg"
                   alt="Yoga Training"
                   fill
                   className="object-cover grayscale"
