@@ -16,6 +16,27 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    title: "How to Build Muscle Fast: Science-Backed Guide",
+    excerpt: "Learn proven training, nutrition, and recovery strategies for maximum hypertrophy. Progressive overload, protein intake, and optimal frequency explained.",
+    date: "May 27, 2026",
+    slug: "build-muscle-fast",
+    category: "Muscle Building",
+  },
+  {
+    title: "Beginner Gym Plan: Complete 4-Week Guide",
+    excerpt: "Start your fitness journey with our free beginner gym plan. 4-week progressive program with exercises, sets, reps and rest periods.",
+    date: "May 27, 2026",
+    slug: "beginner-gym-plan",
+    category: "Beginner",
+  },
+  {
+    title: "Home vs Gym Workout: Which Is Better for You?",
+    excerpt: "Compare costs, equipment, results, and convenience. Find out which option fits your lifestyle and goals.",
+    date: "May 27, 2026",
+    slug: "home-vs-gym-workout",
+    category: "Training",
+  },
+  {
     title: "How to Build Muscle: The Complete Beginner's Guide",
     excerpt: "Learn the science of muscle growth, the 6 fundamental exercises, a complete workout plan, and nutrition strategies.",
     date: "May 22, 2025",
@@ -35,13 +56,6 @@ const posts = [
     date: "May 15, 2025",
     slug: "bench-press-wrist-pain",
     category: "Injury Prevention",
-  },
-  {
-    title: "The Complete Beginner's Guide to Strength Training",
-    excerpt: "Everything you need to know to start lifting weights safely and effectively.",
-    date: "May 10, 2025",
-    slug: "how-to-build-muscle",
-    category: "Beginner",
   },
   {
     title: "Home Workout vs Gym: Which is Better?",
