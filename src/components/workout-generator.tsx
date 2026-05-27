@@ -5,15 +5,14 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Slider } from "@/components/ui/slider"
 import { motion, AnimatePresence } from "framer-motion"
-import { Sparkles, Dumbbell, Timer, Target, Activity, Loader2, CheckCircle, Flame, RotateCcw, Play, Pause, X, ChevronRight, ChevronLeft, Users } from "lucide-react"
+import { Sparkles, Dumbbell, Timer, Target, Activity, Loader2, CheckCircle, Flame, RotateCcw, Play, Pause, X, ChevronRight, ChevronLeft, Users, Zap } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const goals = [
-  { id: "muscle", label: "Muscle Gain", desc: "Build size and strength", icon: "💪", color: "bg-orange-100 text-orange-600" },
-  { id: "fatloss", label: "Fat Loss", desc: "Burn calories, get lean", icon: "🔥", color: "bg-red-100 text-red-600" },
-  { id: "strength", label: "Strength", desc: "Lift heavier weights", icon: "⚡", color: "bg-yellow-100 text-yellow-600" },
-  { id: "endurance", label: "Endurance", desc: "Stamina and conditioning", icon: "🏃", color: "bg-blue-100 text-blue-600" },
-  { id: "maintain", label: "Maintain", desc: "Keep current fitness", icon: "⚖️", color: "bg-green-100 text-green-600" },
+  { id: "muscle", label: "Build Muscle", desc: "Hypertrophy & size", icon: "💪" },
+  { id: "fatloss", label: "Lose Fat", desc: "Calorie burn & tone", icon: "🔥" },
+  { id: "strength", label: "Get Stronger", desc: "Power & progression", icon: "⚡" },
+  { id: "endurance", label: "Boost Endurance", desc: "Stamina & cardio", icon: "🏃" },
 ]
 
 const targetAreas = [
@@ -93,24 +92,24 @@ function RestTimer({ restSeconds, onComplete }: { restSeconds: number; onComplet
   }
 
   return (
-    <div className="mt-3 p-3 rounded-xl bg-orange-50 border border-orange-200 flex items-center justify-between">
+    <div className="mt-3 p-3 rounded-xl bg-orange-500/20 border border-orange-500/30 flex items-center justify-between">
       <div className="flex items-center gap-2">
-        <Timer className="w-4 h-4 text-orange-500" />
-        <span className="text-sm font-medium text-orange-600">Rest Timer</span>
-        <span className="text-lg font-bold text-orange-600 tabular-nums">{formatTime(timeLeft)}</span>
+        <Timer className="w-4 h-4 text-orange-400" />
+        <span className="text-sm font-medium text-orange-300">Rest Timer</span>
+        <span className="text-lg font-bold text-orange-400 tabular-nums">{formatTime(timeLeft)}</span>
       </div>
       <div className="flex items-center gap-1">
         <button
           onClick={() => setIsRunning(!isRunning)}
-          className="p-1.5 rounded-lg hover:bg-orange-100 transition-colors"
+          className="p-1.5 rounded-lg hover:bg-orange-500/20 transition-colors"
         >
-          {isRunning ? <Pause className="w-4 h-4 text-orange-500" /> : <Play className="w-4 h-4 text-orange-500" />}
+          {isRunning ? <Pause className="w-4 h-4 text-orange-400" /> : <Play className="w-4 h-4 text-orange-400" />}
         </button>
         <button
           onClick={() => { setIsRunning(false); setTimeLeft(restSeconds) }}
-          className="p-1.5 rounded-lg hover:bg-orange-100 transition-colors"
+          className="p-1.5 rounded-lg hover:bg-orange-500/20 transition-colors"
         >
-          <X className="w-4 h-4 text-orange-500" />
+          <X className="w-4 h-4 text-orange-400" />
         </button>
       </div>
     </div>
@@ -259,28 +258,23 @@ export function WorkoutGenerator() {
         return (
           <div className="space-y-4">
             <div>
-              <h3 className="text-xl font-bold text-foreground mb-1">What's your fitness goal?</h3>
-              <p className="text-sm text-muted-foreground">Select one — we'll tailor everything around this</p>
+              <p className="text-xs text-slate-400 uppercase tracking-widest mb-3">I want to...</p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-3">
               {goals.map((goal) => (
                 <button
                   key={goal.id}
                   onClick={() => setSelectedGoal(goal.id)}
                   className={cn(
-                    "flex items-start gap-3 p-4 rounded-xl border-2 text-left transition-all",
+                    "flex flex-col items-center gap-2 p-5 rounded-xl border text-center transition-all",
                     selectedGoal === goal.id
-                      ? "border-primary bg-primary/5 shadow-lg"
-                      : "border-border hover:border-primary/30 hover:shadow-md"
+                      ? "border-orange-500 bg-orange-500/10 shadow-lg shadow-orange-500/20"
+                      : "border-slate-700 bg-slate-800/50 hover:border-slate-600 hover:bg-slate-800"
                   )}
                 >
-                  <div className={cn("w-10 h-10 rounded-lg flex items-center justify-center text-xl shrink-0", goal.color)}>
-                    {goal.icon}
-                  </div>
-                  <div>
-                    <div className="font-semibold text-foreground">{goal.label}</div>
-                    <div className="text-sm text-muted-foreground">{goal.desc}</div>
-                  </div>
+                  <div className="text-3xl">{goal.icon}</div>
+                  <div className="font-semibold text-white text-sm">{goal.label}</div>
+                  <div className="text-xs text-slate-400">{goal.desc}</div>
                 </button>
               ))}
             </div>
@@ -290,8 +284,8 @@ export function WorkoutGenerator() {
         return (
           <div className="space-y-4">
             <div>
-              <h3 className="text-xl font-bold text-foreground mb-1">Target Area</h3>
-              <p className="text-sm text-muted-foreground">Which body parts do you want to focus on?</p>
+              <h3 className="text-xl font-bold text-white mb-1">Target Area</h3>
+              <p className="text-sm text-slate-400">Which body parts do you want to focus on?</p>
             </div>
             <div className="grid grid-cols-2 gap-3">
               {targetAreas.map((area) => {
@@ -301,14 +295,14 @@ export function WorkoutGenerator() {
                     key={area.id}
                     onClick={() => setSelectedArea(area.id)}
                     className={cn(
-                      "flex flex-col items-center gap-2 p-5 rounded-xl border-2 text-center transition-all",
+                      "flex flex-col items-center gap-2 p-5 rounded-xl border text-center transition-all",
                       selectedArea === area.id
-                        ? "border-primary bg-primary/5 shadow-lg"
-                        : "border-border hover:border-primary/30 hover:shadow-md"
+                        ? "border-orange-500 bg-orange-500/10 shadow-lg shadow-orange-500/20"
+                        : "border-slate-700 bg-slate-800/50 hover:border-slate-600 hover:bg-slate-800"
                     )}
                   >
-                    <Icon className={cn("w-8 h-8", selectedArea === area.id ? "text-primary" : "text-muted-foreground")} />
-                    <span className="font-medium text-foreground">{area.label}</span>
+                    <Icon className={cn("w-7 h-7", selectedArea === area.id ? "text-orange-400" : "text-slate-400")} />
+                    <span className="font-medium text-white text-sm">{area.label}</span>
                   </button>
                 )
               })}
@@ -319,8 +313,8 @@ export function WorkoutGenerator() {
         return (
           <div className="space-y-4">
             <div>
-              <h3 className="text-xl font-bold text-foreground mb-1">Experience Level</h3>
-              <p className="text-sm text-muted-foreground">How long have you been training?</p>
+              <h3 className="text-xl font-bold text-white mb-1">Experience Level</h3>
+              <p className="text-sm text-slate-400">How long have you been training?</p>
             </div>
             <div className="space-y-3">
               {levels.map((level) => (
@@ -328,21 +322,21 @@ export function WorkoutGenerator() {
                   key={level.id}
                   onClick={() => setSelectedLevel(level.id)}
                   className={cn(
-                    "w-full flex items-center gap-4 p-4 rounded-xl border-2 text-left transition-all",
+                    "w-full flex items-center gap-4 p-4 rounded-xl border text-left transition-all",
                     selectedLevel === level.id
-                      ? "border-primary bg-primary/5 shadow-lg"
-                      : "border-border hover:border-primary/30 hover:shadow-md"
+                      ? "border-orange-500 bg-orange-500/10 shadow-lg shadow-orange-500/20"
+                      : "border-slate-700 bg-slate-800/50 hover:border-slate-600 hover:bg-slate-800"
                   )}
                 >
                   <div className={cn(
-                    "w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0",
-                    selectedLevel === level.id ? "border-primary bg-primary" : "border-muted-foreground"
+                    "w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0",
+                    selectedLevel === level.id ? "border-orange-500 bg-orange-500" : "border-slate-500"
                   )}>
-                    {selectedLevel === level.id && <div className="w-2.5 h-2.5 rounded-full bg-white" />}
+                    {selectedLevel === level.id && <div className="w-2 h-2 rounded-full bg-white" />}
                   </div>
                   <div>
-                    <div className="font-semibold text-foreground">{level.label}</div>
-                    <div className="text-sm text-muted-foreground">{level.desc}</div>
+                    <div className="font-semibold text-white">{level.label}</div>
+                    <div className="text-sm text-slate-400">{level.desc}</div>
                   </div>
                 </button>
               ))}
@@ -353,8 +347,8 @@ export function WorkoutGenerator() {
         return (
           <div className="space-y-4">
             <div>
-              <h3 className="text-xl font-bold text-foreground mb-1">Available Equipment</h3>
-              <p className="text-sm text-muted-foreground">What do you have access to?</p>
+              <h3 className="text-xl font-bold text-white mb-1">Available Equipment</h3>
+              <p className="text-sm text-slate-400">What do you have access to?</p>
             </div>
             <div className="space-y-3">
               {equipment.map((eq) => (
@@ -362,19 +356,19 @@ export function WorkoutGenerator() {
                   key={eq.id}
                   onClick={() => setSelectedEquipment(eq.id)}
                   className={cn(
-                    "w-full flex items-center gap-4 p-4 rounded-xl border-2 text-left transition-all",
+                    "w-full flex items-center gap-4 p-4 rounded-xl border text-left transition-all",
                     selectedEquipment === eq.id
-                      ? "border-primary bg-primary/5 shadow-lg"
-                      : "border-border hover:border-primary/30 hover:shadow-md"
+                      ? "border-orange-500 bg-orange-500/10 shadow-lg shadow-orange-500/20"
+                      : "border-slate-700 bg-slate-800/50 hover:border-slate-600 hover:bg-slate-800"
                   )}
                 >
                   <div className={cn(
-                    "w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0",
-                    selectedEquipment === eq.id ? "border-primary bg-primary" : "border-muted-foreground"
+                    "w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0",
+                    selectedEquipment === eq.id ? "border-orange-500 bg-orange-500" : "border-slate-500"
                   )}>
-                    {selectedEquipment === eq.id && <div className="w-2.5 h-2.5 rounded-full bg-white" />}
+                    {selectedEquipment === eq.id && <div className="w-2 h-2 rounded-full bg-white" />}
                   </div>
-                  <span className="font-semibold text-foreground">{eq.label}</span>
+                  <span className="font-semibold text-white">{eq.label}</span>
                 </button>
               ))}
             </div>
@@ -384,13 +378,13 @@ export function WorkoutGenerator() {
         return (
           <div className="space-y-6">
             <div>
-              <h3 className="text-xl font-bold text-foreground mb-1">Workout Duration</h3>
-              <p className="text-sm text-muted-foreground">How much time do you have?</p>
+              <h3 className="text-xl font-bold text-white mb-1">Workout Duration</h3>
+              <p className="text-sm text-slate-400">How much time do you have?</p>
             </div>
-            <div className="bg-secondary/50 rounded-xl p-6">
+            <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
               <div className="text-center mb-6">
-                <span className="text-4xl font-bold text-primary">{duration[0]}</span>
-                <span className="text-lg text-muted-foreground ml-1">minutes</span>
+                <span className="text-4xl font-bold text-orange-400">{duration[0]}</span>
+                <span className="text-lg text-slate-400 ml-1">minutes</span>
               </div>
               <div className="px-2">
                 <Slider
@@ -401,21 +395,21 @@ export function WorkoutGenerator() {
                   step={5}
                   className="w-full"
                 />
-                <div className="flex justify-between text-xs text-muted-foreground mt-2">
+                <div className="flex justify-between text-xs text-slate-500 mt-2">
                   <span>15 min</span>
                   <span>90 min</span>
                 </div>
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium text-foreground mb-2">
-                Special Needs or Injuries <span className="text-muted-foreground font-normal">(Optional)</span>
+              <label className="block text-sm font-medium text-white mb-2">
+                Special Needs or Injuries <span className="text-slate-500 font-normal">(Optional)</span>
               </label>
               <textarea
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 placeholder="Example: Lower back issues, avoid deep squats..."
-                className="w-full bg-secondary border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 resize-none"
+                className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-orange-500/30 focus:border-orange-500/50 resize-none"
                 rows={2}
               />
             </div>
@@ -427,69 +421,52 @@ export function WorkoutGenerator() {
   }
 
   return (
-    <section id="generator" className="py-24 relative bg-secondary/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Left - Image */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="relative hidden lg:block lg:sticky lg:top-24"
-          >
-            <div className="relative h-[600px] rounded-3xl overflow-hidden shadow-2xl">
-              <Image
-                src="/images/workout-3.jpg"
-                alt="Fitness Training"
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6">
-                <div className="bg-background/90 backdrop-blur-sm rounded-xl p-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
-                      <Timer className="w-6 h-6 text-primary-foreground" />
-                    </div>
-                    <div>
-                      <div className="text-sm font-semibold text-foreground">Average Workout Duration</div>
-                      <div className="text-2xl font-bold text-primary">{duration[0]} min</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* Social Proof */}
-            <div className="mt-4 flex items-center gap-3 text-sm text-muted-foreground">
-              <div className="flex -space-x-2">
-                <div className="w-7 h-7 rounded-full bg-blue-400 border-2 border-background" />
-                <div className="w-7 h-7 rounded-full bg-green-400 border-2 border-background" />
-                <div className="w-7 h-7 rounded-full bg-purple-400 border-2 border-background" />
-              </div>
-              <span className="flex items-center gap-1">
-                <Users className="w-4 h-4" />
-                12,847 plans generated today
-              </span>
-            </div>
-          </motion.div>
+    <section id="generator" className="relative min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800">
+      {/* Background pattern */}
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-orange-500/5 to-transparent" />
+        <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-slate-950 to-transparent" />
+      </div>
 
-          {/* Right - Form + Result */}
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+        {/* Top bar */}
+        <div className="flex items-center justify-between mb-12">
+          <div className="flex items-center gap-2">
+            <div className="w-9 h-9 bg-orange-500 rounded-lg flex items-center justify-center text-white font-bold text-lg">G</div>
+            <span className="font-bold text-xl text-white">GetFitAI</span>
+          </div>
+          <div className="flex items-center gap-3 text-sm text-slate-400">
+            <div className="flex -space-x-2">
+              <div className="w-7 h-7 rounded-full bg-blue-500 border-2 border-slate-900" />
+              <div className="w-7 h-7 rounded-full bg-green-500 border-2 border-slate-900" />
+              <div className="w-7 h-7 rounded-full bg-purple-500 border-2 border-slate-900" />
+            </div>
+            <span className="flex items-center gap-1">
+              <Users className="w-4 h-4" />
+              12,847 plans today
+            </span>
+          </div>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[600px]">
+          {/* Left - Form */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            {/* Header */}
-            <div className="mb-8">
-              <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-2">
-                Create Your Workout Plan
-              </h2>
-              <p className="text-muted-foreground">
-                5 quick questions → AI-generated program in seconds
-              </p>
-            </div>
+            {!plan && (
+              <>
+                <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
+                  AI builds your<br />
+                  <span className="text-orange-500">perfect workout</span>
+                </h1>
+                <p className="text-lg text-slate-400 mb-8">
+                  Answer 5 questions. Get a personalized program in seconds. Free.
+                </p>
+              </>
+            )}
 
             {/* Stepper */}
             {!plan && (
@@ -500,44 +477,35 @@ export function WorkoutGenerator() {
                       <div className="flex flex-col items-center">
                         <div
                           className={cn(
-                            "w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all",
+                            "w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-all",
                             index < currentStep
-                              ? "bg-primary text-primary-foreground"
+                              ? "bg-orange-500 text-white"
                               : index === currentStep
-                                ? "bg-primary text-primary-foreground ring-2 ring-primary/30"
-                                : "bg-secondary text-muted-foreground"
+                                ? "bg-orange-500 text-white ring-2 ring-orange-500/30"
+                                : "bg-slate-800 text-slate-500 border border-slate-700"
                           )}
                         >
                           {index < currentStep ? (
-                            <CheckCircle className="w-4 h-4" />
+                            <CheckCircle className="w-3.5 h-3.5" />
                           ) : (
                             index + 1
                           )}
                         </div>
-                        <span
-                          className={cn(
-                            "text-xs mt-1 hidden sm:block",
-                            index <= currentStep ? "text-foreground font-medium" : "text-muted-foreground"
-                          )}
-                        >
-                          {step.label}
-                        </span>
                       </div>
                       {index < steps.length - 1 && (
                         <div
                           className={cn(
-                            "w-8 sm:w-12 h-0.5 mx-1 transition-all",
-                            index < currentStep ? "bg-primary" : "bg-secondary"
+                            "w-6 sm:w-10 h-0.5 mx-1 transition-all",
+                            index < currentStep ? "bg-orange-500" : "bg-slate-800"
                           )}
                         />
                       )}
                     </div>
                   ))}
                 </div>
-                {/* Progress bar */}
-                <div className="w-full h-1 bg-secondary rounded-full overflow-hidden">
+                <div className="w-full h-0.5 bg-slate-800 rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-primary transition-all duration-300 ease-out"
+                    className="h-full bg-orange-500 transition-all duration-300 ease-out"
                     style={{ width: `${progress}%` }}
                   />
                 </div>
@@ -546,7 +514,7 @@ export function WorkoutGenerator() {
 
             {/* Form Card */}
             {!plan && (
-              <div className="bg-card border border-border rounded-2xl p-6 shadow-lg">
+              <div className="bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentStep}
@@ -565,7 +533,7 @@ export function WorkoutGenerator() {
                     variant="outline"
                     onClick={handleBack}
                     disabled={currentStep === 0}
-                    className="rounded-xl px-6"
+                    className="rounded-xl px-6 border-slate-700 bg-slate-800/50 text-white hover:bg-slate-800 hover:text-white disabled:opacity-30"
                   >
                     <ChevronLeft className="w-4 h-4 mr-1" />
                     Back
@@ -575,7 +543,7 @@ export function WorkoutGenerator() {
                     <Button
                       onClick={handleNext}
                       disabled={!canProceed(currentStep)}
-                      className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl px-6"
+                      className="bg-orange-500 hover:bg-orange-600 text-white rounded-xl px-6 disabled:opacity-30"
                     >
                       Next
                       <ChevronRight className="w-4 h-4 ml-1" />
@@ -584,17 +552,17 @@ export function WorkoutGenerator() {
                     <Button
                       onClick={handleGenerate}
                       disabled={!isFormValid || loading}
-                      className="bg-primary text-primary-foreground hover:bg-primary/90 py-6 px-8 text-lg shadow-xl shadow-primary/25 rounded-xl disabled:opacity-50"
+                      className="bg-orange-500 hover:bg-orange-600 text-white py-5 px-8 text-base shadow-xl shadow-orange-500/25 rounded-xl disabled:opacity-30"
                     >
                       {loading ? (
                         <>
-                          <Loader2 className="mr-2 w-5 h-5 animate-spin" />
+                          <Loader2 className="mr-2 w-4 h-4 animate-spin" />
                           Generating...
                         </>
                       ) : (
                         <>
-                          <Sparkles className="mr-2 w-5 h-5" />
-                          Generate Plan
+                          <Zap className="mr-2 w-4 h-4" />
+                          Generate My Plan
                         </>
                       )}
                     </Button>
@@ -602,7 +570,7 @@ export function WorkoutGenerator() {
                 </div>
 
                 {error && (
-                  <div className="mt-4 p-4 rounded-xl bg-destructive/10 text-destructive text-sm text-center">
+                  <div className="mt-4 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm text-center">
                     {error}
                   </div>
                 )}
@@ -618,47 +586,46 @@ export function WorkoutGenerator() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 30 }}
                   transition={{ duration: 0.5 }}
-                  className="mt-8"
                 >
                   {/* Plan Header */}
-                  <div className="bg-primary text-primary-foreground rounded-2xl p-6 mb-6">
+                  <div className="bg-orange-500 rounded-2xl p-6 mb-6">
                     <div className="flex items-start justify-between gap-4">
                       <div>
-                        <h3 className="text-2xl font-bold mb-2">{plan.title}</h3>
+                        <h3 className="text-2xl font-bold text-white mb-2">{plan.title}</h3>
                         <div className="flex flex-wrap gap-3 text-sm">
-                          <span className="inline-flex items-center gap-1 bg-primary-foreground/20 px-3 py-1 rounded-full">
+                          <span className="inline-flex items-center gap-1 bg-white/20 px-3 py-1 rounded-full text-white">
                             <Timer className="w-4 h-4" />
                             {plan.duration}
                           </span>
-                          <span className="inline-flex items-center gap-1 bg-primary-foreground/20 px-3 py-1 rounded-full">
+                          <span className="inline-flex items-center gap-1 bg-white/20 px-3 py-1 rounded-full text-white">
                             <Flame className="w-4 h-4" />
                             {plan.calories}
                           </span>
-                          <span className="inline-flex items-center gap-1 bg-primary-foreground/20 px-3 py-1 rounded-full">
+                          <span className="inline-flex items-center gap-1 bg-white/20 px-3 py-1 rounded-full text-white">
                             {plan.difficulty}
                           </span>
                         </div>
                       </div>
                       <button
                         onClick={handleReset}
-                        className="shrink-0 p-2 bg-primary-foreground/20 rounded-lg hover:bg-primary-foreground/30 transition-colors"
+                        className="shrink-0 p-2 bg-white/20 rounded-lg hover:bg-white/30 transition-colors"
                         title="Create new plan"
                       >
-                        <RotateCcw className="w-5 h-5" />
+                        <RotateCcw className="w-5 h-5 text-white" />
                       </button>
                     </div>
                   </div>
 
                   {/* Warm-up */}
-                  <div className="bg-card border border-border rounded-2xl p-6 mb-4">
-                    <h4 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
-                      <span className="w-8 h-8 rounded-lg bg-orange-100 flex items-center justify-center text-orange-600 text-sm font-bold">W</span>
+                  <div className="bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6 mb-4">
+                    <h4 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                      <span className="w-8 h-8 rounded-lg bg-orange-500/20 flex items-center justify-center text-orange-400 text-sm font-bold">W</span>
                       Warm-up
                     </h4>
                     <ul className="space-y-2">
                       {plan.warmup.map((item, i) => (
-                        <li key={i} className="flex items-start gap-3 text-muted-foreground">
-                          <CheckCircle className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                        <li key={i} className="flex items-start gap-3 text-slate-400">
+                          <CheckCircle className="w-5 h-5 text-orange-500 shrink-0 mt-0.5" />
                           {item}
                         </li>
                       ))}
@@ -666,9 +633,9 @@ export function WorkoutGenerator() {
                   </div>
 
                   {/* Main Workout */}
-                  <div className="bg-card border border-border rounded-2xl p-6 mb-4">
-                    <h4 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
-                      <span className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-sm font-bold">M</span>
+                  <div className="bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6 mb-4">
+                    <h4 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                      <span className="w-8 h-8 rounded-lg bg-orange-500/20 flex items-center justify-center text-orange-400 text-sm font-bold">M</span>
                       Main Workout
                     </h4>
                     <div className="space-y-4">
@@ -680,8 +647,8 @@ export function WorkoutGenerator() {
                             className={cn(
                               "p-4 rounded-xl border transition-all cursor-pointer",
                               isCompleted
-                                ? "bg-green-50 border-green-200"
-                                : "bg-secondary/50 border-transparent hover:bg-secondary"
+                                ? "bg-green-500/10 border-green-500/30"
+                                : "bg-slate-800/50 border-transparent hover:bg-slate-800"
                             )}
                             onClick={() => toggleComplete(i)}
                           >
@@ -690,7 +657,7 @@ export function WorkoutGenerator() {
                                 "w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0 transition-colors",
                                 isCompleted
                                   ? "bg-green-500 text-white"
-                                  : "bg-primary text-primary-foreground"
+                                  : "bg-orange-500 text-white"
                               )}>
                                 {isCompleted ? <CheckCircle className="w-5 h-5" /> : i + 1}
                               </div>
@@ -698,28 +665,28 @@ export function WorkoutGenerator() {
                                 <div className="flex items-center justify-between gap-2 mb-1">
                                   <h5 className={cn(
                                     "font-semibold",
-                                    isCompleted ? "text-green-700 line-through" : "text-foreground"
+                                    isCompleted ? "text-green-400 line-through" : "text-white"
                                   )}>
                                     {ex.name}
                                   </h5>
                                   {ex.weight && ex.weight !== "BW" && (
-                                    <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded">
+                                    <span className="text-xs font-medium text-orange-400 bg-orange-500/10 px-2 py-1 rounded">
                                       {ex.weight}
                                     </span>
                                   )}
                                   {ex.weight === "BW" && (
-                                    <span className="text-xs font-medium text-muted-foreground bg-secondary px-2 py-1 rounded">
+                                    <span className="text-xs font-medium text-slate-500 bg-slate-700 px-2 py-1 rounded">
                                       BW
                                     </span>
                                   )}
                                 </div>
-                                <div className="flex flex-wrap gap-x-3 gap-y-1 text-sm text-muted-foreground">
-                                  <span className="bg-muted px-2 py-0.5 rounded-full text-xs">{ex.sets} sets</span>
-                                  <span className="bg-muted px-2 py-0.5 rounded-full text-xs">{ex.reps} reps</span>
-                                  <span className="bg-muted px-2 py-0.5 rounded-full text-xs">Rest {ex.rest}</span>
+                                <div className="flex flex-wrap gap-x-3 gap-y-1 text-sm text-slate-400">
+                                  <span className="bg-slate-700 px-2 py-0.5 rounded-full text-xs">{ex.sets} sets</span>
+                                  <span className="bg-slate-700 px-2 py-0.5 rounded-full text-xs">{ex.reps} reps</span>
+                                  <span className="bg-slate-700 px-2 py-0.5 rounded-full text-xs">Rest {ex.rest}</span>
                                 </div>
                                 {ex.notes && (
-                                  <p className="text-xs text-muted-foreground mt-2 italic">
+                                  <p className="text-xs text-slate-500 mt-2 italic">
                                     {ex.notes}
                                   </p>
                                 )}
@@ -738,14 +705,14 @@ export function WorkoutGenerator() {
                   </div>
 
                   {/* Cool-down */}
-                  <div className="bg-card border border-border rounded-2xl p-6 mb-6">
-                    <h4 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
-                      <span className="w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center text-green-600 text-sm font-bold">C</span>
+                  <div className="bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6 mb-6">
+                    <h4 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                      <span className="w-8 h-8 rounded-lg bg-green-500/20 flex items-center justify-center text-green-400 text-sm font-bold">C</span>
                       Cool-down
                     </h4>
                     <ul className="space-y-2">
                       {plan.cooldown.map((item, i) => (
-                        <li key={i} className="flex items-start gap-3 text-muted-foreground">
+                        <li key={i} className="flex items-start gap-3 text-slate-400">
                           <CheckCircle className="w-5 h-5 text-green-500 shrink-0 mt-0.5" />
                           {item}
                         </li>
@@ -757,7 +724,7 @@ export function WorkoutGenerator() {
                   <div className="text-center">
                     <Button
                       onClick={handleReset}
-                      className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 py-6 text-lg shadow-xl shadow-primary/25"
+                      className="bg-orange-500 hover:bg-orange-600 text-white rounded-full px-8 py-6 text-lg shadow-xl shadow-orange-500/25"
                     >
                       <RotateCcw className="mr-2 w-5 h-5" />
                       Generate New Plan
@@ -766,6 +733,77 @@ export function WorkoutGenerator() {
                 </motion.div>
               )}
             </AnimatePresence>
+          </motion.div>
+
+          {/* Right - Image with floating UI */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="relative hidden lg:block"
+          >
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-black/50">
+              <Image
+                src="/images/workout-3.jpg"
+                alt="Fitness Training"
+                width={600}
+                height={750}
+                className="w-full h-[700px] object-cover grayscale"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent" />
+            </div>
+
+            {/* Floating workout card */}
+            <div className="absolute -left-6 top-12 bg-slate-900/80 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-4 text-white shadow-xl">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center">
+                  <Zap className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <div className="text-xs text-slate-400">Today's Plan</div>
+                  <div className="font-bold">Upper Body Power</div>
+                </div>
+              </div>
+              <div className="flex gap-4 text-sm">
+                <div>
+                  <div className="text-slate-500 text-xs">Exercises</div>
+                  <div className="font-bold text-orange-400">6</div>
+                </div>
+                <div>
+                  <div className="text-slate-500 text-xs">Duration</div>
+                  <div className="font-bold text-orange-400">45m</div>
+                </div>
+                <div>
+                  <div className="text-slate-500 text-xs">Intensity</div>
+                  <div className="font-bold text-orange-400">High</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Progress ring */}
+            <div className="absolute -right-4 bottom-24 w-24 h-24">
+              <svg className="w-full h-full -rotate-90" viewBox="0 0 36 36">
+                <path
+                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                  fill="none"
+                  stroke="#1e293b"
+                  strokeWidth="3"
+                />
+                <path
+                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                  fill="none"
+                  stroke="#f97316"
+                  strokeWidth="3"
+                  strokeDasharray="75, 100"
+                  strokeLinecap="round"
+                />
+              </svg>
+              <div className="absolute inset-0 flex flex-col items-center justify-center">
+                <div className="text-xl font-bold text-orange-400">75%</div>
+                <div className="text-xs text-slate-500">Complete</div>
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>
