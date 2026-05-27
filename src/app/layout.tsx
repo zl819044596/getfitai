@@ -11,34 +11,56 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "GetFitAI - Free AI Workout Plans & Fitness Calculators",
+  title: "GetFitAI - Free AI Workout Generator & Fitness Tools | Personalized Plans",
   description:
-    "GetFitAI: Free AI-powered workout plans and fitness calculators including BMI, TDEE, body fat, and 1RM. No signup required. Build muscle, lose fat, and get stronger with personalized training plans.",
+    "GetFitAI: Free AI-powered workout generator and fitness calculators. Create personalized training plans for muscle building, fat loss, and strength. No signup required. Try our BMI, TDEE, body fat, and 1RM calculators.",
   keywords: [
-    "AI workout planner",
-    "free fitness tools",
+    "AI workout generator",
+    "free workout planner",
+    "personalized fitness plan",
     "BMI calculator",
     "TDEE calculator",
     "body fat calculator",
     "1RM calculator",
     "workout plan generator",
-    "fitness AI",
-    "personalized training",
-    "free workout plans",
+    "fitness AI tools",
+    "free training plans",
+    "beginner gym plan",
+    "get fit workout plan",
+    "home vs gym workout",
+    "build muscle fast",
+    "lose belly fat",
   ],
   openGraph: {
-    title: "GetFitAI - Free AI Workout Plans & Fitness Calculators",
+    title: "GetFitAI - Free AI Workout Generator & Fitness Tools",
     description:
-      "Free AI-powered workout plans and fitness calculators. No signup required.",
+      "Create personalized AI workout plans and use free fitness calculators. No signup required.",
     url: "https://getfitai.io",
     siteName: "GetFitAI",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "GetFitAI - Free AI Workout Plans & Fitness Calculators",
+    title: "GetFitAI - Free AI Workout Generator & Fitness Tools",
     description:
-      "Free AI-powered workout plans and fitness calculators. No signup required.",
+      "Create personalized AI workout plans and use free fitness calculators. No signup required.",
+  },
+  verification: {
+    google: "your-google-verification-code",
+  },
+  alternates: {
+    canonical: "https://getfitai.io",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
@@ -62,6 +84,39 @@ export default function RootLayout({
               gtag('js', new Date());
               gtag('config', 'G-MFH7XYRCCT');
             `,
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "GetFitAI",
+              url: "https://getfitai.io",
+              description: "Free AI-powered workout generator and fitness calculators",
+              potentialAction: {
+                "@type": "SearchAction",
+                target: "https://getfitai.io/tools?q={search_term_string}",
+                "query-input": "required name=search_term_string",
+              },
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "GetFitAI",
+              url: "https://getfitai.io",
+              logo: "https://getfitai.io/logo.png",
+              sameAs: [
+                "https://twitter.com/getfitai",
+                "https://github.com/getfitai",
+              ],
+            }),
           }}
         />
       </head>
