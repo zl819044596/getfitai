@@ -70,10 +70,10 @@ export function Features() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-2xl p-6 hover:border-orange-500/50 hover:shadow-xl hover:shadow-orange-500/5 transition-all"
+                className="group bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-2xl p-6 hover:border-orange-500/30 hover:shadow-lg hover:shadow-orange-500/5 transition-all"
               >
-                <div className="w-14 h-14 rounded-2xl bg-orange-500/10 flex items-center justify-center mb-4 group-hover:bg-orange-500 group-hover:scale-110 transition-all">
-                  <Icon className="w-7 h-7 text-orange-400 group-hover:text-white transition-colors" />
+                <div className="w-14 h-14 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center mb-4 group-hover:bg-orange-500/10 group-hover:border-orange-500/30 transition-all">
+                  <Icon className="w-7 h-7 text-orange-400 transition-colors" />
                 </div>
                 <h3 className="text-lg font-semibold text-white mb-2">
                   {feature.title}

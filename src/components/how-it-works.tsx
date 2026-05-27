@@ -65,7 +65,7 @@ export function HowItWorks() {
                   <div className="hidden md:block absolute top-24 left-[60%] w-full h-[2px] bg-gradient-to-r from-orange-500/50 to-transparent" />
                 )}
 
-                <div className="bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-2xl overflow-hidden relative z-10 hover:shadow-xl hover:shadow-orange-500/10 transition-shadow">
+                <div className="bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-2xl overflow-hidden relative z-10 hover:border-orange-500/20 transition-all">
                   {/* Image */}
                   <div className="relative h-48 overflow-hidden">
                     <Image
@@ -76,10 +76,10 @@ export function HowItWorks() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent" />
                     <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
-                      <div className="w-12 h-12 rounded-xl bg-orange-500 flex items-center justify-center shadow-lg">
-                        <Icon className="w-6 h-6 text-white" />
+                      <div className="w-12 h-12 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center">
+                        <Icon className="w-6 h-6 text-orange-400" />
                       </div>
-                      <span className="text-4xl font-bold text-white/20">
+                      <span className="text-4xl font-bold text-slate-700">
                         {step.number}
                       </span>
                     </div>

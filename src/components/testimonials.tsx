@@ -76,22 +76,22 @@ export function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-2xl p-6 relative hover:shadow-xl hover:shadow-orange-500/5 transition-shadow"
+              className="bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-2xl p-6 relative hover:border-orange-500/20 transition-all"
             >
               {/* Quote Icon */}
               <div className="absolute top-4 right-4">
-                <Quote className="w-8 h-8 text-orange-500/20" />
+                <Quote className="w-8 h-8 text-slate-700" />
               </div>
 
               {/* Rating */}
               <div className="flex gap-1 mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-orange-400 text-orange-400" />
+                  <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
                 ))}
               </div>
 
               {/* Content */}
-              <p className="text-white leading-relaxed mb-6">
+              <p className="text-slate-300 leading-relaxed mb-6">
                 &ldquo;{testimonial.content}&rdquo;
               </p>
 
