@@ -46,7 +46,7 @@ export default function BlogPost() {
             </div>
             <div className="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-8">
               <img
-                src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=1200&q=80"
+                src="/images/blog/bench-press.jpg"
                 alt="Bench press barbell close up"
                 className="w-full h-full object-cover"
               />
