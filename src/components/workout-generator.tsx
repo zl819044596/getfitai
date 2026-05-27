@@ -429,16 +429,6 @@ export function WorkoutGenerator() {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
-        {/* Top bar */}
-        <div className="flex items-center justify-between mb-12">
-          <div className="flex items-center gap-2">
-            <div className="w-9 h-9 bg-slate-800 border border-slate-700 rounded-lg flex items-center justify-center">
-              <Dumbbell className="w-5 h-5 text-orange-400" />
-            </div>
-            <span className="font-bold text-xl text-white">GetFitAI</span>
-          </div>
-        </div>
-
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[600px]">
           {/* Left - Form */}
           <motion.div
