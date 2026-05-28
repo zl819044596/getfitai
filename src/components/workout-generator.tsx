@@ -54,6 +54,70 @@ interface WorkoutPlan {
   cooldown: string[]
 }
 
+const exerciseImages: Record<string, string> = {
+  // 默认图片
+  default: "/images/workout-3.jpg",
+  // 胸部
+  "bench press": "/images/workout-1.jpg",
+  "dumbbell press": "/images/workout-1.jpg",
+  "chest press": "/images/workout-1.jpg",
+  "push up": "/images/workout-2.jpg",
+  "push-up": "/images/workout-2.jpg",
+  "chest fly": "/images/workout-1.jpg",
+  // 背部
+  "bent over row": "/images/workout-4.jpg",
+  "bent-over row": "/images/workout-4.jpg",
+  "row": "/images/workout-4.jpg",
+  "lat pulldown": "/images/workout-4.jpg",
+  "pull up": "/images/workout-4.jpg",
+  "pull-up": "/images/workout-4.jpg",
+  "deadlift": "/images/workout-5.jpg",
+  "romanian deadlift": "/images/workout-5.jpg",
+  // 腿部
+  "squat": "/images/workout-3.jpg",
+  "goblet squat": "/images/workout-3.jpg",
+  "leg press": "/images/workout-3.jpg",
+  "lunge": "/images/workout-3.jpg",
+  "reverse lunge": "/images/workout-3.jpg",
+  "bulgarian split squat": "/images/workout-3.jpg",
+  "calf raise": "/images/workout-3.jpg",
+  // 肩部
+  "shoulder press": "/images/workout-2.jpg",
+  "overhead press": "/images/workout-2.jpg",
+  "push press": "/images/workout-2.jpg",
+  "lateral raise": "/images/workout-2.jpg",
+  "front raise": "/images/workout-2.jpg",
+  // 手臂
+  "bicep curl": "/images/workout-5.jpg",
+  "hammer curl": "/images/workout-5.jpg",
+  "tricep extension": "/images/workout-5.jpg",
+  "tricep dip": "/images/workout-5.jpg",
+  // 核心
+  "plank": "/images/workout-2.jpg",
+  "plank row": "/images/workout-4.jpg",
+  "crunch": "/images/workout-2.jpg",
+  "leg raise": "/images/workout-2.jpg",
+  "russian twist": "/images/workout-2.jpg",
+  // 全身/有氧
+  "burpee": "/images/workout-2.jpg",
+  "mountain climber": "/images/workout-2.jpg",
+  "jumping jack": "/images/workout-2.jpg",
+  "kettlebell swing": "/images/workout-3.jpg",
+}
+
+function getExerciseImage(name: string): string {
+  const lower = name.toLowerCase()
+  // 直接匹配
+  if (exerciseImages[lower]) return exerciseImages[lower]
+  // 模糊匹配：检查关键词
+  for (const [key, url] of Object.entries(exerciseImages)) {
+    if (lower.includes(key) && key !== "default") {
+      return url
+    }
+  }
+  return exerciseImages.default
+}
+
 const steps = [
   { id: "goal", label: "Goal" },
   { id: "area", label: "Target" },
@@ -130,6 +194,7 @@ export function WorkoutGenerator() {
   const [error, setError] = useState("")
   const [completedExercises, setCompletedExercises] = useState<Set<number>>(new Set())
   const [activeTimer, setActiveTimer] = useState<number | null>(null)
+  const [selectedExercise, setSelectedExercise] = useState<number | null>(null)
   const resultRef = useRef<HTMLDivElement>(null)
 
   const isFormValid = selectedGoal && selectedArea && selectedLevel && selectedEquipment
@@ -220,6 +285,7 @@ export function WorkoutGenerator() {
     setError("")
     setCompletedExercises(new Set())
     setActiveTimer(null)
+    setSelectedExercise(null)
     setCurrentStep(0)
     setSelectedGoal("")
     setSelectedArea("")
@@ -231,6 +297,7 @@ export function WorkoutGenerator() {
   }
 
   function toggleComplete(index: number) {
+    setSelectedExercise(index)
     setCompletedExercises((prev) => {
       const next = new Set(prev)
       if (next.has(index)) {
@@ -627,6 +694,7 @@ export function WorkoutGenerator() {
                     <div className="space-y-4">
                       {plan.exercises.map((ex, i) => {
                         const isCompleted = completedExercises.has(i)
+                        const isSelected = selectedExercise === i
                         return (
                           <div
                             key={i}
@@ -634,7 +702,9 @@ export function WorkoutGenerator() {
                               "p-4 rounded-xl border transition-all cursor-pointer",
                               isCompleted
                                 ? "bg-green-500/10 border-green-500/30"
-                                : "bg-slate-800/50 border-transparent hover:bg-slate-800"
+                                : isSelected
+                                  ? "bg-orange-500/10 border-orange-500/50"
+                                  : "bg-slate-800/50 border-transparent hover:bg-slate-800"
                             )}
                             onClick={() => toggleComplete(i)}
                           >
@@ -722,20 +792,51 @@ export function WorkoutGenerator() {
             </div>
           </div>
 
-          {/* Right - Image with floating UI */}
+          {/* Right - Dynamic Exercise Image */}
           <div
-            className="relative hidden lg:block transition-opacity duration-600"
-            style={{ opacity: 1 }}
+            className="relative hidden lg:block"
           >
             <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-black/50">
-              <Image
-                src="/images/workout-3.jpg"
-                alt="Fitness Training"
-                width={600}
-                height={750}
-                className="w-full h-[700px] object-cover grayscale"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent" />
+              {plan && selectedExercise !== null && plan.exercises[selectedExercise] ? (
+                <>
+                  <Image
+                    src={getExerciseImage(plan.exercises[selectedExercise].name)}
+                    alt={plan.exercises[selectedExercise].name}
+                    width={600}
+                    height={750}
+                    className="w-full h-[700px] object-cover transition-opacity duration-500"
+                    key={selectedExercise}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
+                  {/* Exercise name overlay */}
+                  <div className="absolute bottom-8 left-8 right-8">
+                    <div className="text-orange-400 text-sm font-medium mb-2">Exercise {selectedExercise + 1} of {plan.exercises.length}</div>
+                    <h3 className="text-3xl font-bold text-white mb-3">{plan.exercises[selectedExercise].name}</h3>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="bg-white/10 px-3 py-1 rounded-full text-sm text-white">{plan.exercises[selectedExercise].sets} sets</span>
+                      <span className="bg-white/10 px-3 py-1 rounded-full text-sm text-white">{plan.exercises[selectedExercise].reps} reps</span>
+                      <span className="bg-white/10 px-3 py-1 rounded-full text-sm text-white">Rest {plan.exercises[selectedExercise].rest}</span>
+                      {plan.exercises[selectedExercise].weight && plan.exercises[selectedExercise].weight !== "BW" && (
+                        <span className="bg-orange-500/20 px-3 py-1 rounded-full text-sm text-orange-300">{plan.exercises[selectedExercise].weight}</span>
+                      )}
+                    </div>
+                    {plan.exercises[selectedExercise].notes && (
+                      <p className="text-slate-300 mt-3 text-sm italic">{plan.exercises[selectedExercise].notes}</p>
+                    )}
+                  </div>
+                </>
+              ) : (
+                <>
+                  <Image
+                    src="/images/workout-3.jpg"
+                    alt="Fitness Training"
+                    width={600}
+                    height={750}
+                    className="w-full h-[700px] object-cover grayscale"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent" />
+                </>
+              )}
             </div>
 
             {/* Floating workout card */}
