@@ -67,10 +67,10 @@ export function ExerciseDetailPanel({ exercise, index, total, isCompleted }: Exe
         <div className="absolute top-4 left-4 right-4 flex justify-center">
           <div className="glass rounded-full p-1 flex gap-1">
             {([
-              { mode: "minimal" as ViewMode, icon: Layers, label: "简洁" },
-              { mode: "timeline" as ViewMode, icon: ListOrdered, label: "步骤" },
-              { mode: "keyframes" as ViewMode, icon: ChevronRight, label: "关键帧" },
-              { mode: "muscles" as ViewMode, icon: Activity, label: "肌肉" },
+              { mode: "minimal" as ViewMode, icon: Layers, label: "Minimal" },
+              { mode: "timeline" as ViewMode, icon: ListOrdered, label: "Steps" },
+              { mode: "keyframes" as ViewMode, icon: ChevronRight, label: "Keyframes" },
+              { mode: "muscles" as ViewMode, icon: Activity, label: "Muscles" },
             ]).map(({ mode, icon: Icon, label }) => (
               <button
                 key={mode}
@@ -94,12 +94,12 @@ export function ExerciseDetailPanel({ exercise, index, total, isCompleted }: Exe
           {isCompleted ? (
             <div className="glass rounded-full px-3 py-1.5 flex items-center gap-2">
               <CheckCircle className="w-4 h-4 text-green-400" />
-              <span className="text-xs font-medium text-green-400">已完成</span>
+              <span className="text-xs font-medium text-green-400">Completed</span>
             </div>
           ) : (
             <div className="glass rounded-full px-3 py-1.5 flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-orange-400 animate-pulse" />
-              <span className="text-xs font-medium text-orange-400">进行中</span>
+              <span className="text-xs font-medium text-orange-400">In Progress</span>
             </div>
           )}
         </div>
@@ -121,19 +121,19 @@ function MinimalView({ exercise, index, total }: { exercise: Exercise; index: nu
   return (
     <div className="p-6 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent">
       <div className="text-orange-400 text-xs font-medium mb-2">
-        动作 {index + 1} / {total}
+        Exercise {index + 1} / {total}
       </div>
       <h3 className="text-2xl font-bold text-white mb-3">{exercise.name}</h3>
 
       <div className="flex flex-wrap gap-2 mb-4">
         <span className="bg-white/10 px-3 py-1 rounded-full text-sm text-white flex items-center gap-1.5">
           <Dumbbell className="w-3.5 h-3.5" />
-          {exercise.sets} 组
+          {exercise.sets} sets
         </span>
-        <span className="bg-white/10 px-3 py-1 rounded-full text-sm text-white">{exercise.reps} 次</span>
+        <span className="bg-white/10 px-3 py-1 rounded-full text-sm text-white">{exercise.reps} reps</span>
         <span className="bg-white/10 px-3 py-1 rounded-full text-sm text-white flex items-center gap-1.5">
           <Timer className="w-3.5 h-3.5" />
-          休息 {exercise.rest}
+          Rest {exercise.rest}
         </span>
         {exercise.weight && exercise.weight !== "BW" && (
           <span className="bg-orange-500/20 px-3 py-1 rounded-full text-sm text-orange-300">
@@ -141,7 +141,7 @@ function MinimalView({ exercise, index, total }: { exercise: Exercise; index: nu
           </span>
         )}
         {exercise.weight === "BW" && (
-          <span className="bg-slate-700 px-3 py-1 rounded-full text-sm text-slate-400">自重</span>
+          <span className="bg-slate-700 px-3 py-1 rounded-full text-sm text-slate-400">Bodyweight</span>
         )}
       </div>
 
@@ -164,7 +164,7 @@ function TimelineView({ exercise, index, total }: { exercise: Exercise; index: n
   return (
     <div className="p-6 bg-gradient-to-t from-slate-950 via-slate-950/90 to-transparent max-h-[400px] overflow-y-auto">
       <div className="text-orange-400 text-xs font-medium mb-3">
-        动作 {index + 1} / {total} · 执行步骤
+        Exercise {index + 1} / {total} · Execution Steps
       </div>
 
       <div className="space-y-0">
@@ -210,29 +210,29 @@ function KeyframesView({ exercise, index, total }: { exercise: Exercise; index: 
   return (
     <div className="p-6 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent">
       <div className="text-orange-400 text-xs font-medium mb-3">
-        动作 {index + 1} / {total} · 关键帧
+        Exercise {index + 1} / {total} · Keyframes
       </div>
 
       <div className="flex gap-3 mb-4">
         <div className="flex-1 relative rounded-xl overflow-hidden border-2 border-orange-500/50">
-          <Image src={imageUrl} alt="起始位置" width={200} height={140} className="w-full h-28 object-cover" />
+          <Image src={imageUrl} alt="Start Position" width={200} height={140} className="w-full h-28 object-cover" />
           <div className="absolute bottom-2 left-2 bg-black/70 text-orange-400 text-[10px] font-bold px-2 py-0.5 rounded uppercase">
-            起始
+            Start
           </div>
         </div>
         <div className="flex items-center">
           <ChevronRight className="w-6 h-6 text-orange-400" />
         </div>
         <div className="flex-1 relative rounded-xl overflow-hidden border-2 border-slate-600">
-          <Image src={imageUrl} alt="结束位置" width={200} height={140} className="w-full h-28 object-cover" />
+          <Image src={imageUrl} alt="End Position" width={200} height={140} className="w-full h-28 object-cover" />
           <div className="absolute bottom-2 left-2 bg-black/70 text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded uppercase">
-            结束
+            End
           </div>
         </div>
       </div>
 
       <div className="glass rounded-xl p-3">
-        <div className="text-xs font-medium text-white mb-1">要点提示</div>
+        <div className="text-xs font-medium text-white mb-1">Key Cues</div>
         <div className="text-xs text-slate-300">{exercise.notes || getDefaultCues(exercise.name)}</div>
       </div>
     </div>
@@ -246,11 +246,11 @@ function MusclesView({ exercise, index, total }: { exercise: Exercise; index: nu
   return (
     <div className="p-6 bg-gradient-to-t from-slate-950 via-slate-950/90 to-transparent">
       <div className="text-orange-400 text-xs font-medium mb-3">
-        动作 {index + 1} / {total} · 肌肉刺激
+        Exercise {index + 1} / {total} · Muscle Activation
       </div>
 
       <div className="glass rounded-xl p-4 mb-4">
-        <div className="text-xs text-slate-400 mb-3 uppercase tracking-wider">主要刺激肌肉</div>
+        <div className="text-xs text-slate-400 mb-3 uppercase tracking-wider">Primary Muscles Worked</div>
         <div className="space-y-3">
           {muscles.map((muscle, i) => (
             <div key={i} className="flex items-center gap-3">
@@ -298,62 +298,62 @@ function generateSteps(exerciseName: string): Array<{ title: string; desc: strin
 
   if (lower.includes("squat")) {
     return [
-      { title: "起始姿势", desc: "双脚与肩同宽，脚尖微外展，核心收紧" },
-      { title: "下蹲", desc: "臀部向后向下坐，保持背部挺直，膝盖沿脚尖方向" },
-      { title: "底部位置", desc: "大腿至少与地面平行，保持胸部挺起" },
-      { title: "站起", desc: "脚跟发力推地，臀部向前推，回到起始位置" },
+      { title: "Starting Position", desc: "Feet shoulder-width apart, toes slightly turned out, core engaged" },
+      { title: "Squat Down", desc: "Hips back and down, keep back straight, knees follow toe direction" },
+      { title: "Bottom Position", desc: "Thighs at least parallel to ground, keep chest up" },
+      { title: "Stand Up", desc: "Push through heels, hips forward, return to starting position" },
     ]
   }
   if (lower.includes("deadlift") || lower.includes("rdl")) {
     return [
-      { title: "起始姿势", desc: "双脚与髋同宽，杠铃贴近小腿，背部挺直" },
-      { title: "拉起", desc: "臀部向前推，背部保持平直，杠铃沿腿部上滑" },
-      { title: "锁定", desc: "站直，肩膀后收，臀部收紧，不要过度后仰" },
-      { title: "下放", desc: "臀部向后推，杠铃沿腿部缓慢下放，保持控制" },
+      { title: "Starting Position", desc: "Feet hip-width apart, barbell close to shins, back straight" },
+      { title: "Pull Up", desc: "Hips forward, keep back flat, barbell slides up legs" },
+      { title: "Lockout", desc: "Stand tall, shoulders back, glutes tight, don't over-arch" },
+      { title: "Lower Down", desc: "Hips back, barbell slides down legs, maintain control" },
     ]
   }
   if (lower.includes("press") || lower.includes("bench")) {
     return [
-      { title: "起始姿势", desc: "躺平，肩胛骨收紧下沉，核心稳定" },
-      { title: "下放", desc: "控制重量缓慢下放至胸部，肘部约 75° 角" },
-      { title: "推起", desc: "胸部发力推起，手臂伸直但不锁死肘关节" },
-      { title: "顶峰收缩", desc: "在顶部挤压胸部，保持 1 秒" },
+      { title: "Starting Position", desc: "Lie flat, retract and depress shoulder blades, core stable" },
+      { title: "Lower Down", desc: "Control weight slowly to chest, elbows at ~75° angle" },
+      { title: "Press Up", desc: "Drive through chest, arms straight but don't lock elbows" },
+      { title: "Peak Contraction", desc: "Squeeze chest at top, hold for 1 second" },
     ]
   }
   if (lower.includes("row")) {
     return [
-      { title: "起始姿势", desc: "身体前倾，背部平直，核心收紧" },
-      { title: "拉起", desc: "肘部向后上方拉，肩胛骨向中间挤压" },
-      { title: "顶峰收缩", desc: "在顶部停顿 1 秒，感受背部收缩" },
-      { title: "下放", desc: "控制重量缓慢下放，保持背部张力" },
+      { title: "Starting Position", desc: "Hinge forward, back flat, core engaged" },
+      { title: "Pull Up", desc: "Elbows back and up, squeeze shoulder blades together" },
+      { title: "Peak Contraction", desc: "Pause at top for 1 second, feel back squeeze" },
+      { title: "Lower Down", desc: "Control weight slowly, maintain back tension" },
     ]
   }
   if (lower.includes("lunge")) {
     return [
-      { title: "起始姿势", desc: "双脚并拢站立，核心收紧，双手持哑铃" },
-      { title: "跨步", desc: "一脚向前迈出一大步，后膝向地面下沉" },
-      { title: "底部位置", desc: "前膝呈 90°，后膝接近地面但不触地" },
-      { title: "站起", desc: "前脚发力推地，回到起始位置，交替进行" },
+      { title: "Starting Position", desc: "Stand with feet together, core engaged, hold dumbbells" },
+      { title: "Step Forward", desc: "Take a large step forward, lower back knee toward floor" },
+      { title: "Bottom Position", desc: "Front knee at 90°, back knee close to floor but not touching" },
+      { title: "Stand Up", desc: "Drive through front foot, return to start, alternate legs" },
     ]
   }
 
   // Default steps
   return [
-    { title: "起始姿势", desc: "调整至正确起始位置，核心收紧" },
-    { title: "执行动作", desc: "控制节奏完成动作，感受目标肌肉发力" },
-    { title: "顶峰收缩", desc: "在动作顶点停顿 1 秒，最大化肌肉刺激" },
-    { title: "控制还原", desc: "缓慢还原至起始位置，保持肌肉张力" },
+    { title: "Starting Position", desc: "Set up in correct starting position, core engaged" },
+    { title: "Execute", desc: "Control tempo through the movement, feel target muscles work" },
+    { title: "Peak Contraction", desc: "Pause at the top for 1 second, maximize muscle stimulation" },
+    { title: "Controlled Return", desc: "Slowly return to starting position, maintain muscle tension" },
   ]
 }
 
 function getDefaultCues(exerciseName: string): string {
   const lower = exerciseName.toLowerCase()
-  if (lower.includes("squat")) return "保持背部挺直 · 膝盖沿脚尖方向 · 重心在脚跟"
-  if (lower.includes("deadlift")) return "背部平直 · 杠铃贴近身体 · 臀部发力"
-  if (lower.includes("press")) return "肩胛骨收紧 · 核心稳定 · 控制节奏"
-  if (lower.includes("row")) return "背部平直 · 肘部向后拉 · 肩胛骨挤压"
-  if (lower.includes("curl")) return "上臂固定 · 控制下放 · 不要借力"
-  return "控制节奏 · 感受目标肌肉发力 · 保持正确姿势"
+  if (lower.includes("squat")) return "Keep back straight · Knees follow toes · Weight on heels"
+  if (lower.includes("deadlift")) return "Flat back · Bar close to body · Drive through hips"
+  if (lower.includes("press")) return "Retract shoulder blades · Stable core · Control tempo"
+  if (lower.includes("row")) return "Flat back · Elbows back · Squeeze shoulder blades"
+  if (lower.includes("curl")) return "Upper arms fixed · Control lowering · No swinging"
+  return "Control tempo · Feel target muscles · Maintain proper form"
 }
 
 function getMusclesWorked(exerciseName: string): Array<{ name: string; activation: number }> {
@@ -361,62 +361,62 @@ function getMusclesWorked(exerciseName: string): Array<{ name: string; activatio
 
   if (lower.includes("squat") || lower.includes("goblet")) {
     return [
-      { name: "股四头肌", activation: 90 },
-      { name: "臀大肌", activation: 75 },
-      { name: "腘绳肌", activation: 50 },
-      { name: "核心肌群", activation: 40 },
+      { name: "Quadriceps", activation: 90 },
+      { name: "Glutes", activation: 75 },
+      { name: "Hamstrings", activation: 50 },
+      { name: "Core", activation: 40 },
     ]
   }
   if (lower.includes("deadlift") || lower.includes("rdl")) {
     return [
-      { name: "腘绳肌", activation: 90 },
-      { name: "臀大肌", activation: 85 },
-      { name: "下背部", activation: 70 },
-      { name: "斜方肌", activation: 50 },
+      { name: "Hamstrings", activation: 90 },
+      { name: "Glutes", activation: 85 },
+      { name: "Lower Back", activation: 70 },
+      { name: "Traps", activation: 50 },
     ]
   }
   if (lower.includes("bench") || lower.includes("chest") || lower.includes("fly")) {
     return [
-      { name: "胸大肌", activation: 95 },
-      { name: "三角肌前束", activation: 60 },
-      { name: "肱三头肌", activation: 50 },
+      { name: "Pectoralis Major", activation: 95 },
+      { name: "Front Deltoids", activation: 60 },
+      { name: "Triceps", activation: 50 },
     ]
   }
   if (lower.includes("row") || lower.includes("pulldown") || lower.includes("pull")) {
     return [
-      { name: "背阔肌", activation: 90 },
-      { name: "菱形肌", activation: 75 },
-      { name: "斜方肌中部", activation: 60 },
-      { name: "肱二头肌", activation: 50 },
+      { name: "Latissimus Dorsi", activation: 90 },
+      { name: "Rhomboids", activation: 75 },
+      { name: "Middle Traps", activation: 60 },
+      { name: "Biceps", activation: 50 },
     ]
   }
   if (lower.includes("press") || lower.includes("overhead")) {
     return [
-      { name: "三角肌前束", activation: 90 },
-      { name: "三角肌中束", activation: 70 },
-      { name: "肱三头肌", activation: 60 },
-      { name: "上胸", activation: 40 },
+      { name: "Front Deltoids", activation: 90 },
+      { name: "Side Deltoids", activation: 70 },
+      { name: "Triceps", activation: 60 },
+      { name: "Upper Chest", activation: 40 },
     ]
   }
   if (lower.includes("curl")) {
     return [
-      { name: "肱二头肌", activation: 95 },
-      { name: "肱肌", activation: 60 },
-      { name: "前臂肌群", activation: 40 },
+      { name: "Biceps", activation: 95 },
+      { name: "Brachialis", activation: 60 },
+      { name: "Forearms", activation: 40 },
     ]
   }
   if (lower.includes("lunge")) {
     return [
-      { name: "股四头肌", activation: 85 },
-      { name: "臀大肌", activation: 80 },
-      { name: "腘绳肌", activation: 45 },
+      { name: "Quadriceps", activation: 85 },
+      { name: "Glutes", activation: 80 },
+      { name: "Hamstrings", activation: 45 },
     ]
   }
 
   return [
-    { name: "目标肌群", activation: 80 },
-    { name: "辅助肌群", activation: 50 },
-    { name: "稳定肌群", activation: 30 },
+    { name: "Target Muscle", activation: 80 },
+    { name: "Assisting Muscles", activation: 50 },
+    { name: "Stabilizer Muscles", activation: 30 },
   ]
 }
 
@@ -424,20 +424,20 @@ function getFormChecks(exerciseName: string): string[] {
   const lower = exerciseName.toLowerCase()
 
   if (lower.includes("squat")) {
-    return ["背部挺直", "膝盖对齐脚尖", "重心在脚跟", "下蹲至平行"]
+    return ["Keep back straight", "Knees follow toes", "Weight on heels", "Squat to parallel"]
   }
   if (lower.includes("deadlift")) {
-    return ["背部平直", "杠铃贴腿", "臀部发力", "不弓背"]
+    return ["Flat back", "Bar close to legs", "Drive through hips", "No rounding"]
   }
   if (lower.includes("press")) {
-    return ["肩胛骨收紧", "核心稳定", "不耸肩", "控制下放"]
+    return ["Retract shoulder blades", "Stable core", "No shrugging", "Control lowering"]
   }
   if (lower.includes("row")) {
-    return ["背部平直", "肘部向后", "挤压肩胛骨", "不借力"]
+    return ["Flat back", "Elbows back", "Squeeze shoulder blades", "No swinging"]
   }
   if (lower.includes("curl")) {
-    return ["上臂固定", "控制下放", "不借力", "顶峰收缩"]
+    return ["Upper arms fixed", "Control lowering", "No swinging", "Peak contraction"]
   }
 
-  return ["保持核心收紧", "控制动作节奏", "感受目标肌肉", "保持正确姿势"]
+  return ["Keep core engaged", "Control movement tempo", "Feel target muscles", "Maintain proper form"]
 }
