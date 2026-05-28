@@ -84,6 +84,19 @@ CRITICAL RULES for weight field:
 - If intensity level is needed: return format like "M · 20kg" or "L · BW" (L=Light, M=Moderate, H=Heavy)
 - NEVER return sentences or descriptions in the weight field
 
+CRITICAL RULES for exercise names:
+- Use standard exercise names from this list when applicable:
+  Chest: Bench Press, Incline Bench Press, Dumbbell Fly, Push Up, Chest Press
+  Back: Bent Over Row, Lat Pulldown, Pull Up, Deadlift, Romanian Deadlift, Face Pull
+  Legs: Squat, Goblet Squat, Leg Press, Lunge, Bulgarian Split Squat, Leg Extension, Leg Curl, Calf Raise, Hip Thrust
+  Shoulders: Shoulder Press, Overhead Press, Push Press, Lateral Raise, Front Raise, Upright Row
+  Arms: Bicep Curl, Hammer Curl, Tricep Extension, Tricep Pushdown, Skull Crusher
+  Core: Plank, Crunch, Leg Raise, Russian Twist, Dead Bug, Ab Wheel Rollout
+  Full Body: Burpee, Mountain Climber, Kettlebell Swing, Turkish Get Up, Thruster
+- Always include equipment type prefix when relevant: "Dumbbell Goblet Squat", "Barbell Bench Press", "Cable Row"
+- Use full words, not abbreviations: "Dumbbell" not "DB", "Kettlebell" not "KB"
+- If an exercise has multiple common names, use the most widely recognized one
+
 Return valid JSON only, no markdown:
 {
   "title": "Descriptive workout name",

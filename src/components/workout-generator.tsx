@@ -1,12 +1,11 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Slider } from "@/components/ui/slider"
-import { motion } from "framer-motion"
 import { Sparkles, Dumbbell, Timer, Target, Activity, Loader2, CheckCircle, Flame, RotateCcw, Play, Pause, X, ChevronRight, ChevronLeft, Users, Zap } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { ExerciseDetailPanel } from "@/components/exercise-detail-panel"
 
 const goals = [
   { id: "muscle", label: "Build Muscle", desc: "Hypertrophy & size", icon: "💪" },
@@ -52,70 +51,6 @@ interface WorkoutPlan {
   warmup: string[]
   exercises: Exercise[]
   cooldown: string[]
-}
-
-const exerciseImages: Record<string, string> = {
-  // 默认图片
-  default: "/images/workout-3.jpg",
-  // 胸部
-  "bench press": "/images/workout-1.jpg",
-  "dumbbell press": "/images/workout-1.jpg",
-  "chest press": "/images/workout-1.jpg",
-  "push up": "/images/workout-2.jpg",
-  "push-up": "/images/workout-2.jpg",
-  "chest fly": "/images/workout-1.jpg",
-  // 背部
-  "bent over row": "/images/workout-4.jpg",
-  "bent-over row": "/images/workout-4.jpg",
-  "row": "/images/workout-4.jpg",
-  "lat pulldown": "/images/workout-4.jpg",
-  "pull up": "/images/workout-4.jpg",
-  "pull-up": "/images/workout-4.jpg",
-  "deadlift": "/images/workout-5.jpg",
-  "romanian deadlift": "/images/workout-5.jpg",
-  // 腿部
-  "squat": "/images/workout-3.jpg",
-  "goblet squat": "/images/workout-3.jpg",
-  "leg press": "/images/workout-3.jpg",
-  "lunge": "/images/workout-3.jpg",
-  "reverse lunge": "/images/workout-3.jpg",
-  "bulgarian split squat": "/images/workout-3.jpg",
-  "calf raise": "/images/workout-3.jpg",
-  // 肩部
-  "shoulder press": "/images/workout-2.jpg",
-  "overhead press": "/images/workout-2.jpg",
-  "push press": "/images/workout-2.jpg",
-  "lateral raise": "/images/workout-2.jpg",
-  "front raise": "/images/workout-2.jpg",
-  // 手臂
-  "bicep curl": "/images/workout-5.jpg",
-  "hammer curl": "/images/workout-5.jpg",
-  "tricep extension": "/images/workout-5.jpg",
-  "tricep dip": "/images/workout-5.jpg",
-  // 核心
-  "plank": "/images/workout-2.jpg",
-  "plank row": "/images/workout-4.jpg",
-  "crunch": "/images/workout-2.jpg",
-  "leg raise": "/images/workout-2.jpg",
-  "russian twist": "/images/workout-2.jpg",
-  // 全身/有氧
-  "burpee": "/images/workout-2.jpg",
-  "mountain climber": "/images/workout-2.jpg",
-  "jumping jack": "/images/workout-2.jpg",
-  "kettlebell swing": "/images/workout-3.jpg",
-}
-
-function getExerciseImage(name: string): string {
-  const lower = name.toLowerCase()
-  // 直接匹配
-  if (exerciseImages[lower]) return exerciseImages[lower]
-  // 模糊匹配：检查关键词
-  for (const [key, url] of Object.entries(exerciseImages)) {
-    if (lower.includes(key) && key !== "default") {
-      return url
-    }
-  }
-  return exerciseImages.default
 }
 
 const steps = [
@@ -792,104 +727,13 @@ export function WorkoutGenerator() {
             </div>
           </div>
 
-          {/* Right - Dynamic Exercise Image */}
-          <div
-            className="relative hidden lg:block"
-          >
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-black/50">
-              {plan && selectedExercise !== null && plan.exercises[selectedExercise] ? (
-                <>
-                  <Image
-                    src={getExerciseImage(plan.exercises[selectedExercise].name)}
-                    alt={plan.exercises[selectedExercise].name}
-                    width={600}
-                    height={750}
-                    className="w-full h-[700px] object-cover transition-opacity duration-500"
-                    key={selectedExercise}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
-                  {/* Exercise name overlay */}
-                  <div className="absolute bottom-8 left-8 right-8">
-                    <div className="text-orange-400 text-sm font-medium mb-2">Exercise {selectedExercise + 1} of {plan.exercises.length}</div>
-                    <h3 className="text-3xl font-bold text-white mb-3">{plan.exercises[selectedExercise].name}</h3>
-                    <div className="flex flex-wrap gap-2">
-                      <span className="bg-white/10 px-3 py-1 rounded-full text-sm text-white">{plan.exercises[selectedExercise].sets} sets</span>
-                      <span className="bg-white/10 px-3 py-1 rounded-full text-sm text-white">{plan.exercises[selectedExercise].reps} reps</span>
-                      <span className="bg-white/10 px-3 py-1 rounded-full text-sm text-white">Rest {plan.exercises[selectedExercise].rest}</span>
-                      {plan.exercises[selectedExercise].weight && plan.exercises[selectedExercise].weight !== "BW" && (
-                        <span className="bg-orange-500/20 px-3 py-1 rounded-full text-sm text-orange-300">{plan.exercises[selectedExercise].weight}</span>
-                      )}
-                    </div>
-                    {plan.exercises[selectedExercise].notes && (
-                      <p className="text-slate-300 mt-3 text-sm italic">{plan.exercises[selectedExercise].notes}</p>
-                    )}
-                  </div>
-                </>
-              ) : (
-                <>
-                  <Image
-                    src="/images/workout-3.jpg"
-                    alt="Fitness Training"
-                    width={600}
-                    height={750}
-                    className="w-full h-[700px] object-cover grayscale"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent" />
-                </>
-              )}
-            </div>
-
-            {/* Floating workout card */}
-            <div className="absolute -left-6 top-12 bg-slate-900/80 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-4 text-white shadow-xl">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center">
-                  <Zap className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <div className="text-xs text-slate-400">Today's Plan</div>
-                  <div className="font-bold">Upper Body Power</div>
-                </div>
-              </div>
-              <div className="flex gap-4 text-sm">
-                <div>
-                  <div className="text-slate-500 text-xs">Exercises</div>
-                  <div className="font-bold text-orange-400">6</div>
-                </div>
-                <div>
-                  <div className="text-slate-500 text-xs">Duration</div>
-                  <div className="font-bold text-orange-400">45m</div>
-                </div>
-                <div>
-                  <div className="text-slate-500 text-xs">Intensity</div>
-                  <div className="font-bold text-orange-400">High</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Progress ring */}
-            <div className="absolute -right-4 bottom-24 w-24 h-24">
-              <svg className="w-full h-full -rotate-90" viewBox="0 0 36 36">
-                <path
-                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                  fill="none"
-                  stroke="#1e293b"
-                  strokeWidth="3"
-                />
-                <path
-                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                  fill="none"
-                  stroke="#f97316"
-                  strokeWidth="3"
-                  strokeDasharray="75, 100"
-                  strokeLinecap="round"
-                />
-              </svg>
-              <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <div className="text-xl font-bold text-orange-400">75%</div>
-                <div className="text-xs text-slate-500">Complete</div>
-              </div>
-            </div>
-          </div>
+          {/* Right - Exercise Detail Panel */}
+          <ExerciseDetailPanel
+            exercise={selectedExercise !== null && plan ? plan.exercises[selectedExercise] : null}
+            index={selectedExercise ?? 0}
+            total={plan?.exercises.length ?? 0}
+            isCompleted={selectedExercise !== null && plan ? completedExercises.has(selectedExercise) : false}
+          />
         </div>
       </div>
     </section>

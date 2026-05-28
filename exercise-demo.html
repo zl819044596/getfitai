@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercise Demo - Style Options</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); }
+    .step-number {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700;
+      flex-shrink: 0;
+    }
+    .step-line {
+      width: 2px; height: 24px;
+      margin-left: 13px;
+      background: linear-gradient(to bottom, #f97316, transparent);
+    }
+    .muscle-dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: #f97316;
+      box-shadow: 0 0 8px #f97316, 0 0 16px #f9731666;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.2); }
+    }
+    .keyframe {
+      position: relative;
+      overflow: hidden;
+    }
+    .keyframe::after {
+      content: attr(data-label);
+      position: absolute;
+      bottom: 8px; left: 8px;
+      background: rgba(0,0,0,0.7);
+      color: #f97316;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .arrow-bounce {
+      animation: bounce 1.5s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-white p-8">
+
+  <h1 class="text-3xl font-bold mb-2">Exercise Display Styles</h1>
+  <p class="text-slate-400 mb-10">Click any card to see different layout options for the right panel</p>
+
+  <!-- ============ STYLE A: Step-by-Step Timeline ============ -->
+  <div class="mb-12">
+    <h2 class="text-xl font-bold text-orange-400 mb-4">Style A: Step Timeline + Keyframes</h2>
+    <div class="grid lg:grid-cols-2 gap-8 max-w-5xl">
+      
+      <!-- Left: Exercise List (simulated) -->
+      <div class="bg-slate-900/60 border border-slate-700/50 rounded-2xl p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-8 h-8 rounded-lg bg-orange-500/20 flex items-center justify-center text-orange-400 text-sm font-bold">1</div>
+          <h3 class="font-semibold">Dumbbell Goblet Squat</h3>
+        </div>
+        <div class="flex gap-2 text-xs text-slate-400 mb-4">
+          <span class="bg-slate-700 px-2 py-1 rounded-full">3 sets</span>
+          <span class="bg-slate-700 px-2 py-1 rounded-full">12-15 reps</span>
+          <span class="bg-slate-700 px-2 py-1 rounded-full">Rest 45s</span>
+        </div>
+      </div>
+
+      <!-- Right: Style A Display -->
+      <div class="relative rounded-3xl overflow-hidden shadow-2xl" style="height: 500px;">
+        <!-- Main Image -->
+        <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=600&h=800&fit=crop" 
+             class="w-full h-full object-cover" alt="Squat">
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+        
+        <!-- Muscle Target Indicator -->
+        <div class="absolute top-6 right-6 glass rounded-xl px-3 py-2">
+          <div class="text-xs text-slate-400 mb-1">Target</div>
+          <div class="flex items-center gap-2">
+            <div class="muscle-dot"></div>
+            <span class="text-sm font-medium">Quads · Glutes</span>
+          </div>
+        </div>
+
+        <!-- Step Timeline -->
+        <div class="absolute bottom-6 left-6 right-6">
+          <div class="text-orange-400 text-xs font-medium mb-3 uppercase tracking-wider">Execution Steps</div>
+          
+          <div class="space-y-0">
+            <div class="flex items-start gap-3">
+              <div class="step-number bg-orange-500 text-white">1</div>
+              <div class="pt-1">
+                <div class="text-sm font-medium">Starting Position</div>
+                <div class="text-xs text-slate-400">Hold dumbbell at chest, feet shoulder-width</div>
+              </div>
+            </div>
+            <div class="step-line"></div>
+            
+            <div class="flex items-start gap-3">
+              <div class="step-number bg-slate-700 text-slate-300">2</div>
+              <div class="pt-1">
+                <div class="text-sm font-medium">Descent</div>
+                <div class="text-xs text-slate-400">Lower hips back and down, keep chest up</div>
+              </div>
+            </div>
+            <div class="step-line"></div>
+            
+            <div class="flex items-start gap-3">
+              <div class="step-number bg-slate-700 text-slate-300">3</div>
+              <div class="pt-1">
+                <div class="text-sm font-medium">Bottom Position</div>
+                <div class="text-xs text-slate-400">Thighs parallel to floor, elbows inside knees</div>
+              </div>
+            </div>
+            <div class="step-line"></div>
+            
+            <div class="flex items-start gap-3">
+              <div class="step-number bg-slate-700 text-slate-300">4</div>
+              <div class="pt-1">
+                <div class="text-sm font-medium">Drive Up</div>
+                <div class="text-xs text-slate-400">Push through heels, squeeze glutes at top</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ STYLE B: Split Keyframes ============ -->
+  <div class="mb-12">
+    <h2 class="text-xl font-bold text-orange-400 mb-4">Style B: Split Keyframes (Start / End)</h2>
+    <div class="grid lg:grid-cols-2 gap-8 max-w-5xl">
+      
+      <div class="bg-slate-900/60 border border-slate-700/50 rounded-2xl p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-8 h-8 rounded-lg bg-orange-500/20 flex items-center justify-center text-orange-400 text-sm font-bold">2</div>
+          <h3 class="font-semibold">Dumbbell Romanian Deadlift</h3>
+        </div>
+      </div>
+
+      <div class="relative rounded-3xl overflow-hidden shadow-2xl" style="height: 500px;">
+        <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&h=800&fit=crop" 
+             class="w-full h-full object-cover" alt="Deadlift">
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent"></div>
+        
+        <!-- Two Keyframes Overlay -->
+        <div class="absolute bottom-6 left-6 right-6">
+          <div class="flex gap-3">
+            <!-- Start Frame -->
+            <div class="flex-1 keyframe rounded-xl overflow-hidden border-2 border-orange-500/50" data-label="Start">
+              <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=300&h=200&fit=crop" 
+                   class="w-full h-28 object-cover">
+            </div>
+            <!-- Arrow -->
+            <div class="flex items-center">
+              <svg class="w-6 h-6 text-orange-400 arrow-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </div>
+            <!-- End Frame -->
+            <div class="flex-1 keyframe rounded-xl overflow-hidden border-2 border-slate-600" data-label="End">
+              <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=300&h=200&fit=crop" 
+                   class="w-full h-28 object-cover">
+            </div>
+          </div>
+          
+          <!-- Cues -->
+          <div class="mt-4 glass rounded-xl p-4">
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-orange-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <div>
+                <div class="text-sm font-medium text-white">Key Cues</div>
+                <div class="text-xs text-slate-300 mt-1">Hinge at hips · Keep back flat · Feel hamstring stretch · Don't round shoulders</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ STYLE C: Minimal Clean ============ -->
+  <div class="mb-12">
+    <h2 class="text-xl font-bold text-orange-400 mb-4">Style C: Minimal (Large Image + Floating Cues)</h2>
+    <div class="grid lg:grid-cols-2 gap-8 max-w-5xl">
+      
+      <div class="bg-slate-900/60 border border-slate-700/50 rounded-2xl p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-8 h-8 rounded-lg bg-green-500/20 flex items-center justify-center text-green-400 text-sm font-bold">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <h3 class="font-semibold text-green-400 line-through">Dumbbell Push Press</h3>
+        </div>
+      </div>
+
+      <div class="relative rounded-3xl overflow-hidden shadow-2xl" style="height: 500px;">
+        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=800&fit=crop" 
+             class="w-full h-full object-cover" alt="Push Press">
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/20"></div>
+        
+        <!-- Floating cue pills -->
+        <div class="absolute top-6 left-6 flex flex-col gap-2">
+          <div class="glass rounded-full px-4 py-2 flex items-center gap-2">
+            <div class="w-2 h-2 rounded-full bg-green-400"></div>
+            <span class="text-xs font-medium">Completed</span>
+          </div>
+        </div>
+        
+        <div class="absolute top-6 right-6 flex flex-col gap-2">
+          <div class="glass rounded-full px-3 py-1.5 text-xs">
+            <span class="text-slate-400">Difficulty:</span> <span class="text-orange-400 font-medium">Moderate</span>
+          </div>
+          <div class="glass rounded-full px-3 py-1.5 text-xs">
+            <span class="text-slate-400">Muscles:</span> <span class="text-white font-medium">Shoulders · Triceps</span>
+          </div>
+        </div>
+
+        <!-- Bottom: Simple text cue -->
+        <div class="absolute bottom-6 left-6 right-6">
+          <div class="glass rounded-2xl p-5">
+            <h4 class="text-lg font-bold mb-2">Dumbbell Push Press</h4>
+            <p class="text-sm text-slate-300 leading-relaxed">
+              Dip slightly with knees, then explosively drive the dumbbells overhead using leg momentum. Lock out arms at the top, then lower with control.
+            </p>
+            <div class="flex gap-2 mt-3">
+              <span class="text-xs bg-orange-500/20 text-orange-300 px-2 py-1 rounded">Leg drive</span>
+              <span class="text-xs bg-orange-500/20 text-orange-300 px-2 py-1 rounded">Full extension</span>
+              <span class="text-xs bg-orange-500/20 text-orange-300 px-2 py-1 rounded">Control descent</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ STYLE D: Interactive Hotspots ============ -->
+  <div class="mb-12">
+    <h2 class="text-xl font-bold text-orange-400 mb-4">Style D: Body Diagram + Hotspots</h2>
+    <div class="grid lg:grid-cols-2 gap-8 max-w-5xl">
+      
+      <div class="bg-slate-900/60 border border-slate-700/50 rounded-2xl p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-8 h-8 rounded-lg bg-orange-500/20 flex items-center justify-center text-orange-400 text-sm font-bold">4</div>
+          <h3 class="font-semibold">Dumbbell Bent-Over Row</h3>
+        </div>
+      </div>
+
+      <div class="relative rounded-3xl overflow-hidden shadow-2xl" style="height: 500px;">
+        <img src="https://images.unsplash.com/photo-1603287681836-b174ce5074c2?w=600&h=800&fit=crop" 
+             class="w-full h-full object-cover" alt="Row">
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/40 to-transparent"></div>
+        
+        <!-- Body diagram sidebar -->
+        <div class="absolute left-6 top-1/2 -translate-y-1/2">
+          <div class="glass rounded-2xl p-4 w-40">
+            <div class="text-xs text-slate-400 mb-3 uppercase tracking-wider">Muscles Worked</div>
+            
+            <div class="space-y-3">
+              <div class="flex items-center gap-2">
+                <div class="w-3 h-3 rounded-full bg-orange-500"></div>
+                <div class="flex-1">
+                  <div class="text-xs font-medium">Latissimus Dorsi</div>
+                  <div class="w-full h-1 bg-slate-700 rounded-full mt-1">
+                    <div class="h-1 bg-orange-500 rounded-full" style="width: 90%"></div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="flex items-center gap-2">
+                <div class="w-3 h-3 rounded-full bg-orange-400"></div>
+                <div class="flex-1">
+                  <div class="text-xs font-medium">Rhomboids</div>
+                  <div class="w-full h-1 bg-slate-700 rounded-full mt-1">
+                    <div class="h-1 bg-orange-400 rounded-full" style="width: 75%"></div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="flex items-center gap-2">
+                <div class="w-3 h-3 rounded-full bg-orange-300"></div>
+                <div class="flex-1">
+                  <div class="text-xs font-medium">Biceps</div>
+                  <div class="w-full h-1 bg-slate-700 rounded-full mt-1">
+                    <div class="h-1 bg-orange-300 rounded-full" style="width: 50%"></div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="flex items-center gap-2">
+                <div class="w-3 h-3 rounded-full bg-slate-500"></div>
+                <div class="flex-1">
+                  <div class="text-xs font-medium">Rear Deltoids</div>
+                  <div class="w-full h-1 bg-slate-700 rounded-full mt-1">
+                    <div class="h-1 bg-slate-500 rounded-full" style="width: 40%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Execution steps bottom right -->
+        <div class="absolute bottom-6 right-6 left-52">
+          <div class="glass rounded-xl p-4">
+            <div class="text-xs text-orange-400 font-medium mb-2">FORM CHECK</div>
+            <div class="grid grid-cols-2 gap-2">
+              <div class="flex items-center gap-2 text-xs">
+                <svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Back flat</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs">
+                <svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Pull to hip</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs">
+                <svg class="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                <span class="text-slate-400">Don't round back</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs">
+                <svg class="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                <span class="text-slate-400">No swinging</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
