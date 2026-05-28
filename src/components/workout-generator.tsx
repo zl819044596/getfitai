@@ -442,11 +442,11 @@ export function WorkoutGenerator() {
           >
             {!plan && (
               <>
-                <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
+                <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight" translate="no">
                   AI builds your<br />
                   <span className="text-orange-500">perfect workout</span>
                 </h1>
-                <p className="text-lg text-slate-400 mb-8">
+                <p className="text-lg text-slate-400 mb-8" translate="no">
                   Answer 5 questions. Get a personalized program in seconds. Free.
                 </p>
               </>
@@ -454,7 +454,7 @@ export function WorkoutGenerator() {
 
             {/* Stepper */}
             {!plan && (
-              <div className="mb-6">
+              <div className="mb-6" translate="no">
                 <div className="flex items-center justify-between mb-2">
                   {steps.map((step, index) => (
                     <div key={step.id} className="flex items-center">
@@ -498,7 +498,7 @@ export function WorkoutGenerator() {
 
             {/* Form Card */}
             {!plan && (
-              <div className="bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6">
+              <div className="bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6" translate="no">
                 <div
                   key={currentStep}
                   className="transition-all duration-200"
