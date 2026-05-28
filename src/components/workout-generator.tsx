@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Slider } from "@/components/ui/slider"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { Sparkles, Dumbbell, Timer, Target, Activity, Loader2, CheckCircle, Flame, RotateCcw, Play, Pause, X, ChevronRight, ChevronLeft, Users, Zap } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -256,7 +256,7 @@ export function WorkoutGenerator() {
     switch (currentStep) {
       case 0:
         return (
-          <div className="space-y-4">
+          <div className="space-y-4" translate="no">
             <div>
               <p className="text-xs text-slate-400 uppercase tracking-widest mb-3">I want to...</p>
             </div>
@@ -265,6 +265,7 @@ export function WorkoutGenerator() {
                 <button
                   key={goal.id}
                   onClick={() => setSelectedGoal(goal.id)}
+                  translate="no"
                   className={cn(
                     "flex flex-col items-center gap-2 p-5 rounded-xl border text-center transition-all",
                     selectedGoal === goal.id
@@ -282,7 +283,7 @@ export function WorkoutGenerator() {
         )
       case 1:
         return (
-          <div className="space-y-4">
+          <div className="space-y-4" translate="no">
             <div>
               <h3 className="text-xl font-bold text-white mb-1">Target Area</h3>
               <p className="text-sm text-slate-400">Which body parts do you want to focus on?</p>
@@ -294,6 +295,7 @@ export function WorkoutGenerator() {
                   <button
                     key={area.id}
                     onClick={() => setSelectedArea(area.id)}
+                    translate="no"
                     className={cn(
                       "flex flex-col items-center gap-2 p-5 rounded-xl border text-center transition-all",
                       selectedArea === area.id
@@ -311,7 +313,7 @@ export function WorkoutGenerator() {
         )
       case 2:
         return (
-          <div className="space-y-4">
+          <div className="space-y-4" translate="no">
             <div>
               <h3 className="text-xl font-bold text-white mb-1">Experience Level</h3>
               <p className="text-sm text-slate-400">How long have you been training?</p>
@@ -321,6 +323,7 @@ export function WorkoutGenerator() {
                 <button
                   key={level.id}
                   onClick={() => setSelectedLevel(level.id)}
+                  translate="no"
                   className={cn(
                     "w-full flex items-center gap-4 p-4 rounded-xl border text-left transition-all",
                     selectedLevel === level.id
@@ -345,7 +348,7 @@ export function WorkoutGenerator() {
         )
       case 3:
         return (
-          <div className="space-y-4">
+          <div className="space-y-4" translate="no">
             <div>
               <h3 className="text-xl font-bold text-white mb-1">Available Equipment</h3>
               <p className="text-sm text-slate-400">What do you have access to?</p>
@@ -355,6 +358,7 @@ export function WorkoutGenerator() {
                 <button
                   key={eq.id}
                   onClick={() => setSelectedEquipment(eq.id)}
+                  translate="no"
                   className={cn(
                     "w-full flex items-center gap-4 p-4 rounded-xl border text-left transition-all",
                     selectedEquipment === eq.id
@@ -376,7 +380,7 @@ export function WorkoutGenerator() {
         )
       case 4:
         return (
-          <div className="space-y-6">
+          <div className="space-y-6" translate="no">
             <div>
               <h3 className="text-xl font-bold text-white mb-1">Workout Duration</h3>
               <p className="text-sm text-slate-400">How much time do you have?</p>
@@ -409,6 +413,7 @@ export function WorkoutGenerator() {
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 placeholder="Example: Lower back issues, avoid deep squats..."
+                translate="no"
                 className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-orange-500/30 focus:border-orange-500/50 resize-none"
                 rows={2}
               />
@@ -431,11 +436,9 @@ export function WorkoutGenerator() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[600px]">
           {/* Left - Form */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <div
+            className="transition-opacity duration-500"
+            style={{ opacity: 1 }}
           >
             {!plan && (
               <>
@@ -496,17 +499,16 @@ export function WorkoutGenerator() {
             {/* Form Card */}
             {!plan && (
               <div className="bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={currentStep}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    {renderStepContent()}
-                  </motion.div>
-                </AnimatePresence>
+                <div
+                  key={currentStep}
+                  className="transition-all duration-200"
+                  style={{
+                    opacity: 1,
+                    transform: 'translateX(0)',
+                  }}
+                >
+                  {renderStepContent()}
+                </div>
 
                 {/* Navigation Buttons */}
                 <div className="mt-6 flex items-center justify-between">
@@ -514,6 +516,7 @@ export function WorkoutGenerator() {
                     variant="outline"
                     onClick={handleBack}
                     disabled={currentStep === 0}
+                    translate="no"
                     className="rounded-xl px-6 border-slate-700 bg-slate-800/50 text-white hover:bg-slate-800 hover:text-white disabled:opacity-30"
                   >
                     <ChevronLeft className="w-4 h-4 mr-1" />
@@ -524,6 +527,7 @@ export function WorkoutGenerator() {
                     <Button
                       onClick={handleNext}
                       disabled={!canProceed(currentStep)}
+                      translate="no"
                       className="bg-orange-500 hover:bg-orange-600 text-white rounded-xl px-6 disabled:opacity-30"
                     >
                       Next
@@ -533,6 +537,7 @@ export function WorkoutGenerator() {
                     <Button
                       onClick={handleGenerate}
                       disabled={!isFormValid || loading}
+                      translate="no"
                       className="bg-orange-500 hover:bg-orange-600 text-white py-5 px-8 text-base shadow-xl shadow-orange-500/25 rounded-xl disabled:opacity-30"
                     >
                       {loading ? (
@@ -559,15 +564,15 @@ export function WorkoutGenerator() {
             )}
 
             {/* Generated Plan Result */}
-            <AnimatePresence>
+            <div
+              ref={resultRef}
+              className={cn(
+                "transition-all duration-500",
+                plan ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8 pointer-events-none absolute"
+              )}
+            >
               {plan && (
-                <motion.div
-                  ref={resultRef}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 30 }}
-                  transition={{ duration: 0.5 }}
-                >
+                <>
                   {/* Plan Header */}
                   <div className="bg-orange-500 rounded-2xl p-6 mb-6">
                     <div className="flex items-start justify-between gap-4">
@@ -705,24 +710,22 @@ export function WorkoutGenerator() {
                   <div className="text-center">
                     <Button
                       onClick={handleReset}
+                      translate="no"
                       className="bg-orange-500 hover:bg-orange-600 text-white rounded-full px-8 py-6 text-lg shadow-xl shadow-orange-500/25"
                     >
                       <RotateCcw className="mr-2 w-5 h-5" />
                       Generate New Plan
                     </Button>
                   </div>
-                </motion.div>
+                </>
               )}
-            </AnimatePresence>
-          </motion.div>
+            </div>
+          </div>
 
           {/* Right - Image with floating UI */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="relative hidden lg:block"
+          <div
+            className="relative hidden lg:block transition-opacity duration-600"
+            style={{ opacity: 1 }}
           >
             <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-black/50">
               <Image
@@ -785,7 +788,7 @@ export function WorkoutGenerator() {
                 <div className="text-xs text-slate-500">Complete</div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
