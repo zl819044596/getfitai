@@ -132,8 +132,17 @@ export async function POST(req: NextRequest) {
     const prompt = buildPrompt({ goal, experience, duration, equipment, targetArea, notes });
     const openai = getOpenAI();
 
+    // 判断是否需要使用 v4-pro：伤病、慢病、特殊目标
+    const needsPro = notes && (
+      /injur|pain|hurt|surgery|rehab|recover|joint|back pain|knee|shoulder|ankle|wrist|elbow|hip|spine|disc|tear|strain|sprain|fracture|acl|meniscus|rotator cuff/i.test(notes) ||
+      /diabetes|hypertension|heart|blood pressure|cholesterol|thyroid|asthma|copd|arthritis|osteoporosis|fibromyalgia|chronic|autoimmune|ms|parkinson|epilepsy/i.test(notes) ||
+      /pregnant|pregnancy|postpartum|elderly|senior|teenager|adolescent|obese|overweight|underweight|eating disorder|anorexia|bulimia/i.test(notes)
+    );
+
+    const model = needsPro ? 'deepseek-v4-pro' : (process.env.DEEPSEEK_MODEL || 'deepseek-v4-flash');
+
     const stream = await openai.chat.completions.create({
-      model: process.env.DEEPSEEK_MODEL || 'deepseek-chat',
+      model,
       messages: [
         {
           role: 'system',
