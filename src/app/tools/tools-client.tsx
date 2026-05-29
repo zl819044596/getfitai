@@ -5,6 +5,30 @@ import { Activity, Calculator, ArrowRight, TrendingUp, Timer, Dumbbell, Flame } 
 
 const tools = [
   {
+    icon: <Dumbbell className="w-6 h-6" />,
+    title: "Workout Generator",
+    description: "Generate personalized AI workout plans tailored to your goals and equipment.",
+    href: "/tools/workout-generator",
+  },
+  {
+    icon: <Calculator className="w-6 h-6" />,
+    title: "Macro Calculator",
+    description: "Calculate your daily protein, carbs, and fat targets for any fitness goal.",
+    href: "/tools/macro-calculator",
+  },
+  {
+    icon: <Flame className="w-6 h-6" />,
+    title: "Calorie Calculator",
+    description: "Calculate your BMR, TDEE, and daily calorie needs based on your activity level.",
+    href: "/tools/calorie-calculator",
+  },
+  {
+    icon: <Activity className="w-6 h-6" />,
+    title: "Protein Calculator",
+    description: "Calculate your optimal daily protein intake based on weight and goals.",
+    href: "/tools/protein-calculator",
+  },
+  {
     icon: <Calculator className="w-6 h-6" />,
     title: "BMI Calculator",
     description: "Calculate your Body Mass Index and understand your weight category.",

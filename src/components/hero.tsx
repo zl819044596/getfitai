@@ -88,9 +88,9 @@ export function Hero() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6 text-balance"
             >
-              <span className="text-white">Your Free</span>
+              <span className="text-white">Your Free AI</span>
               <br />
-              <span className="gradient-text">AI Fitness Coach</span>
+              <span className="gradient-text">Fitness Coach</span>
             </motion.h1>
 
             {/* Description */}
