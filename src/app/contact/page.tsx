@@ -50,27 +50,27 @@ export default function ContactPage() {
 
           <form className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-neutral-900 mb-2">Name</label>
+              <label className="block text-sm font-medium text-foreground mb-2">Name</label>
               <input
                 type="text"
                 placeholder="Your name"
-                className="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:border-black focus:ring-1 focus:ring-black outline-none text-sm transition-colors"
+                className="w-full px-4 py-3 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm transition-colors"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-neutral-900 mb-2">Email</label>
+              <label className="block text-sm font-medium text-foreground mb-2">Email</label>
               <input
                 type="email"
                 placeholder="your@email.com"
-                className="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:border-black focus:ring-1 focus:ring-black outline-none text-sm transition-colors"
+                className="w-full px-4 py-3 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm transition-colors"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-neutral-900 mb-2">Message</label>
+              <label className="block text-sm font-medium text-foreground mb-2">Message</label>
               <textarea
                 placeholder="How can we help?"
                 rows={5}
-                className="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:border-black focus:ring-1 focus:ring-black outline-none text-sm resize-none transition-colors"
+                className="w-full px-4 py-3 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm resize-none transition-colors"
               />
             </div>
             <button
