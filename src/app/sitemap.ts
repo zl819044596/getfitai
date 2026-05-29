@@ -23,6 +23,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/tools/macro-calculator", priority: 0.9, changefreq: "weekly" as const },
     { path: "/tools/calorie-calculator", priority: 0.9, changefreq: "weekly" as const },
     { path: "/tools/protein-calculator", priority: 0.9, changefreq: "weekly" as const },
+    { path: "/tools/heart-rate-calculator", priority: 0.9, changefreq: "weekly" as const },
+    { path: "/tools/pace-calculator", priority: 0.9, changefreq: "weekly" as const },
+    { path: "/tools/wilks-calculator", priority: 0.9, changefreq: "weekly" as const },
+    { path: "/tools/bmr-calculator", priority: 0.9, changefreq: "weekly" as const },
+    { path: "/tools/ideal-weight-calculator", priority: 0.9, changefreq: "weekly" as const },
   ];
 
   const workoutTypes = ["gym", "home", "beginner"];

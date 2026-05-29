@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Activity, Calculator, ArrowRight, TrendingUp, Timer, Dumbbell, Flame } from "lucide-react";
+import { Activity, Calculator, ArrowRight, TrendingUp, Timer, Dumbbell, Flame, Heart, Scale } from "lucide-react";
 
 const tools = [
   {
@@ -27,6 +27,36 @@ const tools = [
     title: "Protein Calculator",
     description: "Calculate your optimal daily protein intake based on weight and goals.",
     href: "/tools/protein-calculator",
+  },
+  {
+    icon: <Heart className="w-6 h-6" />,
+    title: "Heart Rate Calculator",
+    description: "Calculate your target heart rate zones for fat burn, cardio, and peak training.",
+    href: "/tools/heart-rate-calculator",
+  },
+  {
+    icon: <Timer className="w-6 h-6" />,
+    title: "Pace Calculator",
+    description: "Calculate your running pace, speed, and split times for any distance.",
+    href: "/tools/pace-calculator",
+  },
+  {
+    icon: <Dumbbell className="w-6 h-6" />,
+    title: "Wilks Calculator",
+    description: "Calculate your Wilks score to compare strength across different body weights.",
+    href: "/tools/wilks-calculator",
+  },
+  {
+    icon: <Flame className="w-6 h-6" />,
+    title: "BMR Calculator",
+    description: "Calculate your Basal Metabolic Rate and estimated daily calorie burn.",
+    href: "/tools/bmr-calculator",
+  },
+  {
+    icon: <Scale className="w-6 h-6" />,
+    title: "Ideal Weight Calculator",
+    description: "Calculate your healthy weight range using BMI and medical formulas.",
+    href: "/tools/ideal-weight-calculator",
   },
   {
     icon: <Calculator className="w-6 h-6" />,
