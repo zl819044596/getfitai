@@ -54,7 +54,7 @@ export default function ContactPage() {
               <input
                 type="text"
                 placeholder="Your name"
-                className="w-full px-4 py-3 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm transition-colors"
+                className="w-full px-4 py-3 rounded-xl border border-border bg-card text-foreground placeholder:text-slate-400 focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm transition-colors"
               />
             </div>
             <div>
@@ -62,7 +62,7 @@ export default function ContactPage() {
               <input
                 type="email"
                 placeholder="your@email.com"
-                className="w-full px-4 py-3 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm transition-colors"
+                className="w-full px-4 py-3 rounded-xl border border-border bg-card text-foreground placeholder:text-slate-400 focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm transition-colors"
               />
             </div>
             <div>
@@ -70,7 +70,7 @@ export default function ContactPage() {
               <textarea
                 placeholder="How can we help?"
                 rows={5}
-                className="w-full px-4 py-3 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm resize-none transition-colors"
+                className="w-full px-4 py-3 rounded-xl border border-border bg-card text-foreground placeholder:text-slate-400 focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm resize-none transition-colors"
               />
             </div>
             <button
