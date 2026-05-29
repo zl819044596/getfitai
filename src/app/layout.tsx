@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     google: "your-google-verification-code",
   },
   alternates: {
-    canonical: "https://getfitai.io",
+    canonical: null,
   },
   robots: {
     index: true,

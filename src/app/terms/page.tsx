@@ -67,7 +67,11 @@ export default function TermsPage() {
 
             <h2 className="text-xl font-bold text-foreground mt-8 mb-4">7. Contact</h2>
             <p className="text-muted-foreground mb-6">
-              For questions about these terms, contact hello@getfitai.io.
+              For questions about these terms, contact us at{" "}
+              <a href="/contact" className="text-orange-400 hover:underline">
+                our contact page
+              </a>
+              .
             </p>
           </div>
         </div>

@@ -61,7 +61,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <h3 className="font-semibold text-foreground">Email</h3>
-                <p className="text-muted-foreground text-sm">hello@getfitai.io</p>
+                <p className="text-muted-foreground text-sm">hello (at) getfitai.io</p>
               </div>
             </div>
 

@@ -66,7 +66,11 @@ export default function PrivacyPage() {
             <h2 className="text-xl font-bold text-foreground mt-8 mb-4">6. Your Rights</h2>
             <p className="text-muted-foreground mb-6">
               You can clear all locally stored data by clearing your browser's localStorage for getfitai.io. 
-              For any privacy concerns, contact us at hello@getfitai.io.
+              For any privacy concerns, contact us via{" "}
+              <a href="/contact" className="text-orange-400 hover:underline">
+                our contact page
+              </a>
+              .
             </p>
           </div>
         </div>
