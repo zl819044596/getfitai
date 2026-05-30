@@ -5,7 +5,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Home vs Gym Workout: Which Is Better for You? | GetFitAI",
   description:
-    "Compare home vs gym workouts: costs, equipment, results, and convenience. Find out which option fits your lifestyle and goals. Get a free personalized workout plan.",
+    "Compare home vs gym workouts: costs, equipment, results, and convenience. Find out which option fits your lifestyle and goals.",
   keywords: [
     "home vs gym workout",
     "home workout vs gym",
@@ -20,6 +20,14 @@ export const metadata: Metadata = {
     title: "Home vs Gym Workout: Which Is Better?",
     description: "Complete comparison of home and gym workouts. Find your best fit.",
     url: "https://getfitai.io/blog/home-vs-gym-workout",
+    images: [
+      {
+        url: "https://getfitai.io/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",
+      },
+    ],
     type: "article",
   },
 };

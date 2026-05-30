@@ -4,12 +4,20 @@ import { CalorieCalculatorClient } from "./calorie-calculator-client";
 export const metadata: Metadata = {
   title: "Calorie Calculator — Free TDEE & Daily Calories | GetFitAI",
   description:
-    "Calculate your daily calorie needs for free. Get your BMR, TDEE, and personalized calorie target based on your activity level and weight goals. No signup required.",
+    "Calculate your daily calorie needs for free. Get your BMR, TDEE, and personalized calorie target based on your activity level. No signup required.",
   alternates: {
     canonical: "https://getfitai.io/tools/calorie-calculator",
   },
   openGraph: {
     url: "https://getfitai.io/tools/calorie-calculator",
+    images: [
+      {
+        url: "https://getfitai.io/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",
+      },
+    ],
   },
 };
 

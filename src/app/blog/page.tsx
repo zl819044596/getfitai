@@ -11,10 +11,53 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Fitness Blog | Workout Tips & Nutrition Advice",
     url: "https://getfitai.io/blog",
+    images: [
+      {
+        url: "https://getfitai.io/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",
+      },
+    ],
   },
 };
 
 const posts = [
+  {
+    title: "AI Fitness Coach vs Personal Trainer: Which Is Better?",
+    excerpt: "Compare AI fitness coaches and human personal trainers. Cost, personalization, accountability, and results — find out which option fits your goals and budget in 2026.",
+    date: "May 30, 2026",
+    slug: "ai-fitness-coach-vs-personal-trainer",
+    category: "Comparison",
+  },
+  {
+    title: "Best AI Fitness Apps 2026: Top Picks Reviewed",
+    excerpt: "We reviewed the top AI fitness apps of 2026. Features, pricing, accuracy, and user experience compared. Find the best AI workout coach for your goals.",
+    date: "May 30, 2026",
+    slug: "best-ai-fitness-apps-2026",
+    category: "Reviews",
+  },
+  {
+    title: "How to Use AI Workout Generator: Complete Guide",
+    excerpt: "Step-by-step guide to using AI workout generators effectively. Input tips, customization, progression, and getting the best results from AI fitness tools.",
+    date: "May 30, 2026",
+    slug: "how-to-use-ai-workout-generator",
+    category: "Guides",
+  },
+  {
+    title: "What Is TDEE and How to Calculate It",
+    excerpt: "Total Daily Energy Expenditure explained. Learn what TDEE means, how to calculate it, and why it matters for weight loss, muscle gain, and maintenance.",
+    date: "May 30, 2026",
+    slug: "what-is-tdee-and-how-to-calculate",
+    category: "Nutrition",
+  },
+  {
+    title: "Protein Intake Calculator: How Much Protein Do You Need?",
+    excerpt: "Learn how much protein you need daily based on your weight, activity level, and fitness goals. Science-backed guidelines and free calculator included.",
+    date: "May 30, 2026",
+    slug: "protein-intake-calculator-guide",
+    category: "Nutrition",
+  },
   {
     title: "How to Build Muscle Fast: Science-Backed Guide",
     excerpt: "Learn proven training, nutrition, and recovery strategies for maximum hypertrophy. Progressive overload, protein intake, and optimal frequency explained.",
@@ -125,6 +168,37 @@ export default function BlogPage() {
                 </Link>
               </article>
             ))}
+          </div>
+
+          {/* Related Tools */}
+          <div className="mt-16 bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-2xl p-6 md:p-8">
+            <h2 className="text-lg font-bold text-white mb-4">Free Fitness Tools</h2>
+            <div className="grid md:grid-cols-2 gap-4">
+              <Link href="/tools/calorie-calculator" className="flex items-center gap-3 text-sm text-slate-400 hover:text-orange-400 transition-colors">
+                <ArrowRight className="w-4 h-4" />
+                Calorie Calculator
+              </Link>
+              <Link href="/tools/protein-calculator" className="flex items-center gap-3 text-sm text-slate-400 hover:text-orange-400 transition-colors">
+                <ArrowRight className="w-4 h-4" />
+                Protein Calculator
+              </Link>
+              <Link href="/tools/bmi-calculator" className="flex items-center gap-3 text-sm text-slate-400 hover:text-orange-400 transition-colors">
+                <ArrowRight className="w-4 h-4" />
+                BMI Calculator
+              </Link>
+              <Link href="/tools/tdee-calculator" className="flex items-center gap-3 text-sm text-slate-400 hover:text-orange-400 transition-colors">
+                <ArrowRight className="w-4 h-4" />
+                TDEE Calculator
+              </Link>
+              <Link href="/tools/workout-generator" className="flex items-center gap-3 text-sm text-slate-400 hover:text-orange-400 transition-colors">
+                <ArrowRight className="w-4 h-4" />
+                AI Workout Generator
+              </Link>
+              <Link href="/tools/macro-calculator" className="flex items-center gap-3 text-sm text-slate-400 hover:text-orange-400 transition-colors">
+                <ArrowRight className="w-4 h-4" />
+                Macro Calculator
+              </Link>
+            </div>
           </div>
         </div>
       </section>

@@ -108,21 +108,69 @@ export function ToolsClient() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-4">
-            {tools.map((tool, i) => (
-              <Link
-                key={i}
-                href={tool.href}
-                className="flex items-start gap-4 bg-muted rounded-2xl p-6 hover:bg-muted/80 transition-colors"
-              >
-                <div className="text-primary">{tool.icon}</div>
-                <div className="flex-1">
-                  <h3 className="font-semibold text-lg mb-1 text-foreground">{tool.title}</h3>
-                  <p className="text-muted-foreground text-sm">{tool.description}</p>
-                </div>
-                <ArrowRight className="w-5 h-5 text-muted-foreground" />
+          {/* Popular Tools */}
+          <div className="mb-8">
+            <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">Popular</h2>
+            <div className="grid md:grid-cols-2 gap-4">
+              {tools.slice(0, 6).map((tool, i) => (
+                <Link
+                  key={i}
+                  href={tool.href}
+                  className="flex items-start gap-4 bg-muted rounded-2xl p-6 hover:bg-muted/80 transition-colors"
+                >
+                  <div className="text-primary">{tool.icon}</div>
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-lg mb-1 text-foreground">{tool.title}</h3>
+                    <p className="text-muted-foreground text-sm">{tool.description}</p>
+                  </div>
+                  <ArrowRight className="w-5 h-5 text-muted-foreground" />
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* All Tools */}
+          <div>
+            <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">All Tools</h2>
+            <div className="grid md:grid-cols-2 gap-4">
+              {tools.slice(6).map((tool, i) => (
+                <Link
+                  key={i}
+                  href={tool.href}
+                  className="flex items-start gap-4 bg-muted rounded-2xl p-6 hover:bg-muted/80 transition-colors"
+                >
+                  <div className="text-primary">{tool.icon}</div>
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-lg mb-1 text-foreground">{tool.title}</h3>
+                    <p className="text-muted-foreground text-sm">{tool.description}</p>
+                  </div>
+                  <ArrowRight className="w-5 h-5 text-muted-foreground" />
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Related Content */}
+          <div className="mt-12 bg-muted rounded-2xl p-6 md:p-8">
+            <h2 className="text-lg font-semibold text-foreground mb-4">Related Guides</h2>
+            <div className="grid md:grid-cols-2 gap-4">
+              <Link href="/blog/protein-intake-calculator-guide" className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <ArrowRight className="w-4 h-4" />
+                Protein Intake Guide
               </Link>
-            ))}
+              <Link href="/blog/what-is-tdee-and-how-to-calculate" className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <ArrowRight className="w-4 h-4" />
+                What Is TDEE?
+              </Link>
+              <Link href="/blog/how-to-use-ai-workout-generator" className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <ArrowRight className="w-4 h-4" />
+                How to Use AI Workout Generator
+              </Link>
+              <Link href="/blog/ai-fitness-coach-vs-personal-trainer" className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <ArrowRight className="w-4 h-4" />
+                AI Coach vs Personal Trainer
+              </Link>
+            </div>
           </div>
         </div>
       </section>

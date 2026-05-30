@@ -8,7 +8,16 @@ export const metadata: Metadata = {
     canonical: "https://getfitai.io/tools",
   },
   openGraph: {
+    title: "Fitness Tools | GetFitAI",
     url: "https://getfitai.io/tools",
+    images: [
+      {
+        url: "https://getfitai.io/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Fitness Tools | GetFitAI",
+      },
+    ],
   },
 };
 

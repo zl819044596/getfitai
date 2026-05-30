@@ -12,6 +12,14 @@ export const metadata: Metadata = {
     title: "Intermittent Fasting and Workout: The Complete Guide",
     description: "Learn how to combine intermittent fasting with your workout routine for optimal results.",
     url: "https://getfitai.io/blog/intermittent-fasting-workout",
+    images: [
+      {
+        url: "https://getfitai.io/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",
+      },
+    ],
     siteName: "GetFitAI",
   },
 };

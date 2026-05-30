@@ -1,75 +1,33 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, Users, Star, Zap } from "lucide-react";
+import { ArrowRight, Sparkles, Users, Star, Zap, Dumbbell } from "lucide-react";
 import Link from "next/link";
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center pt-16 overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+    <section className="relative min-h-screen flex items-center pt-16 overflow-hidden bg-[#020617]">
+      {/* Animated Grid Background */}
+      <div className="absolute inset-0 opacity-[0.03]">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `linear-gradient(rgba(249, 115, 22, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(249, 115, 22, 0.3) 1px, transparent 1px)`,
+            backgroundSize: "60px 60px",
+          }}
+        />
+      </div>
+
+      {/* Pulse Glow Center */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-orange-500/5 blur-[120px] animate-pulse-glow pointer-events-none" />
+
+      {/* Orange gradient from top right */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-orange-500/10 via-transparent to-transparent" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Right Image Grid - 移到左侧 */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="relative hidden lg:block order-1"
-          >
-            <div className="grid grid-cols-2 gap-4">
-              {/* Main Image */}
-              <div className="col-span-2 relative h-64 rounded-2xl overflow-hidden shadow-2xl shadow-black/50">
-                <Image
-                  src="/images/hero-fitness.jpg"
-                  alt="Fitness Training"
-                  fill
-                  className="object-cover grayscale"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent" />
-              </div>
-              {/* Secondary Images */}
-              <div className="relative h-48 rounded-2xl overflow-hidden shadow-xl shadow-black/30">
-                <Image
-                  src="/images/workout-3.jpg"
-                  alt="Strength Training"
-                  fill
-                  className="object-cover grayscale"
-                />
-              </div>
-              <div className="relative h-48 rounded-2xl overflow-hidden shadow-xl shadow-black/30">
-                <Image
-                  src="/images/workout-4.jpg"
-                  alt="Yoga Training"
-                  fill
-                  className="object-cover grayscale"
-                />
-              </div>
-            </div>
-
-            {/* Floating Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.8 }}
-              className="absolute -bottom-6 -right-6 bg-slate-900/80 backdrop-blur-xl p-4 rounded-xl shadow-xl border border-slate-700/50"
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-orange-500/20 flex items-center justify-center">
-                  <Zap className="w-5 h-5 text-orange-400" />
-                </div>
-                <div>
-                  <div className="text-sm font-semibold text-white">AI Smart Analysis</div>
-                  <div className="text-xs text-slate-400">Personalized Plans</div>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Left Content - 移到右侧 */}
-          <div className="text-center lg:text-left order-2">
+        <div className="grid lg:grid-cols-5 gap-12 items-center">
+          {/* Left Content - 60% */}
+          <div className="lg:col-span-3 text-center lg:text-left">
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -78,19 +36,20 @@ export function Hero() {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 mb-8"
             >
               <Sparkles className="w-4 h-4 text-orange-400" />
-              <span className="text-sm font-medium text-orange-400">Trusted by 10,000+ users</span>
+              <span className="text-sm font-medium text-orange-400">Trusted by 50,000+ users</span>
             </motion.div>
 
-            {/* Heading */}
+            {/* Heading - Outfit font, large, tight */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6 text-balance"
+              className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight mb-6 text-balance"
+              style={{ fontFamily: "var(--font-heading)" }}
             >
-              <span className="text-white">Your Free AI</span>
+              <span className="text-white">AI Workouts</span>
               <br />
-              <span className="gradient-text">Fitness Coach</span>
+              <span className="gradient-text">Built for You</span>
             </motion.h1>
 
             {/* Description */}
@@ -100,7 +59,7 @@ export function Hero() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-lg text-slate-400 max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed"
             >
-              Use AI to generate personalized training plans and calculate BMI, TDEE, body fat, and 1RM. No signup required, completely free. Start your fitness journey now with a workout plan built specifically for your goals and equipment.
+              Tell us your goals, equipment, and experience. Get a personalized plan in 10 seconds. No signup required.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -111,15 +70,22 @@ export function Hero() {
               className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10"
             >
               <Link
-                href="/#generator"
-                className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 rounded-full shadow-xl shadow-orange-500/20 transition-all duration-300 hover:-translate-y-0.5 group"
+                href="/workouts/home"
+                className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-orange-500 hover:bg-orange-600 rounded-full btn-glow animate-pulse-glow"
+                style={{ fontFamily: "var(--font-heading)" }}
               >
-                Get My Workout Plan
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                Generate My Workout
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Link>
+              <Link
+                href="/tools"
+                className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-slate-300 border border-slate-700 hover:border-orange-500/50 hover:text-orange-400 rounded-full transition-all"
+              >
+                Explore Tools
               </Link>
             </motion.div>
 
-            {/* Stats */}
+            {/* Stats Row */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -127,34 +93,112 @@ export function Hero() {
               className="flex flex-wrap items-center justify-center lg:justify-start gap-8"
             >
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center glow-sm">
                   <Users className="w-6 h-6 text-orange-400" />
                 </div>
                 <div className="text-left">
-                  <div className="text-2xl font-bold text-white">10K+</div>
-                  <div className="text-sm text-slate-500">Active Users</div>
+                  <div className="text-2xl font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>50K+</div>
+                  <div className="text-sm text-slate-500">Plans Generated</div>
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center glow-sm">
+                  <Dumbbell className="w-6 h-6 text-orange-400" />
+                </div>
+                <div className="text-left">
+                  <div className="text-2xl font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>15</div>
+                  <div className="text-sm text-slate-500">Free Tools</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center glow-sm">
                   <Star className="w-6 h-6 text-orange-400" />
                 </div>
                 <div className="text-left">
-                  <div className="text-2xl font-bold text-white">4.9</div>
+                  <div className="text-2xl font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>4.9★</div>
                   <div className="text-sm text-slate-500">User Rating</div>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center">
-                  <Zap className="w-6 h-6 text-orange-400" />
-                </div>
-                <div className="text-left">
-                  <div className="text-2xl font-bold text-white">30s</div>
-                  <div className="text-sm text-slate-500">Quick Generation</div>
                 </div>
               </div>
             </motion.div>
           </div>
+
+          {/* Right Side - 40% Visual */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="hidden lg:block lg:col-span-2 relative"
+          >
+            <div className="relative">
+              {/* Main Visual - Abstract Fitness Graphic */}
+              <div className="relative w-full aspect-square max-w-md mx-auto">
+                {/* Outer Ring */}
+                <div className="absolute inset-0 rounded-full border border-orange-500/20 animate-pulse" />
+                
+                {/* Middle Ring */}
+                <div className="absolute inset-8 rounded-full border border-orange-500/30" />
+                
+                {/* Inner Glow */}
+                <div className="absolute inset-16 rounded-full bg-gradient-to-br from-orange-500/20 to-transparent" />
+                
+                {/* Center Icon */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-24 h-24 rounded-2xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center glow-md">
+                    <Zap className="w-12 h-12 text-orange-400" />
+                  </div>
+                </div>
+
+                {/* Orbiting Dots */}
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  className="absolute inset-0"
+                >
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-orange-400 glow-sm" />
+                </motion.div>
+                <motion.div
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                  className="absolute inset-4"
+                >
+                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-orange-300 glow-sm" />
+                </motion.div>
+              </div>
+
+              {/* Floating Card - Bottom */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.8 }}
+                className="absolute -bottom-4 -left-4 bg-slate-900/90 backdrop-blur-xl p-4 rounded-xl border border-slate-800 glow-sm"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-orange-500/20 flex items-center justify-center">
+                    <Zap className="w-5 h-5 text-orange-400" />
+                  </div>
+                  <div>
+                    <div className="text-sm font-bold text-white">AI Smart Analysis</div>
+                    <div className="text-xs text-slate-400">Personalized Plans</div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Floating Card - Top Right */}
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1 }}
+                className="absolute -top-4 -right-4 bg-slate-900/90 backdrop-blur-xl p-3 rounded-xl border border-slate-800 glow-sm"
+              >
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center">
+                    <Star className="w-4 h-4 text-green-400" />
+                  </div>
+                  <div className="text-xs text-slate-300">Workout Complete!</div>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

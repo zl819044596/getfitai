@@ -1,30 +1,50 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X, Dumbbell } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
-  { href: "/#generator", label: "Workout Plans" },
-  { href: "/tools", label: "Fitness Tools" },
+  { href: "/tools", label: "Tools" },
+  { href: "/blog", label: "Blog" },
   { href: "/#features", label: "Features" },
   { href: "/#testimonials", label: "Reviews" },
 ];
 
 export function Nav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-[#020617]/95 backdrop-blur-md border-b border-slate-800"
+          : "bg-transparent"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow-lg shadow-orange-500/20">
+            <div className="w-10 h-10 rounded-xl bg-orange-500 flex items-center justify-center glow-sm">
               <Dumbbell className="w-5 h-5 text-white" />
             </div>
-            <span className="text-xl font-bold text-white">GetFitAI</span>
+            <span 
+              className="text-xl font-bold text-white"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              GetFitAI
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -43,10 +63,11 @@ export function Nav() {
           {/* CTA Button */}
           <div className="hidden md:flex items-center">
             <Link
-              href="/#generator"
-              className="inline-flex items-center px-4 py-2 text-sm font-medium bg-slate-800 border border-slate-700 text-white hover:border-orange-500/30 hover:bg-slate-700 rounded-lg transition-colors"
+              href="/workouts/home"
+              className="inline-flex items-center px-5 py-2.5 text-sm font-bold text-white bg-orange-500 hover:bg-orange-600 rounded-full btn-glow"
+              style={{ fontFamily: "var(--font-heading)" }}
             >
-              Get Started
+              Generate Workout
             </Link>
           </div>
 
@@ -67,14 +88,14 @@ export function Nav() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-slate-950 border-t border-slate-800"
+            className="md:hidden bg-[#020617]/98 backdrop-blur-xl border-t border-slate-800"
           >
             <div className="px-4 py-4 space-y-4">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="block text-slate-400 hover:text-orange-400 transition-colors"
+                  className="block text-slate-400 hover:text-orange-400 transition-colors py-2"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {link.label}
@@ -82,10 +103,11 @@ export function Nav() {
               ))}
               <div className="pt-4 border-t border-slate-800">
                 <Link
-                  href="/#generator"
-                  className="block w-full text-center bg-slate-800 border border-slate-700 text-white py-3 rounded-lg hover:border-orange-500/30"
+                  href="/workouts/home"
+                  className="block w-full text-center bg-orange-500 text-white py-3 rounded-full font-bold hover:bg-orange-600 transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
-                  Get Started
+                  Generate Workout
                 </Link>
               </div>
             </div>

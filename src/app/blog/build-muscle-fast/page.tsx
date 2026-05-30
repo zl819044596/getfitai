@@ -5,7 +5,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "How to Build Muscle Fast: Science-Backed Guide | GetFitAI",
   description:
-    "Learn how to build muscle fast with proven training, nutrition, and recovery strategies. Progressive overload, protein intake, and optimal training frequency explained.",
+    "Learn how to build muscle fast with proven training, nutrition, and recovery strategies. Progressive overload and protein intake explained.",
   keywords: [
     "build muscle fast",
     "muscle building guide",
@@ -20,6 +20,14 @@ export const metadata: Metadata = {
     title: "How to Build Muscle Fast: Science-Backed Guide",
     description: "Proven strategies for rapid muscle growth. Training, nutrition, and recovery.",
     url: "https://getfitai.io/blog/build-muscle-fast",
+    images: [
+      {
+        url: "https://getfitai.io/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",
+      },
+    ],
     type: "article",
   },
 };

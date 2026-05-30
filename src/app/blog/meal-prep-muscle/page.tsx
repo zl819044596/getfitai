@@ -20,6 +20,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "How to Meal Prep for Muscle Gain | GetFitAI",
     url: "https://getfitai.io/blog/meal-prep-muscle",
+    images: [
+      {
+        url: "https://getfitai.io/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",
+      },
+    ],
   },
 };
 

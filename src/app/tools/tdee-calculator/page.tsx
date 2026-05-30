@@ -10,6 +10,14 @@ export const metadata: Metadata = {
   },
   openGraph: {
     url: "https://getfitai.io/tools/tdee-calculator",
+    images: [
+      {
+        url: "https://getfitai.io/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",
+      },
+    ],
   },
 };
 

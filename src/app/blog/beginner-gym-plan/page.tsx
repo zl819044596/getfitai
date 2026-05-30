@@ -5,7 +5,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Beginner Gym Plan: Complete 4-Week Guide for Newbies | GetFitAI",
   description:
-    "Start your fitness journey with our free beginner gym plan. 4-week progressive program with exercises, sets, reps & rest. No experience needed. Get your personalized AI workout plan today.",
+    "Start your fitness journey with our free beginner gym plan. 4-week progressive program with exercises, sets, reps & rest. No experience needed.",
   keywords: [
     "beginner gym plan",
     "gym beginner program",
@@ -20,6 +20,14 @@ export const metadata: Metadata = {
     title: "Beginner Gym Plan: Complete 4-Week Guide",
     description: "Free 4-week progressive gym program for beginners. No experience needed.",
     url: "https://getfitai.io/blog/beginner-gym-plan",
+    images: [
+      {
+        url: "https://getfitai.io/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",
+      },
+    ],
     type: "article",
   },
 };

@@ -24,6 +24,13 @@
     --input: 217 33% 17%;
     --ring: 24 95% 53%;
     --radius: 0.625rem;
+    
+    /* Design System Variables */
+    --font-heading: var(--font-outfit), 'Outfit', sans-serif;
+    --font-body: var(--font-inter), 'Inter', sans-serif;
+    --glow-sm: 0 0 20px rgba(249, 115, 22, 0.2);
+    --glow-md: 0 0 40px rgba(249, 115, 22, 0.3);
+    --glow-lg: 0 0 80px rgba(249, 115, 22, 0.4);
   }
 }
 
@@ -38,8 +45,43 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-body);
     font-feature-settings: "kern" 1, "liga" 1;
   }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+}
+
+/* Glow Effects */
+.glow-sm {
+  box-shadow: var(--glow-sm);
+}
+.glow-md {
+  box-shadow: var(--glow-md);
+}
+.glow-lg {
+  box-shadow: var(--glow-lg);
+}
+
+/* Pulse Glow Animation */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(249, 115, 22, 0.2); }
+  50% { box-shadow: 0 0 60px rgba(249, 115, 22, 0.5); }
+}
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Float Animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
 
 /* Gradient Text */
@@ -48,6 +90,27 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Button Glow Hover */
+.btn-glow {
+  transition: all 0.3s ease;
+}
+.btn-glow:hover {
+  box-shadow: var(--glow-md);
+  transform: scale(1.02);
+}
+.btn-glow:active {
+  transform: scale(0.98);
+}
+
+/* Card Glow Hover */
+.card-glow {
+  transition: all 0.3s ease;
+}
+.card-glow:hover {
+  border-color: rgba(249, 115, 22, 0.5);
+  box-shadow: var(--glow-sm);
 }
 
 /* Custom Scrollbar */

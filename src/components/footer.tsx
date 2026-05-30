@@ -3,14 +3,22 @@ import { Dumbbell, Globe, Share2, MessageSquare } from "lucide-react";
 
 const footerLinks = {
   product: [
-    { label: "Workout Planner", href: "/#generator" },
+    { label: "Workout Planner", href: "/workouts/home" },
     { label: "Fitness Tools", href: "/tools" },
+    { label: "BMI Calculator", href: "/tools/bmi-calculator" },
+    { label: "Calorie Calculator", href: "/tools/calorie-calculator" },
+    { label: "Protein Calculator", href: "/tools/protein-calculator" },
     { label: "Features", href: "/#features" },
   ],
   resources: [
     { label: "Blog", href: "/blog" },
+    { label: "AI vs Trainer", href: "/blog/ai-fitness-coach-vs-personal-trainer" },
+    { label: "Best AI Apps", href: "/blog/best-ai-fitness-apps-2026" },
+    { label: "TDEE Guide", href: "/blog/what-is-tdee-and-how-to-calculate" },
+    { label: "Protein Guide", href: "/blog/protein-intake-calculator-guide" },
     { label: "About Us", href: "/about" },
     { label: "Contact", href: "/contact" },
+    { label: "Workouts", href: "/workouts/gym" },
   ],
   legal: [
     { label: "Privacy Policy", href: "/privacy" },
@@ -26,10 +34,15 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow-lg shadow-orange-500/20">
+              <div className="w-10 h-10 rounded-xl bg-orange-500 flex items-center justify-center glow-sm">
                 <Dumbbell className="w-5 h-5 text-white" />
               </div>
-              <span className="text-xl font-bold text-white">GetFitAI</span>
+              <span 
+                className="text-xl font-bold text-white"
+                style={{ fontFamily: "var(--font-heading)" }}
+              >
+                GetFitAI
+              </span>
             </Link>
             <p className="text-sm text-slate-400 mb-4">
               AI-powered workout plans for everyone. No signup required.
