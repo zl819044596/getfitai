@@ -44,16 +44,16 @@ export function WorkoutLanding({ config }: { config: WorkoutConfig }) {
             </p>
           </div>
 
-          {/* Benefits */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
+          {/* Benefits - Orange Icon Pills */}
+          <div className="flex flex-wrap justify-center gap-3 mb-12">
             {config.benefits.map((benefit, i) => {
               const BenefitIcon = iconMap[benefit.icon]
               return (
-                <div key={i} className="flex items-center gap-3 bg-muted rounded-xl p-4">
-                  <div className="text-primary">
-                    {BenefitIcon && <BenefitIcon className="w-5 h-5" />}
+                <div key={i} className="flex items-center gap-2 bg-[#1e293b] rounded-full px-4 py-2">
+                  <div className="text-orange-500">
+                    {BenefitIcon && <BenefitIcon className="w-4 h-4" />}
                   </div>
-                  <span className="font-medium text-sm text-foreground">{benefit.text}</span>
+                  <span className="font-medium text-sm text-white">{benefit.text}</span>
                 </div>
               )
             })}
@@ -62,13 +62,13 @@ export function WorkoutLanding({ config }: { config: WorkoutConfig }) {
       </section>
 
       {/* CTA - Jump to Generator */}
-      <section className="py-12 bg-primary text-primary-foreground">
+      <section className="py-16 bg-orange-500">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">{config.generatorTitle}</h2>
-          <p className="text-primary-foreground/80 mb-8">{config.generatorSubtitle}</p>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3 text-white">{config.generatorTitle}</h2>
+          <p className="text-white/80 mb-8 text-base">{config.generatorSubtitle}</p>
           <Link
             href="/#generator"
-            className="inline-flex items-center bg-background text-foreground px-8 py-4 rounded-full font-medium hover:bg-background/90 transition-colors"
+            className="inline-flex items-center bg-[#0f172a] text-white px-8 py-4 rounded-full font-medium hover:bg-[#1e293b] transition-colors shadow-lg"
           >
             {config.ctaButton}
             <ChevronRight className="w-5 h-5 ml-2" />
@@ -143,13 +143,13 @@ export function WorkoutLanding({ config }: { config: WorkoutConfig }) {
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-16 bg-primary text-primary-foreground">
+      <section className="py-16 bg-orange-500">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="text-3xl font-bold mb-4">{config.ctaTitle}</h2>
-          <p className="text-primary-foreground/80 mb-8">{config.ctaSubtitle}</p>
+          <h2 className="text-3xl font-bold mb-3 text-white">{config.ctaTitle}</h2>
+          <p className="text-white/80 mb-8 text-base">{config.ctaSubtitle}</p>
           <Link
             href="/#generator"
-            className="inline-flex items-center bg-background text-foreground px-8 py-4 rounded-full font-medium hover:bg-background/90 transition-colors"
+            className="inline-flex items-center bg-[#0f172a] text-white px-8 py-4 rounded-full font-medium hover:bg-[#1e293b] transition-colors shadow-lg"
           >
             {config.ctaButton}
             <ChevronRight className="w-5 h-5 ml-2" />
