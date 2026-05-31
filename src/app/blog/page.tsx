@@ -6,11 +6,11 @@ export const metadata: Metadata = {
   title: "Fitness Blog | Workout Tips & Nutrition Advice",
   description: "Read expert fitness tips, workout guides, and nutrition advice on the GetFitAI blog. Science-backed content to help you reach your goals faster.",
   alternates: {
-    canonical: "https://getfitai.io/blog",
+    canonical: "https://www.getfitai.io/blog",
   },
   openGraph: {
     title: "Fitness Blog | Workout Tips & Nutrition Advice",
-    url: "https://getfitai.io/blog",
+    url: "https://www.getfitai.io/blog",
     images: [
       {
         url: "https://getfitai.io/og-image.jpg",
@@ -23,6 +23,27 @@ export const metadata: Metadata = {
 };
 
 const posts = [
+  {
+    title: "How Much Protein Per Day: Complete Calculator & Guide",
+    excerpt: "Calculate your exact daily protein needs based on weight, goals, and activity level. Science-backed guidelines with free calculator.",
+    date: "June 1, 2026",
+    slug: "how-much-protein-per-day",
+    category: "Nutrition",
+  },
+  {
+    title: "How Many Calories Should I Eat? Calculator & Guide",
+    excerpt: "Calculate your daily calorie needs for weight loss, maintenance, or muscle gain. TDEE explained with step-by-step formulas.",
+    date: "June 1, 2026",
+    slug: "how-many-calories-should-i-eat",
+    category: "Nutrition",
+  },
+  {
+    title: "AI Workout Planner: Free Personalized Training Plans",
+    excerpt: "Discover how AI workout planners create personalized training programs in seconds. Free, science-backed, and tailored to your goals.",
+    date: "June 1, 2026",
+    slug: "ai-workout-planner",
+    category: "AI Fitness",
+  },
   {
     title: "AI Fitness Coach vs Personal Trainer: Which Is Better?",
     excerpt: "Compare AI fitness coaches and human personal trainers. Cost, personalization, accountability, and results — find out which option fits your goals and budget in 2026.",

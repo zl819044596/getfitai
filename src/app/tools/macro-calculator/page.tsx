@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { MacroCalculatorClient } from "./macro-calculator-client";
+import { ToolContent } from "@/components/tool-content";
 
 export const metadata: Metadata = {
   title: "Macro Calculator — Free Protein, Carbs & Fat | GetFitAI",
