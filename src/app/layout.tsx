@@ -42,12 +42,12 @@ export const metadata: Metadata = {
     title: "GetFitAI - Free AI Workout Generator & Fitness Tools",
     description:
       "Create personalized AI workout plans and use free fitness calculators. No signup required.",
-    url: "https://getfitai.io",
+    url: "https://www.getfitai.io",
     siteName: "GetFitAI",
     type: "website",
     images: [
       {
-        url: "https://getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",
@@ -59,12 +59,13 @@ export const metadata: Metadata = {
     title: "GetFitAI - Free AI Workout Generator & Fitness Tools",
     description:
       "Create personalized AI workout plans and use free fitness calculators. No signup required.",
+    images: ["https://www.getfitai.io/og-image.jpg"],
   },
   verification: {
     google: "G-MFH7XYRCCT",
   },
   alternates: {
-    canonical: null,
+    canonical: "https://www.getfitai.io",
   },
   robots: {
     index: true,
@@ -108,11 +109,11 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: "GetFitAI",
-              url: "https://getfitai.io",
+              url: "https://www.getfitai.io",
               description: "Free AI-powered workout generator and fitness calculators",
               potentialAction: {
                 "@type": "SearchAction",
-                target: "https://getfitai.io/tools?q={search_term_string}",
+                target: "https://www.getfitai.io/tools?q={search_term_string}",
                 "query-input": "required name=search_term_string",
               },
             }),
@@ -125,8 +126,8 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "GetFitAI",
-              url: "https://getfitai.io",
-              logo: "https://getfitai.io/logo.png",
+              url: "https://www.getfitai.io",
+              logo: "https://www.getfitai.io/logo.png",
               sameAs: [
                 "https://twitter.com/getfitai",
                 "https://github.com/getfitai",
