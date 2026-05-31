@@ -1,0 +1,6 @@
+{
+  "outputDir": "public",
+  "images": [
+    {"filename": "logo.png", "title": "GetFitAI", "subtitle": "AI Fitness", "cta": ""}
+  ]
+}

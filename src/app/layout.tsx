@@ -61,7 +61,7 @@ export const metadata: Metadata = {
       "Create personalized AI workout plans and use free fitness calculators. No signup required.",
   },
   verification: {
-    google: "your-google-verification-code",
+    google: "G-MFH7XYRCCT",
   },
   alternates: {
     canonical: null,

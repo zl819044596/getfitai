@@ -1,0 +1,6 @@
+{
+  "outputDir": "public",
+  "images": [
+    {"filename": "og-image.png", "title": "GetFitAI", "subtitle": "Free AI Workout Plans", "cta": "Get Started"}
+  ]
+}
