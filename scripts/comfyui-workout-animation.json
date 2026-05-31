@@ -1,0 +1,140 @@
+{
+  "last_node_id": 15,
+  "last_link_id": 20,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "CheckpointLoaderSimple",
+      "pos": [100, 100],
+      "size": [300, 80],
+      "inputs": [],
+      "outputs": [
+        {"name": "MODEL", "type": "MODEL", "links": [1]},
+        {"name": "CLIP", "type": "CLIP", "links": [2, 3]},
+        {"name": "VAE", "type": "VAE", "links": [4]}
+      ],
+      "widgets_values": ["v1-5-pruned-emaonly.safetensors"]
+    },
+    {
+      "id": 2,
+      "type": "ADE_LoadAnimateDiffModel",
+      "pos": [100, 220],
+      "size": [350, 80],
+      "inputs": [],
+      "outputs": [
+        {"name": "MOTION_MODEL", "type": "MOTION_MODEL_ADE", "links": [5]}
+      ],
+      "widgets_values": ["mm_sd_v15_v2.ckpt"]
+    },
+    {
+      "id": 3,
+      "type": "CLIPTextEncode",
+      "pos": [500, 100],
+      "size": [400, 200],
+      "inputs": [
+        {"name": "clip", "type": "CLIP", "link": 2}
+      ],
+      "outputs": [
+        {"name": "CONDITIONING", "type": "CONDITIONING", "links": [6]}
+      ],
+      "widgets_values": ["masterpiece, best quality, a fitness athlete performing a perfect squat exercise, side view, gym background, professional lighting, detailed anatomy, 4k"]
+    },
+    {
+      "id": 4,
+      "type": "CLIPTextEncode",
+      "pos": [500, 350],
+      "size": [400, 200],
+      "inputs": [
+        {"name": "clip", "type": "CLIP", "link": 3}
+      ],
+      "outputs": [
+        {"name": "CONDITIONING", "type": "CONDITIONING", "links": [7]}
+      ],
+      "widgets_values": ["worst quality, low quality, blurry, distorted, deformed, bad anatomy, watermark, signature, text"]
+    },
+    {
+      "id": 5,
+      "type": "EmptyLatentImage",
+      "pos": [100, 340],
+      "size": [300, 120],
+      "inputs": [],
+      "outputs": [
+        {"name": "LATENT", "type": "LATENT", "links": [8]}
+      ],
+      "widgets_values": [512, 512, 16]
+    },
+    {
+      "id": 6,
+      "type": "ADE_AnimateDiffLoaderGen1",
+      "pos": [100, 500],
+      "size": [350, 120],
+      "inputs": [
+        {"name": "model", "type": "MODEL", "link": 1},
+        {"name": "motion_model", "type": "MOTION_MODEL_ADE", "link": 5},
+        {"name": "clip", "type": "CLIP", "link": null}
+      ],
+      "outputs": [
+        {"name": "MODEL", "type": "MODEL", "links": [9]},
+        {"name": "CLIP", "type": "CLIP", "links": []}
+      ],
+      "widgets_values": ["mm_sd_v15_v2.ckpt"]
+    },
+    {
+      "id": 7,
+      "type": "KSampler",
+      "pos": [950, 100],
+      "size": [300, 300],
+      "inputs": [
+        {"name": "model", "type": "MODEL", "link": 9},
+        {"name": "positive", "type": "CONDITIONING", "link": 6},
+        {"name": "negative", "type": "CONDITIONING", "link": 7},
+        {"name": "latent_image", "type": "LATENT", "link": 8}
+      ],
+      "outputs": [
+        {"name": "LATENT", "type": "LATENT", "links": [10]}
+      ],
+      "widgets_values": [0, "randomize", 20, 8, "euler_ancestral", "normal", 1]
+    },
+    {
+      "id": 8,
+      "type": "VAEDecode",
+      "pos": [1300, 100],
+      "size": [250, 60],
+      "inputs": [
+        {"name": "samples", "type": "LATENT", "link": 10},
+        {"name": "vae", "type": "VAE", "link": 4}
+      ],
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [11]}
+      ]
+    },
+    {
+      "id": 9,
+      "type": "SaveAnimatedWEBP",
+      "pos": [1600, 100],
+      "size": [350, 150],
+      "inputs": [
+        {"name": "images", "type": "IMAGE", "link": 11}
+      ],
+      "outputs": [],
+      "widgets_values": ["workout_squat", 8, "default", 80, false]
+    }
+  ],
+  "links": [
+    [1, 1, "MODEL", 6, "model", "MODEL"],
+    [2, 1, "CLIP", 3, "clip", "CLIP"],
+    [3, 1, "CLIP", 4, "clip", "CLIP"],
+    [4, 1, "VAE", 8, "vae", "VAE"],
+    [5, 2, "MOTION_MODEL", 6, "motion_model", "MOTION_MODEL_ADE"],
+    [6, 3, "CONDITIONING", 7, "positive", "CONDITIONING"],
+    [7, 4, "CONDITIONING", 7, "negative", "CONDITIONING"],
+    [8, 5, "LATENT", 7, "latent_image", "LATENT"],
+    [9, 6, "MODEL", 7, "model", "MODEL"],
+    [10, 7, "LATENT", 8, "samples", "LATENT"],
+    [11, 8, "IMAGE", 9, "images", "IMAGE"]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}
