@@ -24,6 +24,27 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    title: "Six Pack Workout: 10 Best Ab Exercises for Visible Abs",
+    excerpt: "The complete guide to getting visible abs. Science-backed exercises, training frequency, and the nutrition strategy that actually works.",
+    date: "June 1, 2026",
+    slug: "six-pack-workout",
+    category: "Abs Training",
+  },
+  {
+    title: "Beginner Workout Routine: Complete 4-Week Plan",
+    excerpt: "Everything you need to start working out. Exercises, sets, reps, rest periods, and a proven 4-week progression plan.",
+    date: "June 1, 2026",
+    slug: "beginner-workout-routine",
+    category: "Beginner Guide",
+  },
+  {
+    title: "Women Workout Plan: Strength Training for Women",
+    excerpt: "A science-backed workout plan designed specifically for women. Build strength, boost metabolism, and feel confident.",
+    date: "June 1, 2026",
+    slug: "women-workout-plan",
+    category: "Women Fitness",
+  },
+  {
     title: "How Much Protein Per Day: Complete Calculator & Guide",
     excerpt: "Calculate your exact daily protein needs based on weight, goals, and activity level. Science-backed guidelines with free calculator.",
     date: "June 1, 2026",
