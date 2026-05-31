@@ -62,10 +62,10 @@ export function ToolsPreview() {
             className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-4"
             style={{ fontFamily: "var(--font-heading)" }}
           >
-            15 Free Fitness Tools
+            15 Free Fitness Calculators & Workout Tools
           </h2>
           <p className="text-slate-400 max-w-2xl mx-auto text-lg">
-            All calculators use validated formulas. No signup, no ads, instant results.
+            All fitness calculators use validated formulas. Free BMI calculator, calorie calculator, body fat calculator, protein calculator, and more. No signup, no ads, instant results.
           </p>
         </motion.div>
 

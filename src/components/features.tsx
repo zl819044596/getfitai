@@ -53,10 +53,10 @@ export function Features() {
             Features
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Everything You Need for Your Fitness Journey
+            Free Fitness Tools & AI Workout Features
           </h2>
           <p className="text-slate-400 max-w-2xl mx-auto">
-            From AI-generated training plans to accurate fitness calculators, GetFitAI provides all the tools you need to reach your goals.
+            From AI-generated workout plans to free fitness calculators, GetFitAI provides everything you need for your fitness journey. Personalized training plans, BMI calculator, TDEE calculator, body fat calculator, and more.
           </p>
         </motion.div>
 

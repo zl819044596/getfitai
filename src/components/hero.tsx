@@ -47,9 +47,9 @@ export function Hero() {
               className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight mb-6 text-balance"
               style={{ fontFamily: "var(--font-heading)" }}
             >
-              <span className="text-white">AI Workouts</span>
+              <span className="text-white">Free AI Workout</span>
               <br />
-              <span className="gradient-text">Built for You</span>
+              <span className="gradient-text">Plans & Fitness Tools</span>
             </motion.h1>
 
             {/* Description */}
@@ -59,7 +59,7 @@ export function Hero() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-lg text-slate-400 max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed"
             >
-              Tell us your goals, equipment, and experience. Get a personalized plan in 10 seconds. No signup required.
+              Get personalized AI workout plans and free fitness calculators including BMI, TDEE, body fat, and 1RM. Tell us your fitness goals, equipment, and experience. Get a personalized training plan in 10 seconds. No signup required.
             </motion.p>
 
             {/* CTA Buttons */}
