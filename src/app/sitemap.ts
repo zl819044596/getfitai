@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
-import fs from "fs";
-import path from "path";
+
+export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://getfitai.io";
@@ -32,18 +32,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const workoutTypes = ["gym", "home", "beginner"];
 
-  // 动态获取博客文章
-  const blogDir = path.join(process.cwd(), "src/app/blog");
-  const blogPosts: string[] = [];
-  
-  if (fs.existsSync(blogDir)) {
-    const entries = fs.readdirSync(blogDir, { withFileTypes: true });
-    for (const entry of entries) {
-      if (entry.isDirectory()) {
-        blogPosts.push(entry.name);
-      }
-    }
-  }
+  // 博客文章列表（手动维护，避免构建时文件系统访问问题）
+  const blogPosts = [
+    "ai-fitness-coach-vs-personal-trainer",
+    "beginner-gym-plan",
+    "bench-press-wrist-pain",
+    "best-ai-fitness-apps-2026",
+    "build-muscle-fast",
+    "home-vs-gym",
+    "home-vs-gym-workout",
+    "how-to-build-muscle",
+    "how-to-lose-belly-fat",
+    "how-to-use-ai-workout-generator",
+    "intermittent-fasting-workout",
+    "meal-prep-muscle",
+    "protein-intake-calculator-guide",
+    "what-is-tdee-and-how-to-calculate",
+  ];
 
   const pages = [
     ...staticPages.map((page) => ({
