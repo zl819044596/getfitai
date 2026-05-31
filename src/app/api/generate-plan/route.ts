@@ -1,3 +1,5 @@
+export const runtime = "edge";
+
 import { NextRequest } from 'next/server';
 import OpenAI from 'openai';
 import { createRateLimit } from '@/lib/rate-limit';
