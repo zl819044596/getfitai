@@ -200,11 +200,16 @@ export function WorkoutGenerator() {
 
       const jsonMatch = buffer.match(/\{[\s\S]*\}/)
       if (jsonMatch) {
-        const parsed = JSON.parse(jsonMatch[0])
-        setPlan(parsed)
-        setTimeout(() => {
-          resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
-        }, 100)
+        try {
+          const parsed = JSON.parse(jsonMatch[0])
+          setPlan(parsed)
+          setTimeout(() => {
+            resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+          }, 100)
+        } catch (parseErr: any) {
+          console.error("JSON parse error:", parseErr.message, "Buffer:", buffer.substring(0, 500))
+          throw new Error("Failed to parse workout plan. Please try again.")
+        }
       } else {
         throw new Error("Invalid response format")
       }
