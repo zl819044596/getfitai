@@ -282,7 +282,7 @@ export function WorkoutPlan({ plan, onRegenerate, onAdjust }: WorkoutPlanProps) 
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, plan: { ...plan, exercises: exerciseData } }),
       })
-      const data = await res.json().catch(() => ({}))
+      const data = await res.json().catch(() => ({})) as { success?: boolean; error?: string }
       if (res.ok && data.success) {
         setEmailSent(true)
         setEmail("")

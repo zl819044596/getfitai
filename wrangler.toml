@@ -1,0 +1,25 @@
+name = "getfitai"
+compatibility_date = "2026-05-31"
+compatibility_flags = ["nodejs_compat"]
+
+# Cloudflare Pages 配置
+[[d1_databases]]
+binding = "DB"
+database_name = "getfitai-db"
+database_id = "1b953c77-2f09-46d9-8acb-40b313a9f47c"
+
+# KV 存储（session、rate limit）
+[[kv_namespaces]]
+binding = "KV"
+id = "74314b60f1064470b52689b83dfec3b8"
+
+# 环境变量
+[vars]
+NEXT_PUBLIC_APP_URL = "https://www.getfitai.io"
+
+# secrets（通过 wrangler secret put 设置）
+# STRIPE_SECRET_KEY
+# STRIPE_WEBHOOK_SECRET
+# STRIPE_PRICE_ID_PRO
+# STRIPE_PRICE_ID_LIFETIME
+# AUTH_SECRET

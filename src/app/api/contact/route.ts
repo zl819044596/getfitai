@@ -5,7 +5,7 @@ const resend = new Resend(process.env.RESEND_API_KEY || "re_dummy_key_for_build"
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, email, message } = await req.json();
+    const { name, email, message } = await req.json() as { name: string; email: string; message: string };
 
     if (!name || !email || !message) {
       return NextResponse.json(

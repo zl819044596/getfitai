@@ -127,7 +127,7 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    const { goal, experience, duration, equipment, targetArea, notes } = await req.json();
+    const { goal, experience, duration, equipment, targetArea, notes } = await req.json() as { goal: string; experience: string; duration: number; equipment: string; targetArea: string; notes?: string };
 
     const prompt = buildPrompt({ goal, experience, duration, equipment, targetArea, notes });
     const openai = getOpenAI();

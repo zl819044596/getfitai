@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
-    const { email, plan } = await req.json();
+    const { email, plan } = await req.json() as { email: string; plan: any };
 
     if (!email || !plan) {
       return NextResponse.json(
