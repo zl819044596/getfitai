@@ -62,13 +62,14 @@ export function WorkoutLanding({ config }: { config: WorkoutConfig }) {
       </section>
 
       {/* CTA - Jump to Generator */}
-      <section className="py-16 bg-orange-500">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+      <section className="py-16 bg-[#0f172a] border-y border-orange-500/30 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-orange-500/5 via-transparent to-orange-500/5"></div>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center relative">
           <h2 className="text-2xl md:text-3xl font-bold mb-3 text-white">{config.generatorTitle}</h2>
-          <p className="text-white/80 mb-8 text-base">{config.generatorSubtitle}</p>
+          <p className="text-slate-400 mb-8 text-base">{config.generatorSubtitle}</p>
           <Link
             href="/#generator"
-            className="inline-flex items-center bg-[#0f172a] text-white px-8 py-4 rounded-full font-medium hover:bg-[#1e293b] transition-colors shadow-lg"
+            className="inline-flex items-center bg-orange-500 text-white px-8 py-4 rounded-full font-medium hover:bg-orange-600 transition-colors shadow-lg shadow-orange-500/25"
           >
             {config.ctaButton}
             <ChevronRight className="w-5 h-5 ml-2" />
@@ -143,13 +144,14 @@ export function WorkoutLanding({ config }: { config: WorkoutConfig }) {
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-16 bg-orange-500">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+      <section className="py-16 bg-[#0f172a] border-y border-orange-500/30 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-orange-500/5 via-transparent to-orange-500/5"></div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center relative">
           <h2 className="text-3xl font-bold mb-3 text-white">{config.ctaTitle}</h2>
-          <p className="text-white/80 mb-8 text-base">{config.ctaSubtitle}</p>
+          <p className="text-slate-400 mb-8 text-base">{config.ctaSubtitle}</p>
           <Link
             href="/#generator"
-            className="inline-flex items-center bg-[#0f172a] text-white px-8 py-4 rounded-full font-medium hover:bg-[#1e293b] transition-colors shadow-lg"
+            className="inline-flex items-center bg-orange-500 text-white px-8 py-4 rounded-full font-medium hover:bg-orange-600 transition-colors shadow-lg shadow-orange-500/25"
           >
             {config.ctaButton}
             <ChevronRight className="w-5 h-5 ml-2" />
