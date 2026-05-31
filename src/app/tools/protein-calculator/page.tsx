@@ -6,13 +6,13 @@ export const metadata: Metadata = {
   description:
     "Calculate your daily protein needs for free. Get personalized protein targets based on your weight, activity level, and fitness goals. No signup required.",
   alternates: {
-    canonical: "https://getfitai.io/tools/protein-calculator",
+    canonical: "https://www.getfitai.io/tools/protein-calculator",
   },
   openGraph: {
-    url: "https://getfitai.io/tools/protein-calculator",
+    url: "https://www.getfitai.io/tools/protein-calculator",
     images: [
       {
-        url: "https://getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",

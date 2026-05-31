@@ -7,13 +7,13 @@ export const metadata: Metadata = {
   description:
     "Calculate your Wilks score for free. Compare strength across body weights with this powerlifting standard. Supports kg and lb units with GetFitAI.",
   alternates: {
-    canonical: "https://getfitai.io/tools/wilks-calculator",
+    canonical: "https://www.getfitai.io/tools/wilks-calculator",
   },
   openGraph: {
-    url: "https://getfitai.io/tools/wilks-calculator",
+    url: "https://www.getfitai.io/tools/wilks-calculator",
     images: [
       {
-        url: "https://getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",

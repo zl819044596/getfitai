@@ -7,13 +7,13 @@ export const metadata: Metadata = {
   description:
     "Calculate your BMR (Basal Metabolic Rate) for free. Find out how many calories your body burns at rest. Includes TDEE estimate with GetFitAI.",
   alternates: {
-    canonical: "https://getfitai.io/tools/bmr-calculator",
+    canonical: "https://www.getfitai.io/tools/bmr-calculator",
   },
   openGraph: {
-    url: "https://getfitai.io/tools/bmr-calculator",
+    url: "https://www.getfitai.io/tools/bmr-calculator",
     images: [
       {
-        url: "https://getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",

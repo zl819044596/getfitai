@@ -6,13 +6,13 @@ export const metadata: Metadata = {
   description:
     "Calculate your daily calorie needs for free. Get your BMR, TDEE, and personalized calorie target based on your activity level. No signup required.",
   alternates: {
-    canonical: "https://getfitai.io/tools/calorie-calculator",
+    canonical: "https://www.getfitai.io/tools/calorie-calculator",
   },
   openGraph: {
-    url: "https://getfitai.io/tools/calorie-calculator",
+    url: "https://www.getfitai.io/tools/calorie-calculator",
     images: [
       {
-        url: "https://getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",

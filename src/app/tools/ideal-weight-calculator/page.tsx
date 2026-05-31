@@ -7,13 +7,13 @@ export const metadata: Metadata = {
   description:
     "Calculate your ideal weight for free. Get healthy weight estimates based on BMI and multiple medical formulas. Supports metric and imperial with GetFitAI.",
   alternates: {
-    canonical: "https://getfitai.io/tools/ideal-weight-calculator",
+    canonical: "https://www.getfitai.io/tools/ideal-weight-calculator",
   },
   openGraph: {
-    url: "https://getfitai.io/tools/ideal-weight-calculator",
+    url: "https://www.getfitai.io/tools/ideal-weight-calculator",
     images: [
       {
-        url: "https://getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",

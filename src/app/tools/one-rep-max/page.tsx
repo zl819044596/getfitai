@@ -6,13 +6,13 @@ export const metadata: Metadata = {
   title: "1RM Calculator | GetFitAI",
   description: "Calculate your one-rep max (1RM) with GetFitAI's free strength calculator. Estimate your maximum lifting capacity based on your current reps and weight.",
   alternates: {
-    canonical: "https://getfitai.io/tools/one-rep-max",
+    canonical: "https://www.getfitai.io/tools/one-rep-max",
   },
   openGraph: {
-    url: "https://getfitai.io/tools/one-rep-max",
+    url: "https://www.getfitai.io/tools/one-rep-max",
     images: [
       {
-        url: "https://getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",

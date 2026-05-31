@@ -6,13 +6,13 @@ export const metadata: Metadata = {
   title: "Body Fat Calculator | GetFitAI",
   description: "Estimate your body fat percentage with GetFitAI's free calculator. Use multiple measurement methods including Navy, Jackson-Pollock, and BMI-based formulas.",
   alternates: {
-    canonical: "https://getfitai.io/tools/body-fat-calculator",
+    canonical: "https://www.getfitai.io/tools/body-fat-calculator",
   },
   openGraph: {
-    url: "https://getfitai.io/tools/body-fat-calculator",
+    url: "https://www.getfitai.io/tools/body-fat-calculator",
     images: [
       {
-        url: "https://getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",

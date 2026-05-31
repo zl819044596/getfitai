@@ -7,13 +7,13 @@ export const metadata: Metadata = {
   description:
     "Calculate your running pace for free. Get pace per km, pace per mile, and speed based on your distance and time. Works for any race distance with GetFitAI.",
   alternates: {
-    canonical: "https://getfitai.io/tools/pace-calculator",
+    canonical: "https://www.getfitai.io/tools/pace-calculator",
   },
   openGraph: {
-    url: "https://getfitai.io/tools/pace-calculator",
+    url: "https://www.getfitai.io/tools/pace-calculator",
     images: [
       {
-        url: "https://getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",

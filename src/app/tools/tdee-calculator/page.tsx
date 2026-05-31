@@ -6,13 +6,13 @@ export const metadata: Metadata = {
   title: "Calorie Calculator | GetFitAI",
   description: "Estimate your daily calorie needs with GetFitAI's free TDEE calculator. Calculate your Total Daily Energy Expenditure based on activity level and goals.",
   alternates: {
-    canonical: "https://getfitai.io/tools/tdee-calculator",
+    canonical: "https://www.getfitai.io/tools/tdee-calculator",
   },
   openGraph: {
-    url: "https://getfitai.io/tools/tdee-calculator",
+    url: "https://www.getfitai.io/tools/tdee-calculator",
     images: [
       {
-        url: "https://getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",

@@ -6,13 +6,13 @@ export const metadata: Metadata = {
   title: "BMI Calculator | GetFitAI",
   description: "Calculate your Body Mass Index (BMI) with GetFitAI's free calculator. Understand your weight category and get personalized health insights instantly.",
   alternates: {
-    canonical: "https://getfitai.io/tools/bmi-calculator",
+    canonical: "https://www.getfitai.io/tools/bmi-calculator",
   },
   openGraph: {
-    url: "https://getfitai.io/tools/bmi-calculator",
+    url: "https://www.getfitai.io/tools/bmi-calculator",
     images: [
       {
-        url: "https://getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",

@@ -6,13 +6,13 @@ export const metadata: Metadata = {
   title: "Plate Calculator | GetFitAI",
   description: "Calculate barbell plate loading with GetFitAI's free plate calculator. Quickly figure out which weight plates to load for your target lifting weight.",
   alternates: {
-    canonical: "https://getfitai.io/tools/plate-calculator",
+    canonical: "https://www.getfitai.io/tools/plate-calculator",
   },
   openGraph: {
-    url: "https://getfitai.io/tools/plate-calculator",
+    url: "https://www.getfitai.io/tools/plate-calculator",
     images: [
       {
-        url: "https://getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",
