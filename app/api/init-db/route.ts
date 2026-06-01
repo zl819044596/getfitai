@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { getRequestContext } from '@cloudflare/next-on-pages';
 
 export const runtime = 'edge';
 
@@ -87,13 +88,14 @@ CREATE INDEX IF NOT EXISTS idx_usage_log_ip ON usage_log(ip_hash, created_at);
 
 export async function GET(request: NextRequest) {
   try {
-    // Cloudflare Pages Edge Runtime: bindings are on process.env
+    // Cloudflare Pages: use getRequestContext() to access bindings
+    const { env } = getRequestContext();
     // @ts-ignore
-    const db = (process.env as any).DB;
+    const db = (env as any).DB;
     
     if (!db) {
       return NextResponse.json(
-        { error: 'Database binding not found', envKeys: Object.keys(process.env || {}) },
+        { error: 'Database binding not found', envKeys: Object.keys(env || {}) },
         { status: 500 }
       );
     }
