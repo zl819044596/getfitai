@@ -17,7 +17,7 @@ export default function ContactPage() {
     btn.innerText = "Sending...";
 
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("https://getfitai-api.zl18672545321.workers.dev/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, message }),

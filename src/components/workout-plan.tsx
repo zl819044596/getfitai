@@ -277,7 +277,7 @@ export function WorkoutPlan({ plan, onRegenerate, onAdjust }: WorkoutPlanProps) 
     setEmailSending(true)
     setEmailSent(false)
     try {
-      const res = await fetch("/api/send-plan", {
+      const res = await fetch("https://getfitai-api.zl18672545321.workers.dev/api/send-plan", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, plan: { ...plan, exercises: exerciseData } }),

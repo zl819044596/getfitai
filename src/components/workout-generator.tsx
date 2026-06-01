@@ -168,7 +168,7 @@ export function WorkoutGenerator() {
     setActiveTimer(null)
 
     try {
-      const res = await fetch("/api/generate-plan", {
+      const res = await fetch("https://getfitai-api.zl18672545321.workers.dev/api/generate-plan", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
