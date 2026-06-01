@@ -87,12 +87,13 @@ CREATE INDEX IF NOT EXISTS idx_usage_log_ip ON usage_log(ip_hash, created_at);
 
 export async function GET(request: NextRequest) {
   try {
-    // @ts-ignore - D1 binding via env
-    const db = request.env?.DB || (request as any).cf?.env?.DB;
+    // Cloudflare Pages Edge Runtime: bindings are on process.env
+    // @ts-ignore
+    const db = (process.env as any).DB;
     
     if (!db) {
       return NextResponse.json(
-        { error: 'Database binding not found', env: Object.keys(request.env || {}) },
+        { error: 'Database binding not found', envKeys: Object.keys(process.env || {}) },
         { status: 500 }
       );
     }
