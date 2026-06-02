@@ -1,0 +1,2 @@
+# 重定向非 www 到 www
+https://getfitai.io/* https://www.getfitai.io/:splat 301
