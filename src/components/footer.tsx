@@ -49,13 +49,13 @@ export function Footer() {
             </p>
             {/* Social Links */}
             <div className="flex items-center gap-3">
-              <Link href="#" className="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:text-orange-400 hover:bg-orange-500/10 transition-colors">
+              <Link href="https://twitter.com/getfitai" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:text-orange-400 hover:bg-orange-500/10 transition-colors">
                 <Globe className="w-4 h-4" />
               </Link>
-              <Link href="#" className="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:text-orange-400 hover:bg-orange-500/10 transition-colors">
+              <Link href="https://github.com/getfitai" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:text-orange-400 hover:bg-orange-500/10 transition-colors">
                 <Share2 className="w-4 h-4" />
               </Link>
-              <Link href="#" className="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:text-orange-400 hover:bg-orange-500/10 transition-colors">
+              <Link href="/contact" className="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:text-orange-400 hover:bg-orange-500/10 transition-colors">
                 <MessageSquare className="w-4 h-4" />
               </Link>
             </div>
