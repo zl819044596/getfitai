@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     "meal prep ideas",
   ],
   alternates: {
-    canonical: "https://getfitai.io/blog/meal-prep-muscle",
+    canonical: "https://getfitai.io/blog/meal-prep-muscle/",
   },
   openGraph: {
     title: "How to Meal Prep for Muscle Gain | GetFitAI",

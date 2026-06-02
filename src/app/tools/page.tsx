@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Fitness Tools | GetFitAI",
   description: "Explore GetFitAI's collection of free fitness calculators and tools. BMI, TDEE, 1RM, body fat, plate calculator, and workout timer — all free.",
   alternates: {
-    canonical: "https://getfitai.io/tools",
+    canonical: "https://getfitai.io/tools/",
   },
   openGraph: {
     title: "Fitness Tools | GetFitAI",

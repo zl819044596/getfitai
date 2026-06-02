@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Calorie Calculator | GetFitAI",
   description: "Estimate your daily calorie needs with GetFitAI's free TDEE calculator. Calculate your Total Daily Energy Expenditure based on activity level and goals.",
   alternates: {
-    canonical: "https://www.getfitai.io/tools/tdee-calculator",
+    canonical: "https://www.getfitai.io/tools/tdee-calculator/",
   },
   openGraph: {
     url: "https://www.getfitai.io/tools/tdee-calculator",

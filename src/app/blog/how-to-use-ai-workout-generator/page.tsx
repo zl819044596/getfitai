@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "workout plan generator",
   ],
   alternates: {
-    canonical: "https://getfitai.io/blog/how-to-use-ai-workout-generator",
+    canonical: "https://getfitai.io/blog/how-to-use-ai-workout-generator/",
   },
   openGraph: {
     title: "How to Use an AI Workout Generator: Complete Guide | GetFitAI",

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     "abdominal exercises",
   ],
   alternates: {
-    canonical: "https://www.getfitai.io/blog/six-pack-workout",
+    canonical: "https://www.getfitai.io/blog/six-pack-workout/",
   },
   openGraph: {
     title: "Six Pack Workout: 10 Best Ab Exercises for Visible Abs | GetFitAI",

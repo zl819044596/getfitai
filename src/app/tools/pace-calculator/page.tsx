@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "Calculate your running pace for free. Get pace per km, pace per mile, and speed based on your distance and time. Works for any race distance with GetFitAI.",
   alternates: {
-    canonical: "https://www.getfitai.io/tools/pace-calculator",
+    canonical: "https://www.getfitai.io/tools/pace-calculator/",
   },
   openGraph: {
     url: "https://www.getfitai.io/tools/pace-calculator",

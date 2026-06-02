@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "protein per day",
   ],
   alternates: {
-    canonical: "https://getfitai.io/blog/protein-intake-calculator-guide",
+    canonical: "https://getfitai.io/blog/protein-intake-calculator-guide/",
   },
   openGraph: {
     title: "Protein Intake Calculator: How Much Protein Do You Need? | GetFitAI",

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "calorie deficit calculator",
   ],
   alternates: {
-    canonical: "https://getfitai.io/blog/what-is-tdee-and-how-to-calculate",
+    canonical: "https://getfitai.io/blog/what-is-tdee-and-how-to-calculate/",
   },
   openGraph: {
     title: "What Is TDEE and How to Calculate It? | GetFitAI",

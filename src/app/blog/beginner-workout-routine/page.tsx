@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     "simple workout routine",
   ],
   alternates: {
-    canonical: "https://www.getfitai.io/blog/beginner-workout-routine",
+    canonical: "https://www.getfitai.io/blog/beginner-workout-routine/",
   },
   openGraph: {
     title: "Beginner Workout Routine: Complete 4-Week Plan | GetFitAI",

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "Calculate your target heart rate zones for free. Get personalized fat burn, cardio, and peak zones based on your age. Optimize your training intensity with GetFitAI.",
   alternates: {
-    canonical: "https://www.getfitai.io/tools/heart-rate-calculator",
+    canonical: "https://www.getfitai.io/tools/heart-rate-calculator/",
   },
   openGraph: {
     url: "https://www.getfitai.io/tools/heart-rate-calculator",

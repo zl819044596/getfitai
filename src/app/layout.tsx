@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     google: "G-MFH7XYRCCT",
   },
   alternates: {
-    canonical: "https://www.getfitai.io",
+    canonical: "https://www.getfitai.io/",
   },
   robots: {
     index: true,

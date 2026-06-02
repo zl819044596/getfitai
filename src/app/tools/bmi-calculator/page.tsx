@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "BMI Calculator | GetFitAI",
   description: "Calculate your Body Mass Index (BMI) with GetFitAI's free calculator. Understand your weight category and get personalized health insights instantly.",
   alternates: {
-    canonical: "https://www.getfitai.io/tools/bmi-calculator",
+    canonical: "https://www.getfitai.io/tools/bmi-calculator/",
   },
   openGraph: {
     url: "https://www.getfitai.io/tools/bmi-calculator",

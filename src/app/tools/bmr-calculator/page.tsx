@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "Calculate your BMR (Basal Metabolic Rate) for free. Find out how many calories your body burns at rest. Includes TDEE estimate with GetFitAI.",
   alternates: {
-    canonical: "https://www.getfitai.io/tools/bmr-calculator",
+    canonical: "https://www.getfitai.io/tools/bmr-calculator/",
   },
   openGraph: {
     url: "https://www.getfitai.io/tools/bmr-calculator",

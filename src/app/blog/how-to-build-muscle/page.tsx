@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     "muscle growth",
   ],
   alternates: {
-    canonical: "https://getfitai.io/blog/how-to-build-muscle",
+    canonical: "https://getfitai.io/blog/how-to-build-muscle/",
   },
   openGraph: {
     title: "How to Build Muscle: The Complete Beginner's Guide | GetFitAI",

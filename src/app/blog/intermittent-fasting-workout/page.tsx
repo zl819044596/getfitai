@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "Learn how to combine intermittent fasting with your workout routine for optimal fat loss and muscle gain. Science-backed guide with practical tips.",
   keywords: ["intermittent fasting", "fasting workout", "fasted cardio", "IF diet", "workout nutrition"],
   alternates: {
-    canonical: "https://getfitai.io/blog/intermittent-fasting-workout",
+    canonical: "https://getfitai.io/blog/intermittent-fasting-workout/",
   },
   openGraph: {
     title: "Intermittent Fasting and Workout: The Complete Guide",

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "AI fitness app",
   ],
   alternates: {
-    canonical: "https://getfitai.io/blog/ai-fitness-coach-vs-personal-trainer",
+    canonical: "https://getfitai.io/blog/ai-fitness-coach-vs-personal-trainer/",
   },
   openGraph: {
     title: "AI Fitness Coach vs Personal Trainer: Which Is Better? | GetFitAI",

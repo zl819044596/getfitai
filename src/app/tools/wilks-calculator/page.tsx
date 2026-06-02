@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "Calculate your Wilks score for free. Compare strength across body weights with this powerlifting standard. Supports kg and lb units with GetFitAI.",
   alternates: {
-    canonical: "https://www.getfitai.io/tools/wilks-calculator",
+    canonical: "https://www.getfitai.io/tools/wilks-calculator/",
   },
   openGraph: {
     url: "https://www.getfitai.io/tools/wilks-calculator",

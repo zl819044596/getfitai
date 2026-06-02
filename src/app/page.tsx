@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "GetFitAI: Free AI-powered workout plans and fitness calculators including BMI, TDEE, body fat, and 1RM. Personalized training plans for muscle building, fat loss, and strength. No signup required.",
   alternates: {
-    canonical: "https://www.getfitai.io",
+    canonical: "https://www.getfitai.io/",
   },
   openGraph: {
     title: "GetFitAI - Free AI Workout Plans & Fitness Calculators",

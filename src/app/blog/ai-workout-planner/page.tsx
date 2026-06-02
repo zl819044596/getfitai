@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     "ai workout plan",
   ],
   alternates: {
-    canonical: "https://www.getfitai.io/blog/ai-workout-planner",
+    canonical: "https://www.getfitai.io/blog/ai-workout-planner/",
   },
   openGraph: {
     title: "AI Workout Planner: Free Personalized Training Plans | GetFitAI",

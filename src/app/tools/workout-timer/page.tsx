@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Workout Timer | GetFitAI",
   description: "Use GetFitAI's free workout timer for HIIT, Tabata, and circuit training. Customizable interval timer to optimize your training sessions.",
   alternates: {
-    canonical: "https://www.getfitai.io/tools/workout-timer",
+    canonical: "https://www.getfitai.io/tools/workout-timer/",
   },
   openGraph: {
     url: "https://www.getfitai.io/tools/workout-timer",

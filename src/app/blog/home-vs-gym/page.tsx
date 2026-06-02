@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     "gym membership",
   ],
   alternates: {
-    canonical: "https://getfitai.io/blog/home-vs-gym",
+    canonical: "https://getfitai.io/blog/home-vs-gym/",
   },
   openGraph: {
     title: "Home Workout vs Gym: Which is Better? | GetFitAI",

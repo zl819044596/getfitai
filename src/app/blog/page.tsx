@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Fitness Blog | Workout Tips & Nutrition Advice",
   description: "Read expert fitness tips, workout guides, and nutrition advice on the GetFitAI blog. Science-backed content to help you reach your goals faster.",
   alternates: {
-    canonical: "https://www.getfitai.io/blog",
+    canonical: "https://www.getfitai.io/blog/",
   },
   openGraph: {
     title: "Fitness Blog | Workout Tips & Nutrition Advice",

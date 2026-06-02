@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Calculate your daily calorie needs for free. Get your BMR, TDEE, and personalized calorie target based on your activity level. No signup required.",
   alternates: {
-    canonical: "https://www.getfitai.io/tools/calorie-calculator",
+    canonical: "https://www.getfitai.io/tools/calorie-calculator/",
   },
   openGraph: {
     url: "https://www.getfitai.io/tools/calorie-calculator",

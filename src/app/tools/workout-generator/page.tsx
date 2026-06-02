@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "Generate personalized workout plans with AI. Choose your goal, experience level, and equipment. Get a custom training plan in seconds. No signup required.",
   alternates: {
-    canonical: "https://www.getfitai.io/tools/workout-generator",
+    canonical: "https://www.getfitai.io/tools/workout-generator/",
   },
   openGraph: {
     url: "https://www.getfitai.io/tools/workout-generator",

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "weight loss exercises",
   ],
   alternates: {
-    canonical: "https://getfitai.io/blog/how-to-lose-belly-fat",
+    canonical: "https://getfitai.io/blog/how-to-lose-belly-fat/",
   },
   openGraph: {
     title: "How to Lose Belly Fat: 10 Science-Backed Exercises | GetFitAI",

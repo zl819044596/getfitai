@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     "women exercise plan",
   ],
   alternates: {
-    canonical: "https://www.getfitai.io/blog/women-workout-plan",
+    canonical: "https://www.getfitai.io/blog/women-workout-plan/",
   },
   openGraph: {
     title: "Women Workout Plan: Strength Training for Women | GetFitAI",

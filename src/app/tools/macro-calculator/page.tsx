@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "Calculate your daily macros for free. Get personalized protein, carb, and fat targets based on your weight and fitness goals. No signup required.",
   alternates: {
-    canonical: "https://www.getfitai.io/tools/macro-calculator",
+    canonical: "https://www.getfitai.io/tools/macro-calculator/",
   },
   openGraph: {
     url: "https://www.getfitai.io/tools/macro-calculator",

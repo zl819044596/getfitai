@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "calorie deficit",
   ],
   alternates: {
-    canonical: "https://www.getfitai.io/blog/how-many-calories-should-i-eat",
+    canonical: "https://www.getfitai.io/blog/how-many-calories-should-i-eat/",
   },
   openGraph: {
     title: "How Many Calories Should I Eat? Calculator & Guide | GetFitAI",

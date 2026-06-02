@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "grams of protein per day",
   ],
   alternates: {
-    canonical: "https://www.getfitai.io/blog/how-much-protein-per-day",
+    canonical: "https://www.getfitai.io/blog/how-much-protein-per-day/",
   },
   openGraph: {
     title: "How Much Protein Per Day: Calculator & Guide | GetFitAI",

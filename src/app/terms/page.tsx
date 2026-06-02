@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title: "Terms of Service | GetFitAI",
   description: "Read the terms of service for GetFitAI. By using our AI workout generator and fitness calculators, you agree to these conditions.",
   alternates: {
-    canonical: "https://getfitai.io/terms",
+    canonical: "https://getfitai.io/terms/",
   },
   openGraph: {
     url: "https://getfitai.io/terms",

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "free fitness apps",
   ],
   alternates: {
-    canonical: "https://getfitai.io/blog/best-ai-fitness-apps-2026",
+    canonical: "https://getfitai.io/blog/best-ai-fitness-apps-2026/",
   },
   openGraph: {
     title: "Best AI Fitness Apps 2026: Top Picks Reviewed | GetFitAI",

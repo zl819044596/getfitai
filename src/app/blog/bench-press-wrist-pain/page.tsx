@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     "pressing pain",
   ],
   alternates: {
-    canonical: "https://getfitai.io/blog/bench-press-wrist-pain",
+    canonical: "https://getfitai.io/blog/bench-press-wrist-pain/",
   },
   openGraph: {
     title: "How to Fix Wrist Pain During Bench Press | GetFitAI",

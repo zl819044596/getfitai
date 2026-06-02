@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy | GetFitAI",
   description: "Read GetFitAI's privacy policy to understand how we collect, use, and protect your personal information when using our AI fitness tools.",
   alternates: {
-    canonical: "https://getfitai.io/privacy",
+    canonical: "https://getfitai.io/privacy/",
   },
   openGraph: {
     url: "https://getfitai.io/privacy",
