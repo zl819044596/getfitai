@@ -66,7 +66,7 @@ export default {
           ],
           temperature: 0.7,
           max_tokens: 2000,
-          stream: true,
+          stream: false,
         }),
       });
 
@@ -78,14 +78,31 @@ export default {
         });
       }
 
-      // Stream the response
-      const { readable, writable } = new TransformStream();
-      response.body.pipeTo(writable);
+      const data = await response.json();
+      const content = data.choices?.[0]?.message?.content || '';
+      
+      // Extract JSON from response
+      const jsonMatch = content.match(/\{[\s\S]*\}/);
+      if (!jsonMatch) {
+        return new Response(JSON.stringify({ error: 'Invalid AI response format' }), {
+          status: 502,
+          headers: { 'Content-Type': 'application/json', ...corsHeaders },
+        });
+      }
 
-      return new Response(readable, {
+      // Validate JSON
+      try {
+        JSON.parse(jsonMatch[0]);
+      } catch (e) {
+        return new Response(JSON.stringify({ error: 'Invalid JSON from AI', raw: content.substring(0, 500) }), {
+          status: 502,
+          headers: { 'Content-Type': 'application/json', ...corsHeaders },
+        });
+      }
+
+      return new Response(jsonMatch[0], {
         headers: {
-          'Content-Type': 'text/plain; charset=utf-8',
-          'Transfer-Encoding': 'chunked',
+          'Content-Type': 'application/json',
           'Cache-Control': 'no-cache',
           ...corsHeaders,
         },
