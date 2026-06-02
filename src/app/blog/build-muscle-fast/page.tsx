@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "How to Build Muscle Fast: Science-Backed Guide",
     description: "Proven strategies for rapid muscle growth. Training, nutrition, and recovery.",
-    url: "https://www.getfitai.io/blog/build-muscle-fast",
+    url: "https://www.getfitai.io/blog/build-muscle-fast/",
     images: [
       {
         url: "https://www.getfitai.io/og-image.jpg",

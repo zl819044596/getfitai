@@ -6,7 +6,7 @@ import { ArrowRight, Heart } from "lucide-react";
 export const metadata: Metadata = {
   title: "Women Workout Plan: Strength Training for Women | GetFitAI",
   description:
-    "A complete workout plan designed for women. Build strength, tone muscle, and improve fitness with this science-backed program. Free AI workout generator included.",
+    "A complete workout plan designed for women. Build strength, tone muscle, and improve fitness with this science-backed program. Free AI workout generator.",
   keywords: [
     "women workout plan",
     "workout plan for women",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: "Women Workout Plan: Strength Training for Women | GetFitAI",
     description:
       "A complete workout plan designed for women. Build strength, tone muscle, and improve fitness with this science-backed program.",
-    url: "https://www.getfitai.io/blog/women-workout-plan",
+    url: "https://www.getfitai.io/blog/women-workout-plan/",
     images: [
       {
         url: "https://www.getfitai.io/og-image.jpg",

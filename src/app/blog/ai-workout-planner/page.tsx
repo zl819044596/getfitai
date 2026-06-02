@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     title: "AI Workout Planner: Free Personalized Training Plans | GetFitAI",
     description:
       "Create personalized workout plans with AI. Get custom training programs tailored to your goals, experience, and equipment.",
-    url: "https://www.getfitai.io/blog/ai-workout-planner",
+    url: "https://www.getfitai.io/blog/ai-workout-planner/",
     images: [
       {
         url: "https://www.getfitai.io/og-image.jpg",

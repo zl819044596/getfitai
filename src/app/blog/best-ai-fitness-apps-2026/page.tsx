@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: "Best AI Fitness Apps 2026: Top Picks Reviewed | GetFitAI",
     description:
       "Discover the best AI fitness apps of 2026. We tested and reviewed the top options for workout generation, tracking, and personalization.",
-    url: "https://www.getfitai.io/blog/best-ai-fitness-apps-2026",
+    url: "https://www.getfitai.io/blog/best-ai-fitness-apps-2026/",
     images: [
       {
         url: "https://www.getfitai.io/images/og-best-ai-apps.png",

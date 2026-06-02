@@ -6,7 +6,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 export const metadata: Metadata = {
   title: "How to Use an AI Workout Generator: Complete Guide | GetFitAI",
   description:
-    "Learn how to get the most out of AI workout generators. Step-by-step guide to creating personalized training plans that actually work. Includes tips, mistakes to avoid, and best practices.",
+    "Learn how to get the most out of AI workout generators. Step-by-step guide to creating personalized training plans that actually work. Includes tips,.",
   keywords: [
     "how to use AI workout generator",
     "AI workout generator guide",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: "How to Use an AI Workout Generator: Complete Guide | GetFitAI",
     description:
       "Learn how to get the most out of AI workout generators. Step-by-step guide to creating personalized training plans that actually work.",
-    url: "https://www.getfitai.io/blog/how-to-use-ai-workout-generator",
+    url: "https://www.getfitai.io/blog/how-to-use-ai-workout-generator/",
     images: [
       {
         url: "https://www.getfitai.io/images/og-ai-workout-guide.png",

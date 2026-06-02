@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Beginner Gym Plan: Complete 4-Week Guide",
     description: "Free 4-week progressive gym program for beginners. No experience needed.",
-    url: "https://www.getfitai.io/blog/beginner-gym-plan",
+    url: "https://www.getfitai.io/blog/beginner-gym-plan/",
     images: [
       {
         url: "https://www.getfitai.io/og-image.jpg",

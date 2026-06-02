@@ -6,7 +6,7 @@ import { ArrowRight, Dumbbell } from "lucide-react";
 export const metadata: Metadata = {
   title: "How Much Protein Per Day: Calculator & Guide | GetFitAI",
   description:
-    "Calculate your daily protein needs based on weight, goals, and activity level. Learn exactly how much protein you need to build muscle, lose fat, or maintain weight.",
+    "Calculate your daily protein needs based on weight, goals, and activity level. Learn exactly how much protein you need to build muscle, lose fat, or.",
   keywords: [
     "how much protein per day",
     "protein intake calculator",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: "How Much Protein Per Day: Calculator & Guide | GetFitAI",
     description:
       "Calculate your daily protein needs based on weight, goals, and activity level. Learn exactly how much protein you need.",
-    url: "https://www.getfitai.io/blog/how-much-protein-per-day",
+    url: "https://www.getfitai.io/blog/how-much-protein-per-day/",
     images: [
       {
         url: "https://www.getfitai.io/og-image.jpg",

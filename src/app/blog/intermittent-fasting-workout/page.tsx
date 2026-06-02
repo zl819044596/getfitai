@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Intermittent Fasting and Workout: The Complete Guide",
     description: "Learn how to combine intermittent fasting with your workout routine for optimal results.",
-    url: "https://www.getfitai.io/blog/intermittent-fasting-workout",
+    url: "https://www.getfitai.io/blog/intermittent-fasting-workout/",
     images: [
       {
         url: "https://www.getfitai.io/og-image.jpg",

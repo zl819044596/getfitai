@@ -6,7 +6,7 @@ import { ArrowRight, Target } from "lucide-react";
 export const metadata: Metadata = {
   title: "Six Pack Workout: 10 Best Ab Exercises for Visible Abs | GetFitAI",
   description:
-    "The most effective six pack workout with 10 science-backed ab exercises. Learn how to get visible abs with proper training, nutrition, and our free AI workout generator.",
+    "The most effective six pack workout with 10 science-backed ab exercises. Learn how to get visible abs with proper training, nutrition, and our free AI.",
   keywords: [
     "six pack workout",
     "ab workout",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: "Six Pack Workout: 10 Best Ab Exercises for Visible Abs | GetFitAI",
     description:
       "The most effective six pack workout with 10 science-backed ab exercises. Learn how to get visible abs with proper training and nutrition.",
-    url: "https://www.getfitai.io/blog/six-pack-workout",
+    url: "https://www.getfitai.io/blog/six-pack-workout/",
     images: [
       {
         url: "https://www.getfitai.io/og-image.jpg",

@@ -6,7 +6,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 export const metadata: Metadata = {
   title: "Protein Intake Calculator: How Much Protein Do You Need? | GetFitAI",
   description:
-    "Learn how much protein you need daily based on your weight, activity level, and fitness goals. Science-backed guidelines, timing strategies, and best sources — plus a free calculator.",
+    "Learn how much protein you need daily based on your weight, activity level, and fitness goals. Science-backed guidelines, timing strategies, and best.",
   keywords: [
     "protein intake calculator",
     "how much protein do I need",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: "Protein Intake Calculator: How Much Protein Do You Need? | GetFitAI",
     description:
       "Learn how much protein you need daily based on your weight, activity level, and fitness goals. Science-backed guidelines and free calculator.",
-    url: "https://www.getfitai.io/blog/protein-intake-calculator-guide",
+    url: "https://www.getfitai.io/blog/protein-intake-calculator-guide/",
     images: [
       {
         url: "https://www.getfitai.io/og-image.jpg",

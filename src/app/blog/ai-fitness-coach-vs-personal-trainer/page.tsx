@@ -6,7 +6,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 export const metadata: Metadata = {
   title: "AI Fitness Coach vs Personal Trainer: Which Is Better? | GetFitAI",
   description:
-    "Compare AI fitness coaches and human personal trainers. Cost, personalization, accountability, and results — find out which option fits your goals and budget in 2026.",
+    "Compare AI fitness coaches and human personal trainers. Cost, personalization, accountability, and results — find out which option fits your goals and.",
   keywords: [
     "AI fitness coach vs personal trainer",
     "AI fitness coach",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: "AI Fitness Coach vs Personal Trainer: Which Is Better? | GetFitAI",
     description:
       "Compare AI fitness coaches and human personal trainers. Cost, personalization, accountability, and results — find out which option fits your goals and budget.",
-    url: "https://www.getfitai.io/blog/ai-fitness-coach-vs-personal-trainer",
+    url: "https://www.getfitai.io/blog/ai-fitness-coach-vs-personal-trainer/",
     images: [
       {
         url: "https://www.getfitai.io/images/og-ai-vs-trainer.png",

@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: "How to Lose Belly Fat: 10 Science-Backed Exercises | GetFitAI",
     description:
       "Discover 10 science-backed exercises to lose belly fat fast. Includes a complete 7-day workout plan and nutrition tips.",
-    url: "https://www.getfitai.io/blog/how-to-lose-belly-fat",
+    url: "https://www.getfitai.io/blog/how-to-lose-belly-fat/",
     images: [
       {
         url: "https://www.getfitai.io/images/og-lose-belly-fat.png",

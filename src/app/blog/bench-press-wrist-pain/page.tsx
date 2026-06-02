@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "How to Fix Wrist Pain During Bench Press | GetFitAI",
-    url: "https://www.getfitai.io/blog/bench-press-wrist-pain",
+    url: "https://www.getfitai.io/blog/bench-press-wrist-pain/",
     images: [
       {
         url: "https://www.getfitai.io/og-image.jpg",

@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     title: "How to Build Muscle: The Complete Beginner's Guide | GetFitAI",
     description:
       "Learn how to build muscle with this complete beginner's guide. Covers exercises, workout plans, nutrition, and recovery.",
-    url: "https://www.getfitai.io/blog/how-to-build-muscle",
+    url: "https://www.getfitai.io/blog/how-to-build-muscle/",
     images: [
       {
         url: "https://www.getfitai.io/images/og-build-muscle.png",

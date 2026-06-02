@@ -6,7 +6,7 @@ import { ArrowRight, Flame } from "lucide-react";
 export const metadata: Metadata = {
   title: "How Many Calories Should I Eat? Calculator & Guide | GetFitAI",
   description:
-    "Calculate your daily calorie needs for weight loss, maintenance, or muscle gain. Learn how to determine your TDEE and set the right calorie target for your goals.",
+    "Calculate your daily calorie needs for weight loss, maintenance, or muscle gain. Learn how to determine your TDEE and set the right calorie target for.",
   keywords: [
     "how many calories should i eat",
     "calorie calculator",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: "How Many Calories Should I Eat? Calculator & Guide | GetFitAI",
     description:
       "Calculate your daily calorie needs for weight loss, maintenance, or muscle gain. Learn how to determine your TDEE.",
-    url: "https://www.getfitai.io/blog/how-many-calories-should-i-eat",
+    url: "https://www.getfitai.io/blog/how-many-calories-should-i-eat/",
     images: [
       {
         url: "https://www.getfitai.io/og-image.jpg",
