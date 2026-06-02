@@ -15,14 +15,14 @@ export const metadata: Metadata = {
     "meal prep ideas",
   ],
   alternates: {
-    canonical: "https://getfitai.io/blog/meal-prep-muscle/",
+    canonical: "https://www.getfitai.io/blog/meal-prep-muscle/",
   },
   openGraph: {
     title: "How to Meal Prep for Muscle Gain | GetFitAI",
-    url: "https://getfitai.io/blog/meal-prep-muscle",
+    url: "https://www.getfitai.io/blog/meal-prep-muscle",
     images: [
       {
-        url: "https://getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",
@@ -35,7 +35,7 @@ const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
   headline: "How to Meal Prep for Muscle Gain",
-  author: { "@type": "Organization", name: "GetFitAI", url: "https://getfitai.io" },
+  author: { "@type": "Organization", name: "GetFitAI", url: "https://www.getfitai.io" },
   publisher: { "@type": "Organization", name: "GetFitAI" },
   datePublished: "2025-04-28",
   dateModified: "2025-04-28",

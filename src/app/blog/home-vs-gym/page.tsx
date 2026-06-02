@@ -15,14 +15,14 @@ export const metadata: Metadata = {
     "gym membership",
   ],
   alternates: {
-    canonical: "https://getfitai.io/blog/home-vs-gym/",
+    canonical: "https://www.getfitai.io/blog/home-vs-gym/",
   },
   openGraph: {
     title: "Home Workout vs Gym: Which is Better? | GetFitAI",
-    url: "https://getfitai.io/blog/home-vs-gym",
+    url: "https://www.getfitai.io/blog/home-vs-gym",
     images: [
       {
-        url: "https://getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",
@@ -35,7 +35,7 @@ const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
   headline: "Home Workout vs Gym: Which is Better?",
-  author: { "@type": "Organization", name: "GetFitAI", url: "https://getfitai.io" },
+  author: { "@type": "Organization", name: "GetFitAI", url: "https://www.getfitai.io" },
   publisher: { "@type": "Organization", name: "GetFitAI" },
   datePublished: "2025-05-05",
   dateModified: "2025-05-05",

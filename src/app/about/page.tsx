@@ -5,13 +5,13 @@ export const metadata: Metadata = {
   title: "About Us | GetFitAI",
   description: "Learn about GetFitAI's mission to make personalized fitness accessible to everyone through AI-powered workout plans and free fitness calculators.",
   alternates: {
-    canonical: "https://getfitai.io/about/",
+    canonical: "https://www.getfitai.io/about/",
   },
   openGraph: {
-    url: "https://getfitai.io/about",
+    url: "https://www.getfitai.io/about",
     images: [
       {
-        url: "https://getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",

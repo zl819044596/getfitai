@@ -18,16 +18,16 @@ export const metadata: Metadata = {
     "weight loss exercises",
   ],
   alternates: {
-    canonical: "https://getfitai.io/blog/how-to-lose-belly-fat/",
+    canonical: "https://www.getfitai.io/blog/how-to-lose-belly-fat/",
   },
   openGraph: {
     title: "How to Lose Belly Fat: 10 Science-Backed Exercises | GetFitAI",
     description:
       "Discover 10 science-backed exercises to lose belly fat fast. Includes a complete 7-day workout plan and nutrition tips.",
-    url: "https://getfitai.io/blog/how-to-lose-belly-fat",
+    url: "https://www.getfitai.io/blog/how-to-lose-belly-fat",
     images: [
       {
-        url: "https://getfitai.io/images/og-lose-belly-fat.png",
+        url: "https://www.getfitai.io/images/og-lose-belly-fat.png",
         width: 1200,
         height: 630,
         alt: "How to Lose Belly Fat - 10 Science-Backed Exercises",
@@ -42,25 +42,25 @@ const articleSchema = {
   headline: "How to Lose Belly Fat: 10 Science-Backed Exercises That Actually Work",
   description:
     "Discover 10 science-backed exercises to lose belly fat fast. Includes a complete 7-day workout plan, nutrition tips, and expert advice.",
-  image: "https://getfitai.io/images/og-lose-belly-fat.png",
+  image: "https://www.getfitai.io/images/og-lose-belly-fat.png",
   author: {
     "@type": "Organization",
     name: "GetFitAI",
-    url: "https://getfitai.io",
+    url: "https://www.getfitai.io",
   },
   publisher: {
     "@type": "Organization",
     name: "GetFitAI",
     logo: {
       "@type": "ImageObject",
-      url: "https://getfitai.io/logo.png",
+      url: "https://www.getfitai.io/logo.png",
     },
   },
   datePublished: "2025-05-22",
   dateModified: "2025-05-22",
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": "https://getfitai.io/blog/how-to-lose-belly-fat",
+    "@id": "https://www.getfitai.io/blog/how-to-lose-belly-fat",
   },
 };
 

@@ -18,16 +18,16 @@ export const metadata: Metadata = {
     "AI fitness app",
   ],
   alternates: {
-    canonical: "https://getfitai.io/blog/ai-fitness-coach-vs-personal-trainer/",
+    canonical: "https://www.getfitai.io/blog/ai-fitness-coach-vs-personal-trainer/",
   },
   openGraph: {
     title: "AI Fitness Coach vs Personal Trainer: Which Is Better? | GetFitAI",
     description:
       "Compare AI fitness coaches and human personal trainers. Cost, personalization, accountability, and results — find out which option fits your goals and budget.",
-    url: "https://getfitai.io/blog/ai-fitness-coach-vs-personal-trainer",
+    url: "https://www.getfitai.io/blog/ai-fitness-coach-vs-personal-trainer",
     images: [
       {
-        url: "https://getfitai.io/images/og-ai-vs-trainer.png",
+        url: "https://www.getfitai.io/images/og-ai-vs-trainer.png",
         width: 1200,
         height: 630,
         alt: "AI Fitness Coach vs Personal Trainer - Which Is Better?",
@@ -42,25 +42,25 @@ const articleSchema = {
   headline: "AI Fitness Coach vs Personal Trainer: Which Is Better for You in 2026?",
   description:
     "Compare AI fitness coaches and human personal trainers. Cost, personalization, accountability, and results — find out which option fits your goals and budget.",
-  image: "https://getfitai.io/images/og-ai-vs-trainer.png",
+  image: "https://www.getfitai.io/images/og-ai-vs-trainer.png",
   author: {
     "@type": "Organization",
     name: "GetFitAI",
-    url: "https://getfitai.io",
+    url: "https://www.getfitai.io",
   },
   publisher: {
     "@type": "Organization",
     name: "GetFitAI",
     logo: {
       "@type": "ImageObject",
-      url: "https://getfitai.io/logo.png",
+      url: "https://www.getfitai.io/logo.png",
     },
   },
   datePublished: "2026-05-30",
   dateModified: "2026-05-30",
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": "https://getfitai.io/blog/ai-fitness-coach-vs-personal-trainer",
+    "@id": "https://www.getfitai.io/blog/ai-fitness-coach-vs-personal-trainer",
   },
 };
 

@@ -4,13 +4,13 @@ export const metadata: Metadata = {
   title: "Privacy Policy | GetFitAI",
   description: "Read GetFitAI's privacy policy to understand how we collect, use, and protect your personal information when using our AI fitness tools.",
   alternates: {
-    canonical: "https://getfitai.io/privacy/",
+    canonical: "https://www.getfitai.io/privacy/",
   },
   openGraph: {
-    url: "https://getfitai.io/privacy",
+    url: "https://www.getfitai.io/privacy",
     images: [
       {
-        url: "https://getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",

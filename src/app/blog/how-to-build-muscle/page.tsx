@@ -17,16 +17,16 @@ export const metadata: Metadata = {
     "muscle growth",
   ],
   alternates: {
-    canonical: "https://getfitai.io/blog/how-to-build-muscle/",
+    canonical: "https://www.getfitai.io/blog/how-to-build-muscle/",
   },
   openGraph: {
     title: "How to Build Muscle: The Complete Beginner's Guide | GetFitAI",
     description:
       "Learn how to build muscle with this complete beginner's guide. Covers exercises, workout plans, nutrition, and recovery.",
-    url: "https://getfitai.io/blog/how-to-build-muscle",
+    url: "https://www.getfitai.io/blog/how-to-build-muscle",
     images: [
       {
-        url: "https://getfitai.io/images/og-build-muscle.png",
+        url: "https://www.getfitai.io/images/og-build-muscle.png",
         width: 1200,
         height: 630,
         alt: "How to Build Muscle - Complete Beginner's Guide",
@@ -41,25 +41,25 @@ const articleSchema = {
   headline: "How to Build Muscle: The Complete Beginner's Guide",
   description:
     "Learn how to build muscle with this complete beginner's guide. Covers the 6 fundamental exercises, workout plans, nutrition, and recovery.",
-  image: "https://getfitai.io/images/og-build-muscle.png",
+  image: "https://www.getfitai.io/images/og-build-muscle.png",
   author: {
     "@type": "Organization",
     name: "GetFitAI",
-    url: "https://getfitai.io",
+    url: "https://www.getfitai.io",
   },
   publisher: {
     "@type": "Organization",
     name: "GetFitAI",
     logo: {
       "@type": "ImageObject",
-      url: "https://getfitai.io/logo.png",
+      url: "https://www.getfitai.io/logo.png",
     },
   },
   datePublished: "2025-05-22",
   dateModified: "2025-05-22",
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": "https://getfitai.io/blog/how-to-build-muscle",
+    "@id": "https://www.getfitai.io/blog/how-to-build-muscle",
   },
 };
 

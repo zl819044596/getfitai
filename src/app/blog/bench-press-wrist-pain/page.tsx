@@ -15,14 +15,14 @@ export const metadata: Metadata = {
     "pressing pain",
   ],
   alternates: {
-    canonical: "https://getfitai.io/blog/bench-press-wrist-pain/",
+    canonical: "https://www.getfitai.io/blog/bench-press-wrist-pain/",
   },
   openGraph: {
     title: "How to Fix Wrist Pain During Bench Press | GetFitAI",
-    url: "https://getfitai.io/blog/bench-press-wrist-pain",
+    url: "https://www.getfitai.io/blog/bench-press-wrist-pain",
     images: [
       {
-        url: "https://getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",
@@ -35,7 +35,7 @@ const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
   headline: "How to Fix Wrist Pain During Bench Press",
-  author: { "@type": "Organization", name: "GetFitAI", url: "https://getfitai.io" },
+  author: { "@type": "Organization", name: "GetFitAI", url: "https://www.getfitai.io" },
   publisher: { "@type": "Organization", name: "GetFitAI" },
   datePublished: "2025-05-15",
   dateModified: "2025-05-15",

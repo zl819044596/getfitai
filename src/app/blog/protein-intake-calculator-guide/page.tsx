@@ -18,16 +18,16 @@ export const metadata: Metadata = {
     "protein per day",
   ],
   alternates: {
-    canonical: "https://getfitai.io/blog/protein-intake-calculator-guide/",
+    canonical: "https://www.getfitai.io/blog/protein-intake-calculator-guide/",
   },
   openGraph: {
     title: "Protein Intake Calculator: How Much Protein Do You Need? | GetFitAI",
     description:
       "Learn how much protein you need daily based on your weight, activity level, and fitness goals. Science-backed guidelines and free calculator.",
-    url: "https://getfitai.io/blog/protein-intake-calculator-guide",
+    url: "https://www.getfitai.io/blog/protein-intake-calculator-guide",
     images: [
       {
-        url: "https://getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Protein Intake Calculator - How Much Protein Do You Need?",
@@ -42,25 +42,25 @@ const articleSchema = {
   headline: "Protein Intake Calculator: How Much Protein Do You Need Daily?",
   description:
     "Learn how much protein you need daily based on your weight, activity level, and fitness goals. Science-backed guidelines, timing strategies, and best sources.",
-  image: "https://getfitai.io/og-image.jpg",
+  image: "https://www.getfitai.io/og-image.jpg",
   author: {
     "@type": "Organization",
     name: "GetFitAI",
-    url: "https://getfitai.io",
+    url: "https://www.getfitai.io",
   },
   publisher: {
     "@type": "Organization",
     name: "GetFitAI",
     logo: {
       "@type": "ImageObject",
-      url: "https://getfitai.io/logo.png",
+      url: "https://www.getfitai.io/logo.png",
     },
   },
   datePublished: "2026-05-30",
   dateModified: "2026-05-30",
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": "https://getfitai.io/blog/protein-intake-calculator-guide",
+    "@id": "https://www.getfitai.io/blog/protein-intake-calculator-guide",
   },
 };
 

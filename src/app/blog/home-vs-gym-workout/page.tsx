@@ -19,10 +19,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Home vs Gym Workout: Which Is Better?",
     description: "Complete comparison of home and gym workouts. Find your best fit.",
-    url: "https://getfitai.io/blog/home-vs-gym-workout",
+    url: "https://www.getfitai.io/blog/home-vs-gym-workout",
     images: [
       {
-        url: "https://getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",

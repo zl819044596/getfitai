@@ -18,16 +18,16 @@ export const metadata: Metadata = {
     "calorie deficit calculator",
   ],
   alternates: {
-    canonical: "https://getfitai.io/blog/what-is-tdee-and-how-to-calculate/",
+    canonical: "https://www.getfitai.io/blog/what-is-tdee-and-how-to-calculate/",
   },
   openGraph: {
     title: "What Is TDEE and How to Calculate It? | GetFitAI",
     description:
       "Learn what TDEE (Total Daily Energy Expenditure) means, how to calculate it accurately, and why it matters for your fitness goals.",
-    url: "https://getfitai.io/blog/what-is-tdee-and-how-to-calculate",
+    url: "https://www.getfitai.io/blog/what-is-tdee-and-how-to-calculate",
     images: [
       {
-        url: "https://getfitai.io/images/og-tdee-guide.png",
+        url: "https://www.getfitai.io/images/og-tdee-guide.png",
         width: 1200,
         height: 630,
         alt: "What Is TDEE and How to Calculate It - Complete Guide",
@@ -42,25 +42,25 @@ const articleSchema = {
   headline: "What Is TDEE and How to Calculate It: The Complete Guide",
   description:
     "Learn what TDEE (Total Daily Energy Expenditure) means, how to calculate it accurately, and why it matters for your fitness goals. Free calculator and step-by-step guide included.",
-  image: "https://getfitai.io/images/og-tdee-guide.png",
+  image: "https://www.getfitai.io/images/og-tdee-guide.png",
   author: {
     "@type": "Organization",
     name: "GetFitAI",
-    url: "https://getfitai.io",
+    url: "https://www.getfitai.io",
   },
   publisher: {
     "@type": "Organization",
     name: "GetFitAI",
     logo: {
       "@type": "ImageObject",
-      url: "https://getfitai.io/logo.png",
+      url: "https://www.getfitai.io/logo.png",
     },
   },
   datePublished: "2026-05-30",
   dateModified: "2026-05-30",
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": "https://getfitai.io/blog/what-is-tdee-and-how-to-calculate",
+    "@id": "https://www.getfitai.io/blog/what-is-tdee-and-how-to-calculate",
   },
 };
 

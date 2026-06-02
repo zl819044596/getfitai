@@ -19,14 +19,14 @@ export function generateMetadata({ params }: { params: { type: string } }) {
     title: `${config.title} | GetFitAI`,
     description: config.description,
     alternates: {
-      canonical: `https://getfitai.io/workouts/${params.type}`,
+      canonical: `https://www.getfitai.io/workouts/${params.type}/`,
     },
     openGraph: {
       title: `${config.title} | GetFitAI`,
       description: config.description,
-      url: `https://getfitai.io/workouts/${params.type}`,
+      url: `https://www.getfitai.io/workouts/${params.type}/`,
       images: [{
-        url: `https://getfitai.io/images/og-${params.type}.png`,
+        url: `https://www.getfitai.io/images/og-${params.type}.png`,
         width: 1200,
         height: 630,
         alt: config.title,
@@ -36,7 +36,7 @@ export function generateMetadata({ params }: { params: { type: string } }) {
       card: "summary_large_image",
       title: `${config.title} | GetFitAI`,
       description: config.description,
-      images: [`https://getfitai.io/images/og-${params.type}.png`],
+      images: [`https://www.getfitai.io/images/og-${params.type}.png`],
     },
   };
 }

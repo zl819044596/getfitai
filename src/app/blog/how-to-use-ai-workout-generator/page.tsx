@@ -18,16 +18,16 @@ export const metadata: Metadata = {
     "workout plan generator",
   ],
   alternates: {
-    canonical: "https://getfitai.io/blog/how-to-use-ai-workout-generator/",
+    canonical: "https://www.getfitai.io/blog/how-to-use-ai-workout-generator/",
   },
   openGraph: {
     title: "How to Use an AI Workout Generator: Complete Guide | GetFitAI",
     description:
       "Learn how to get the most out of AI workout generators. Step-by-step guide to creating personalized training plans that actually work.",
-    url: "https://getfitai.io/blog/how-to-use-ai-workout-generator",
+    url: "https://www.getfitai.io/blog/how-to-use-ai-workout-generator",
     images: [
       {
-        url: "https://getfitai.io/images/og-ai-workout-guide.png",
+        url: "https://www.getfitai.io/images/og-ai-workout-guide.png",
         width: 1200,
         height: 630,
         alt: "How to Use an AI Workout Generator - Complete Guide",
@@ -42,25 +42,25 @@ const articleSchema = {
   headline: "How to Use an AI Workout Generator: The Complete 2026 Guide",
   description:
     "Learn how to get the most out of AI workout generators. Step-by-step guide to creating personalized training plans that actually work. Includes tips, mistakes to avoid, and best practices.",
-  image: "https://getfitai.io/images/og-ai-workout-guide.png",
+  image: "https://www.getfitai.io/images/og-ai-workout-guide.png",
   author: {
     "@type": "Organization",
     name: "GetFitAI",
-    url: "https://getfitai.io",
+    url: "https://www.getfitai.io",
   },
   publisher: {
     "@type": "Organization",
     name: "GetFitAI",
     logo: {
       "@type": "ImageObject",
-      url: "https://getfitai.io/logo.png",
+      url: "https://www.getfitai.io/logo.png",
     },
   },
   datePublished: "2026-05-30",
   dateModified: "2026-05-30",
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": "https://getfitai.io/blog/how-to-use-ai-workout-generator",
+    "@id": "https://www.getfitai.io/blog/how-to-use-ai-workout-generator",
   },
 };
 

@@ -18,16 +18,16 @@ export const metadata: Metadata = {
     "free fitness apps",
   ],
   alternates: {
-    canonical: "https://getfitai.io/blog/best-ai-fitness-apps-2026/",
+    canonical: "https://www.getfitai.io/blog/best-ai-fitness-apps-2026/",
   },
   openGraph: {
     title: "Best AI Fitness Apps 2026: Top Picks Reviewed | GetFitAI",
     description:
       "Discover the best AI fitness apps of 2026. We tested and reviewed the top options for workout generation, tracking, and personalization.",
-    url: "https://getfitai.io/blog/best-ai-fitness-apps-2026",
+    url: "https://www.getfitai.io/blog/best-ai-fitness-apps-2026",
     images: [
       {
-        url: "https://getfitai.io/images/og-best-ai-apps.png",
+        url: "https://www.getfitai.io/images/og-best-ai-apps.png",
         width: 1200,
         height: 630,
         alt: "Best AI Fitness Apps 2026 - Top Picks Reviewed",
@@ -42,25 +42,25 @@ const articleSchema = {
   headline: "Best AI Fitness Apps 2026: Top Picks Reviewed and Tested",
   description:
     "Discover the best AI fitness apps of 2026. We tested and reviewed the top options for workout generation, tracking, and personalization. Find your perfect fit.",
-  image: "https://getfitai.io/images/og-best-ai-apps.png",
+  image: "https://www.getfitai.io/images/og-best-ai-apps.png",
   author: {
     "@type": "Organization",
     name: "GetFitAI",
-    url: "https://getfitai.io",
+    url: "https://www.getfitai.io",
   },
   publisher: {
     "@type": "Organization",
     name: "GetFitAI",
     logo: {
       "@type": "ImageObject",
-      url: "https://getfitai.io/logo.png",
+      url: "https://www.getfitai.io/logo.png",
     },
   },
   datePublished: "2026-05-30",
   dateModified: "2026-05-30",
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": "https://getfitai.io/blog/best-ai-fitness-apps-2026",
+    "@id": "https://www.getfitai.io/blog/best-ai-fitness-apps-2026",
   },
 };
 

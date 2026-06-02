@@ -6,15 +6,15 @@ export const metadata: Metadata = {
   description: "Learn how to combine intermittent fasting with your workout routine for optimal fat loss and muscle gain. Science-backed guide with practical tips.",
   keywords: ["intermittent fasting", "fasting workout", "fasted cardio", "IF diet", "workout nutrition"],
   alternates: {
-    canonical: "https://getfitai.io/blog/intermittent-fasting-workout/",
+    canonical: "https://www.getfitai.io/blog/intermittent-fasting-workout/",
   },
   openGraph: {
     title: "Intermittent Fasting and Workout: The Complete Guide",
     description: "Learn how to combine intermittent fasting with your workout routine for optimal results.",
-    url: "https://getfitai.io/blog/intermittent-fasting-workout",
+    url: "https://www.getfitai.io/blog/intermittent-fasting-workout",
     images: [
       {
-        url: "https://getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",
@@ -38,14 +38,14 @@ const articleSchema = {
     name: "GetFitAI",
     logo: {
       "@type": "ImageObject",
-      url: "https://getfitai.io/logo.png",
+      url: "https://www.getfitai.io/logo.png",
     },
   },
   datePublished: "2026-05-24",
   dateModified: "2026-05-24",
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": "https://getfitai.io/blog/intermittent-fasting-workout",
+    "@id": "https://www.getfitai.io/blog/intermittent-fasting-workout",
   },
 };
 

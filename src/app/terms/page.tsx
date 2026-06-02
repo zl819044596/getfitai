@@ -4,13 +4,13 @@ export const metadata: Metadata = {
   title: "Terms of Service | GetFitAI",
   description: "Read the terms of service for GetFitAI. By using our AI workout generator and fitness calculators, you agree to these conditions.",
   alternates: {
-    canonical: "https://getfitai.io/terms/",
+    canonical: "https://www.getfitai.io/terms/",
   },
   openGraph: {
-    url: "https://getfitai.io/terms",
+    url: "https://www.getfitai.io/terms",
     images: [
       {
-        url: "https://getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",
