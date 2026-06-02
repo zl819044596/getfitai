@@ -20,7 +20,7 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   title: "GetFitAI - Free AI Workout Generator & Fitness Tools | Personalized Plans",
   description:
-    "GetFitAI: Free AI-powered workout generator and fitness calculators. Create personalized training plans for muscle building, fat loss, and strength. No signup required. Try our BMI, TDEE, body fat, and 1RM calculators.",
+    "GetFitAI: Free AI workout generator & fitness calculators. Personalized training plans for muscle building, fat loss & strength. No signup required.",
   keywords: [
     "AI workout generator",
     "free workout planner",
