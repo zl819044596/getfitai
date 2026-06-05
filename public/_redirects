@@ -1,14 +1,3 @@
-# 301 redirect: no trailing slash -> trailing slash
-/blog/how-to-use-ai-workout-generator    /blog/how-to-use-ai-workout-generator/    301
-/tools/macro-calculator                  /tools/macro-calculator/                  301
-/blog/how-to-build-muscle                /blog/how-to-build-muscle/                301
-/tools                                   /tools/                                   301
-/tools/bmr-calculator                    /tools/bmr-calculator/                    301
-/tools/workout-timer                     /tools/workout-timer/                     301
-/tools/ideal-weight-calculator           /tools/ideal-weight-calculator/           301
-/blog/what-is-tdee-and-how-to-calculate  /blog/what-is-tdee-and-how-to-calculate/  301
-/blog/protein-intake-calculator-guide    /blog/protein-intake-calculator-guide/    301
-
-# Catch-all: redirect any path without trailing slash to trailing slash
-# 注意：这会匹配所有无后缀的路径，确保放在最后
-# /*                                       /:splat/                                   301
+# 301 redirect: all paths without trailing slash -> trailing slash
+# 放在最前面，确保所有无 slash 的 URL 都被重定向
+/*                                       /:splat/                                   301
