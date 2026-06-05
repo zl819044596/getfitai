@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     url: "https://www.getfitai.io/blog/ai-fitness-coach-vs-personal-trainer/",
     images: [
       {
-        url: "https://www.getfitai.io/images/og-ai-vs-trainer.png",
+        url: "https://www.getfitai.io/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "AI Fitness Coach vs Personal Trainer - Which Is Better?",
@@ -42,7 +42,7 @@ const articleSchema = {
   headline: "AI Fitness Coach vs Personal Trainer: Which Is Better for You in 2026?",
   description:
     "Compare AI fitness coaches and human personal trainers. Cost, personalization, accountability, and results — find out which option fits your goals and budget.",
-  image: "https://www.getfitai.io/images/og-ai-vs-trainer.png",
+  image: "https://www.getfitai.io/og-image.jpg",
   author: {
     "@type": "Organization",
     name: "GetFitAI",

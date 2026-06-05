@@ -6,7 +6,7 @@ import { ArrowRight, Target } from "lucide-react";
 export const metadata: Metadata = {
   title: "Six Pack Workout: 10 Best Ab Exercises for Visible Abs | GetFitAI",
   description:
-    "The most effective six pack workout with 10 science-backed ab exercises. Learn how to get visible abs with proper training, nutrition, and our free AI.",
+    "The most effective six pack workout with 10 science-backed ab exercises. Learn how to get visible abs with proper training and nutrition.",
   keywords: [
     "six pack workout",
     "ab workout",

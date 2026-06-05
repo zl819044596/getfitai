@@ -5,7 +5,7 @@ import { ToolContent } from "@/components/tool-content";
 export const metadata: Metadata = {
   title: "Heart Rate Zone Calculator | GetFitAI",
   description:
-    "Calculate your target heart rate zones for free. Get personalized fat burn, cardio, and peak zones based on your age. Optimize your training intensity with GetFitAI.",
+    "Calculate your target heart rate zones for free. Get personalized fat burn, cardio, and peak zones based on your age. Optimize training intensity.",
   alternates: {
     canonical: "https://www.getfitai.io/tools/heart-rate-calculator/",
   },

@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     url: "https://www.getfitai.io/blog/how-to-lose-belly-fat/",
     images: [
       {
-        url: "https://www.getfitai.io/images/og-lose-belly-fat.png",
+        url: "https://www.getfitai.io/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "How to Lose Belly Fat - 10 Science-Backed Exercises",
@@ -42,7 +42,7 @@ const articleSchema = {
   headline: "How to Lose Belly Fat: 10 Science-Backed Exercises That Actually Work",
   description:
     "Discover 10 science-backed exercises to lose belly fat fast. Includes a complete 7-day workout plan, nutrition tips, and expert advice.",
-  image: "https://www.getfitai.io/images/og-lose-belly-fat.png",
+  image: "https://www.getfitai.io/og-image.jpg",
   author: {
     "@type": "Organization",
     name: "GetFitAI",

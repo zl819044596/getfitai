@@ -6,7 +6,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 export const metadata: Metadata = {
   title: "What Is TDEE and How to Calculate It? | GetFitAI",
   description:
-    "Learn what TDEE (Total Daily Energy Expenditure) means, how to calculate it accurately, and why it matters for your fitness goals. Free calculator and.",
+    "Learn what TDEE (Total Daily Energy Expenditure) means, how to calculate it accurately, and why it matters for your fitness goals.",
   keywords: [
     "what is TDEE",
     "how to calculate TDEE",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     url: "https://www.getfitai.io/blog/what-is-tdee-and-how-to-calculate/",
     images: [
       {
-        url: "https://www.getfitai.io/images/og-tdee-guide.png",
+        url: "https://www.getfitai.io/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "What Is TDEE and How to Calculate It - Complete Guide",
@@ -42,7 +42,7 @@ const articleSchema = {
   headline: "What Is TDEE and How to Calculate It: The Complete Guide",
   description:
     "Learn what TDEE (Total Daily Energy Expenditure) means, how to calculate it accurately, and why it matters for your fitness goals. Free calculator and step-by-step guide included.",
-  image: "https://www.getfitai.io/images/og-tdee-guide.png",
+  image: "https://www.getfitai.io/og-image.jpg",
   author: {
     "@type": "Organization",
     name: "GetFitAI",
