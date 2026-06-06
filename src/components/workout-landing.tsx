@@ -36,9 +36,9 @@ export function WorkoutLanding({ config }: { config: WorkoutConfig }) {
               {BadgeIcon && <BadgeIcon className="w-4 h-4" />}
               <span>{config.badgeText}</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               {config.title}
-            </h1>
+            </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               {config.description}
             </p>

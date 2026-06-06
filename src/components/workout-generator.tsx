@@ -449,10 +449,10 @@ export function WorkoutGenerator() {
           >
             {!plan && (
               <>
-                <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight" translate="no">
+                <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight" translate="no">
                   AI builds your<br />
                   <span className="text-orange-500">perfect workout</span>
-                </h1>
+                </h2>
                 <p className="text-lg text-slate-400 mb-8" translate="no">
                   Answer 5 questions. Get a personalized program in seconds. Free.
                 </p>
