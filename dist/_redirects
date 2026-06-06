@@ -1,3 +1,6 @@
+# 裸域名重定向到 www
+https://getfitai.io/*  https://www.getfitai.io/:splat  301
+
 # 排除根路径、文件和已有 trailing slash 的路径
 # 只匹配没有点号（不是文件）且不以 / 结尾的路径
 # /*/ 匹配至少有一个字符且不以 / 结尾的路径
