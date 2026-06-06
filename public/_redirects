@@ -1,5 +1,4 @@
-# 排除根路径和已有文件
-/                                        /index.html                                200
-
-# 301 redirect: all paths without trailing slash -> trailing slash
-/*                                       /:splat/                                   301
+# 排除根路径、文件和已有 trailing slash 的路径
+# 只匹配没有点号（不是文件）且不以 / 结尾的路径
+# /*/ 匹配至少有一个字符且不以 / 结尾的路径
+/*/  /:splat/  301
