@@ -1,2 +1,2 @@
-# 裸域名重定向到 www
-https://getfitai.io/*  https://www.getfitai.io/:splat  301
+# 裸域名重定向到 www（不带协议）
+getfitai.io/*  www.getfitai.io/:splat  301
