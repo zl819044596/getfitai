@@ -24,6 +24,20 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    title: "Calisthenics for Beginners: The Complete Bodyweight Workout Guide",
+    excerpt: "Start calisthenics with zero equipment. Learn basic bodyweight exercises, beginner routines, and progression tips to build strength at home.",
+    date: "June 8, 2026",
+    slug: "calisthenics-beginners-workout",
+    category: "Bodyweight Training",
+  },
+  {
+    title: "Post-Workout Recovery Tips: The Complete Guide for Faster Results",
+    excerpt: "Learn the best post-workout recovery strategies including nutrition, sleep, stretching, and active recovery techniques to maximize your fitness gains.",
+    date: "June 8, 2026",
+    slug: "post-workout-recovery-tips",
+    category: "Recovery & Wellness",
+  },
+  {
     title: "Six Pack Workout: 10 Best Ab Exercises for Visible Abs",
     excerpt: "The complete guide to getting visible abs. Science-backed exercises, training frequency, and the nutrition strategy that actually works.",
     date: "June 1, 2026",

@@ -36,6 +36,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const blogPosts = [
     "ai-fitness-coach-vs-personal-trainer",
     "beginner-gym-plan",
+    "calisthenics-beginners-workout",
     "bench-press-wrist-pain",
     "best-ai-fitness-apps-2026",
     "build-muscle-fast",
@@ -47,6 +48,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "intermittent-fasting-workout",
     "meal-prep-muscle",
     "protein-intake-calculator-guide",
+    "post-workout-recovery-tips",
     "what-is-tdee-and-how-to-calculate",
   ];
 
