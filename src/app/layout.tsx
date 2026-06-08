@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://www.getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.webp",
         width: 1200,
         height: 630,
         alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     title: "GetFitAI - Free AI Workout Generator & Fitness Tools",
     description:
       "Create personalized AI workout plans and use free fitness calculators. No signup required.",
-    images: ["https://www.getfitai.io/og-image.jpg"],
+    images: ["https://www.getfitai.io/og-image.webp"],
   },
   verification: {
     google: "G-MFH7XYRCCT",

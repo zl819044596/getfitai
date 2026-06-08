@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     url: "https://www.getfitai.io/blog/beginner-gym-plan/",
     images: [
       {
-        url: "https://www.getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.webp",
         width: 1200,
         height: 630,
         alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",
@@ -38,7 +38,7 @@ export default function BeginnerGymPlanPage() {
       {/* Hero */}
       <div className="relative h-[400px] overflow-hidden">
         <Image
-          src="/images/blog/build-muscle.jpg"
+          src="/images/blog/build-muscle.webp"
           alt="Beginner gym workout"
           fill
           className="object-cover opacity-40"

@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     url: "https://www.getfitai.io/blog/beginner-workout-routine/",
     images: [
       {
-        url: "https://www.getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.webp",
         width: 1200,
         height: 630,
         alt: "Beginner Workout Routine - 4 Week Plan",
@@ -44,7 +44,7 @@ const articleSchema = {
   headline: "Beginner Workout Routine: Complete 4-Week Plan (2026)",
   description:
     "The perfect beginner workout routine with exercises, sets, reps, and progression. Free 4-week plan for building muscle and strength.",
-  image: "https://www.getfitai.io/og-image.jpg",
+  image: "https://www.getfitai.io/og-image.webp",
   author: {
     "@type": "Organization",
     name: "GetFitAI",

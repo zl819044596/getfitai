@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     url: "https://www.getfitai.io/blog/how-much-protein-per-day/",
     images: [
       {
-        url: "https://www.getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.webp",
         width: 1200,
         height: 630,
         alt: "How Much Protein Per Day - Complete Guide",
@@ -42,7 +42,7 @@ const articleSchema = {
   headline: "How Much Protein Per Day: Complete Calculator & Guide (2026)",
   description:
     "Calculate your daily protein needs based on weight, goals, and activity level. Learn exactly how much protein you need to build muscle, lose fat, or maintain weight.",
-  image: "https://www.getfitai.io/og-image.jpg",
+  image: "https://www.getfitai.io/og-image.webp",
   author: {
     "@type": "Organization",
     name: "GetFitAI",

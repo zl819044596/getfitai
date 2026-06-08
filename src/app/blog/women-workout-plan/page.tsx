@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     url: "https://www.getfitai.io/blog/women-workout-plan/",
     images: [
       {
-        url: "https://www.getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.webp",
         width: 1200,
         height: 630,
         alt: "Women Workout Plan - Strength Training",
@@ -44,7 +44,7 @@ const articleSchema = {
   headline: "Women Workout Plan: Complete Strength Training Program (2026)",
   description:
     "A complete workout plan designed for women. Build strength, tone muscle, and improve fitness with this science-backed program.",
-  image: "https://www.getfitai.io/og-image.jpg",
+  image: "https://www.getfitai.io/og-image.webp",
   author: {
     "@type": "Organization",
     name: "GetFitAI",

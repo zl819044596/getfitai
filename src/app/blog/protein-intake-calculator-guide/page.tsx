@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     url: "https://www.getfitai.io/blog/protein-intake-calculator-guide/",
     images: [
       {
-        url: "https://www.getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.webp",
         width: 1200,
         height: 630,
         alt: "Protein Intake Calculator - How Much Protein Do You Need?",
@@ -42,7 +42,7 @@ const articleSchema = {
   headline: "Protein Intake Calculator: How Much Protein Do You Need Daily?",
   description:
     "Learn how much protein you need daily based on your weight, activity level, and fitness goals. Science-backed guidelines, timing strategies, and best sources.",
-  image: "https://www.getfitai.io/og-image.jpg",
+  image: "https://www.getfitai.io/og-image.webp",
   author: {
     "@type": "Organization",
     name: "GetFitAI",
@@ -129,7 +129,7 @@ export default function BlogPost() {
             </div>
             <div className="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-8">
               <img
-                src="/images/blog/protein-guide.jpg"
+                src="/images/blog/protein-guide.webp"
                 alt="Protein rich foods for muscle building"
                 className="w-full h-full object-cover grayscale"
               />

@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     url: "https://www.getfitai.io/blog/calisthenics-beginners-workout/",
     images: [
       {
-        url: "https://www.getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.webp",
         width: 1200,
         height: 630,
         alt: "Calisthenics for Beginners - Bodyweight Workout Guide",
@@ -69,7 +69,7 @@ const articleSchema = {
   headline: "Calisthenics for Beginners: The Complete Bodyweight Workout Guide",
   description:
     "Start calisthenics with zero equipment. Learn basic bodyweight exercises, beginner routines, and progression tips to build strength at home.",
-  image: "https://www.getfitai.io/og-image.jpg",
+  image: "https://www.getfitai.io/og-image.webp",
   author: {
     "@type": "Organization",
     name: "GetFitAI",
@@ -157,7 +157,7 @@ export default function CalisthenicsBeginnersPage() {
             </div>
             <div className="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-8">
               <img
-                src="/images/workout-1.jpg"
+                src="/images/workout-1.webp"
                 alt="Person doing a calisthenics push-up workout outdoors"
                 className="w-full h-full object-cover grayscale"
               />

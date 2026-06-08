@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     url: "https://www.getfitai.io/blog/what-is-tdee-and-how-to-calculate/",
     images: [
       {
-        url: "https://www.getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.webp",
         width: 1200,
         height: 630,
         alt: "What Is TDEE and How to Calculate It - Complete Guide",
@@ -42,7 +42,7 @@ const articleSchema = {
   headline: "What Is TDEE and How to Calculate It: The Complete Guide",
   description:
     "Learn what TDEE (Total Daily Energy Expenditure) means, how to calculate it accurately, and why it matters for your fitness goals. Free calculator and step-by-step guide included.",
-  image: "https://www.getfitai.io/og-image.jpg",
+  image: "https://www.getfitai.io/og-image.webp",
   author: {
     "@type": "Organization",
     name: "GetFitAI",
@@ -137,7 +137,7 @@ export default function BlogPost() {
             </div>
             <div className="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-8">
               <img
-                src="/images/blog/tdee-calculator.jpg"
+                src="/images/blog/tdee-calculator.webp"
                 alt="Healthy meal prep with calculator and nutrition tracking"
                 className="w-full h-full object-cover grayscale"
               />

@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     url: "https://www.getfitai.io/blog/ai-workout-planner/",
     images: [
       {
-        url: "https://www.getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.webp",
         width: 1200,
         height: 630,
         alt: "AI Workout Planner - Free Personalized Training Plans",
@@ -43,7 +43,7 @@ const articleSchema = {
   headline: "AI Workout Planner: The Future of Personalized Fitness Training (2026)",
   description:
     "Create personalized workout plans with AI. Get custom training programs tailored to your goals, experience, and equipment. Free, no signup required.",
-  image: "https://www.getfitai.io/og-image.jpg",
+  image: "https://www.getfitai.io/og-image.webp",
   author: {
     "@type": "Organization",
     name: "GetFitAI",

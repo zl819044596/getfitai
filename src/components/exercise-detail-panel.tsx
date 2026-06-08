@@ -32,7 +32,7 @@ export function ExerciseDetailPanel({ exercise, index, total, isCompleted }: Exe
       <div className="relative hidden lg:block">
         <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-black/50">
           <Image
-            src="/images/workout-3.jpg"
+            src="/images/workout-3.webp"
             alt="Fitness Training"
             width={600}
             height={750}

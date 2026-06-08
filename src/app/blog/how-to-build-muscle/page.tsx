@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     url: "https://www.getfitai.io/blog/how-to-build-muscle/",
     images: [
       {
-        url: "https://www.getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.webp",
         width: 1200,
         height: 630,
         alt: "How to Build Muscle - Complete Beginner's Guide",
@@ -41,7 +41,7 @@ const articleSchema = {
   headline: "How to Build Muscle: The Complete Beginner's Guide",
   description:
     "Learn how to build muscle with this complete beginner's guide. Covers the 6 fundamental exercises, workout plans, nutrition, and recovery.",
-  image: "https://www.getfitai.io/og-image.jpg",
+  image: "https://www.getfitai.io/og-image.webp",
   author: {
     "@type": "Organization",
     name: "GetFitAI",
@@ -128,7 +128,7 @@ export default function BlogPost() {
             </div>
             <div className="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-8">
               <img
-                src="/images/blog/build-muscle.jpg"
+                src="/images/blog/build-muscle.webp"
                 alt="Barbell squat in gym"
                 className="w-full h-full object-cover grayscale"
               />

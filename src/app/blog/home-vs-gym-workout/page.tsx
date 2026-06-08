@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     url: "https://www.getfitai.io/blog/home-vs-gym-workout/",
     images: [
       {
-        url: "https://www.getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.webp",
         width: 1200,
         height: 630,
         alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",
@@ -38,7 +38,7 @@ export default function HomeVsGymPage() {
       {/* Hero */}
       <div className="relative h-[400px] overflow-hidden">
         <Image
-          src="/images/blog/home-vs-gym.jpg"
+          src="/images/blog/home-vs-gym.webp"
           alt="Home vs gym workout comparison"
           fill
           className="object-cover opacity-40"

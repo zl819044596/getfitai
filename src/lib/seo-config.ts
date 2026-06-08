@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "GetFitAI",
   url: "https://getfitai.io",
   description: "Generate personalized workout plans tailored to your goals, experience, and available equipment. No sign-up required.",
-  ogImage: "https://getfitai.io/og-image.jpg",
+  ogImage: "https://getfitai.io/og-image.webp",
 };
 
 export const pageSEO = {

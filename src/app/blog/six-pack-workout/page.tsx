@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     url: "https://www.getfitai.io/blog/six-pack-workout/",
     images: [
       {
-        url: "https://www.getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.webp",
         width: 1200,
         height: 630,
         alt: "Six Pack Workout - Best Ab Exercises",
@@ -44,7 +44,7 @@ const articleSchema = {
   headline: "Six Pack Workout: 10 Best Ab Exercises for Visible Abs (2026)",
   description:
     "The most effective six pack workout with 10 science-backed ab exercises. Learn how to get visible abs with proper training, nutrition, and our free AI workout generator.",
-  image: "https://www.getfitai.io/og-image.jpg",
+  image: "https://www.getfitai.io/og-image.webp",
   author: {
     "@type": "Organization",
     name: "GetFitAI",

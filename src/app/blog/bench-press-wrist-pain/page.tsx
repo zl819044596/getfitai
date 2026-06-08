@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     url: "https://www.getfitai.io/blog/bench-press-wrist-pain/",
     images: [
       {
-        url: "https://www.getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.webp",
         width: 1200,
         height: 630,
         alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",
@@ -54,7 +54,7 @@ export default function BlogPost() {
             </div>
             <div className="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-8">
               <img
-                src="/images/blog/bench-press.jpg"
+                src="/images/blog/bench-press.webp"
                 alt="Bench press barbell close up"
                 className="w-full h-full object-cover grayscale"
               />

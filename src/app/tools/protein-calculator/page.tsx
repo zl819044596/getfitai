@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     url: "https://www.getfitai.io/tools/protein-calculator",
     images: [
       {
-        url: "https://www.getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.webp",
         width: 1200,
         height: 630,
         alt: "GetFitAI - Free AI Workout Generator & Fitness Tools",

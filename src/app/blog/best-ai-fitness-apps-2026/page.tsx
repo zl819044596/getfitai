@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     url: "https://www.getfitai.io/blog/best-ai-fitness-apps-2026/",
     images: [
       {
-        url: "https://www.getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.webp",
         width: 1200,
         height: 630,
         alt: "Best AI Fitness Apps 2026 - Top Picks Reviewed",
@@ -42,7 +42,7 @@ const articleSchema = {
   headline: "Best AI Fitness Apps 2026: Top Picks Reviewed and Tested",
   description:
     "Discover the best AI fitness apps of 2026. We tested and reviewed the top options for workout generation, tracking, and personalization. Find your perfect fit.",
-  image: "https://www.getfitai.io/og-image.jpg",
+  image: "https://www.getfitai.io/og-image.webp",
   author: {
     "@type": "Organization",
     name: "GetFitAI",
@@ -137,7 +137,7 @@ export default function BlogPost() {
             </div>
             <div className="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-8">
               <img
-                src="/images/blog/best-ai-apps.jpg"
+                src="/images/blog/best-ai-apps.webp"
                 alt="Best AI fitness apps of 2026 displayed on smartphone"
                 className="w-full h-full object-cover grayscale"
               />

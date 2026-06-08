@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     url: "https://www.getfitai.io/blog/ai-fitness-coach-vs-personal-trainer/",
     images: [
       {
-        url: "https://www.getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.webp",
         width: 1200,
         height: 630,
         alt: "AI Fitness Coach vs Personal Trainer - Which Is Better?",
@@ -42,7 +42,7 @@ const articleSchema = {
   headline: "AI Fitness Coach vs Personal Trainer: Which Is Better for You in 2026?",
   description:
     "Compare AI fitness coaches and human personal trainers. Cost, personalization, accountability, and results — find out which option fits your goals and budget.",
-  image: "https://www.getfitai.io/og-image.jpg",
+  image: "https://www.getfitai.io/og-image.webp",
   author: {
     "@type": "Organization",
     name: "GetFitAI",
@@ -137,7 +137,7 @@ export default function BlogPost() {
             </div>
             <div className="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-8">
               <img
-                src="/images/blog/ai-vs-trainer.jpg"
+                src="/images/blog/ai-vs-trainer.webp"
                 alt="AI fitness coach versus human personal trainer comparison"
                 className="w-full h-full object-cover grayscale"
               />

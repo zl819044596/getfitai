@@ -20,7 +20,7 @@ export function AboutClient() {
           <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
             <div className="bg-gray-100 rounded-2xl h-64 overflow-hidden">
               <img
-                src="/images/about/team-fitness.jpg"
+                src="/images/about/team-fitness.webp"
                 alt="Fitness team working out together"
                 className="w-full h-full object-cover"
               />

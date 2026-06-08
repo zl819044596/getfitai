@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     url: "https://www.getfitai.io/blog/how-many-calories-should-i-eat/",
     images: [
       {
-        url: "https://www.getfitai.io/og-image.jpg",
+        url: "https://www.getfitai.io/og-image.webp",
         width: 1200,
         height: 630,
         alt: "How Many Calories Should I Eat - Complete Guide",
@@ -42,7 +42,7 @@ const articleSchema = {
   headline: "How Many Calories Should I Eat? Complete Calculator & Guide (2026)",
   description:
     "Calculate your daily calorie needs for weight loss, maintenance, or muscle gain. Learn how to determine your TDEE and set the right calorie target.",
-  image: "https://www.getfitai.io/og-image.jpg",
+  image: "https://www.getfitai.io/og-image.webp",
   author: {
     "@type": "Organization",
     name: "GetFitAI",
