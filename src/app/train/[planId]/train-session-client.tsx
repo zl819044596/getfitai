@@ -12,8 +12,6 @@ import {
   CheckCircle2,
   Dumbbell,
   Clock,
-  Volume2,
-  VolumeX,
 } from "lucide-react";
 
 /* ─── Exercise Metadata ─── */
@@ -22,39 +20,70 @@ interface ExerciseMeta {
   name: string;
   displayName: string;
   hasVideo: boolean;
+  youtubeId: string;
 }
 
 const allExercises: Record<string, ExerciseMeta> = {
-  pushups: { name: "pushups", displayName: "Push-Ups", hasVideo: true },
-  squats: { name: "squats", displayName: "Squats", hasVideo: true },
-  lunges: { name: "lunges", displayName: "Lunges", hasVideo: true },
-  plank: { name: "plank", displayName: "Plank Hold", hasVideo: true },
-  burpees: { name: "burpees", displayName: "Burpees", hasVideo: true },
+  pushups: {
+    name: "pushups",
+    displayName: "Push-Ups",
+    hasVideo: true,
+    youtubeId: "WDIpL0pjun0",
+  },
+  squats: {
+    name: "squats",
+    displayName: "Squats",
+    hasVideo: true,
+    youtubeId: "m0GcZ24pK6k",
+  },
+  lunges: {
+    name: "lunges",
+    displayName: "Lunges",
+    hasVideo: true,
+    youtubeId: "MxfTNXSFiYI",
+  },
+  plank: {
+    name: "plank",
+    displayName: "Plank Hold",
+    hasVideo: true,
+    youtubeId: "mwlp75MS6Rg",
+  },
+  burpees: {
+    name: "burpees",
+    displayName: "Burpees",
+    hasVideo: true,
+    youtubeId: "vB1yp8XLoAc",
+  },
   mountain_climbers: {
     name: "mountain_climbers",
     displayName: "Mountain Climbers",
     hasVideo: true,
+    youtubeId: "cnyTQDSE884",
   },
   jumping_jacks: {
     name: "jumping_jacks",
     displayName: "Jumping Jacks",
     hasVideo: true,
+    youtubeId: "uLVt6u15L98",
   },
   high_knees: {
     name: "high_knees",
     displayName: "High Knees",
     hasVideo: true,
+    youtubeId: "FvjmPRU3zn4",
   },
   glute_bridges: {
     name: "glute_bridges",
     displayName: "Glute Bridges",
     hasVideo: true,
+    youtubeId: "Cj5zDEgmumA",
   },
-  supermans: { name: "supermans", displayName: "Supermans", hasVideo: true },
+  supermans: { name: "supermans", displayName: "Supermans", hasVideo: true, youtubeId: "QNLmIgsn5LU" },
   squat_jumps: {
     name: "squat_jumps",
     displayName: "Squat Jumps",
     hasVideo: false,
+    youtubeId: "",
   },
 };
 
@@ -172,14 +201,12 @@ export function TrainSession() {
 
   const plan = workoutPlans.find((p) => p.id === planId);
 
-  const videoRef = useRef<HTMLVideoElement>(null);
   const nextUpTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   const [currentStepIdx, setCurrentStepIdx] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState(0);
   const [status, setStatus] = useState<AppStatus>("ready");
   const [isPaused, setIsPaused] = useState(false);
-  const [muted, setMuted] = useState(false);
   const [elapsedExercises, setElapsedExercises] = useState(0);
 
   const totalExercises = plan
@@ -192,7 +219,6 @@ export function TrainSession() {
     setTimeRemaining(0);
     setStatus("ready");
     setIsPaused(false);
-    setMuted(false);
     setElapsedExercises(0);
   }, [planId]);
 
@@ -266,18 +292,6 @@ export function TrainSession() {
     };
   }, []);
 
-  // Control video playback
-  useEffect(() => {
-    const vid = videoRef.current;
-    if (!vid) return;
-
-    if (status === "exercise" && !isPaused) {
-      vid.currentTime = 0;
-      vid.play().catch(() => {});
-    } else {
-      vid.pause();
-    }
-  }, [status, isPaused, currentStepIdx]);
 
   const handleStart = useCallback(() => {
     if (!plan) return;
@@ -478,13 +492,6 @@ export function TrainSession() {
             <ArrowLeft className="w-4 h-4" />
             Exit
           </Link>
-          <button
-            onClick={() => setMuted((m) => !m)}
-            className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-            aria-label={muted ? "Unmute" : "Mute"}
-          >
-            {muted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
-          </button>
         </div>
 
         {/* Progress bar */}
@@ -565,13 +572,14 @@ export function TrainSession() {
             <div className="relative rounded-2xl overflow-hidden bg-black mb-4 h-[60vh] max-h-[500px] min-h-[320px]">
               {currentStep.ex.hasVideo ? (
                 <video
-                  ref={videoRef}
+                  key={currentStep.ex.name}
                   src={`/videos/exercises/${currentStep.ex.name}.mp4`}
                   className="w-full h-full object-contain"
-                  muted={muted}
+                  muted
                   loop
                   playsInline
                   controls={false}
+                  autoPlay
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center bg-slate-900">
