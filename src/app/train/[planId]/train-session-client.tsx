@@ -562,12 +562,12 @@ export function TrainSession() {
             </div>
 
             {/* Video */}
-            <div className="relative rounded-2xl overflow-hidden bg-black mb-4 aspect-video">
+            <div className="relative rounded-2xl overflow-hidden bg-black mb-4 h-[60vh] max-h-[500px] min-h-[320px]">
               {currentStep.ex.hasVideo ? (
                 <video
                   ref={videoRef}
                   src={`/videos/exercises/${currentStep.ex.name}.mp4`}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                   muted={muted}
                   loop
                   playsInline
