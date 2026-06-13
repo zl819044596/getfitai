@@ -70,18 +70,24 @@ export function Hero() {
               className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10"
             >
               <Link
-                href="/workouts/home"
+                href="/train"
                 className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-orange-500 hover:bg-orange-600 rounded-full btn-glow animate-pulse-glow"
                 style={{ fontFamily: "var(--font-heading)" }}
               >
-                Generate My Workout
+                Start Training Now
                 <ArrowRight className="ml-2 w-5 h-5" />
+              </Link>
+              <Link
+                href="/workouts/home"
+                className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-slate-300 border border-slate-700 hover:border-orange-500/50 hover:text-orange-400 rounded-full transition-all"
+              >
+                Generate Workout Plan
               </Link>
               <Link
                 href="/tools"
                 className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-slate-300 border border-slate-700 hover:border-orange-500/50 hover:text-orange-400 rounded-full transition-all"
               >
-                Explore Tools
+                Tools
               </Link>
             </motion.div>
 

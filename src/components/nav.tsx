@@ -6,6 +6,7 @@ import { Menu, X, Dumbbell } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
+  { href: "/train", label: "Train" },
   { href: "/tools", label: "Tools" },
   { href: "/blog", label: "Blog" },
   { href: "/#features", label: "Features" },
@@ -63,11 +64,11 @@ export function Nav() {
           {/* CTA Button */}
           <div className="hidden md:flex items-center">
             <Link
-              href="/workouts/home"
+              href="/train"
               className="inline-flex items-center px-5 py-2.5 text-sm font-bold text-white bg-orange-500 hover:bg-orange-600 rounded-full btn-glow"
               style={{ fontFamily: "var(--font-heading)" }}
             >
-              Generate Workout
+              Start Training
             </Link>
           </div>
 
@@ -103,11 +104,11 @@ export function Nav() {
               ))}
               <div className="pt-4 border-t border-slate-800">
                 <Link
-                  href="/workouts/home"
+                  href="/train"
                   className="block w-full text-center bg-orange-500 text-white py-3 rounded-full font-bold hover:bg-orange-600 transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  Generate Workout
+                  Start Training
                 </Link>
               </div>
             </div>

@@ -52,6 +52,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "what-is-tdee-and-how-to-calculate",
   ];
 
+  // 训练跟练页面
+  const trainPages = ["full-body-burn", "core-crusher", "quick-cardio"];
+
   const pages = [
     ...staticPages.map((page) => ({
       url: `${baseUrl}${page.path}`,
@@ -71,6 +74,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
       priority: 0.8,
     })),
+    ...trainPages.map((slug) => ({
+      url: `${baseUrl}/train/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    })),
+    { url: `${baseUrl}/train`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.95 },
   ];
 
   return pages;
