@@ -570,16 +570,13 @@ export function TrainSession() {
 
             {/* Video */}
             <div className="relative rounded-2xl overflow-hidden bg-black mb-4 h-[60vh] max-h-[500px] min-h-[320px]">
-              {currentStep.ex.hasVideo ? (
-                <video
+              {currentStep.ex.hasVideo && currentStep.ex.youtubeId ? (
+                <iframe
                   key={currentStep.ex.name}
-                  src={`/videos/exercises/${currentStep.ex.name}.mp4`}
-                  className="w-full h-full object-contain"
-                  muted
-                  loop
-                  playsInline
-                  controls={false}
-                  autoPlay
+                  src={`https://www.youtube-nocookie.com/embed/${currentStep.ex.youtubeId}?autoplay=1&loop=1&playlist=${currentStep.ex.youtubeId}&mute=1&controls=0&modestbranding=1&rel=0`}
+                  className="w-full h-full"
+                  allow="autoplay; encrypted-media"
+                  allowFullScreen
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center bg-slate-900">
