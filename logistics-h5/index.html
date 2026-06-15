@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>鸿旺集9 - 235E武汉下行装载图</title>
+<style>
+  :root {
+    --primary: #2563eb;
+    --primary-light: #3b82f6;
+    --success: #22c55e;
+    --success-bg: #dcfce7;
+    --danger: #ef4444;
+    --danger-bg: #fee2e2;
+    --warning: #f59e0b;
+    --warning-bg: #fef3c7;
+    --info: #3b82f6;
+    --info-bg: #dbeafe;
+    --bg: #0f172a;
+    --card: #1e293b;
+    --card-hover: #273548;
+    --border: #334155;
+    --text: #f1f5f9;
+    --text-dim: #94a3b8;
+    --text-muted: #64748b;
+    --header-bg: #1a2a4a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    padding-bottom: 80px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #1e3a5f 0%, #1a2a4a 100%);
+    padding: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--border);
+  }
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .header-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .header-sub {
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+  .header-badge {
+    background: rgba(37,99,235,0.3);
+    color: var(--primary-light);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    border: 1px solid rgba(37,99,235,0.3);
+  }
+  .date-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .date-nav::-webkit-scrollbar { display: none; }
+  .date-chip {
+    flex-shrink: 0;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    background: rgba(255,255,255,0.08);
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+    white-space: nowrap;
+  }
+  .date-chip.active {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary-light);
+  }
+  .date-chip.today {
+    border-color: var(--primary-light);
+  }
+
+  /* Stats Bar */
+  .stats-bar {
+    display: flex;
+    gap: 12px;
+    padding: 12px 16px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .stats-bar::-webkit-scrollbar { display: none; }
+  .stat-item {
+    flex-shrink: 0;
+    background: var(--card);
+    border-radius: 12px;
+    padding: 10px 16px;
+    border: 1px solid var(--border);
+    min-width: 80px;
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 2px;
+  }
+  .stat-item.green .stat-num { color: var(--success); }
+  .stat-item.red .stat-num { color: var(--danger); }
+  .stat-item.blue .stat-num { color: var(--info); }
+
+  /* Legend */
+  .legend {
+    display: flex;
+    gap: 16px;
+    padding: 8px 16px 4px;
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .legend-dot.green { background: var(--success); }
+  .legend-dot.red { background: var(--danger); }
+  .legend-dot.blue { background: var(--info); }
+  .legend-dot.yellow { background: var(--warning); }
+
+  /* Table */
+  .table-wrap {
+    padding: 0 12px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .table-wrap::-webkit-scrollbar { height: 4px; }
+  .table-wrap::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+  table {
+    width: 100%;
+    min-width: 640px;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  thead th {
+    background: var(--header-bg);
+    padding: 10px 8px;
+    text-align: center;
+    font-weight: 600;
+    color: var(--text-dim);
+    font-size: 12px;
+    border-bottom: 2px solid var(--border);
+    position: sticky;
+    top: 130px;
+    white-space: nowrap;
+  }
+  thead th:first-child {
+    text-align: left;
+    padding-left: 12px;
+    min-width: 60px;
+  }
+  tbody td {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid rgba(51,65,85,0.5);
+    transition: background 0.15s;
+    cursor: pointer;
+    vertical-align: middle;
+  }
+  tbody td:first-child {
+    text-align: left;
+    padding-left: 12px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  tbody tr:hover td {
+    background: rgba(255,255,255,0.03);
+  }
+  tbody tr.active td:first-child {
+    color: var(--primary-light);
+  }
+
+  /* Status cells */
+  .cell-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    min-width: 50px;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+  }
+  .cell-status:active {
+    transform: scale(0.95);
+  }
+  .cell-status.done {
+    background: rgba(34,197,94,0.15);
+    color: var(--success);
+    border-color: rgba(34,197,94,0.3);
+  }
+  .cell-status.running {
+    background: rgba(239,68,68,0.15);
+    color: var(--danger);
+    border-color: rgba(239,68,68,0.3);
+  }
+  .cell-status.pending {
+    background: rgba(59,130,246,0.15);
+    color: var(--info);
+    border-color: rgba(59,130,246,0.3);
+  }
+  .cell-status.waiting {
+    background: rgba(245,158,11,0.15);
+    color: var(--warning);
+    border-color: rgba(245,158,11,0.3);
+  }
+  .cell-status .icon {
+    font-size: 10px;
+  }
+
+  /* Date row grouping */
+  .date-sep td {
+    background: rgba(37,99,235,0.05);
+    border-bottom: 1px solid rgba(37,99,235,0.15);
+    font-weight: 600;
+    color: var(--primary-light);
+  }
+
+  /* Bottom action bar */
+  .action-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--card);
+    border-top: 1px solid var(--border);
+    padding: 12px 16px;
+    display: flex;
+    gap: 10px;
+    z-index: 100;
+  }
+  .btn {
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    outline: none;
+  }
+  .btn:active { transform: scale(0.98); }
+  .btn-primary {
+    background: var(--primary);
+    color: #fff;
+  }
+  .btn-primary:hover { background: var(--primary-light); }
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-outline:hover { background: var(--card-hover); }
+  .btn-success {
+    background: var(--success);
+    color: #fff;
+  }
+  .btn-danger {
+    background: var(--danger);
+    color: #fff;
+  }
+
+  /* Modal */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 200;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  .modal-overlay.show { display: flex; }
+  .modal {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 24px;
+    width: 100%;
+    max-width: 360px;
+    border: 1px solid var(--border);
+    animation: modalIn 0.2s ease;
+  }
+  @keyframes modalIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  .modal h3 {
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+  .modal .modal-sub {
+    color: var(--text-dim);
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+  .status-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .status-option {
+    padding: 12px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .status-option:active { transform: scale(0.97); }
+  .status-option.done {
+    background: rgba(34,197,94,0.1);
+    color: var(--success);
+  }
+  .status-option.done.selected { border-color: var(--success); }
+  .status-option.running {
+    background: rgba(239,68,68,0.1);
+    color: var(--danger);
+  }
+  .status-option.running.selected { border-color: var(--danger); }
+  .status-option.pending {
+    background: rgba(59,130,246,0.1);
+    color: var(--info);
+  }
+  .status-option.pending.selected { border-color: var(--info); }
+  .status-option.waiting {
+    background: rgba(245,158,11,0.1);
+    color: var(--warning);
+  }
+  .status-option.waiting.selected { border-color: var(--warning); }
+  .modal .btn-row {
+    display: flex;
+    gap: 8px;
+  }
+  .modal .btn-row .btn { flex: 1; padding: 10px; font-size: 13px; }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.8);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 14px;
+    z-index: 300;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    backdrop-filter: blur(8px);
+  }
+  .toast.show { opacity: 1; }
+
+  /* Responsive */
+  @media (min-width: 768px) {
+    body { max-width: 480px; margin: 0 auto; }
+    .action-bar { max-width: 480px; left: 50%; transform: translateX(-50%); }
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-top">
+    <div>
+      <div class="header-title">鸿旺集9 · 装载图</div>
+      <div class="header-sub">235E 武汉下行计划 · 2026年6月</div>
+    </div>
+    <span class="header-badge">🚢 武汉→太仓</span>
+  </div>
+  <div class="date-nav" id="dateNav">
+    <!-- Dates rendered by JS -->
+  </div>
+</div>
+
+<!-- Stats -->
+<div class="stats-bar" id="statsBar">
+  <!-- Stats rendered by JS -->
+</div>
+
+<!-- Legend -->
+<div class="legend">
+  <span class="legend-item"><span class="legend-dot green"></span>已完成</span>
+  <span class="legend-item"><span class="legend-dot red"></span>进行中</span>
+  <span class="legend-item"><span class="legend-dot blue"></span>待处理</span>
+  <span class="legend-item"><span class="legend-dot yellow"></span>等待中</span>
+  <span class="legend-item" style="margin-left:auto;color:var(--text-muted)">点击单元格切换状态</span>
+</div>
+
+<!-- Table -->
+<div class="table-wrap">
+  <table id="loadingTable">
+    <thead>
+      <tr>
+        <th>日期</th>
+        <th>武大</th>
+        <th>40F</th>
+        <th>太仓</th>
+        <th>大仓</th>
+        <th>小空</th>
+        <th>装载率</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody">
+      <!-- Rows rendered by JS -->
+    </tbody>
+  </table>
+</div>
+
+<!-- Action Bar -->
+<div class="action-bar">
+  <button class="btn btn-outline" onclick="resetToday()">重置今日</button>
+  <button class="btn btn-primary" onclick="scrollToToday()">回到今日</button>
+  <button class="btn btn-outline" onclick="exportData()">📋 导出</button>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="statusModal">
+  <div class="modal">
+    <h3 id="modalTitle">更新状态</h3>
+    <p class="modal-sub" id="modalSub">选择新的状态标记</p>
+    <div class="status-options" id="statusOptions">
+      <div class="status-option done" data-status="done" onclick="selectStatus(this)">✅ 已完成</div>
+      <div class="status-option running" data-status="running" onclick="selectStatus(this)">🔴 进行中</div>
+      <div class="status-option pending" data-status="pending" onclick="selectStatus(this)">🔵 待处理</div>
+      <div class="status-option waiting" data-status="waiting" onclick="selectStatus(this)">🟡 等待中</div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-outline" onclick="closeModal()">取消</button>
+      <button class="btn btn-primary" onclick="confirmStatus()">确认</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ============ DATA MODEL ============
+const DAYS = 15; // 1-15号
+const COLUMNS = ['wuda', 'f40', 'taicang', 'dacang', 'xiaokong'];
+const COLUMN_LABELS = { wuda: '武大', f40: '40F', taicang: '太仓', dacang: '大仓', xiaokong: '小空' };
+const STATUSES = ['done', 'running', 'pending', 'waiting'];
+const STATUS_LABELS = { done: '已完成', running: '进行中', pending: '待处理', waiting: '等待中' };
+
+// Generate mock data
+function generateData() {
+  const data = {};
+  for (let d = 1; d <= DAYS; d++) {
+    data[d] = {};
+    COLUMNS.forEach(col => {
+      const rand = Math.random();
+      if (rand < 0.35) data[d][col] = 'done';
+      else if (rand < 0.55) data[d][col] = 'running';
+      else if (rand < 0.8) data[d][col] = 'pending';
+      else data[d][col] = 'waiting';
+    });
+  }
+  // Ensure today has some running items
+  const today = new Date().getDate();
+  if (today <= DAYS) {
+    data[today] = data[today] || {};
+    data[today]['wuda'] = 'running';
+    data[today]['f40'] = 'done';
+    data[today]['taicang'] = 'pending';
+    data[today]['dacang'] = 'running';
+    data[today]['xiaokong'] = 'pending';
+  }
+  return data;
+}
+
+let planData = generateData();
+let currentStatus = null;
+let currentCell = null; // {date, col}
+
+// ============ RENDER ============
+function render() {
+  renderDates();
+  renderStats();
+  renderTable();
+}
+
+function renderDates() {
+  const nav = document.getElementById('dateNav');
+  const today = new Date().getDate();
+  nav.innerHTML = '';
+  for (let d = 1; d <= DAYS; d++) {
+    const chip = document.createElement('span');
+    chip.className = 'date-chip' + (d === today ? ' active today' : '');
+    chip.textContent = d + '日';
+    chip.onclick = () => scrollToDate(d);
+    nav.appendChild(chip);
+  }
+}
+
+function renderStats() {
+  const bar = document.getElementById('statsBar');
+  const counts = { done: 0, running: 0, pending: 0, waiting: 0 };
+  Object.values(planData).forEach(day => {
+    Object.values(day).forEach(s => { counts[s]++; });
+  });
+  const total = Object.values(counts).reduce((a,b) => a+b, 0);
+  
+  bar.innerHTML = `
+    <div class="stat-item green"><div class="stat-num">${counts.done}</div><div class="stat-label">已完成</div></div>
+    <div class="stat-item red"><div class="stat-num">${counts.running}</div><div class="stat-label">进行中</div></div>
+    <div class="stat-item blue"><div class="stat-num">${counts.pending}</div><div class="stat-label">待处理</div></div>
+    <div class="stat-item"><div class="stat-num">${total}</div><div class="stat-label">总计</div></div>
+  `;
+}
+
+function renderTable() {
+  const tbody = document.getElementById('tableBody');
+  const today = new Date().getDate();
+  tbody.innerHTML = '';
+
+  for (let d = 1; d <= DAYS; d++) {
+    const day = planData[d] || {};
+    const tr = document.createElement('tr');
+    if (d === today) tr.className = 'active';
+
+    // Date cell
+    const tdDate = document.createElement('td');
+    const isWeekend = d === 6 || d === 7 || d === 13 || d === 14;
+    const weekendLabel = isWeekend ? (d === 6 || d === 13 ? ' (周六)' : ' (周日)') : '';
+    tdDate.textContent = `6月${d}日${weekendLabel}`;
+    tdDate.style.color = isWeekend ? 'var(--text-muted)' : 'var(--text)';
+    tdDate.style.fontSize = '12px';
+    tr.appendChild(tdDate);
+
+    // Status cells
+    COLUMNS.forEach(col => {
+      const td = document.createElement('td');
+      const status = day[col] || 'pending';
+      const badge = document.createElement('span');
+      badge.className = `cell-status ${status}`;
+      badge.dataset.date = d;
+      badge.dataset.col = col;
+      
+      const icons = { done: '✅', running: '🔴', pending: '🔵', waiting: '🟡' };
+      badge.innerHTML = `<span class="icon">${icons[status]}</span> ${STATUS_LABELS[status]}`;
+      
+      badge.onclick = (e) => {
+        e.stopPropagation();
+        openModal(d, col);
+      };
+      td.appendChild(badge);
+      tr.appendChild(td);
+    });
+
+    // Loading rate
+    const tdRate = document.createElement('td');
+    const dayStatuses = COLUMNS.map(c => day[c] || 'pending');
+    const doneCount = dayStatuses.filter(s => s === 'done').length;
+    const rate = Math.round(doneCount / COLUMNS.length * 100);
+    const rateColor = rate >= 80 ? 'var(--success)' : rate >= 40 ? 'var(--warning)' : 'var(--danger)';
+    tdRate.innerHTML = `<span style="color:${rateColor};font-weight:600;">${rate}%</span>`;
+    tdRate.style.fontSize = '12px';
+    tr.appendChild(tdRate);
+
+    tbody.appendChild(tr);
+  }
+}
+
+// ============ INTERACTIONS ============
+function openModal(date, col) {
+  currentCell = { date, col };
+  const status = planData[date]?.[col] || 'pending';
+  document.getElementById('modalTitle').textContent = `6月${date}日 · ${COLUMN_LABELS[col]}`;
+  document.getElementById('modalSub').textContent = `当前：${STATUS_LABELS[status]}`;
+  
+  document.querySelectorAll('.status-option').forEach(el => {
+    el.classList.toggle('selected', el.dataset.status === status);
+  });
+  document.getElementById('statusModal').classList.add('show');
+}
+
+function closeModal() {
+  document.getElementById('statusModal').classList.remove('show');
+  currentCell = null;
+}
+
+function selectStatus(el) {
+  document.querySelectorAll('.status-option').forEach(e => e.classList.remove('selected'));
+  el.classList.add('selected');
+  currentStatus = el.dataset.status;
+}
+
+function confirmStatus() {
+  if (!currentCell || !currentStatus) { closeModal(); return; }
+  const { date, col } = currentCell;
+  planData[date] = planData[date] || {};
+  planData[date][col] = currentStatus;
+  render();
+  showToast(`已更新 6月${date}日 ${COLUMN_LABELS[col]} → ${STATUS_LABELS[currentStatus]}`);
+  closeModal();
+}
+
+function resetToday() {
+  const today = new Date().getDate();
+  if (today > DAYS) return;
+  planData[today] = {};
+  COLUMNS.forEach(col => planData[today][col] = 'pending');
+  render();
+  showToast('今日数据已重置');
+}
+
+function scrollToDate(day) {
+  const rows = document.querySelectorAll('#tableBody tr');
+  if (rows[day - 1]) {
+    rows[day - 1].scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  document.querySelectorAll('.date-chip').forEach((c, i) => {
+    c.classList.toggle('active', i + 1 === day);
+  });
+}
+
+function scrollToToday() {
+  const today = new Date().getDate();
+  scrollToDate(today);
+}
+
+function exportData() {
+  let text = '鸿旺集9 - 235E武汉下行装载图\n';
+  text += '日期\t武大\t40F\t太仓\t大仓\t小空\t装载率\n';
+  for (let d = 1; d <= DAYS; d++) {
+    const day = planData[d] || {};
+    const statuses = COLUMNS.map(c => STATUS_LABELS[day[c] || 'pending']);
+    const doneCount = statuses.filter(s => s === '已完成').length;
+    const rate = Math.round(doneCount / COLUMNS.length * 100);
+    text += `6月${d}日\t${statuses.join('\t')}\t${rate}%\n`;
+  }
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('已复制到剪贴板');
+  }).catch(() => {
+    showToast('导出失败，请手动复制');
+  });
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+// ============ INIT ============
+render();
+scrollToToday();
+</script>
+
+<div class="toast" id="toast"></div>
+</body>
+</html>
