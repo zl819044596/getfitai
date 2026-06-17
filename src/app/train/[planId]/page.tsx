@@ -1,12 +1,16 @@
 import { Metadata } from "next";
 import { TrainSession } from "./train-session-client";
 
-// Define params for all 3 workout plans
+// Define params for all 7 workout plans
 export function generateStaticParams() {
   return [
     { planId: "full-body-burn" },
     { planId: "core-crusher" },
     { planId: "quick-cardio" },
+    { planId: "upper-body-push" },
+    { planId: "lower-body-strength" },
+    { planId: "full-body-stretch" },
+    { planId: "hiit-blast" },
   ];
 }
 
@@ -25,6 +29,26 @@ const planMeta: Record<string, { name: string; description: string }> = {
     name: "Quick Cardio",
     description:
       "A rapid-fire 5-minute cardio blast to get your heart pumping fast. No equipment needed.",
+  },
+  "upper-body-push": {
+    name: "Upper Body Push",
+    description:
+      "Push-ups, dips, and plank variations for a stronger upper body — 10 minutes, no equipment.",
+  },
+  "lower-body-strength": {
+    name: "Lower Body Strength",
+    description:
+      "Squats, lunges, glute bridges, and isometric holds for powerful legs — 12 minutes, bodyweight only.",
+  },
+  "full-body-stretch": {
+    name: "Full Body Stretch",
+    description:
+      "A continuous flexibility flow from neck to ankles — 8 minutes of full-body recovery and release.",
+  },
+  "hiit-blast": {
+    name: "HIIT Blast",
+    description:
+      "40/15 HIIT intervals with burpees, high knees, and an all-out star jump finish — 7 minutes to torch calories.",
   },
 };
 

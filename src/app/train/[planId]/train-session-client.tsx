@@ -85,6 +85,110 @@ const allExercises: Record<string, ExerciseMeta> = {
     hasVideo: false,
     youtubeId: "",
   },
+
+  // ── Upper Body Push exercises ──
+  tricep_dips: {
+    name: "tricep_dips",
+    displayName: "Tricep Dips",
+    hasVideo: true,
+    youtubeId: "8RmD5bU2nMM",
+  },
+  pike_pushups: {
+    name: "pike_pushups",
+    displayName: "Pike Push-Ups",
+    hasVideo: true,
+    youtubeId: "4z8QfB3bXMU",
+  },
+  shoulder_taps: {
+    name: "shoulder_taps",
+    displayName: "Shoulder Taps",
+    hasVideo: true,
+    youtubeId: "ydJ6z5zFdDs",
+  },
+
+  // ── Lower Body Strength exercises ──
+  calf_raises: {
+    name: "calf_raises",
+    displayName: "Calf Raises",
+    hasVideo: true,
+    youtubeId: "-M4-G8p8k6g",
+  },
+  wall_sit: {
+    name: "wall_sit",
+    displayName: "Wall Sit",
+    hasVideo: true,
+    youtubeId: "cQZzQqIbgAs",
+  },
+
+  // ── Full Body Stretch exercises ──
+  neck_rolls: {
+    name: "neck_rolls",
+    displayName: "Neck Rolls",
+    hasVideo: true,
+    youtubeId: "aFg0FS0bR30",
+  },
+  shoulder_stretch: {
+    name: "shoulder_stretch",
+    displayName: "Shoulder Stretch",
+    hasVideo: true,
+    youtubeId: "aG3T6cGdLII",
+  },
+  chest_stretch: {
+    name: "chest_stretch",
+    displayName: "Chest Stretch",
+    hasVideo: true,
+    youtubeId: "fH1mTK7r3MY",
+  },
+  standing_toe_touch: {
+    name: "standing_toe_touch",
+    displayName: "Standing Toe Touch",
+    hasVideo: true,
+    youtubeId: "8SdGlj4vPvo",
+  },
+  quad_stretch: {
+    name: "quad_stretch",
+    displayName: "Quad Stretch",
+    hasVideo: true,
+    youtubeId: "q7C1GKaMUXA",
+  },
+  hamstring_stretch: {
+    name: "hamstring_stretch",
+    displayName: "Hamstring Stretch",
+    hasVideo: true,
+    youtubeId: "jPzUd7qT5pI",
+  },
+  cat_cow: {
+    name: "cat_cow",
+    displayName: "Cat-Cow",
+    hasVideo: true,
+    youtubeId: "kSX0hq3X3UA",
+  },
+  childs_pose: {
+    name: "childs_pose",
+    displayName: "Child's Pose",
+    hasVideo: true,
+    youtubeId: "i5GyWOhdCB4",
+  },
+  down_dog: {
+    name: "down_dog",
+    displayName: "Downward Dog",
+    hasVideo: true,
+    youtubeId: "ECo2OEiTq_s",
+  },
+  lying_twist: {
+    name: "lying_twist",
+    displayName: "Lying Spinal Twist",
+    hasVideo: true,
+    youtubeId: "7Zg8H3kD5DE",
+  },
+
+  // ── HIIT Blast exercises ──
+  star_jumps: {
+    name: "star_jumps",
+    displayName: "Star Jumps",
+    hasVideo: true,
+    youtubeId: "MKrRZOe3hvo",
+  },
 };
 
 /* ─── Step Types ─── */
@@ -161,6 +265,102 @@ const workoutPlans: WorkoutPlan[] = [
       { type: "exercise", ex: allExercises.mountain_climbers, duration: 40, phase: "main" },
       { type: "rest", duration: 10 },
       { type: "exercise", ex: allExercises.squat_jumps, duration: 30, phase: "main" },
+    ],
+  },
+
+  // ── Upper Body Push (10 min) ──
+  {
+    id: "upper-body-push",
+    name: "Upper Body Push",
+    totalMinutes: 10,
+    steps: [
+      // Warm-up
+      { type: "exercise", ex: allExercises.jumping_jacks, duration: 30, phase: "warmup" },
+      { type: "rest", duration: 5 },
+      { type: "exercise", ex: allExercises.high_knees, duration: 25, phase: "warmup" },
+      // Main set
+      { type: "rest", duration: 10 },
+      { type: "exercise", ex: allExercises.pushups, duration: 40, phase: "main" },
+      { type: "rest", duration: 25 },
+      { type: "exercise", ex: allExercises.tricep_dips, duration: 40, phase: "main" },
+      { type: "rest", duration: 25 },
+      { type: "exercise", ex: allExercises.pike_pushups, duration: 35, phase: "main" },
+      { type: "rest", duration: 20 },
+      { type: "exercise", ex: allExercises.shoulder_taps, duration: 30, phase: "main" },
+      { type: "rest", duration: 15 },
+      { type: "exercise", ex: allExercises.pushups, duration: 30, phase: "main" },
+      // Finisher
+      { type: "exercise", ex: allExercises.plank, duration: 30, phase: "finisher" },
+    ],
+  },
+
+  // ── Lower Body Strength (12 min) ──
+  {
+    id: "lower-body-strength",
+    name: "Lower Body Strength",
+    totalMinutes: 12,
+    steps: [
+      // Warm-up
+      { type: "exercise", ex: allExercises.squats, duration: 30, phase: "warmup" },
+      { type: "rest", duration: 5 },
+      { type: "exercise", ex: allExercises.lunges, duration: 25, phase: "warmup" },
+      // Main set
+      { type: "rest", duration: 10 },
+      { type: "exercise", ex: allExercises.squats, duration: 45, phase: "main" },
+      { type: "rest", duration: 20 },
+      { type: "exercise", ex: allExercises.lunges, duration: 45, phase: "main" },
+      { type: "rest", duration: 20 },
+      { type: "exercise", ex: allExercises.glute_bridges, duration: 40, phase: "main" },
+      { type: "rest", duration: 20 },
+      { type: "exercise", ex: allExercises.supermans, duration: 35, phase: "main" },
+      { type: "rest", duration: 15 },
+      { type: "exercise", ex: allExercises.calf_raises, duration: 30, phase: "main" },
+      { type: "rest", duration: 15 },
+      { type: "exercise", ex: allExercises.wall_sit, duration: 30, phase: "main" },
+      // Finisher
+      { type: "exercise", ex: allExercises.glute_bridges, duration: 30, phase: "finisher" },
+    ],
+  },
+
+  // ── Full Body Stretch (8 min — continuous flow, NO rest steps) ──
+  {
+    id: "full-body-stretch",
+    name: "Full Body Stretch",
+    totalMinutes: 8,
+    steps: [
+      { type: "exercise", ex: allExercises.neck_rolls, duration: 30, phase: "warmup" },
+      { type: "exercise", ex: allExercises.shoulder_stretch, duration: 30, phase: "main" },
+      { type: "exercise", ex: allExercises.chest_stretch, duration: 30, phase: "main" },
+      { type: "exercise", ex: allExercises.standing_toe_touch, duration: 40, phase: "main" },
+      { type: "exercise", ex: allExercises.quad_stretch, duration: 40, phase: "main" },
+      { type: "exercise", ex: allExercises.hamstring_stretch, duration: 40, phase: "main" },
+      { type: "exercise", ex: allExercises.cat_cow, duration: 30, phase: "main" },
+      { type: "exercise", ex: allExercises.childs_pose, duration: 30, phase: "cooldown" },
+      { type: "exercise", ex: allExercises.down_dog, duration: 30, phase: "cooldown" },
+      { type: "exercise", ex: allExercises.lying_twist, duration: 30, phase: "cooldown" },
+    ],
+  },
+
+  // ── HIIT Blast (7 min — 40/15 intervals) ──
+  {
+    id: "hiit-blast",
+    name: "HIIT Blast",
+    totalMinutes: 7,
+    steps: [
+      // Warm-in (first round acts as warmup)
+      { type: "exercise", ex: allExercises.jumping_jacks, duration: 40, phase: "warmup" },
+      { type: "rest", duration: 15 },
+      // Main set — 40/15 pattern
+      { type: "exercise", ex: allExercises.burpees, duration: 40, phase: "main" },
+      { type: "rest", duration: 15 },
+      { type: "exercise", ex: allExercises.high_knees, duration: 40, phase: "main" },
+      { type: "rest", duration: 15 },
+      { type: "exercise", ex: allExercises.squat_jumps, duration: 35, phase: "main" },
+      { type: "rest", duration: 15 },
+      { type: "exercise", ex: allExercises.mountain_climbers, duration: 40, phase: "main" },
+      { type: "rest", duration: 15 },
+      // Finisher — no rest
+      { type: "exercise", ex: allExercises.star_jumps, duration: 30, phase: "finisher" },
     ],
   },
 ];

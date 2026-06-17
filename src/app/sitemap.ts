@@ -36,20 +36,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const blogPosts = [
     "ai-fitness-coach-vs-personal-trainer",
     "beginner-gym-plan",
+    "beginner-workout-routine",
     "calisthenics-beginners-workout",
     "bench-press-wrist-pain",
     "best-ai-fitness-apps-2026",
     "build-muscle-fast",
     "home-vs-gym",
     "home-vs-gym-workout",
+    "how-many-calories-should-i-eat",
+    "how-much-protein-per-day",
     "how-to-build-muscle",
     "how-to-lose-belly-fat",
     "how-to-use-ai-workout-generator",
     "intermittent-fasting-workout",
     "meal-prep-muscle",
-    "protein-intake-calculator-guide",
     "post-workout-recovery-tips",
+    "protein-intake-calculator-guide",
+    "six-pack-workout",
     "what-is-tdee-and-how-to-calculate",
+    "women-workout-plan",
   ];
 
   // 训练跟练页面

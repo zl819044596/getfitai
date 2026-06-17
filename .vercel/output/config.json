@@ -1,0 +1,305 @@
+{
+  "version": 3,
+  "routes": [
+    {
+      "src": "/_next/__private/trace",
+      "dest": "/404",
+      "status": 404,
+      "continue": true
+    },
+    {
+      "src": "/404/?",
+      "status": 404,
+      "continue": true
+    },
+    {
+      "src": "^(?:/((?!\\.well-known(?:/.*)?)(?:[^/]+/)*[^/]+\\.\\w+))/$",
+      "headers": {
+        "Location": "/$1"
+      },
+      "status": 308,
+      "missing": [
+        {
+          "type": "header",
+          "key": "x-nextjs-data"
+        }
+      ]
+    },
+    {
+      "src": "^(?:/((?!\\.well-known(?:/.*)?)(?:[^/]+/)*[^/\\.]+))$",
+      "headers": {
+        "Location": "/$1/"
+      },
+      "status": 308
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/_next/data/(.*)",
+      "dest": "/_next/data/$1",
+      "check": true
+    },
+    {
+      "src": "/_next/data/(.*)",
+      "status": 404
+    },
+    {
+      "handle": "resource"
+    },
+    {
+      "src": "/.*",
+      "status": 404
+    },
+    {
+      "handle": "miss"
+    },
+    {
+      "src": "/_next/static/.+",
+      "status": 404,
+      "check": true,
+      "dest": "/_next/static/not-found.txt",
+      "headers": {
+        "content-type": "text/plain; charset=utf-8"
+      }
+    },
+    {
+      "handle": "hit"
+    },
+    {
+      "src": "/_next/static/(?:[^/]+/pages|pages|chunks|runtime|css|image|media|YAviYLUzGOhoI_Xtj08nR)/.+",
+      "headers": {
+        "cache-control": "public,max-age=31536000,immutable"
+      },
+      "continue": true,
+      "important": true
+    },
+    {
+      "handle": "error"
+    },
+    {
+      "status": 404,
+      "src": ".*",
+      "dest": "/404"
+    }
+  ],
+  "overrides": {
+    "404.html": {
+      "path": "404",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "404/index.html": {
+      "path": "404/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "about/index.html": {
+      "path": "about/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "blog/ai-fitness-coach-vs-personal-trainer/index.html": {
+      "path": "blog/ai-fitness-coach-vs-personal-trainer/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "blog/ai-workout-planner/index.html": {
+      "path": "blog/ai-workout-planner/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "blog/beginner-gym-plan/index.html": {
+      "path": "blog/beginner-gym-plan/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "blog/beginner-workout-routine/index.html": {
+      "path": "blog/beginner-workout-routine/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "blog/bench-press-wrist-pain/index.html": {
+      "path": "blog/bench-press-wrist-pain/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "blog/best-ai-fitness-apps-2026/index.html": {
+      "path": "blog/best-ai-fitness-apps-2026/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "blog/build-muscle-fast/index.html": {
+      "path": "blog/build-muscle-fast/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "blog/calisthenics-beginners-workout/index.html": {
+      "path": "blog/calisthenics-beginners-workout/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "blog/home-vs-gym-workout/index.html": {
+      "path": "blog/home-vs-gym-workout/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "blog/home-vs-gym/index.html": {
+      "path": "blog/home-vs-gym/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "blog/how-many-calories-should-i-eat/index.html": {
+      "path": "blog/how-many-calories-should-i-eat/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "blog/how-much-protein-per-day/index.html": {
+      "path": "blog/how-much-protein-per-day/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "blog/how-to-build-muscle/index.html": {
+      "path": "blog/how-to-build-muscle/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "blog/how-to-lose-belly-fat/index.html": {
+      "path": "blog/how-to-lose-belly-fat/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "blog/how-to-use-ai-workout-generator/index.html": {
+      "path": "blog/how-to-use-ai-workout-generator/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "blog/index.html": {
+      "path": "blog/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "blog/intermittent-fasting-workout/index.html": {
+      "path": "blog/intermittent-fasting-workout/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "blog/meal-prep-muscle/index.html": {
+      "path": "blog/meal-prep-muscle/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "blog/post-workout-recovery-tips/index.html": {
+      "path": "blog/post-workout-recovery-tips/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "blog/protein-intake-calculator-guide/index.html": {
+      "path": "blog/protein-intake-calculator-guide/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "blog/six-pack-workout/index.html": {
+      "path": "blog/six-pack-workout/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "blog/what-is-tdee-and-how-to-calculate/index.html": {
+      "path": "blog/what-is-tdee-and-how-to-calculate/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "blog/women-workout-plan/index.html": {
+      "path": "blog/women-workout-plan/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "contact/index.html": {
+      "path": "contact/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "index.html": {
+      "path": "index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "privacy/index.html": {
+      "path": "privacy/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "terms/index.html": {
+      "path": "terms/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "tools/bmi-calculator/index.html": {
+      "path": "tools/bmi-calculator/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "tools/bmr-calculator/index.html": {
+      "path": "tools/bmr-calculator/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "tools/body-fat-calculator/index.html": {
+      "path": "tools/body-fat-calculator/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "tools/calorie-calculator/index.html": {
+      "path": "tools/calorie-calculator/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "tools/heart-rate-calculator/index.html": {
+      "path": "tools/heart-rate-calculator/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "tools/ideal-weight-calculator/index.html": {
+      "path": "tools/ideal-weight-calculator/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "tools/index.html": {
+      "path": "tools/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "tools/macro-calculator/index.html": {
+      "path": "tools/macro-calculator/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "tools/one-rep-max/index.html": {
+      "path": "tools/one-rep-max/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "tools/pace-calculator/index.html": {
+      "path": "tools/pace-calculator/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "tools/plate-calculator/index.html": {
+      "path": "tools/plate-calculator/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "tools/protein-calculator/index.html": {
+      "path": "tools/protein-calculator/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "tools/tdee-calculator/index.html": {
+      "path": "tools/tdee-calculator/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "tools/wilks-calculator/index.html": {
+      "path": "tools/wilks-calculator/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "tools/workout-generator/index.html": {
+      "path": "tools/workout-generator/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "tools/workout-timer/index.html": {
+      "path": "tools/workout-timer/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "train/core-crusher/index.html": {
+      "path": "train/core-crusher/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "train/full-body-burn/index.html": {
+      "path": "train/full-body-burn/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "train/index.html": {
+      "path": "train/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "train/quick-cardio/index.html": {
+      "path": "train/quick-cardio/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "workouts/beginner/index.html": {
+      "path": "workouts/beginner/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "workouts/gym/index.html": {
+      "path": "workouts/gym/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "workouts/home/index.html": {
+      "path": "workouts/home/index",
+      "contentType": "text/html; charset=utf-8"
+    }
+  },
+  "framework": {
+    "slug": "nextjs",
+    "version": "14.2.35"
+  },
+  "crons": []
+}

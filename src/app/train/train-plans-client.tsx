@@ -7,6 +7,7 @@ import {
   Flame,
   ChevronRight,
   Sparkles,
+  Zap,
 } from "lucide-react";
 
 interface PlanCard {
@@ -19,6 +20,7 @@ interface PlanCard {
   description: string;
   icon: React.ReactNode;
   color: string;
+  cta?: string;
 }
 
 const plans: PlanCard[] = [
@@ -58,6 +60,55 @@ const plans: PlanCard[] = [
     icon: <Sparkles className="w-6 h-6" />,
     color: "text-orange-400",
   },
+  {
+    id: "upper-body-push",
+    name: "Upper Body Push",
+    duration: "10 min",
+    durationMinutes: 10,
+    exerciseCount: 6,
+    difficulty: "Intermediate",
+    description:
+      "Push-ups, dips & plank variations for a stronger upper body",
+    icon: <Dumbbell className="w-6 h-6" />,
+    color: "text-orange-400",
+  },
+  {
+    id: "lower-body-strength",
+    name: "Lower Body Strength",
+    duration: "12 min",
+    durationMinutes: 12,
+    exerciseCount: 7,
+    difficulty: "Intermediate",
+    description:
+      "Squats, lunges, glute bridges & more for powerful legs",
+    icon: <Flame className="w-6 h-6" />,
+    color: "text-orange-400",
+  },
+  {
+    id: "full-body-stretch",
+    name: "Full Body Stretch",
+    duration: "8 min",
+    durationMinutes: 8,
+    exerciseCount: 10,
+    difficulty: "All Levels",
+    description:
+      "A continuous flow from neck to ankles — unwind and recover",
+    icon: <Sparkles className="w-6 h-6" />,
+    color: "text-orange-400",
+    cta: "Start Routine",
+  },
+  {
+    id: "hiit-blast",
+    name: "HIIT Blast",
+    duration: "7 min",
+    durationMinutes: 7,
+    exerciseCount: 6,
+    difficulty: "Intermediate",
+    description:
+      "40/15 intervals — jumping jacks to star jumps, all-out finish",
+    icon: <Zap className="w-6 h-6" />,
+    color: "text-orange-400",
+  },
 ];
 
 export function TrainPlans() {
@@ -77,7 +128,8 @@ export function TrainPlans() {
           </div>
 
           {/* Plan Cards */}
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6
+                [&>:last-child]:sm:col-span-2 [&>:last-child]:lg:col-span-1">
             {plans.map((plan) => (
               <Link
                 key={plan.id}
@@ -116,7 +168,7 @@ export function TrainPlans() {
 
                   {/* CTA */}
                   <div className="flex items-center gap-1 text-orange-400 font-medium text-sm group-hover:gap-2 transition-all">
-                    <span>Start Workout</span>
+                    <span>{plan.cta || "Start Workout"}</span>
                     <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
                   </div>
                 </div>
