@@ -8,17 +8,40 @@ const footerLinks = {
     { label: "BMI Calculator", href: "/tools/bmi-calculator" },
     { label: "Calorie Calculator", href: "/tools/calorie-calculator" },
     { label: "Protein Calculator", href: "/tools/protein-calculator" },
+    { label: "TDEE Calculator", href: "/tools/tdee-calculator" },
+    { label: "BMR Calculator", href: "/tools/bmr-calculator" },
+    { label: "Body Fat Calculator", href: "/tools/body-fat-calculator" },
+    { label: "Macro Calculator", href: "/tools/macro-calculator" },
+    { label: "One Rep Max", href: "/tools/one-rep-max" },
+    { label: "Workout Generator", href: "/tools/workout-generator" },
+    { label: "Workout Timer", href: "/tools/workout-timer" },
+    { label: "Ideal Weight", href: "/tools/ideal-weight-calculator" },
     { label: "Features", href: "/#features" },
+  ],
+  train: [
+    { label: "Full Body Burn", href: "/train/full-body-burn" },
+    { label: "Core Crusher", href: "/train/core-crusher" },
+    { label: "Quick Cardio", href: "/train/quick-cardio" },
+    { label: "Upper Body Push", href: "/train/upper-body-push" },
+    { label: "Lower Body Strength", href: "/train/lower-body-strength" },
+    { label: "Full Body Stretch", href: "/train/full-body-stretch" },
+    { label: "HIIT Blast", href: "/train/hiit-blast" },
   ],
   resources: [
     { label: "Blog", href: "/blog" },
-    { label: "AI vs Trainer", href: "/blog/ai-fitness-coach-vs-personal-trainer" },
-    { label: "Best AI Apps", href: "/blog/best-ai-fitness-apps-2026" },
+    { label: "AI vs Personal Trainer", href: "/blog/ai-fitness-coach-vs-personal-trainer" },
+    { label: "Best AI Fitness Apps", href: "/blog/best-ai-fitness-apps-2026" },
     { label: "TDEE Guide", href: "/blog/what-is-tdee-and-how-to-calculate" },
     { label: "Protein Guide", href: "/blog/protein-intake-calculator-guide" },
+    { label: "Beginner Gym Plan", href: "/blog/beginner-gym-plan" },
+    { label: "Build Muscle Fast", href: "/blog/build-muscle-fast" },
+    { label: "How to Lose Belly Fat", href: "/blog/how-to-lose-belly-fat" },
+    { label: "Women Workout Plan", href: "/blog/women-workout-plan" },
+    { label: "Home vs Gym Workout", href: "/blog/home-vs-gym" },
+    { label: "Six Pack Workout", href: "/blog/six-pack-workout" },
     { label: "About Us", href: "/about" },
     { label: "Contact", href: "/contact" },
-    { label: "Workouts", href: "/workouts/gym" },
+    { label: "All Workouts", href: "/workouts/gym" },
   ],
   legal: [
     { label: "Privacy Policy", href: "/privacy" },
@@ -30,7 +53,7 @@ export function Footer() {
   return (
     <footer className="border-t border-slate-800 bg-slate-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4">
@@ -63,9 +86,23 @@ export function Footer() {
 
           {/* Product */}
           <div>
-            <h4 className="font-semibold text-white mb-4">Product</h4>
+            <h4 className="font-semibold text-white mb-4">Tools</h4>
             <ul className="space-y-3">
               {footerLinks.product.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-sm text-slate-400 hover:text-white transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Train */}
+          <div>
+            <h4 className="font-semibold text-white mb-4">Train</h4>
+            <ul className="space-y-3">
+              {footerLinks.train.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-sm text-slate-400 hover:text-white transition-colors">
                     {link.label}
