@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import { BMICalculatorClient } from "./bmi-calculator-client";
 import { ToolContent } from "@/components/tool-content";
 
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbList } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "BMI Calculator | GetFitAI",
   description: "Calculate your Body Mass Index (BMI) with GetFitAI's free calculator. Understand your weight category and get personalized health insights instantly.",
@@ -22,8 +24,15 @@ export const metadata: Metadata = {
 };
 
 export default function BMICalculatorPage() {
+  const breadcrumb = breadcrumbList([
+    { name: "Home", url: "https://www.getfitai.io/" },
+    { name: "Tools", url: "https://www.getfitai.io/tools/" },
+    { name: "BMI Calculator", url: "https://www.getfitai.io/tools/bmi-calculator/" },
+  ]);
+
   return (
     <>
+      <JsonLd data={breadcrumb} />
       <BMICalculatorClient />
       <ToolContent title="Understanding BMI: Complete Guide">
         <article className="prose prose-gray max-w-none">

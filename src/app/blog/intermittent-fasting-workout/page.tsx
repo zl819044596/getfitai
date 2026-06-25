@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { JsonLd } from "@/components/json-ld";
+import { breadcrumbList } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Intermittent Fasting and Workout: The Complete Guide | GetFitAI",
@@ -23,6 +24,12 @@ export const metadata: Metadata = {
     siteName: "GetFitAI",
   },
 };
+
+const breadcrumb = breadcrumbList([
+  { name: "Home", url: "https://www.getfitai.io" },
+  { name: "Blog", url: "https://www.getfitai.io/blog/" },
+  { name: "Intermittent Fasting and Workout: The Complete Guide", url: "https://www.getfitai.io/blog/intermittent-fasting-workout/" },
+]);
 
 const articleSchema = {
   "@context": "https://schema.org",
@@ -52,6 +59,7 @@ const articleSchema = {
 export default function IntermittentFastingWorkout() {
   return (
     <main className="min-h-screen bg-slate-950">
+      <JsonLd data={breadcrumb} />
       <JsonLd data={articleSchema} />
       <article className="max-w-3xl mx-auto px-4 sm:px-6 py-16 md:py-24">
         <header className="mb-12">

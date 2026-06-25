@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { CalorieCalculatorClient } from "./calorie-calculator-client";
 
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbList } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Calorie Calculator — Free TDEE & Daily Calories | GetFitAI",
   description:
@@ -22,7 +24,15 @@ export const metadata: Metadata = {
 };
 
 export default function CalorieCalculatorPage() {
+  const breadcrumb = breadcrumbList([
+    { name: "Home", url: "https://www.getfitai.io/" },
+    { name: "Tools", url: "https://www.getfitai.io/tools/" },
+    { name: "Calorie Calculator", url: "https://www.getfitai.io/tools/calorie-calculator/" },
+  ]);
+
   return (
+    <>
+      <JsonLd data={breadcrumb} />
     <main className="min-h-screen bg-background">
       <section className="pt-24 pb-12 md:pt-32 md:pb-16">
         <div className="max-w-2xl mx-auto px-4 sm:px-6">
@@ -38,5 +48,6 @@ export default function CalorieCalculatorPage() {
         </div>
       </section>
     </main>
+    </>
   );
 }

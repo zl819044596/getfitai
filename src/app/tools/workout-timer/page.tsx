@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import { WorkoutTimerClient } from "./workout-timer-client";
 import { ToolContent } from "@/components/tool-content";
 
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbList } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Workout Timer | GetFitAI",
   description: "Use GetFitAI's free workout timer for HIIT, Tabata, and circuit training. Customizable interval timer to optimize your training sessions.",
@@ -22,8 +24,15 @@ export const metadata: Metadata = {
 };
 
 export default function WorkoutTimerPage() {
+  const breadcrumb = breadcrumbList([
+    { name: "Home", url: "https://www.getfitai.io/" },
+    { name: "Tools", url: "https://www.getfitai.io/tools/" },
+    { name: "Workout Timer", url: "https://www.getfitai.io/tools/workout-timer/" },
+  ]);
+
   return (
     <>
+      <JsonLd data={breadcrumb} />
       <WorkoutTimerClient />
       <ToolContent title="Workout Timer: Master Your Training Intervals">
         <article className="prose prose-gray max-w-none">

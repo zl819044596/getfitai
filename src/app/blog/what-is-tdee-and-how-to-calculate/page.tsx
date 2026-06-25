@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { JsonLd } from "@/components/json-ld";
 import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { breadcrumbList } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "What Is TDEE and How to Calculate It? | GetFitAI",
@@ -35,6 +36,12 @@ export const metadata: Metadata = {
     ],
   },
 };
+
+const breadcrumb = breadcrumbList([
+  { name: "Home", url: "https://www.getfitai.io" },
+  { name: "Blog", url: "https://www.getfitai.io/blog/" },
+  { name: "What Is TDEE and How to Calculate It?", url: "https://www.getfitai.io/blog/what-is-tdee-and-how-to-calculate/" },
+]);
 
 const articleSchema = {
   "@context": "https://schema.org",
@@ -122,6 +129,7 @@ const faqSchema = {
 export default function BlogPost() {
   return (
     <main className="min-h-screen bg-slate-950">
+        <JsonLd data={breadcrumb} />
       <JsonLd data={articleSchema} />
       <JsonLd data={faqSchema} />
 

@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import { TDEECalculatorClient } from "./tdee-calculator-client";
 import { ToolContent } from "@/components/tool-content";
 
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbList } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Calorie Calculator | GetFitAI",
   description: "Estimate your daily calorie needs with GetFitAI's free TDEE calculator. Calculate your Total Daily Energy Expenditure based on activity level and goals.",
@@ -22,8 +24,15 @@ export const metadata: Metadata = {
 };
 
 export default function TDEECalculatorPage() {
+  const breadcrumb = breadcrumbList([
+    { name: "Home", url: "https://www.getfitai.io/" },
+    { name: "Tools", url: "https://www.getfitai.io/tools/" },
+    { name: "TDEE Calculator", url: "https://www.getfitai.io/tools/tdee-calculator/" },
+  ]);
+
   return (
     <>
+      <JsonLd data={breadcrumb} />
       <TDEECalculatorClient />
       <ToolContent title="TDEE: Calculate Your Daily Energy Expenditure">
         <article className="prose prose-gray max-w-none">

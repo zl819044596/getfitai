@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Zap, Target, Shield, Users } from "lucide-react";
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbList } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "About Us | GetFitAI",
@@ -21,8 +23,15 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
+  const breadcrumb = breadcrumbList([
+    { name: "Home", url: "https://www.getfitai.io/" },
+    { name: "About", url: "https://www.getfitai.io/about/" },
+  ]);
+
   return (
-    <main className="min-h-screen bg-background">
+    <>
+      <JsonLd data={breadcrumb} />
+      <main className="min-h-screen bg-background">
 <section className="pt-32 pb-16 px-4 sm:px-6">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16">
@@ -81,6 +90,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-</main>
+    </main>
+    </>
   );
 }

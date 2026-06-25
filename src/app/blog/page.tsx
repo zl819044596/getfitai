@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Calendar, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbList } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Fitness Blog | Workout Tips & Nutrition Advice",
@@ -180,8 +182,15 @@ const posts = [
 ];
 
 export default function BlogPage() {
+  const breadcrumb = breadcrumbList([
+    { name: "Home", url: "https://www.getfitai.io/" },
+    { name: "Blog", url: "https://www.getfitai.io/blog/" },
+  ]);
+
   return (
-    <main className="min-h-screen bg-slate-950">
+    <>
+      <JsonLd data={breadcrumb} />
+      <main className="min-h-screen bg-slate-950">
       <section className="pt-32 pb-16 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
@@ -259,5 +268,6 @@ export default function BlogPage() {
         </div>
       </section>
     </main>
+    </>
   );
 }

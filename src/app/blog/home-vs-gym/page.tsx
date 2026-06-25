@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { JsonLd } from "@/components/json-ld";
 import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { breadcrumbList } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Home Workout vs Gym: Which is Better? | GetFitAI",
@@ -31,6 +32,12 @@ export const metadata: Metadata = {
   },
 };
 
+const breadcrumb = breadcrumbList([
+  { name: "Home", url: "https://www.getfitai.io" },
+  { name: "Blog", url: "https://www.getfitai.io/blog/" },
+  { name: "Home Workout vs Gym: Which is Better?", url: "https://www.getfitai.io/blog/home-vs-gym/" },
+]);
+
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -44,6 +51,7 @@ const articleSchema = {
 export default function BlogPost() {
   return (
     <main className="min-h-screen bg-slate-950">
+        <JsonLd data={breadcrumb} />
 <JsonLd data={articleSchema} />
       <article className="pt-32 pb-20 px-4 sm:px-6">
         <div className="max-w-3xl mx-auto">

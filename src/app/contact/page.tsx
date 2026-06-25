@@ -1,8 +1,15 @@
 "use client";
 
 import { Mail, Clock } from "lucide-react";
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbList } from "@/lib/schema";
 
 export default function ContactPage() {
+  const breadcrumb = breadcrumbList([
+    { name: "Home", url: "https://www.getfitai.io/" },
+    { name: "Contact", url: "https://www.getfitai.io/contact/" },
+  ]);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;

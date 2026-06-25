@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbList } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Beginner Gym Plan: Complete 4-Week Guide for Newbies | GetFitAI",
@@ -35,9 +37,16 @@ export const metadata: Metadata = {
   },
 };
 
+const breadcrumb = breadcrumbList([
+  { name: "Home", url: "https://www.getfitai.io" },
+  { name: "Blog", url: "https://www.getfitai.io/blog/" },
+  { name: "Beginner Gym Plan: Complete 4-Week Guide for Newbies", url: "https://www.getfitai.io/blog/beginner-gym-plan/" },
+]);
+
 export default function BeginnerGymPlanPage() {
   return (
     <article className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+      <JsonLd data={breadcrumb} />
       {/* Hero */}
       <div className="relative h-[400px] overflow-hidden">
         <Image

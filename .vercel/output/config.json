@@ -67,7 +67,7 @@
       "handle": "hit"
     },
     {
-      "src": "/_next/static/(?:[^/]+/pages|pages|chunks|runtime|css|image|media|YAviYLUzGOhoI_Xtj08nR)/.+",
+      "src": "/_next/static/(?:[^/]+/pages|pages|chunks|runtime|css|image|media|A8\\-bR3zVnq1haXP27Y1HI)/.+",
       "headers": {
         "cache-control": "public,max-age=31536000,immutable"
       },
@@ -276,12 +276,28 @@
       "path": "train/full-body-burn/index",
       "contentType": "text/html; charset=utf-8"
     },
+    "train/full-body-stretch/index.html": {
+      "path": "train/full-body-stretch/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "train/hiit-blast/index.html": {
+      "path": "train/hiit-blast/index",
+      "contentType": "text/html; charset=utf-8"
+    },
     "train/index.html": {
       "path": "train/index",
       "contentType": "text/html; charset=utf-8"
     },
+    "train/lower-body-strength/index.html": {
+      "path": "train/lower-body-strength/index",
+      "contentType": "text/html; charset=utf-8"
+    },
     "train/quick-cardio/index.html": {
       "path": "train/quick-cardio/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "train/upper-body-push/index.html": {
+      "path": "train/upper-body-push/index",
       "contentType": "text/html; charset=utf-8"
     },
     "workouts/beginner/index.html": {

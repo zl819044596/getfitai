@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import HomeClient from "./home-client";
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbList } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "GetFitAI - Free AI Workout Plans & Fitness Calculators",
@@ -24,5 +26,14 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return <HomeClient />;
+  const breadcrumb = breadcrumbList([
+    { name: "Home", url: "https://www.getfitai.io/" },
+  ]);
+
+  return (
+    <>
+      <JsonLd data={breadcrumb} />
+      <HomeClient />
+    </>
+  );
 }

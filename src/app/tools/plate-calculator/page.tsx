@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import { PlateCalculatorClient } from "./plate-calculator-client";
 import { ToolContent } from "@/components/tool-content";
 
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbList } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Plate Calculator | GetFitAI",
   description: "Calculate barbell plate loading with GetFitAI's free plate calculator. Quickly figure out which weight plates to load for your target lifting weight.",
@@ -22,8 +24,15 @@ export const metadata: Metadata = {
 };
 
 export default function PlateCalculatorPage() {
+  const breadcrumb = breadcrumbList([
+    { name: "Home", url: "https://www.getfitai.io/" },
+    { name: "Tools", url: "https://www.getfitai.io/tools/" },
+    { name: "Plate Calculator", url: "https://www.getfitai.io/tools/plate-calculator/" },
+  ]);
+
   return (
     <>
+      <JsonLd data={breadcrumb} />
       <PlateCalculatorClient />
       <ToolContent title="Plate Calculator: Load the Perfect Weight">
         <article className="prose prose-gray max-w-none">

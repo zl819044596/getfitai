@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import { PaceCalculatorClient } from "./pace-calculator-client";
 import { ToolContent } from "@/components/tool-content";
 
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbList } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Running Pace Calculator | GetFitAI",
   description:
@@ -23,8 +25,15 @@ export const metadata: Metadata = {
 };
 
 export default function PaceCalculatorPage() {
+  const breadcrumb = breadcrumbList([
+    { name: "Home", url: "https://www.getfitai.io/" },
+    { name: "Tools", url: "https://www.getfitai.io/tools/" },
+    { name: "Pace Calculator", url: "https://www.getfitai.io/tools/pace-calculator/" },
+  ]);
+
   return (
     <>
+      <JsonLd data={breadcrumb} />
       <main className="min-h-screen bg-background">
         <section className="pt-24 pb-12 md:pt-32 md:pb-16">
           <div className="max-w-2xl mx-auto px-4 sm:px-6">

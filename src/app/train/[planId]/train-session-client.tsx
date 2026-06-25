@@ -817,19 +817,15 @@ export function TrainSession() {
               </div>
             </div>
 
-            {/* Video - Click to play */}
-            <div className="relative rounded-2xl overflow-hidden bg-black mb-4 h-[60vh] max-h-[500px] min-h-[320px]">
-              {currentStep.ex.hasVideo && currentStep.ex.youtubeId ? (
-                <VideoPlayer youtubeId={currentStep.ex.youtubeId} videoSrc={plan?.videoSrc} />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center bg-slate-900">
-                  <div className="text-center">
-                    <Dumbbell className="w-12 h-12 text-orange-400 mx-auto mb-2" />
-                    <p className="text-muted-foreground text-sm">{currentStep.ex.displayName}</p>
-                    <p className="text-xs text-muted-foreground mt-1">Follow along: {currentStep.duration}s</p>
-                  </div>
+            {/* Exercise Visual — animated display (no YouTube) */}
+            <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 mb-4 h-[60vh] max-h-[500px] min-h-[320px] flex items-center justify-center">
+              <div className="text-center animate-pulse-subtle">
+                <div className="w-20 h-20 rounded-full bg-orange-500/20 flex items-center justify-center mx-auto mb-4">
+                  <Dumbbell className="w-10 h-10 text-orange-400" />
                 </div>
-              )}
+                <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">{currentStep.ex.displayName}</h3>
+                <p className="text-muted-foreground">{currentStep.duration}s &middot; Follow along</p>
+              </div>
               <div className="absolute top-3 left-3">
                 <span className="text-xs font-medium bg-black/60 backdrop-blur text-white px-2.5 py-1 rounded-lg">
                   {currentStep.phase === "warmup" ? "🔥 Warm Up" : currentStep.phase === "main" ? "💪 Main" : "🏁 Finisher"}

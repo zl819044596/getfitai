@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { JsonLd } from "@/components/json-ld";
 import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { breadcrumbList } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "How to Lose Belly Fat: 10 Science-Backed Exercises | GetFitAI",
@@ -35,6 +36,12 @@ export const metadata: Metadata = {
     ],
   },
 };
+
+const breadcrumb = breadcrumbList([
+  { name: "Home", url: "https://www.getfitai.io" },
+  { name: "Blog", url: "https://www.getfitai.io/blog/" },
+  { name: "How to Lose Belly Fat: 10 Science-Backed Exercises", url: "https://www.getfitai.io/blog/how-to-lose-belly-fat/" },
+]);
 
 const articleSchema = {
   "@context": "https://schema.org",
@@ -114,6 +121,7 @@ const faqSchema = {
 export default function BlogPost() {
   return (
     <main className="min-h-screen bg-slate-950">
+        <JsonLd data={breadcrumb} />
 <JsonLd data={articleSchema} />
       <JsonLd data={faqSchema} />
 

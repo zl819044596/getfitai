@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 import { TrainPlans } from "./train-plans-client";
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbList } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Follow-Along Workouts | GetFitAI",
@@ -32,5 +34,15 @@ export const metadata: Metadata = {
 };
 
 export default function TrainPage() {
-  return <TrainPlans />;
+  const breadcrumb = breadcrumbList([
+    { name: "Home", url: "https://www.getfitai.io/" },
+    { name: "Workouts", url: "https://www.getfitai.io/train/" },
+  ]);
+
+  return (
+    <>
+      <JsonLd data={breadcrumb} />
+      <TrainPlans />
+    </>
+  );
 }

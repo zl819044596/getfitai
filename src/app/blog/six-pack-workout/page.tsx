@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { JsonLd } from "@/components/json-ld";
 import Link from "next/link";
 import { ArrowRight, Target } from "lucide-react";
+import { breadcrumbList } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Six Pack Workout: 10 Best Ab Exercises for Visible Abs | GetFitAI",
@@ -37,6 +38,12 @@ export const metadata: Metadata = {
     ],
   },
 };
+
+const breadcrumb = breadcrumbList([
+  { name: "Home", url: "https://www.getfitai.io" },
+  { name: "Blog", url: "https://www.getfitai.io/blog/" },
+  { name: "Six Pack Workout: 10 Best Ab Exercises for Visible Abs", url: "https://www.getfitai.io/blog/six-pack-workout/" },
+]);
 
 const articleSchema = {
   "@context": "https://schema.org",
@@ -100,6 +107,7 @@ const faqSchema = {
 export default function BlogPost() {
   return (
     <main className="min-h-screen bg-slate-950">
+        <JsonLd data={breadcrumb} />
       <JsonLd data={articleSchema} />
       <JsonLd data={faqSchema} />
 

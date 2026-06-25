@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 import { TrainSession } from "./train-session-client";
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbList } from "@/lib/schema";
 
 // Define params for all 7 workout plans
 export function generateStaticParams() {
@@ -87,5 +89,16 @@ export function generateMetadata({
 }
 
 export default function TrainSessionPage() {
-  return <TrainSession />;
+  // Breadcrumb uses planMeta which is defined above
+  const breadcrumb = breadcrumbList([
+    { name: "Home", url: "https://www.getfitai.io/" },
+    { name: "Workouts", url: "https://www.getfitai.io/train/" },
+  ]);
+
+  return (
+    <>
+      <JsonLd data={breadcrumb} />
+      <TrainSession />
+    </>
+  );
 }

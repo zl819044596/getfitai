@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbList } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Terms of Service | GetFitAI",
@@ -20,8 +22,15 @@ export const metadata: Metadata = {
 };
 
 export default function TermsPage() {
+  const breadcrumb = breadcrumbList([
+    { name: "Home", url: "https://www.getfitai.io/" },
+    { name: "Terms of Service", url: "https://www.getfitai.io/terms/" },
+  ]);
+
   return (
-    <main className="min-h-screen bg-background">
+    <>
+      <JsonLd data={breadcrumb} />
+      <main className="min-h-screen bg-background">
 <section className="pt-32 pb-16 px-4 sm:px-6">
         <div className="max-w-3xl mx-auto">
           <div className="mb-12">
@@ -84,6 +93,7 @@ export default function TermsPage() {
           </div>
         </div>
       </section>
-</main>
+    </main>
+    </>
   );
 }

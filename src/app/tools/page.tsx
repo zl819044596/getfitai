@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 import { ToolsClient } from "./tools-client";
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbList } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Fitness Tools | GetFitAI",
@@ -22,5 +24,15 @@ export const metadata: Metadata = {
 };
 
 export default function ToolsPage() {
-  return <ToolsClient />;
+  const breadcrumb = breadcrumbList([
+    { name: "Home", url: "https://www.getfitai.io/" },
+    { name: "Tools", url: "https://www.getfitai.io/tools/" },
+  ]);
+
+  return (
+    <>
+      <JsonLd data={breadcrumb} />
+      <ToolsClient />
+    </>
+  );
 }

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { JsonLd } from "@/components/json-ld";
 import Link from "next/link";
 import { ArrowRight, Heart } from "lucide-react";
+import { breadcrumbList } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Women Workout Plan: Strength Training for Women | GetFitAI",
@@ -37,6 +38,12 @@ export const metadata: Metadata = {
     ],
   },
 };
+
+const breadcrumb = breadcrumbList([
+  { name: "Home", url: "https://www.getfitai.io" },
+  { name: "Blog", url: "https://www.getfitai.io/blog/" },
+  { name: "Women Workout Plan: Strength Training for Women", url: "https://www.getfitai.io/blog/women-workout-plan/" },
+]);
 
 const articleSchema = {
   "@context": "https://schema.org",
@@ -100,6 +107,7 @@ const faqSchema = {
 export default function BlogPost() {
   return (
     <main className="min-h-screen bg-slate-950">
+        <JsonLd data={breadcrumb} />
       <JsonLd data={articleSchema} />
       <JsonLd data={faqSchema} />
 

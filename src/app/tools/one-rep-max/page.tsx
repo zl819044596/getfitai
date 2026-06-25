@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import { OneRepMaxClient } from "./one-rep-max-client";
 import { ToolContent } from "@/components/tool-content";
 
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbList } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "1RM Calculator | GetFitAI",
   description: "Calculate your one-rep max (1RM) with GetFitAI's free strength calculator. Estimate your maximum lifting capacity based on your current reps and weight.",
@@ -22,8 +24,15 @@ export const metadata: Metadata = {
 };
 
 export default function OneRepMaxPage() {
+  const breadcrumb = breadcrumbList([
+    { name: "Home", url: "https://www.getfitai.io/" },
+    { name: "Tools", url: "https://www.getfitai.io/tools/" },
+    { name: "One Rep Max Calculator", url: "https://www.getfitai.io/tools/one-rep-max/" },
+  ]);
+
   return (
     <>
+      <JsonLd data={breadcrumb} />
       <OneRepMaxClient />
       <ToolContent title="One Rep Max: Find Your True Strength">
         <article className="prose prose-gray max-w-none">

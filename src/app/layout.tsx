@@ -3,6 +3,7 @@ import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
+import { softwareApplication } from "@/lib/schema";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -102,6 +103,7 @@ export default function RootLayout({
             `,
           }}
         />
+        {/* WebSite schema */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -110,15 +112,18 @@ export default function RootLayout({
               "@type": "WebSite",
               name: "GetFitAI",
               url: "https://www.getfitai.io",
-              description: "Free AI-powered workout generator and fitness calculators",
+              description:
+                "Free AI-powered workout generator and fitness calculators",
               potentialAction: {
                 "@type": "SearchAction",
-                target: "https://www.getfitai.io/tools?q={search_term_string}",
+                target:
+                  "https://www.getfitai.io/tools?q={search_term_string}",
                 "query-input": "required name=search_term_string",
               },
             }),
           }}
         />
+        {/* Organization schema */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -133,6 +138,13 @@ export default function RootLayout({
                 "https://github.com/getfitai",
               ],
             }),
+          }}
+        />
+        {/* SoftwareApplication schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(softwareApplication()),
           }}
         />
       </head>

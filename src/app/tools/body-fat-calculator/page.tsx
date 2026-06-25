@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import { BodyFatCalculatorClient } from "./body-fat-calculator-client";
 import { ToolContent } from "@/components/tool-content";
 
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbList } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Body Fat Calculator | GetFitAI",
   description: "Estimate your body fat percentage with GetFitAI's free calculator. Use multiple measurement methods including Navy, Jackson-Pollock, and BMI-based formulas.",
@@ -22,8 +24,15 @@ export const metadata: Metadata = {
 };
 
 export default function BodyFatCalculatorPage() {
+  const breadcrumb = breadcrumbList([
+    { name: "Home", url: "https://www.getfitai.io/" },
+    { name: "Tools", url: "https://www.getfitai.io/tools/" },
+    { name: "Body Fat Calculator", url: "https://www.getfitai.io/tools/body-fat-calculator/" },
+  ]);
+
   return (
     <>
+      <JsonLd data={breadcrumb} />
       <BodyFatCalculatorClient />
       <ToolContent title="Body Fat Percentage: Understanding Your Composition">
         <article className="prose prose-gray max-w-none">

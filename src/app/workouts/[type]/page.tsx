@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { WorkoutLanding } from "@/components/workout-landing";
 import { workoutConfigs } from "@/lib/workout-configs";
 import { JsonLd } from "@/components/json-ld";
+import { breadcrumbList } from "@/lib/schema";
 
 export function generateStaticParams() {
   return [
@@ -48,6 +49,17 @@ export default function WorkoutPage({ params }: { params: { type: string } }) {
     notFound();
   }
 
+  const typeLabel =
+    params.type === "gym" ? "Gym Workouts" :
+    params.type === "home" ? "Home Workouts" :
+    params.type === "beginner" ? "Beginner Workouts" :
+    params.type.charAt(0).toUpperCase() + params.type.slice(1) + " Workouts";
+
+  const breadcrumb = breadcrumbList([
+    { name: "Home", url: "https://www.getfitai.io/" },
+    { name: typeLabel, url: `https://www.getfitai.io/workouts/${params.type}/` },
+  ]);
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -63,6 +75,7 @@ export default function WorkoutPage({ params }: { params: { type: string } }) {
 
   return (
     <>
+      <JsonLd data={breadcrumb} />
       <JsonLd data={faqSchema} />
       <WorkoutLanding config={config} />
     </>
