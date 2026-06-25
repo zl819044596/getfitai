@@ -21,6 +21,7 @@ interface PlanCard {
   icon: React.ReactNode;
   color: string;
   cta?: string;
+  videoSrc?: string;
 }
 
 const plans: PlanCard[] = [
@@ -35,6 +36,7 @@ const plans: PlanCard[] = [
       "A complete full-body workout combining strength and cardio moves. Warm up, hit every major muscle group, then finish with a plank hold.",
     icon: <Flame className="w-6 h-6" />,
     color: "text-orange-400",
+    videoSrc: "/videos/handheld-weights.mp4",
   },
   {
     id: "core-crusher",
@@ -47,6 +49,7 @@ const plans: PlanCard[] = [
       "Target your abs, obliques, and lower back with this focused core session. No equipment, just serious burn.",
     icon: <Dumbbell className="w-6 h-6" />,
     color: "text-orange-400",
+    videoSrc: "/videos/pushups.mp4",
   },
   {
     id: "quick-cardio",
@@ -136,7 +139,17 @@ export function TrainPlans() {
                 href={`/train/${plan.id}`}
                 className="group block"
               >
-                <div className="bg-muted rounded-2xl p-6 border border-border hover:border-orange-500/40 transition-all duration-300 card-glow h-full flex flex-col">
+                <div className="bg-muted rounded-2xl p-6 border border-border hover:border-orange-500/40 transition-all duration-300 card-glow h-full flex flex-col relative overflow-hidden">
+                  {/* Video background on hover */}
+                  {plan.videoSrc && (
+                    <video
+                      src={plan.videoSrc}
+                      muted
+                      loop
+                      playsInline
+                      className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-20 transition-opacity duration-500"
+                    />
+                  )}
                   {/* Icon */}
                   <div className={`mb-4 ${plan.color}`}>{plan.icon}</div>
 
