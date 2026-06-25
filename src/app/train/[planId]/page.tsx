@@ -74,6 +74,14 @@ export function generateMetadata({
       title: `${meta.name} | GetFitAI`,
       description: meta.description,
       url: `https://www.getfitai.io/train/${params.planId}/`,
+      images: [
+        {
+          url: "https://www.getfitai.io/og-image.webp",
+          width: 1200,
+          height: 630,
+          alt: `${meta.name} | GetFitAI`,
+        },
+      ],
     },
   };
 }

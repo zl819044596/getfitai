@@ -42,6 +42,9 @@ const footerLinks = {
     { label: "About Us", href: "/about" },
     { label: "Contact", href: "/contact" },
     { label: "All Workouts", href: "/workouts/gym" },
+    { label: "Beginner Workout Routine", href: "/blog/beginner-workout-routine" },
+    { label: "Home vs Gym Workout", href: "/blog/home-vs-gym-workout" },
+    { label: "Bodyweight Workouts", href: "/blog/calisthenics-beginners-workout" },
   ],
   legal: [
     { label: "Privacy Policy", href: "/privacy" },
