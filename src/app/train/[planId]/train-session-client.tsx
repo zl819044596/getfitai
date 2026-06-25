@@ -442,6 +442,39 @@ function VideoPlayer({ youtubeId, videoSrc }: { youtubeId?: string; videoSrc?: s
   );
 }
 
+function ExerciseVideo({ videoSrc, exerciseName, duration }: { videoSrc?: string; exerciseName: string; duration: number }) {
+  const [videoReady, setVideoReady] = useState(false);
+
+  return (
+    <>
+      {/* Animated fallback (shows until video loads) */}
+      {(!videoSrc || !videoReady) && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 z-10">
+          <div className="text-center animate-pulse-subtle">
+            <div className="w-20 h-20 rounded-full bg-orange-500/20 flex items-center justify-center mx-auto mb-4">
+              <Dumbbell className="w-10 h-10 text-orange-400" />
+            </div>
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">{exerciseName}</h3>
+            <p className="text-muted-foreground">{duration}s &middot; Follow along</p>
+          </div>
+        </div>
+      )}
+      {/* Local video */}
+      {videoSrc && (
+        <video
+          src={videoSrc}
+          muted
+          loop
+          autoPlay
+          playsInline
+          className={`w-full h-full object-cover transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
+          onCanPlay={() => setVideoReady(true)}
+        />
+      )}
+    </>
+  );
+}
+
 /* ─── Component ─── */
 
 export function TrainSession() {
@@ -817,30 +850,14 @@ export function TrainSession() {
               </div>
             </div>
 
-            {/* Exercise Visual — local video or animated fallback */}
+            {/* Exercise Visual — local video with animated fallback while loading */}
             <div className="relative rounded-2xl overflow-hidden bg-black mb-4 h-[60vh] max-h-[500px] min-h-[320px]">
-              {plan?.videoSrc ? (
-                <video
-                  key={currentStep.ex.name}
-                  src={plan.videoSrc}
-                  muted
-                  loop
-                  autoPlay
-                  playsInline
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-                  <div className="text-center animate-pulse-subtle">
-                    <div className="w-20 h-20 rounded-full bg-orange-500/20 flex items-center justify-center mx-auto mb-4">
-                      <Dumbbell className="w-10 h-10 text-orange-400" />
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">{currentStep.ex.displayName}</h3>
-                    <p className="text-muted-foreground">{currentStep.duration}s &middot; Follow along</p>
-                  </div>
-                </div>
-              )}
-              <div className="absolute top-3 left-3">
+              <ExerciseVideo
+                videoSrc={plan?.videoSrc}
+                exerciseName={currentStep.ex.displayName}
+                duration={currentStep.duration}
+              />
+              <div className="absolute top-3 left-3 z-20">
                 <span className="text-xs font-medium bg-black/60 backdrop-blur text-white px-2.5 py-1 rounded-lg">
                   {currentStep.phase === "warmup" ? "🔥 Warm Up" : currentStep.phase === "main" ? "💪 Main" : "🏁 Finisher"}
                 </span>
