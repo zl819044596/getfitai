@@ -12,6 +12,7 @@ import {
   CheckCircle2,
   Dumbbell,
   Clock,
+  VideoIcon,
 } from "lucide-react";
 
 /* ─── Exercise Metadata ─── */
@@ -393,6 +394,38 @@ function playBeep() {
 
 type AppStatus = "ready" | "exercise" | "rest" | "next-up" | "complete";
 
+/* ─── Click-to-Play Video ─── */
+
+function VideoPlayer({ youtubeId }: { youtubeId: string }) {
+  const [loaded, setLoaded] = useState(false);
+
+  if (loaded) {
+    return (
+      <iframe
+        src={`https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&loop=1&playlist=${youtubeId}&mute=1&controls=0&modestbranding=1&rel=0`}
+        className="w-full h-full"
+        allow="autoplay; encrypted-media"
+        allowFullScreen
+      />
+    );
+  }
+
+  return (
+    <button
+      onClick={() => setLoaded(true)}
+      className="w-full h-full flex items-center justify-center bg-slate-900 hover:bg-slate-800 transition-colors cursor-pointer group"
+    >
+      <div className="text-center">
+        <div className="w-16 h-16 rounded-full bg-orange-500/20 flex items-center justify-center mx-auto mb-3 group-hover:bg-orange-500/30 transition-colors">
+          <VideoIcon className="w-8 h-8 text-orange-400" />
+        </div>
+        <p className="text-white font-medium text-lg">Watch Demo</p>
+        <p className="text-xs text-slate-500 mt-1">Click to load video</p>
+      </div>
+    </button>
+  );
+}
+
 /* ─── Component ─── */
 
 export function TrainSession() {
@@ -768,16 +801,10 @@ export function TrainSession() {
               </div>
             </div>
 
-            {/* Video */}
+            {/* Video - Click to play */}
             <div className="relative rounded-2xl overflow-hidden bg-black mb-4 h-[60vh] max-h-[500px] min-h-[320px]">
               {currentStep.ex.hasVideo && currentStep.ex.youtubeId ? (
-                <iframe
-                  key={currentStep.ex.name}
-                  src={`https://www.youtube-nocookie.com/embed/${currentStep.ex.youtubeId}?autoplay=1&loop=1&playlist=${currentStep.ex.youtubeId}&mute=1&controls=0&modestbranding=1&rel=0`}
-                  className="w-full h-full"
-                  allow="autoplay; encrypted-media"
-                  allowFullScreen
-                />
+                <VideoPlayer youtubeId={currentStep.ex.youtubeId} />
               ) : (
                 <div className="w-full h-full flex items-center justify-center bg-slate-900">
                   <div className="text-center">
