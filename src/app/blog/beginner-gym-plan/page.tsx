@@ -16,6 +16,9 @@ export const metadata: Metadata = {
     "newbie workout plan",
     "gym workout for beginners",
   ],
+  alternates: {
+    canonical: "https://www.getfitai.io/blog/beginner-gym-plan/",
+  },
   openGraph: {
     title: "Beginner Gym Plan: Complete 4-Week Guide",
     description: "Free 4-week progressive gym program for beginners. No experience needed.",

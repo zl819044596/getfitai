@@ -144,7 +144,7 @@ export function Footer() {
         {/* Bottom */}
         <div className="mt-12 pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-slate-400">
-            &copy; 2025 GetFitAI. All rights reserved.
+            &copy; 2026 GetFitAI. All rights reserved.
           </p>
           <Link href="https://github.com" className="text-sm text-slate-400 hover:text-white transition-colors">
             Open Source

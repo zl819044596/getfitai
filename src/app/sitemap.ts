@@ -35,6 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // 博客文章列表（手动维护，避免构建时文件系统访问问题）
   const blogPosts = [
     "ai-fitness-coach-vs-personal-trainer",
+    "ai-workout-planner",
     "beginner-gym-plan",
     "beginner-workout-routine",
     "calisthenics-beginners-workout",

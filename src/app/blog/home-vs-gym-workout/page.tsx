@@ -16,6 +16,9 @@ export const metadata: Metadata = {
     "gym vs home fitness",
     "best workout location",
   ],
+  alternates: {
+    canonical: "https://www.getfitai.io/blog/home-vs-gym-workout/",
+  },
   openGraph: {
     title: "Home vs Gym Workout: Which Is Better?",
     description: "Complete comparison of home and gym workouts. Find your best fit.",

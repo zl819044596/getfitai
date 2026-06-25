@@ -16,6 +16,9 @@ export const metadata: Metadata = {
     "protein for muscle",
     "progressive overload",
   ],
+  alternates: {
+    canonical: "https://www.getfitai.io/blog/build-muscle-fast/",
+  },
   openGraph: {
     title: "How to Build Muscle Fast: Science-Backed Guide",
     description: "Proven strategies for rapid muscle growth. Training, nutrition, and recovery.",
