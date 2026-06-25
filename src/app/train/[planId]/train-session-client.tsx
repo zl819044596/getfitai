@@ -204,6 +204,7 @@ interface WorkoutPlan {
   id: string;
   name: string;
   totalMinutes: number;
+  videoSrc?: string;
   steps: Step[];
 }
 
@@ -212,6 +213,7 @@ const workoutPlans: WorkoutPlan[] = [
     id: "full-body-burn",
     name: "Full Body Burn",
     totalMinutes: 15,
+    videoSrc: "/videos/handheld-weights.mp4",
     steps: [
       { type: "exercise", ex: allExercises.jumping_jacks, duration: 30, phase: "warmup" },
       { type: "rest", duration: 5 },
@@ -396,10 +398,24 @@ type AppStatus = "ready" | "exercise" | "rest" | "next-up" | "complete";
 
 /* ─── Click-to-Play Video ─── */
 
-function VideoPlayer({ youtubeId }: { youtubeId: string }) {
+function VideoPlayer({ youtubeId, videoSrc }: { youtubeId?: string; videoSrc?: string }) {
   const [loaded, setLoaded] = useState(false);
 
-  if (loaded) {
+  // If local video is available, use it directly
+  if (videoSrc) {
+    return (
+      <video
+        src={videoSrc}
+        muted
+        loop
+        autoPlay
+        playsInline
+        className="w-full h-full object-cover"
+      />
+    );
+  }
+
+  if (loaded && youtubeId) {
     return (
       <iframe
         src={`https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&loop=1&playlist=${youtubeId}&mute=1&controls=0&modestbranding=1&rel=0`}
@@ -804,7 +820,7 @@ export function TrainSession() {
             {/* Video - Click to play */}
             <div className="relative rounded-2xl overflow-hidden bg-black mb-4 h-[60vh] max-h-[500px] min-h-[320px]">
               {currentStep.ex.hasVideo && currentStep.ex.youtubeId ? (
-                <VideoPlayer youtubeId={currentStep.ex.youtubeId} />
+                <VideoPlayer youtubeId={currentStep.ex.youtubeId} videoSrc={plan?.videoSrc} />
               ) : (
                 <div className="w-full h-full flex items-center justify-center bg-slate-900">
                   <div className="text-center">
