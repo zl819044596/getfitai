@@ -3,6 +3,7 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { useState, useEffect, useRef, useCallback } from "react";
+import { ExerciseVideo } from "@/components/exercise-video";
 import {
   Play,
   Pause,
@@ -12,7 +13,6 @@ import {
   CheckCircle2,
   Dumbbell,
   Clock,
-  VideoIcon,
 } from "lucide-react";
 
 /* ─── Exercise Metadata ─── */
@@ -213,7 +213,6 @@ const workoutPlans: WorkoutPlan[] = [
     id: "full-body-burn",
     name: "Full Body Burn",
     totalMinutes: 15,
-    videoSrc: "/videos/handheld-weights.mp4",
     steps: [
       { type: "exercise", ex: allExercises.jumping_jacks, duration: 30, phase: "warmup" },
       { type: "rest", duration: 5 },
@@ -395,134 +394,6 @@ function playBeep() {
 }
 
 type AppStatus = "ready" | "exercise" | "rest" | "next-up" | "complete";
-
-/* ─── Click-to-Play Video ─── */
-
-function VideoPlayer({ youtubeId, videoSrc }: { youtubeId?: string; videoSrc?: string }) {
-  const [loaded, setLoaded] = useState(false);
-
-  // If local video is available, use it directly
-  if (videoSrc) {
-    return (
-      <video
-        src={videoSrc}
-        muted
-        loop
-        autoPlay
-        playsInline
-        className="w-full h-full object-cover"
-      />
-    );
-  }
-
-  if (loaded && youtubeId) {
-    return (
-      <iframe
-        src={`https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&loop=1&playlist=${youtubeId}&mute=1&controls=0&modestbranding=1&rel=0`}
-        className="w-full h-full"
-        allow="autoplay; encrypted-media"
-        allowFullScreen
-      />
-    );
-  }
-
-  return (
-    <button
-      onClick={() => setLoaded(true)}
-      className="w-full h-full flex items-center justify-center bg-slate-900 hover:bg-slate-800 transition-colors cursor-pointer group"
-    >
-      <div className="text-center">
-        <div className="w-16 h-16 rounded-full bg-orange-500/20 flex items-center justify-center mx-auto mb-3 group-hover:bg-orange-500/30 transition-colors">
-          <VideoIcon className="w-8 h-8 text-orange-400" />
-        </div>
-        <p className="text-white font-medium text-lg">Watch Demo</p>
-        <p className="text-xs text-slate-500 mt-1">Click to load video</p>
-      </div>
-    </button>
-  );
-}
-
-function ExerciseVideo({ youtubeId, videoSrc, exerciseName, duration }: { youtubeId?: string; videoSrc?: string; exerciseName: string; duration: number }) {
-  const [videoReady, setVideoReady] = useState(false);
-  const [showYoutube, setShowYoutube] = useState(false);
-
-  // Local video
-  if (videoSrc) {
-    return (
-      <>
-        {!videoReady && (
-          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 z-10">
-            <div className="text-center animate-pulse-subtle">
-              <div className="w-20 h-20 rounded-full bg-orange-500/20 flex items-center justify-center mx-auto mb-4">
-                <Dumbbell className="w-10 h-10 text-orange-400" />
-              </div>
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">{exerciseName}</h3>
-              <p className="text-muted-foreground">{duration}s &middot; Follow along</p>
-            </div>
-          </div>
-        )}
-        <video
-          src={videoSrc}
-          muted
-          loop
-          autoPlay
-          playsInline
-          className={`w-full h-full object-cover transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
-          onCanPlay={() => setVideoReady(true)}
-        />
-      </>
-    );
-  }
-
-  // YouTube embed with click-to-play + loading fallback
-  if (youtubeId) {
-    return (
-      <>
-        {/* Animated fallback (shows until video loads) */}
-        {!showYoutube && (
-          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 z-10">
-            <div className="text-center animate-pulse-subtle">
-              <div className="w-20 h-20 rounded-full bg-orange-500/20 flex items-center justify-center mx-auto mb-4">
-                <VideoIcon className="w-10 h-10 text-orange-400" />
-              </div>
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">{exerciseName}</h3>
-              <p className="text-muted-foreground mb-3">{duration}s &middot; Follow along</p>
-              <button
-                onClick={() => setShowYoutube(true)}
-                className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold px-5 py-2.5 rounded-xl transition-all btn-glow"
-              >
-                <Play className="w-4 h-4" />
-                Watch Demo
-              </button>
-            </div>
-          </div>
-        )}
-        {/* YouTube iframe (loads on click) */}
-        {showYoutube && (
-          <iframe
-            src={`https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&loop=1&playlist=${youtubeId}&mute=1&controls=0&modestbranding=1&rel=0`}
-            className="w-full h-full"
-            allow="autoplay; encrypted-media"
-            allowFullScreen
-          />
-        )}
-      </>
-    );
-  }
-
-  // No video at all — always show fallback
-  return (
-    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      <div className="text-center">
-        <div className="w-20 h-20 rounded-full bg-orange-500/20 flex items-center justify-center mx-auto mb-4">
-          <Dumbbell className="w-10 h-10 text-orange-400" />
-        </div>
-        <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">{exerciseName}</h3>
-        <p className="text-muted-foreground">{duration}s &middot; Follow along</p>
-      </div>
-    </div>
-  );
-}
 
 /* ─── Component ─── */
 
@@ -899,13 +770,13 @@ export function TrainSession() {
               </div>
             </div>
 
-            {/* Exercise Visual — local video with animated fallback while loading */}
+            {/* Exercise Visual — imported ExerciseVideo component with YouTube fallback */}
             <div className="relative rounded-2xl overflow-hidden bg-black mb-4 h-[60vh] max-h-[500px] min-h-[320px]">
               <ExerciseVideo
                 youtubeId={currentStep.ex.youtubeId}
-                videoSrc={plan?.videoSrc}
-                exerciseName={currentStep.ex.displayName}
-                duration={currentStep.duration}
+                autoplay={true}
+                title={currentStep.ex.displayName}
+                className="absolute inset-0 w-full h-full"
               />
               <div className="absolute top-3 left-3 z-20">
                 <span className="text-xs font-medium bg-black/60 backdrop-blur text-white px-2.5 py-1 rounded-lg">
