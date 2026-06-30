@@ -442,25 +442,25 @@ function VideoPlayer({ youtubeId, videoSrc }: { youtubeId?: string; videoSrc?: s
   );
 }
 
-function ExerciseVideo({ videoSrc, exerciseName, duration }: { videoSrc?: string; exerciseName: string; duration: number }) {
+function ExerciseVideo({ youtubeId, videoSrc, exerciseName, duration }: { youtubeId?: string; videoSrc?: string; exerciseName: string; duration: number }) {
   const [videoReady, setVideoReady] = useState(false);
+  const [showYoutube, setShowYoutube] = useState(false);
 
-  return (
-    <>
-      {/* Animated fallback (shows until video loads) */}
-      {(!videoSrc || !videoReady) && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 z-10">
-          <div className="text-center animate-pulse-subtle">
-            <div className="w-20 h-20 rounded-full bg-orange-500/20 flex items-center justify-center mx-auto mb-4">
-              <Dumbbell className="w-10 h-10 text-orange-400" />
+  // Local video
+  if (videoSrc) {
+    return (
+      <>
+        {!videoReady && (
+          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 z-10">
+            <div className="text-center animate-pulse-subtle">
+              <div className="w-20 h-20 rounded-full bg-orange-500/20 flex items-center justify-center mx-auto mb-4">
+                <Dumbbell className="w-10 h-10 text-orange-400" />
+              </div>
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">{exerciseName}</h3>
+              <p className="text-muted-foreground">{duration}s &middot; Follow along</p>
             </div>
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">{exerciseName}</h3>
-            <p className="text-muted-foreground">{duration}s &middot; Follow along</p>
           </div>
-        </div>
-      )}
-      {/* Local video */}
-      {videoSrc && (
+        )}
         <video
           src={videoSrc}
           muted
@@ -470,8 +470,57 @@ function ExerciseVideo({ videoSrc, exerciseName, duration }: { videoSrc?: string
           className={`w-full h-full object-cover transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
           onCanPlay={() => setVideoReady(true)}
         />
-      )}
-    </>
+      </>
+    );
+  }
+
+  // YouTube embed with click-to-play + loading fallback
+  if (youtubeId) {
+    return (
+      <>
+        {/* Animated fallback (shows until video loads) */}
+        {!showYoutube && (
+          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 z-10">
+            <div className="text-center animate-pulse-subtle">
+              <div className="w-20 h-20 rounded-full bg-orange-500/20 flex items-center justify-center mx-auto mb-4">
+                <VideoIcon className="w-10 h-10 text-orange-400" />
+              </div>
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">{exerciseName}</h3>
+              <p className="text-muted-foreground mb-3">{duration}s &middot; Follow along</p>
+              <button
+                onClick={() => setShowYoutube(true)}
+                className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold px-5 py-2.5 rounded-xl transition-all btn-glow"
+              >
+                <Play className="w-4 h-4" />
+                Watch Demo
+              </button>
+            </div>
+          </div>
+        )}
+        {/* YouTube iframe (loads on click) */}
+        {showYoutube && (
+          <iframe
+            src={`https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&loop=1&playlist=${youtubeId}&mute=1&controls=0&modestbranding=1&rel=0`}
+            className="w-full h-full"
+            allow="autoplay; encrypted-media"
+            allowFullScreen
+          />
+        )}
+      </>
+    );
+  }
+
+  // No video at all — always show fallback
+  return (
+    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      <div className="text-center">
+        <div className="w-20 h-20 rounded-full bg-orange-500/20 flex items-center justify-center mx-auto mb-4">
+          <Dumbbell className="w-10 h-10 text-orange-400" />
+        </div>
+        <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">{exerciseName}</h3>
+        <p className="text-muted-foreground">{duration}s &middot; Follow along</p>
+      </div>
+    </div>
   );
 }
 
@@ -853,6 +902,7 @@ export function TrainSession() {
             {/* Exercise Visual — local video with animated fallback while loading */}
             <div className="relative rounded-2xl overflow-hidden bg-black mb-4 h-[60vh] max-h-[500px] min-h-[320px]">
               <ExerciseVideo
+                youtubeId={currentStep.ex.youtubeId}
                 videoSrc={plan?.videoSrc}
                 exerciseName={currentStep.ex.displayName}
                 duration={currentStep.duration}
