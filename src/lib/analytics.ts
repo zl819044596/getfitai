@@ -135,7 +135,7 @@ export function trackCtaClick(ctaName: string, ctaLocation: string) {
 }
 
 /** User saved/shared a workout plan */
-export function trackPlanSaved(planId: string, method: "url" | "favorite") {
+export function trackPlanSaved(planId: string, method: "url" | "favorite" | "email") {
   trackEvent("plan_saved", {
     plan_id: planId,
     save_method: method,

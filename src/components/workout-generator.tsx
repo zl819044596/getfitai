@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Slider } from "@/components/ui/slider"
-import { Sparkles, Dumbbell, Timer, Target, Activity, Loader2, CheckCircle, Flame, RotateCcw, Play, Pause, X, ChevronRight, ChevronLeft, Users, Zap, Share2, Star } from "lucide-react"
+import { Sparkles, Dumbbell, Timer, Target, Activity, Loader2, CheckCircle, Flame, RotateCcw, Play, Pause, X, ChevronRight, ChevronLeft, Users, Zap, Share2, Star, Mail, Copy, ExternalLink } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { ExerciseDetailPanel } from "@/components/exercise-detail-panel"
 import { trackGeneratePlanStarted, trackPlanGenerated, trackPlanSaved } from "@/lib/analytics"
@@ -134,6 +134,11 @@ export function WorkoutGenerator() {
   const [selectedExercise, setSelectedExercise] = useState<number | null>(null)
   const [isFavorited, setIsFavorited] = useState(false)
   const [shareCopied, setShareCopied] = useState(false)
+  const [emailValue, setEmailValue] = useState("")
+  const [emailSent, setEmailSent] = useState(false)
+  const [emailLoading, setEmailLoading] = useState(false)
+  const [emailError, setEmailError] = useState("")
+  const [planId, setPlanId] = useState("")
   const resultRef = useRef<HTMLDivElement>(null)
 
   const isFormValid = selectedGoal && selectedArea && selectedLevel && selectedEquipment
@@ -223,6 +228,8 @@ export function WorkoutGenerator() {
             equipment: selectedEquipment,
             exercise_count: parsed.exercises?.length || 0,
           })
+          // Save plan to local storage for persistence
+          savePlanToStorage(parsed)
           setTimeout(() => {
             resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
           }, 100)
@@ -315,6 +322,54 @@ export function WorkoutGenerator() {
       }).catch(() => {})
     }
     trackPlanSaved(plan.title, "url")
+  }
+
+  function generatePlanId(): string {
+    return "plan_" + Date.now().toString(36) + "_" + Math.random().toString(36).substring(2, 8)
+  }
+
+  function savePlanToStorage(planData: WorkoutPlan) {
+    const id = generatePlanId()
+    const record = {
+      id,
+      plan: planData,
+      savedAt: new Date().toISOString(),
+      goal: selectedGoal,
+      experience: selectedLevel,
+      duration: duration[0],
+      equipment: selectedEquipment,
+    }
+    try {
+      const raw = localStorage.getItem("getfitai_saved_plans")
+      const plans: any[] = raw ? JSON.parse(raw) : []
+      plans.unshift(record)
+      localStorage.setItem("getfitai_saved_plans", JSON.stringify(plans.slice(0, 20)))
+      setPlanId(id)
+    } catch {
+      // localStorage not available
+    }
+  }
+
+  async function handleSendEmail() {
+    if (!plan || !emailValue || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)) return
+    setEmailLoading(true)
+    setEmailError("")
+    setEmailSent(false)
+    try {
+      const res = await fetch("/api/send-plan", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: emailValue, plan }),
+      })
+      const data = await res.json() as { error?: string; id?: string }
+      if (!res.ok) throw new Error(data.error || "Failed to send")
+      setEmailSent(true)
+      trackPlanSaved(plan.title, "email")
+    } catch (err: any) {
+      setEmailError(err.message || "Failed to send. Try again.")
+    } finally {
+      setEmailLoading(false)
+    }
   }
 
   function parseRestSeconds(restStr: string): number {
@@ -800,6 +855,74 @@ export function WorkoutGenerator() {
                         </li>
                       ))}
                     </ul>
+                  </div>
+
+                  {/* Save & Email section */}
+                  <div className="bg-slate-900/60 backdrop-blur-xl border border-orange-500/20 rounded-2xl p-6 mb-6">
+                    <h4 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                      <Mail className="w-5 h-5 text-orange-400" />
+                      Save Your Plan
+                    </h4>
+                    <p className="text-sm text-slate-400 mb-4">
+                      Get your workout plan delivered to your inbox so you never lose it.
+                    </p>
+
+                    {emailSent ? (
+                      <div className="flex items-center gap-3 p-4 rounded-xl bg-green-500/10 border border-green-500/30">
+                        <CheckCircle className="w-5 h-5 text-green-400 shrink-0" />
+                        <div>
+                          <p className="text-green-400 font-medium text-sm">Sent! Check your inbox.</p>
+                          <p className="text-green-500/60 text-xs mt-0.5">Your plan is on its way to {emailValue}</p>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="flex flex-col sm:flex-row gap-3">
+                        <input
+                          type="email"
+                          value={emailValue}
+                          onChange={(e) => setEmailValue(e.target.value)}
+                          placeholder="your@email.com"
+                          className="flex-1 bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-orange-500/30 focus:border-orange-500/50"
+                        />
+                        <button
+                          onClick={handleSendEmail}
+                          disabled={emailLoading || !emailValue}
+                          className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-orange-500 hover:bg-orange-600 disabled:opacity-40 text-white font-semibold rounded-xl text-sm transition-colors shrink-0"
+                        >
+                          {emailLoading ? (
+                            <Loader2 className="w-4 h-4 animate-spin" />
+                          ) : (
+                            <Mail className="w-4 h-4" />
+                          )}
+                          {emailLoading ? "Sending..." : "Email Plan"}
+                        </button>
+                      </div>
+                    )}
+
+                    {emailError && (
+                      <p className="mt-2 text-xs text-red-400">{emailError}</p>
+                    )}
+
+                    {/* Saved plan link */}
+                    {planId && !emailSent && (
+                      <div className="mt-3 pt-3 border-t border-slate-700/50">
+                        <p className="text-xs text-slate-500 mb-2">
+                          ← Or bookmark this page — your plan is saved in this browser
+                        </p>
+                        <button
+                          onClick={() => {
+                            const url = `${window.location.origin}/my-plan?id=${planId}`;
+                            navigator.clipboard.writeText(url).catch(() => {});
+                            setShareCopied(true);
+                            setTimeout(() => setShareCopied(false), 2000);
+                          }}
+                          className="inline-flex items-center gap-1.5 text-xs text-orange-400 hover:text-orange-300 transition-colors"
+                        >
+                          <Copy className="w-3.5 h-3.5" />
+                          {shareCopied ? "Link copied!" : "Copy plan link"}
+                        </button>
+                      </div>
+                    )}
                   </div>
 
                   {/* CTA */}

@@ -115,6 +115,64 @@ export default function HomeClient() {
       )}
 
       <Hero />
+
+      {/* Popular Workouts — quick entry to follow-along training */}
+      <section className="py-16 md:py-20 bg-[#020617]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <span className="inline-block px-4 py-1 rounded-full bg-orange-500/10 text-sm font-medium text-orange-400 mb-3">
+              Follow-Along Workouts
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-black text-white" style={{ fontFamily: "var(--font-heading)" }}>
+              Start Training in Seconds
+            </h2>
+            <p className="text-slate-400 mt-3 max-w-lg mx-auto">
+              Video-led workouts with real-time timers. Pick one and press play.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {plans.slice(0, 4).map((plan: PlanCard) => (
+              <Link
+                key={plan.id}
+                href={`/train/${plan.id}`}
+                className="group block"
+              >
+                <div className="bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-2xl p-5 hover:border-orange-500/40 transition-all duration-300 card-glow h-full flex flex-col">
+                  <div className={`mb-3 ${plan.color}`}>{plan.icon}</div>
+                  <h3 className="text-lg font-bold text-white mb-1">{plan.name}</h3>
+                  <p className="text-sm text-slate-400 mb-3 flex-1 line-clamp-2">{plan.description}</p>
+                  <div className="flex items-center gap-3 text-xs text-slate-500 mb-3">
+                    <span className="flex items-center gap-1">
+                      <Clock className="w-3.5 h-3.5" />
+                      {plan.duration}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Dumbbell className="w-3.5 h-3.5" />
+                      {plan.exerciseCount} exercises
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1 text-orange-400 font-medium text-sm group-hover:gap-2 transition-all">
+                    <span>{plan.cta || "Start Workout"}</span>
+                    <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="text-center mt-8">
+            <Link
+              href="/train"
+              className="inline-flex items-center gap-2 text-orange-400 hover:text-orange-300 font-medium transition-colors"
+            >
+              View All Workouts
+              <ChevronRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <HowItWorks />
       <Features />
       <ToolsPreview />
