@@ -1,5 +1,5 @@
 // GetFitAI Worker - API Backend
-// Stable Version: Updated 2026-06-02
+// Updated: 2026-07-13 - FIX: handle reasoning model, increase max_tokens
 // Endpoint: POST /api/generate-plan
 
 export default {
@@ -65,8 +65,7 @@ export default {
             { role: 'user', content: prompt },
           ],
           temperature: 0.7,
-          max_tokens: 2000,
-          stream: false,
+          max_tokens: 8192, // Increased for reasoning models
         }),
       });
 
@@ -79,12 +78,25 @@ export default {
       }
 
       const data = await response.json();
-      const content = data.choices?.[0]?.message?.content || '';
+      const msg = data.choices?.[0]?.message || {};
       
-      // Extract JSON from response
+      // Try content first, then reasoning_content as fallback
+      let content = msg.content || msg.reasoning_content || '';
+      
+      // Extract JSON from response - handle markdown wrapping
       const jsonMatch = content.match(/\{[\s\S]*\}/);
       if (!jsonMatch) {
-        return new Response(JSON.stringify({ error: 'Invalid AI response format' }), {
+        // Debug: return the raw content so we can see what's happening
+        return new Response(JSON.stringify({ 
+          error: 'Invalid AI response format', 
+          debug: { 
+            content_length: content.length,
+            content_preview: content.substring(0, 200),
+            has_content: !!msg.content,
+            has_reasoning: !!msg.reasoning_content,
+            finish_reason: data.choices?.[0]?.finish_reason
+          }
+        }), {
           status: 502,
           headers: { 'Content-Type': 'application/json', ...corsHeaders },
         });
