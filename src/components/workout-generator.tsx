@@ -859,12 +859,12 @@ export function WorkoutGenerator() {
                   </div>
 
                   {/* Save & Email section */}
-                  <div className="bg-slate-900/60 backdrop-blur-xl border border-orange-500/20 rounded-2xl p-6 mb-6">
-                    <h4 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                  <div className="bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6 mb-6">
+                    <h4 className="text-lg font-semibold text-white mb-1 flex items-center gap-2">
                       <Mail className="w-5 h-5 text-orange-400" />
                       Save Your Plan
                     </h4>
-                    <p className="text-sm text-slate-400 mb-4">
+                    <p className="text-sm text-slate-400 mb-5">
                       Get your workout plan delivered to your inbox so you never lose it.
                     </p>
 
@@ -877,13 +877,13 @@ export function WorkoutGenerator() {
                         </div>
                       </div>
                     ) : (
-                      <div className="flex flex-col sm:flex-row gap-3">
+                      <div className="flex flex-col sm:flex-row gap-2">
                         <input
                           type="email"
                           value={emailValue}
                           onChange={(e) => setEmailValue(e.target.value)}
                           placeholder="your@email.com"
-                          className="flex-1 bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-orange-500/30 focus:border-orange-500/50"
+                          className="flex-1 bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-orange-500/30 focus:border-orange-500/50 transition-all"
                         />
                         <button
                           onClick={handleSendEmail}
@@ -906,11 +906,8 @@ export function WorkoutGenerator() {
 
                     {/* Saved plan link */}
                     {planId && !emailSent && (
-                      <div className="mt-3 pt-3 border-t border-slate-700/50">
-                        <p className="text-xs text-slate-500 mb-2">
-                          This plan is saved in your browser
-                        </p>
-                        <div className="flex items-center gap-3">
+                      <div className="mt-4 pt-4 border-t border-slate-700/50">
+                        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
                           <button
                             onClick={() => {
                               const url = `${window.location.origin}/my-plan?id=${planId}`;
@@ -923,6 +920,7 @@ export function WorkoutGenerator() {
                             <Copy className="w-3.5 h-3.5" />
                             {shareCopied ? "Link copied!" : "Copy plan link"}
                           </button>
+                          <span className="text-xs text-slate-600">·</span>
                           <Link
                             href="/my-plans"
                             className="inline-flex items-center gap-1.5 text-xs text-orange-400 hover:text-orange-300 transition-colors"
@@ -930,6 +928,9 @@ export function WorkoutGenerator() {
                             <Star className="w-3.5 h-3.5" />
                             View Saved Plans
                           </Link>
+                          <span className="text-xs text-slate-500/60 ml-auto">
+                            Saved in this browser
+                          </span>
                         </div>
                       </div>
                     )}

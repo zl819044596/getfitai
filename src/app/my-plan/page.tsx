@@ -1,21 +1,16 @@
-import { Metadata } from "next";
-import { Suspense } from "react";
-import { MyPlanClient } from "./my-plan-client";
+"use client";
 
-export const metadata: Metadata = {
-  title: "My Saved Plan | GetFitAI",
-  description: "View your saved AI-generated workout plan.",
-  robots: { index: false, follow: false },
-};
+import { Suspense } from "react";
+import { MyPlanContent } from "./my-plan-content";
 
 export default function MyPlanPage() {
   return (
     <Suspense fallback={
-      <main className="min-h-screen bg-[#020617] flex items-center justify-center">
-        <div className="w-8 h-8 border-2 border-orange-500 border-t-transparent rounded-full animate-spin" />
+      <main className="min-h-screen bg-background pt-32 flex items-center justify-center">
+        <div className="text-slate-400">Loading plan...</div>
       </main>
     }>
-      <MyPlanClient />
+      <MyPlanContent />
     </Suspense>
   );
 }

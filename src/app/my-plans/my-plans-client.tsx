@@ -62,7 +62,7 @@ export function MyPlansClient() {
   };
 
   const handleCopyLink = (id: string) => {
-    const url = `${window.location.origin}/plan?id=${encodeURIComponent(id)}`;
+    const url = `${window.location.origin}/my-plan?id=${encodeURIComponent(id)}`;
     navigator.clipboard.writeText(url).then(() => {
       setCopiedId(id);
       setTimeout(() => setCopiedId(null), 2000);
