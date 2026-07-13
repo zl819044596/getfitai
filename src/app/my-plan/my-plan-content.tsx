@@ -10,6 +10,8 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+const WORKER_URL = "https://getfitai-api.zl18672545321.workers.dev"
+
 interface SavedPlan {
   id: string;
   plan: {
@@ -30,6 +32,7 @@ export function MyPlanContent() {
   const id = searchParams.get("id");
   const [plan, setPlan] = useState<SavedPlan | null>(null);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState("");
   const [completedExercises, setCompletedExercises] = useState<Set<number>>(new Set());
 
   useEffect(() => {
@@ -37,15 +40,38 @@ export function MyPlanContent() {
       setLoading(false);
       return;
     }
-    try {
-      const raw = localStorage.getItem("getfitai_saved_plans");
-      if (raw) {
-        const plans: SavedPlan[] = JSON.parse(raw);
-        const found = plans.find(p => p.id === id);
-        setPlan(found || null);
+    (async () => {
+      // Try server first
+      try {
+        const res = await fetch(`${WORKER_URL}/api/get-plan?id=${encodeURIComponent(id)}`);
+        if (res.ok) {
+          const data = await res.json() as SavedPlan;
+          setPlan(data);
+          setLoading(false);
+          return;
+        }
+      } catch {
+        // Server unreachable, fall through
       }
-    } catch {}
-    setLoading(false);
+
+      // Fallback to localStorage
+      try {
+        const raw = localStorage.getItem("getfitai_saved_plans");
+        if (raw) {
+          const plans: SavedPlan[] = JSON.parse(raw);
+          const found = plans.find(p => p.id === id);
+          if (found) {
+            setPlan(found);
+            setLoading(false);
+            return;
+          }
+        }
+      } catch {}
+
+      // Not found anywhere
+      setLoadError("Plan not found. It may have expired or the link is invalid.");
+      setLoading(false);
+    })();
   }, [id]);
 
   const toggleComplete = (index: number) => {
@@ -86,7 +112,7 @@ export function MyPlanContent() {
       <div className="min-h-screen bg-background pt-32">
         <div className="max-w-2xl mx-auto px-4 text-center">
           <Dumbbell className="w-16 h-16 mx-auto text-muted-foreground/30 mb-6" />
-          <h1 className="text-2xl font-bold text-white mb-4">Plan not found</h1>
+          <h1 className="text-2xl font-bold text-white mb-4">{loadError || "Plan not found"}</h1>
           <p className="text-slate-400 mb-6">This plan may have been deleted or the link is invalid.</p>
           <Link href="/my-plans">
             <Button className="bg-orange-500 hover:bg-orange-600 text-white rounded-xl">

@@ -325,6 +325,8 @@ export function WorkoutGenerator() {
     trackPlanSaved(plan.title, "url")
   }
 
+  const WORKER_URL = "https://getfitai-api.zl18672545321.workers.dev"
+
   function generatePlanId(): string {
     return "plan_" + Date.now().toString(36) + "_" + Math.random().toString(36).substring(2, 8)
   }
@@ -349,6 +351,15 @@ export function WorkoutGenerator() {
     } catch {
       // localStorage not available
     }
+    // Also save to Worker for shareable links
+    fetch(`${WORKER_URL}/api/save-plan`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(record),
+    }).catch(() => {
+      // Silent fail — localStorage backup exists
+      console.warn("Failed to save plan to server, local copy available")
+    })
   }
 
   async function handleSendEmail() {
