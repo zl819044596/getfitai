@@ -356,7 +356,7 @@ export function WorkoutGenerator() {
     setEmailError("")
     setEmailSent(false)
     try {
-      const res = await fetch("/api/send-plan", {
+      const res = await fetch("https://getfitai-api.zl18672545321.workers.dev/api/send-plan", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: emailValue, plan }),
