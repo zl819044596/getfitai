@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils"
 import { ExerciseDetailPanel } from "@/components/exercise-detail-panel"
 import { trackGeneratePlanStarted, trackPlanGenerated, trackPlanSaved } from "@/lib/analytics"
 import { getFavorites, addFavorite, removeFavorite } from "@/lib/favorites"
+import Link from "next/link"
 
 const goals = [
   { id: "muscle", label: "Build Muscle", desc: "Hypertrophy & size", icon: "💪" },
@@ -907,20 +908,29 @@ export function WorkoutGenerator() {
                     {planId && !emailSent && (
                       <div className="mt-3 pt-3 border-t border-slate-700/50">
                         <p className="text-xs text-slate-500 mb-2">
-                          ← Or bookmark this page — your plan is saved in this browser
+                          This plan is saved in your browser
                         </p>
-                        <button
-                          onClick={() => {
-                            const url = `${window.location.origin}/my-plan?id=${planId}`;
-                            navigator.clipboard.writeText(url).catch(() => {});
-                            setShareCopied(true);
-                            setTimeout(() => setShareCopied(false), 2000);
-                          }}
-                          className="inline-flex items-center gap-1.5 text-xs text-orange-400 hover:text-orange-300 transition-colors"
-                        >
-                          <Copy className="w-3.5 h-3.5" />
-                          {shareCopied ? "Link copied!" : "Copy plan link"}
-                        </button>
+                        <div className="flex items-center gap-3">
+                          <button
+                            onClick={() => {
+                              const url = `${window.location.origin}/my-plan?id=${planId}`;
+                              navigator.clipboard.writeText(url).catch(() => {});
+                              setShareCopied(true);
+                              setTimeout(() => setShareCopied(false), 2000);
+                            }}
+                            className="inline-flex items-center gap-1.5 text-xs text-orange-400 hover:text-orange-300 transition-colors"
+                          >
+                            <Copy className="w-3.5 h-3.5" />
+                            {shareCopied ? "Link copied!" : "Copy plan link"}
+                          </button>
+                          <Link
+                            href="/my-plans"
+                            className="inline-flex items-center gap-1.5 text-xs text-orange-400 hover:text-orange-300 transition-colors"
+                          >
+                            <Star className="w-3.5 h-3.5" />
+                            View Saved Plans
+                          </Link>
+                        </div>
                       </div>
                     )}
                   </div>

@@ -21,6 +21,7 @@ const footerLinks = {
     { label: "Plate Calculator", href: "/tools/plate-calculator" },
     { label: "Wilks Calculator", href: "/tools/wilks-calculator" },
     { label: "Features", href: "/#features" },
+    { label: "My Saved Plans", href: "/my-plans" },
   ],
   train: [
     { label: "Full Body Burn", href: "/train/full-body-burn" },
