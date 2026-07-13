@@ -1,6 +1,6 @@
 // GetFitAI Worker - API Backend
-// Updated: 2026-07-13 - FIX: handle reasoning model, increase max_tokens
-// Endpoint: POST /api/generate-plan
+// Updated: 2026-07-13 - Added send-plan + reasoning model fix
+// Endpoints: POST /api/generate-plan, POST /api/send-plan
 
 export default {
   async fetch(request, env, ctx) {
@@ -19,116 +19,200 @@ export default {
       return new Response(null, { status: 204, headers: corsHeaders });
     }
 
-    // Only handle POST to /api/generate-plan
-    if (url.pathname !== '/api/generate-plan' || request.method !== 'POST') {
+    // Route handling
+    const path = url.pathname;
+    try {
+      if (path === '/api/generate-plan' && request.method === 'POST') {
+        return await handleGeneratePlan(request, env, corsHeaders);
+      }
+      if (path === '/api/send-plan' && request.method === 'POST') {
+        return await handleSendPlan(request, env, corsHeaders);
+      }
+      
       return new Response(JSON.stringify({ error: 'Not found' }), {
         status: 404,
         headers: { 'Content-Type': 'application/json', ...corsHeaders },
       });
-    }
-
-    try {
-      const { goal, experience, duration, equipment, targetArea, notes } = await request.json();
-      
-      const apiKey = env.DEEPSEEK_API_KEY || env.OPENAI_API_KEY;
-      if (!apiKey) {
-        return new Response(JSON.stringify({ error: 'AI service not configured' }), {
-          status: 500,
-          headers: { 'Content-Type': 'application/json', ...corsHeaders },
-        });
-      }
-
-      const prompt = buildPrompt({ goal, experience, duration, equipment, targetArea, notes });
-      
-      // Check if needs Pro model
-      const needsPro = notes && (
-        /injur|pain|hurt|surgery|rehab|recover|joint|back pain|knee|shoulder|ankle|wrist|elbow|hip|spine|disc|tear|strain|sprain|fracture|acl|meniscus|rotator cuff/i.test(notes) ||
-        /diabetes|hypertension|heart|blood pressure|cholesterol|thyroid|asthma|copd|arthritis|osteoporosis|fibromyalgia|chronic|autoimmune|ms|parkinson|epilepsy/i.test(notes) ||
-        /pregnant|pregnancy|postpartum|elderly|senior|teenager|adolescent|obese|overweight|underweight|eating disorder|anorexia|bulimia/i.test(notes)
-      );
-
-      const model = needsPro ? 'deepseek-v4-pro' : (env.DEEPSEEK_MODEL || 'deepseek-v4-flash');
-
-      const response = await fetch('https://api.deepseek.com/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`,
-        },
-        body: JSON.stringify({
-          model,
-          messages: [
-            {
-              role: 'system',
-              content: 'You are an expert certified personal trainer (NASM, ACE). Create safe, effective, personalized workout plans. Always respond with valid JSON only, no markdown wrapping.',
-            },
-            { role: 'user', content: prompt },
-          ],
-          temperature: 0.7,
-          max_tokens: 8192, // Increased for reasoning models
-        }),
-      });
-
-      if (!response.ok) {
-        const error = await response.text();
-        return new Response(JSON.stringify({ error: 'AI service error', details: error }), {
-          status: 502,
-          headers: { 'Content-Type': 'application/json', ...corsHeaders },
-        });
-      }
-
-      const data = await response.json();
-      const msg = data.choices?.[0]?.message || {};
-      
-      // Try content first, then reasoning_content as fallback
-      let content = msg.content || msg.reasoning_content || '';
-      
-      // Extract JSON from response - handle markdown wrapping
-      const jsonMatch = content.match(/\{[\s\S]*\}/);
-      if (!jsonMatch) {
-        // Debug: return the raw content so we can see what's happening
-        return new Response(JSON.stringify({ 
-          error: 'Invalid AI response format', 
-          debug: { 
-            content_length: content.length,
-            content_preview: content.substring(0, 200),
-            has_content: !!msg.content,
-            has_reasoning: !!msg.reasoning_content,
-            finish_reason: data.choices?.[0]?.finish_reason
-          }
-        }), {
-          status: 502,
-          headers: { 'Content-Type': 'application/json', ...corsHeaders },
-        });
-      }
-
-      // Validate JSON
-      try {
-        JSON.parse(jsonMatch[0]);
-      } catch (e) {
-        return new Response(JSON.stringify({ error: 'Invalid JSON from AI', raw: content.substring(0, 500) }), {
-          status: 502,
-          headers: { 'Content-Type': 'application/json', ...corsHeaders },
-        });
-      }
-
-      return new Response(jsonMatch[0], {
-        headers: {
-          'Content-Type': 'application/json',
-          'Cache-Control': 'no-cache',
-          ...corsHeaders,
-        },
-      });
-
     } catch (error) {
       console.error('Error:', error);
-      return new Response(JSON.stringify({ error: 'Failed to generate workout plan' }), {
+      return new Response(JSON.stringify({ error: 'Failed to process request' }), {
         status: 500,
         headers: { 'Content-Type': 'application/json', ...corsHeaders },
       });
     }
   },
 };
+
+async function handleGeneratePlan(request, env, corsHeaders) {
+  const { goal, experience, duration, equipment, targetArea, notes } = await request.json();
+  
+  const apiKey = env.DEEPSEEK_API_KEY || env.OPENAI_API_KEY;
+  if (!apiKey) {
+    return new Response(JSON.stringify({ error: 'AI service not configured' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json', ...corsHeaders },
+    });
+  }
+
+  const prompt = buildPrompt({ goal, experience, duration, equipment, targetArea, notes });
+  
+  // Check if needs Pro model
+  const needsPro = notes && (
+    /injur|pain|hurt|surgery|rehab|recover|joint|back pain|knee|shoulder|ankle|wrist|elbow|hip|spine|disc|tear|strain|sprain|fracture|acl|meniscus|rotator cuff/i.test(notes) ||
+    /diabetes|hypertension|heart|blood pressure|cholesterol|thyroid|asthma|copd|arthritis|osteoporosis|fibromyalgia|chronic|autoimmune|ms|parkinson|epilepsy/i.test(notes) ||
+    /pregnant|pregnancy|postpartum|elderly|senior|teenager|adolescent|obese|overweight|underweight|eating disorder|anorexia|bulimia/i.test(notes)
+  );
+
+  const model = needsPro ? 'deepseek-v4-pro' : (env.DEEPSEEK_MODEL || 'deepseek-v4-flash');
+
+  const response = await fetch('https://api.deepseek.com/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      model,
+      messages: [
+        {
+          role: 'system',
+          content: 'You are an expert certified personal trainer (NASM, ACE). Create safe, effective, personalized workout plans. Always respond with valid JSON only, no markdown wrapping.',
+        },
+        { role: 'user', content: prompt },
+      ],
+      temperature: 0.7,
+      max_tokens: 8192,
+    }),
+  });
+
+  if (!response.ok) {
+    const error = await response.text();
+    return new Response(JSON.stringify({ error: 'AI service error', details: error }), {
+      status: 502,
+      headers: { 'Content-Type': 'application/json', ...corsHeaders },
+    });
+  }
+
+  const data = await response.json();
+  const msg = data.choices?.[0]?.message || {};
+  
+  // Try content first, then reasoning_content as fallback
+  let content = msg.content || msg.reasoning_content || '';
+  
+  // Extract JSON from response
+  const jsonMatch = content.match(/\{[\s\S]*\}/);
+  if (!jsonMatch) {
+    return new Response(JSON.stringify({ 
+      error: 'Invalid AI response format', 
+      debug: { 
+        content_length: content.length,
+        content_preview: content.substring(0, 200),
+        has_content: !!msg.content,
+        has_reasoning: !!msg.reasoning_content,
+        finish_reason: data.choices?.[0]?.finish_reason
+      }
+    }), {
+      status: 502,
+      headers: { 'Content-Type': 'application/json', ...corsHeaders },
+    });
+  }
+
+  // Validate JSON
+  try {
+    JSON.parse(jsonMatch[0]);
+  } catch (e) {
+    return new Response(JSON.stringify({ error: 'Invalid JSON from AI', raw: content.substring(0, 500) }), {
+      status: 502,
+      headers: { 'Content-Type': 'application/json', ...corsHeaders },
+    });
+  }
+
+  return new Response(jsonMatch[0], {
+    headers: {
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-cache',
+      ...corsHeaders,
+    },
+  });
+}
+
+async function handleSendPlan(request, env, corsHeaders) {
+  const { email, plan } = await request.json();
+  
+  if (!email || !plan) {
+    return new Response(JSON.stringify({ error: 'Email and plan are required' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json', ...corsHeaders },
+    });
+  }
+
+  const resendKey = env.RESEND_API_KEY;
+  if (!resendKey) {
+    return new Response(JSON.stringify({ error: 'Email service not configured' }), {
+      status: 503,
+      headers: { 'Content-Type': 'application/json', ...corsHeaders },
+    });
+  }
+
+  // Build exercises HTML
+  const exercisesHtml = (plan.exercises || []).map(ex => `
+    <tr>
+      <td style="padding: 8px; border-bottom: 1px solid #eee;">${ex.name}</td>
+      <td style="padding: 8px; border-bottom: 1px solid #eee;">${ex.sets} sets</td>
+      <td style="padding: 8px; border-bottom: 1px solid #eee;">${ex.reps}</td>
+      <td style="padding: 8px; border-bottom: 1px solid #eee;">Rest ${ex.rest}</td>
+    </tr>
+  `).join('');
+
+  const emailRes = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${resendKey}`,
+    },
+    body: JSON.stringify({
+      from: 'GetFitAI <hi@getfitai.io>',
+      to: email,
+      subject: `Your Workout Plan: ${plan.title || 'Personalized Workout'}`,
+      html: `<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <h1 style="color: #000;">Your Personalized Workout Plan</h1>
+        <div style="background: #f5f5f5; padding: 20px; border-radius: 10px; margin: 20px 0;">
+          <h2>${plan.title || 'Workout'}</h2>
+          <p><strong>Duration:</strong> ${plan.duration || 'N/A'}</p>
+          <p><strong>Intensity:</strong> ${plan.intensity || 'N/A'}</p>
+        </div>
+        <h3>Exercises</h3>
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead><tr style="background: #000; color: #fff;">
+            <th style="padding: 10px; text-align: left;">Exercise</th>
+            <th style="padding: 10px; text-align: left;">Sets</th>
+            <th style="padding: 10px; text-align: left;">Reps</th>
+            <th style="padding: 10px; text-align: left;">Rest</th>
+          </tr></thead>
+          <tbody>${exercisesHtml}</tbody>
+        </table>
+        ${plan.warmup ? `<h3>Warm-up</h3><ul>${plan.warmup.map(item => `<li>${item}</li>`).join('')}</ul>` : ''}
+        ${plan.cooldown ? `<h3>Cool-down</h3><ul>${plan.cooldown.map(item => `<li>${item}</li>`).join('')}</ul>` : ''}
+        <div style="margin-top: 30px; padding: 20px; background: #f5f5f5; border-radius: 10px; text-align: center;">
+          <p>Generate more plans at <a href="https://getfitai.io" style="color: #000; font-weight: bold;">GetFitAI.io</a></p>
+        </div>
+      </div>`,
+    }),
+  });
+
+  if (!emailRes.ok) {
+    const errText = await emailRes.text();
+    return new Response(JSON.stringify({ error: 'Failed to send email', details: errText }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json', ...corsHeaders },
+    });
+  }
+
+  const emailData = await emailRes.json();
+  return new Response(JSON.stringify({ success: true, id: emailData.id }), {
+    headers: { 'Content-Type': 'application/json', ...corsHeaders },
+  });
+}
 
 function buildPrompt(params) {
   const { goal, experience, duration, equipment, targetArea, notes } = params;
