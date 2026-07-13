@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   Dumbbell,
@@ -8,9 +9,12 @@ import {
   ChevronRight,
   Sparkles,
   Zap,
+  Moon,
+  Star,
 } from "lucide-react";
+import { getFavorites, addFavorite, removeFavorite } from "@/lib/favorites";
 
-interface PlanCard {
+export interface PlanCard {
   id: string;
   name: string;
   duration: string;
@@ -24,7 +28,7 @@ interface PlanCard {
   videoSrc?: string;
 }
 
-const plans: PlanCard[] = [
+export const plans: PlanCard[] = [
   {
     id: "full-body-burn",
     name: "Full Body Burn",
@@ -112,9 +116,93 @@ const plans: PlanCard[] = [
     icon: <Zap className="w-6 h-6" />,
     color: "text-orange-400",
   },
+  {
+    id: "leg-day",
+    name: "Leg Day",
+    duration: "15 min",
+    durationMinutes: 15,
+    exerciseCount: 10,
+    difficulty: "Intermediate",
+    description:
+      "Squats, lunges, donkey kicks & wall sits for powerful legs",
+    icon: <Flame className="w-6 h-6" />,
+    color: "text-orange-400",
+  },
+  {
+    id: "back-and-biceps",
+    name: "Back & Biceps",
+    duration: "10 min",
+    durationMinutes: 10,
+    exerciseCount: 11,
+    difficulty: "Intermediate",
+    description:
+      "Superset bodyweight rows with towel bicep curls for a focused upper-body pump",
+    icon: <Dumbbell className="w-6 h-6" />,
+    color: "text-orange-400",
+  },
+  {
+    id: "chest-triceps",
+    name: "Chest & Triceps",
+    duration: "10 min",
+    durationMinutes: 10,
+    exerciseCount: 11,
+    difficulty: "Intermediate",
+    description:
+      "Push-up variations from wide to diamond, plus dips and pikes — no equipment needed",
+    icon: <Flame className="w-6 h-6" />,
+    color: "text-orange-400",
+  },
+  {
+    id: "morning-wake-up",
+    name: "Morning Wake-Up",
+    duration: "5 min",
+    durationMinutes: 5,
+    exerciseCount: 8,
+    difficulty: "All Levels",
+    description:
+      "A gentle continuous-flow routine — neck rolls to lying twists — to wake up your body",
+    icon: <Sparkles className="w-6 h-6" />,
+    color: "text-orange-400",
+    cta: "Start Routine",
+  },
+  {
+    id: "evening-wind-down",
+    name: "Evening Wind-Down",
+    duration: "8 min",
+    durationMinutes: 8,
+    exerciseCount: 11,
+    difficulty: "All Levels",
+    description:
+      "Deep breathing to happy baby — unwind from head to toe with this calming flow",
+    icon: <Moon className="w-6 h-6" />,
+    color: "text-orange-400",
+    cta: "Start Routine",
+  },
 ];
 
 export function TrainPlans() {
+  const [favorites, setFavorites] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    setFavorites(new Set(getFavorites()));
+  }, []);
+
+  const toggleFavorite = (id: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (favorites.has(id)) {
+      removeFavorite(id);
+      const next = new Set(favorites);
+      next.delete(id);
+      setFavorites(next);
+    } else {
+      addFavorite(id);
+      const next = new Set(favorites);
+      next.add(id);
+      setFavorites(next);
+    }
+  };
+
   return (
     <main className="min-h-screen bg-background">
       <section className="pt-24 pb-12 md:pt-32 md:pb-16">
@@ -150,6 +238,21 @@ export function TrainPlans() {
                       className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-20 transition-opacity duration-500"
                     />
                   )}
+                  {/* Star / Favorite button */}
+                  <button
+                    onClick={(e) => toggleFavorite(plan.id, e)}
+                    className="absolute top-3 right-3 z-10 p-1.5 rounded-full hover:bg-background/50 transition-colors"
+                    aria-label={favorites.has(plan.id) ? "Remove plan from favorites" : "Save plan to favorites"}
+                    title={favorites.has(plan.id) ? "Remove plan" : "Save plan"}
+                  >
+                    <Star
+                      className={`w-5 h-5 ${
+                        favorites.has(plan.id)
+                          ? "fill-yellow-400 text-yellow-400"
+                          : "text-muted-foreground/40"
+                      } transition-all duration-200 hover:scale-110`}
+                    />
+                  </button>
                   {/* Icon */}
                   <div className={`mb-4 ${plan.color}`}>{plan.icon}</div>
 

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, Users, Star, Zap, Dumbbell } from "lucide-react";
 import Link from "next/link";
+import { trackCtaClick } from "@/lib/analytics";
 
 export function Hero() {
   return (
@@ -71,6 +72,7 @@ export function Hero() {
             >
               <Link
                 href="/train"
+                onClick={() => trackCtaClick("start_training", "hero")}
                 className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-orange-500 hover:bg-orange-600 rounded-full btn-glow animate-pulse-glow"
                 style={{ fontFamily: "var(--font-heading)" }}
               >
@@ -78,13 +80,16 @@ export function Hero() {
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
               <Link
-                href="/workouts/home"
+                href="/tools/workout-generator"
+                onClick={() => trackCtaClick("generate_workout_plan", "hero")}
                 className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-slate-300 border border-slate-700 hover:border-orange-500/50 hover:text-orange-400 rounded-full transition-all"
               >
                 Generate Workout Plan
+                <Sparkles className="ml-2 w-4 h-4" />
               </Link>
               <Link
                 href="/tools"
+                onClick={() => trackCtaClick("tools", "hero")}
                 className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-slate-300 border border-slate-700 hover:border-orange-500/50 hover:text-orange-400 rounded-full transition-all"
               >
                 Tools

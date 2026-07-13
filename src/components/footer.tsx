@@ -3,7 +3,7 @@ import { Dumbbell, Globe, Share2, MessageSquare } from "lucide-react";
 
 const footerLinks = {
   product: [
-    { label: "Workout Planner", href: "/workouts/home" },
+    { label: "Workout Planner", href: "/tools/workout-generator" },
     { label: "Fitness Tools", href: "/tools" },
     { label: "BMI Calculator", href: "/tools/bmi-calculator" },
     { label: "Calorie Calculator", href: "/tools/calorie-calculator" },
@@ -16,6 +16,10 @@ const footerLinks = {
     { label: "Workout Generator", href: "/tools/workout-generator" },
     { label: "Workout Timer", href: "/tools/workout-timer" },
     { label: "Ideal Weight", href: "/tools/ideal-weight-calculator" },
+    { label: "Heart Rate Calculator", href: "/tools/heart-rate-calculator" },
+    { label: "Pace Calculator", href: "/tools/pace-calculator" },
+    { label: "Plate Calculator", href: "/tools/plate-calculator" },
+    { label: "Wilks Calculator", href: "/tools/wilks-calculator" },
     { label: "Features", href: "/#features" },
   ],
   train: [
@@ -45,6 +49,16 @@ const footerLinks = {
     { label: "Beginner Workout Routine", href: "/blog/beginner-workout-routine" },
     { label: "Home vs Gym Workout", href: "/blog/home-vs-gym-workout" },
     { label: "Bodyweight Workouts", href: "/blog/calisthenics-beginners-workout" },
+    { label: "AI Workout Planner", href: "/blog/ai-workout-planner" },
+    { label: "Bench Press Wrist Pain", href: "/blog/bench-press-wrist-pain" },
+    { label: "How Many Calories Should I Eat", href: "/blog/how-many-calories-should-i-eat" },
+    { label: "How Much Protein Per Day", href: "/blog/how-much-protein-per-day" },
+    { label: "How to Build Muscle", href: "/blog/how-to-build-muscle" },
+    { label: "How to Use AI Workout Generator", href: "/blog/how-to-use-ai-workout-generator" },
+    { label: "Intermittent Fasting Workout", href: "/blog/intermittent-fasting-workout" },
+    { label: "Meal Prep for Muscle", href: "/blog/meal-prep-muscle" },
+    { label: "Post-Workout Recovery Tips", href: "/blog/post-workout-recovery-tips" },
+    { label: "Beginner Workouts", href: "/workouts/beginner" },
   ],
   legal: [
     { label: "Privacy Policy", href: "/privacy" },

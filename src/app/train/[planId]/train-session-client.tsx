@@ -14,6 +14,7 @@ import {
   Dumbbell,
   Clock,
 } from "lucide-react";
+import { trackWorkoutStarted, trackWorkoutCompleted } from "@/lib/analytics";
 
 /* ─── Exercise Metadata ─── */
 
@@ -121,6 +122,13 @@ const allExercises: Record<string, ExerciseMeta> = {
     youtubeId: "cQZzQqIbgAs",
   },
 
+  donkey_kicks: {
+    name: "donkey_kicks",
+    displayName: "Donkey Kicks",
+    hasVideo: true,
+    youtubeId: "SJ1Xuz9D-ZQ",
+  },
+
   // ── Full Body Stretch exercises ──
   neck_rolls: {
     name: "neck_rolls",
@@ -189,6 +197,66 @@ const allExercises: Record<string, ExerciseMeta> = {
     displayName: "Star Jumps",
     hasVideo: true,
     youtubeId: "MKrRZOe3hvo",
+  },
+
+  // ── Back & Biceps exercises ──
+  bodyweight_rows: {
+    name: "bodyweight_rows",
+    displayName: "Bodyweight Rows",
+    hasVideo: true,
+    youtubeId: "OYUxXMGVuuU",
+  },
+  bicep_curls: {
+    name: "bicep_curls",
+    displayName: "Towel Bicep Curls",
+    hasVideo: true,
+    youtubeId: "p8z4fhUWhP4",
+  },
+
+  // ── Chest & Triceps exercises ──
+  arm_circles: {
+    name: "arm_circles",
+    displayName: "Arm Circles",
+    hasVideo: true,
+    youtubeId: "GsukQikMecU",
+  },
+  wide_pushups: {
+    name: "wide_pushups",
+    displayName: "Wide Push-Ups",
+    hasVideo: true,
+    youtubeId: "EsIdzx1J0iA",
+  },
+  diamond_pushups: {
+    name: "diamond_pushups",
+    displayName: "Diamond Push-Ups",
+    hasVideo: true,
+    youtubeId: "9Df9OEdCGmU",
+  },
+  decline_pushups: {
+    name: "decline_pushups",
+    displayName: "Decline Push-Ups",
+    hasVideo: true,
+    youtubeId: "0HPdYh-AXeA",
+  },
+
+  // ── Evening Wind-Down exercises ──
+  deep_breathing: {
+    name: "deep_breathing",
+    displayName: "Deep Breathing",
+    hasVideo: true,
+    youtubeId: "Z8emmFOuhxE",
+  },
+  seated_forward_fold: {
+    name: "seated_forward_fold",
+    displayName: "Seated Forward Fold",
+    hasVideo: true,
+    youtubeId: "E5FtZEVC424",
+  },
+  happy_baby: {
+    name: "happy_baby",
+    displayName: "Happy Baby",
+    hasVideo: true,
+    youtubeId: "DsuQQMzFU-4",
   },
 };
 
@@ -324,6 +392,42 @@ const workoutPlans: WorkoutPlan[] = [
     ],
   },
 
+  // ── Leg Day (15 min) ──
+  {
+    id: "leg-day",
+    name: "Leg Day",
+    totalMinutes: 15,
+    steps: [
+      // Warm-up — leg activation
+      { type: "exercise", ex: allExercises.squats, duration: 30, phase: "warmup" },
+      { type: "rest", duration: 5 },
+      { type: "exercise", ex: allExercises.lunges, duration: 25, phase: "warmup" },
+      { type: "rest", duration: 10 },
+      // Main set 1 — compound + glutes + calves
+      { type: "exercise", ex: allExercises.squats, duration: 45, phase: "main" },
+      { type: "rest", duration: 20 },
+      { type: "exercise", ex: allExercises.lunges, duration: 40, phase: "main" },
+      { type: "rest", duration: 20 },
+      { type: "exercise", ex: allExercises.glute_bridges, duration: 40, phase: "main" },
+      { type: "rest", duration: 15 },
+      { type: "exercise", ex: allExercises.calf_raises, duration: 30, phase: "main" },
+      { type: "rest", duration: 15 },
+      // Main set 2 — strength + glute isolation + endurance
+      { type: "exercise", ex: allExercises.squats, duration: 40, phase: "main" },
+      { type: "rest", duration: 20 },
+      { type: "exercise", ex: allExercises.donkey_kicks, duration: 35, phase: "main" },
+      { type: "rest", duration: 15 },
+      { type: "exercise", ex: allExercises.wall_sit, duration: 30, phase: "main" },
+      { type: "rest", duration: 15 },
+      { type: "exercise", ex: allExercises.glute_bridges, duration: 35, phase: "main" },
+      { type: "rest", duration: 15 },
+      { type: "exercise", ex: allExercises.calf_raises, duration: 25, phase: "main" },
+      // Finisher — explosive + isometric burn
+      { type: "exercise", ex: allExercises.squat_jumps, duration: 20, phase: "finisher" },
+      { type: "exercise", ex: allExercises.wall_sit, duration: 25, phase: "finisher" },
+    ],
+  },
+
   // ── Full Body Stretch (8 min — continuous flow, NO rest steps) ──
   {
     id: "full-body-stretch",
@@ -363,6 +467,109 @@ const workoutPlans: WorkoutPlan[] = [
       { type: "rest", duration: 15 },
       // Finisher — no rest
       { type: "exercise", ex: allExercises.star_jumps, duration: 30, phase: "finisher" },
+    ],
+  },
+
+  // ── Back & Biceps (10 min — superset rows + curls) ──
+  {
+    id: "back-and-biceps",
+    name: "Back & Biceps",
+    totalMinutes: 10,
+    steps: [
+      // Warm-up
+      { type: "exercise", ex: allExercises.jumping_jacks, duration: 30, phase: "warmup" },
+      { type: "rest", duration: 5 },
+      { type: "exercise", ex: allExercises.supermans, duration: 30, phase: "warmup" },
+      { type: "rest", duration: 20 },
+      // Main — 4 superset rounds: bodyweight rows + towel bicep curls
+      { type: "exercise", ex: allExercises.bodyweight_rows, duration: 40, phase: "main" },
+      { type: "rest", duration: 20 },
+      { type: "exercise", ex: allExercises.bicep_curls, duration: 40, phase: "main" },
+      { type: "rest", duration: 20 },
+      { type: "exercise", ex: allExercises.bodyweight_rows, duration: 40, phase: "main" },
+      { type: "rest", duration: 15 },
+      { type: "exercise", ex: allExercises.bicep_curls, duration: 40, phase: "main" },
+      { type: "rest", duration: 15 },
+      { type: "exercise", ex: allExercises.bodyweight_rows, duration: 40, phase: "main" },
+      { type: "rest", duration: 15 },
+      { type: "exercise", ex: allExercises.bicep_curls, duration: 40, phase: "main" },
+      { type: "rest", duration: 15 },
+      { type: "exercise", ex: allExercises.bodyweight_rows, duration: 35, phase: "main" },
+      { type: "rest", duration: 10 },
+      { type: "exercise", ex: allExercises.bicep_curls, duration: 35, phase: "main" },
+      { type: "rest", duration: 5 },
+      // Finisher
+      { type: "exercise", ex: allExercises.plank, duration: 30, phase: "finisher" },
+    ],
+  },
+
+  // ── Chest & Triceps (10 min — push-up variations) ──
+  {
+    id: "chest-triceps",
+    name: "Chest & Triceps",
+    totalMinutes: 10,
+    steps: [
+      // Warm-up
+      { type: "exercise", ex: allExercises.arm_circles, duration: 30, phase: "warmup" },
+      { type: "rest", duration: 5 },
+      { type: "exercise", ex: allExercises.arm_circles, duration: 35, phase: "warmup" },
+      { type: "rest", duration: 10 },
+      // Main — push-up variations + dips
+      { type: "exercise", ex: allExercises.wide_pushups, duration: 40, phase: "main" },
+      { type: "rest", duration: 20 },
+      { type: "exercise", ex: allExercises.pushups, duration: 40, phase: "main" },
+      { type: "rest", duration: 15 },
+      { type: "exercise", ex: allExercises.diamond_pushups, duration: 35, phase: "main" },
+      { type: "rest", duration: 15 },
+      { type: "exercise", ex: allExercises.decline_pushups, duration: 35, phase: "main" },
+      { type: "rest", duration: 15 },
+      { type: "exercise", ex: allExercises.tricep_dips, duration: 35, phase: "main" },
+      { type: "rest", duration: 15 },
+      { type: "exercise", ex: allExercises.pike_pushups, duration: 35, phase: "main" },
+      { type: "rest", duration: 0 },
+      // Finisher
+      { type: "exercise", ex: allExercises.plank, duration: 60, phase: "finisher" },
+    ],
+  },
+
+  // ── Morning Wake-Up (5 min — continuous flow, no rest) ──
+  {
+    id: "morning-wake-up",
+    name: "Morning Wake-Up",
+    totalMinutes: 5,
+    steps: [
+      { type: "exercise", ex: allExercises.neck_rolls, duration: 30, phase: "warmup" },
+      { type: "exercise", ex: allExercises.shoulder_stretch, duration: 30, phase: "main" },
+      { type: "exercise", ex: allExercises.chest_stretch, duration: 30, phase: "main" },
+      { type: "exercise", ex: allExercises.cat_cow, duration: 30, phase: "main" },
+      { type: "exercise", ex: allExercises.down_dog, duration: 30, phase: "main" },
+      { type: "exercise", ex: allExercises.standing_toe_touch, duration: 40, phase: "main" },
+      { type: "exercise", ex: allExercises.childs_pose, duration: 30, phase: "cooldown" },
+      { type: "exercise", ex: allExercises.lying_twist, duration: 40, phase: "cooldown" },
+    ],
+  },
+
+  // ── Evening Wind-Down (8 min — continuous flow, no rest) ──
+  {
+    id: "evening-wind-down",
+    name: "Evening Wind-Down",
+    totalMinutes: 8,
+    steps: [
+      // Breathe & Release (2:00)
+      { type: "exercise", ex: allExercises.deep_breathing, duration: 60, phase: "warmup" },
+      { type: "exercise", ex: allExercises.neck_rolls, duration: 35, phase: "warmup" },
+      { type: "exercise", ex: allExercises.shoulder_stretch, duration: 35, phase: "warmup" },
+      // Spine & Hips (2:05)
+      { type: "exercise", ex: allExercises.cat_cow, duration: 45, phase: "main" },
+      { type: "exercise", ex: allExercises.seated_forward_fold, duration: 45, phase: "main" },
+      { type: "exercise", ex: allExercises.standing_toe_touch, duration: 45, phase: "main" },
+      // Deep Unwind (1:30)
+      { type: "exercise", ex: allExercises.childs_pose, duration: 40, phase: "main" },
+      { type: "exercise", ex: allExercises.hamstring_stretch, duration: 40, phase: "main" },
+      { type: "exercise", ex: allExercises.happy_baby, duration: 40, phase: "main" },
+      // Final Rest (2:25)
+      { type: "exercise", ex: allExercises.lying_twist, duration: 50, phase: "cooldown" },
+      { type: "exercise", ex: allExercises.deep_breathing, duration: 45, phase: "cooldown" },
     ],
   },
 ];
@@ -452,6 +659,8 @@ export function TrainSession() {
     const nextIdx = currentStepIdx + 1;
     if (nextIdx >= plan.steps.length) {
       setStatus("complete");
+      // Track workout completed
+      trackWorkoutCompleted(plan.id, plan.totalMinutes, elapsedExercises / totalExercises);
       saveToLocalStorage(plan.name, elapsedExercises, plan.totalMinutes);
       return;
     }
@@ -502,6 +711,8 @@ export function TrainSession() {
       setTimeRemaining(firstStep.duration);
       setStatus("exercise");
       setIsPaused(false);
+      // Track workout started
+      trackWorkoutStarted(plan.id, plan.name);
     }
   }, [plan]);
 
@@ -517,6 +728,8 @@ export function TrainSession() {
       const nextIdx = currentStepIdx + 1;
       if (nextIdx >= plan.steps.length) {
         setStatus("complete");
+        // Track workout completed (skip on last exercise)
+        trackWorkoutCompleted(plan.id, plan.totalMinutes, elapsedExercises / totalExercises);
         saveToLocalStorage(plan.name, elapsedExercises + 1, plan.totalMinutes);
         return;
       }

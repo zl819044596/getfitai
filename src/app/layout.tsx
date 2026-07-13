@@ -4,6 +4,7 @@ import "./globals.css";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { softwareApplication } from "@/lib/schema";
+import { GoogleAnalytics } from "@/components/google-analytics";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -89,20 +90,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${outfit.variable}`}>
       <head>
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-MFH7XYRCCT"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-MFH7XYRCCT');
-            `,
-          }}
-        />
         {/* WebSite schema */}
         <script
           type="application/ld+json"
@@ -149,6 +136,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} ${outfit.variable} antialiased`}>
+        <GoogleAnalytics />
         <Nav />
       {children}
       <Footer />

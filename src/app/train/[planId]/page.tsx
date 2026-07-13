@@ -1,9 +1,10 @@
 import { Metadata } from "next";
 import { TrainSession } from "./train-session-client";
 import { JsonLd } from "@/components/json-ld";
+import { FavoriteButton } from "@/components/favorite-button";
 import { breadcrumbList } from "@/lib/schema";
 
-// Define params for all 7 workout plans
+// Define params for all 12 workout plans
 export function generateStaticParams() {
   return [
     { planId: "full-body-burn" },
@@ -13,6 +14,11 @@ export function generateStaticParams() {
     { planId: "lower-body-strength" },
     { planId: "full-body-stretch" },
     { planId: "hiit-blast" },
+    { planId: "leg-day" },
+    { planId: "back-and-biceps" },
+    { planId: "chest-triceps" },
+    { planId: "morning-wake-up" },
+    { planId: "evening-wind-down" },
   ];
 }
 
@@ -51,6 +57,31 @@ const planMeta: Record<string, { name: string; description: string }> = {
     name: "HIIT Blast",
     description:
       "40/15 HIIT intervals with burpees, high knees, and an all-out star jump finish — 7 minutes to torch calories.",
+  },
+  "leg-day": {
+    name: "Leg Day",
+    description:
+      "Squats, lunges, glute bridges, calf raises, and isometric wall sits for powerful legs — 15 minutes, bodyweight only.",
+  },
+  "back-and-biceps": {
+    name: "Back & Biceps",
+    description:
+      "Superset bodyweight rows with towel bicep curls for a focused upper-body pump — 10 minutes, bodyweight only.",
+  },
+  "chest-triceps": {
+    name: "Chest & Triceps",
+    description:
+      "Push-up variations from wide to diamond, plus dips and pikes — 10 minutes, no equipment needed.",
+  },
+  "morning-wake-up": {
+    name: "Morning Wake-Up",
+    description:
+      "A gentle continuous-flow routine — neck rolls to lying twists — to wake up your body in 5 minutes.",
+  },
+  "evening-wind-down": {
+    name: "Evening Wind-Down",
+    description:
+      "Deep breathing to happy baby — unwind from head to toe with this calming 8-minute flow.",
   },
 };
 
@@ -96,9 +127,12 @@ export default function TrainSessionPage() {
   ]);
 
   return (
-    <>
+    <div className="relative">
       <JsonLd data={breadcrumb} />
       <TrainSession />
-    </>
+      <div className="fixed top-20 right-4 z-50">
+        <FavoriteButton />
+      </div>
+    </div>
   );
 }

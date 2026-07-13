@@ -59,7 +59,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   // 训练跟练页面
-  const trainPages = ["full-body-burn", "core-crusher", "quick-cardio"];
+  const trainPages = [
+    "full-body-burn",
+    "core-crusher",
+    "quick-cardio",
+    "full-body-stretch",
+    "hiit-blast",
+    "lower-body-strength",
+    "upper-body-push",
+  ];
 
   const pages = [
     ...staticPages.map((page) => ({
