@@ -28,6 +28,9 @@ export default {
       if (path === '/api/send-plan' && request.method === 'POST') {
         return await handleSendPlan(request, env, corsHeaders);
       }
+      if (path === '/api/contact' && request.method === 'POST') {
+        return await handleContact(request, env, corsHeaders);
+      }
       
       return new Response(JSON.stringify({ error: 'Not found' }), {
         status: 404,
@@ -197,6 +200,57 @@ async function handleSendPlan(request, env, corsHeaders) {
           <p>Generate more plans at <a href="https://getfitai.io" style="color: #000; font-weight: bold;">GetFitAI.io</a></p>
         </div>
       </div>`,
+    }),
+  });
+
+  if (!emailRes.ok) {
+    const errText = await emailRes.text();
+    return new Response(JSON.stringify({ error: 'Failed to send email', details: errText }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json', ...corsHeaders },
+    });
+  }
+
+  const emailData = await emailRes.json();
+  return new Response(JSON.stringify({ success: true, id: emailData.id }), {
+    headers: { 'Content-Type': 'application/json', ...corsHeaders },
+  });
+}
+
+async function handleContact(request, env, corsHeaders) {
+  const { name, email, message } = await request.json();
+  
+  if (!name || !email || !message) {
+    return new Response(JSON.stringify({ error: 'Name, email, and message are required' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json', ...corsHeaders },
+    });
+  }
+
+  const resendKey = env.RESEND_API_KEY;
+  if (!resendKey) {
+    return new Response(JSON.stringify({ error: 'Email service not configured' }), {
+      status: 503,
+      headers: { 'Content-Type': 'application/json', ...corsHeaders },
+    });
+  }
+
+  const emailRes = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${resendKey}`,
+    },
+    body: JSON.stringify({
+      from: 'GetFitAI Contact <hello@getfitai.io>',
+      to: 'zl18672545321@gmail.com',
+      replyTo: email,
+      subject: `New contact from ${name}`,
+      html: `<h2>New Contact Form Submission</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Message:</strong></p>
+        <p>${message.replace(/\n/g, '<br>')}</p>`,
     }),
   });
 
