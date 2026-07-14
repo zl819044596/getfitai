@@ -42,7 +42,6 @@ const footerLinks = {
     { label: "Build Muscle Fast", href: "/blog/build-muscle-fast" },
     { label: "How to Lose Belly Fat", href: "/blog/how-to-lose-belly-fat" },
     { label: "Women Workout Plan", href: "/blog/women-workout-plan" },
-    { label: "Home vs Gym Workout", href: "/blog/home-vs-gym" },
     { label: "Six Pack Workout", href: "/blog/six-pack-workout" },
     { label: "About Us", href: "/about" },
     { label: "Contact", href: "/contact" },

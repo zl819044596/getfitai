@@ -42,7 +42,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "bench-press-wrist-pain",
     "best-ai-fitness-apps-2026",
     "build-muscle-fast",
-    "home-vs-gym",
     "home-vs-gym-workout",
     "how-many-calories-should-i-eat",
     "how-much-protein-per-day",
