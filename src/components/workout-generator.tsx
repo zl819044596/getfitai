@@ -200,47 +200,25 @@ export function WorkoutGenerator() {
       })
 
       if (!res.ok) {
-        const data = await res.json().catch(() => ({})) as { error?: string }
-        throw new Error(data.error || "Failed to generate plan")
+        const errData = await res.json().catch(() => ({})) as { error?: string; raw?: string }
+        throw new Error(errData.error || "Failed to generate plan")
       }
 
-      const reader = res.body?.getReader()
-      const decoder = new TextDecoder()
-      let buffer = ""
-
-      if (reader) {
-        while (true) {
-          const { done, value } = await reader.read()
-          if (done) break
-          buffer += decoder.decode(value, { stream: true })
-        }
-      }
-
-      const jsonMatch = buffer.match(/\{[\s\S]*\}/)
-      if (jsonMatch) {
-        try {
-          const parsed = JSON.parse(jsonMatch[0])
-          setPlan(parsed)
-          // Track successful generation
-          trackPlanGenerated({
-            goal: selectedGoal,
-            experience: selectedLevel,
-            duration: duration[0],
-            equipment: selectedEquipment,
-            exercise_count: parsed.exercises?.length || 0,
-          })
-          // Save plan to local storage for persistence
-          savePlanToStorage(parsed)
-          setTimeout(() => {
-            resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
-          }, 100)
-        } catch (parseErr: any) {
-          console.error("JSON parse error:", parseErr.message, "Buffer:", buffer.substring(0, 500))
-          throw new Error("Failed to parse workout plan. Please try again.")
-        }
-      } else {
-        throw new Error("Invalid response format")
-      }
+      const parsed = await res.json() as WorkoutPlan
+      setPlan(parsed)
+      // Track successful generation
+      trackPlanGenerated({
+        goal: selectedGoal,
+        experience: selectedLevel,
+        duration: duration[0],
+        equipment: selectedEquipment,
+        exercise_count: parsed.exercises?.length || 0,
+      })
+      // Save plan to local storage for persistence
+      savePlanToStorage(parsed)
+      setTimeout(() => {
+        resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+      }, 100)
     } catch (err: any) {
       setError(err.message || "Something went wrong. Please try again.")
     } finally {
