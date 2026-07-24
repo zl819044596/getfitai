@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, Users, Star, Zap, Dumbbell } from "lucide-react";
 import Link from "next/link";
 import { trackCtaClick } from "@/lib/analytics";
+import { HeroGenerator } from "./hero-generator";
 
 export function Hero() {
   return (
@@ -133,82 +134,14 @@ export function Hero() {
             </motion.div>
           </div>
 
-          {/* Right Side - 40% Visual */}
+          {/* Right Side - 40% Hero Generator */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="hidden lg:block lg:col-span-2 relative"
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="hidden lg:block lg:col-span-2"
           >
-            <div className="relative">
-              {/* Main Visual - Abstract Fitness Graphic */}
-              <div className="relative w-full aspect-square max-w-md mx-auto">
-                {/* Outer Ring */}
-                <div className="absolute inset-0 rounded-full border border-orange-500/20 animate-pulse" />
-                
-                {/* Middle Ring */}
-                <div className="absolute inset-8 rounded-full border border-orange-500/30" />
-                
-                {/* Inner Glow */}
-                <div className="absolute inset-16 rounded-full bg-gradient-to-br from-orange-500/20 to-transparent" />
-                
-                {/* Center Icon */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-24 h-24 rounded-2xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center glow-md">
-                    <Zap className="w-12 h-12 text-orange-400" />
-                  </div>
-                </div>
-
-                {/* Orbiting Dots */}
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                  className="absolute inset-0"
-                >
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-orange-400 glow-sm" />
-                </motion.div>
-                <motion.div
-                  animate={{ rotate: -360 }}
-                  transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                  className="absolute inset-4"
-                >
-                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-orange-300 glow-sm" />
-                </motion.div>
-              </div>
-
-              {/* Floating Card - Bottom */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.8 }}
-                className="absolute -bottom-4 -left-4 bg-slate-900/90 backdrop-blur-xl p-4 rounded-xl border border-slate-800 glow-sm"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-orange-500/20 flex items-center justify-center">
-                    <Zap className="w-5 h-5 text-orange-400" />
-                  </div>
-                  <div>
-                    <div className="text-sm font-bold text-white">AI Smart Analysis</div>
-                    <div className="text-xs text-slate-400">Personalized Plans</div>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Floating Card - Top Right */}
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 1 }}
-                className="absolute -top-4 -right-4 bg-slate-900/90 backdrop-blur-xl p-3 rounded-xl border border-slate-800 glow-sm"
-              >
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center">
-                    <Star className="w-4 h-4 text-green-400" />
-                  </div>
-                  <div className="text-xs text-slate-300">Workout Complete!</div>
-                </div>
-              </motion.div>
-            </div>
+            <HeroGenerator />
           </motion.div>
         </div>
       </div>

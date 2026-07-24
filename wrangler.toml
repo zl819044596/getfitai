@@ -17,3 +17,4 @@ id = "74314b60f1064470b52689b83dfec3b8"
 # 环境变量
 [vars]
 NEXT_PUBLIC_APP_URL = "https://www.getfitai.io"
+NEXT_PUBLIC_GA_ID = "G-MFH7XYRCCT"

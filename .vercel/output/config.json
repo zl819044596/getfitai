@@ -67,7 +67,7 @@
       "handle": "hit"
     },
     {
-      "src": "/_next/static/(?:[^/]+/pages|pages|chunks|runtime|css|image|media|6n_URFNiCsQwONU1nGsb8)/.+",
+      "src": "/_next/static/(?:[^/]+/pages|pages|chunks|runtime|css|image|media|gCRI9WztEviRy6cDnudCy)/.+",
       "headers": {
         "cache-control": "public,max-age=31536000,immutable"
       },
@@ -196,6 +196,14 @@
       "path": "index",
       "contentType": "text/html; charset=utf-8"
     },
+    "my-plan/index.html": {
+      "path": "my-plan/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "my-plans/index.html": {
+      "path": "my-plans/index",
+      "contentType": "text/html; charset=utf-8"
+    },
     "privacy/index.html": {
       "path": "privacy/index",
       "contentType": "text/html; charset=utf-8"
@@ -268,8 +276,20 @@
       "path": "tools/workout-timer/index",
       "contentType": "text/html; charset=utf-8"
     },
+    "train/back-and-biceps/index.html": {
+      "path": "train/back-and-biceps/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "train/chest-triceps/index.html": {
+      "path": "train/chest-triceps/index",
+      "contentType": "text/html; charset=utf-8"
+    },
     "train/core-crusher/index.html": {
       "path": "train/core-crusher/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "train/evening-wind-down/index.html": {
+      "path": "train/evening-wind-down/index",
       "contentType": "text/html; charset=utf-8"
     },
     "train/full-body-burn/index.html": {
@@ -288,8 +308,16 @@
       "path": "train/index",
       "contentType": "text/html; charset=utf-8"
     },
+    "train/leg-day/index.html": {
+      "path": "train/leg-day/index",
+      "contentType": "text/html; charset=utf-8"
+    },
     "train/lower-body-strength/index.html": {
       "path": "train/lower-body-strength/index",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "train/morning-wake-up/index.html": {
+      "path": "train/morning-wake-up/index",
       "contentType": "text/html; charset=utf-8"
     },
     "train/quick-cardio/index.html": {
