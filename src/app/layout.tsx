@@ -134,6 +134,16 @@ export default function RootLayout({
             __html: JSON.stringify(softwareApplication()),
           }}
         />
+        {/* Plausible Analytics */}
+        <script
+          async
+          src="https://plausible.shipsolo.io/js/pa-sSnQzNeFkPe4jWuahT37i.js"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()`,
+          }}
+        />
       </head>
       <body className={`${inter.className} ${outfit.variable} antialiased`}>
         <GoogleAnalytics />
