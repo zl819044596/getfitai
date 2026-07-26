@@ -66,9 +66,8 @@ export const metadata: Metadata = {
   verification: {
     google: "G-MFH7XYRCCT",
   },
-  alternates: {
-    canonical: "https://www.getfitai.io/",
-  },
+  // Each page sets its own canonical — layout should not hardcode one
+  // alternates: { canonical: "https://www.getfitai.io/" },
   robots: {
     index: true,
     follow: true,
