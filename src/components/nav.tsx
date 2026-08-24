@@ -16,6 +16,8 @@ const navLinks = [
   { href: "/my-plans", label: "My Plans" },
 ];
 
+const memberLinks = [{ href: "/dashboard", label: "Progress" }];
+
 export function Nav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -57,7 +59,7 @@ export function Nav() {
           </Link>
 
           <nav className="hidden md:flex items-center gap-7">
-            {navLinks.map((link) => <Link key={link.href} href={link.href} className="text-sm font-medium text-slate-400 hover:text-orange-400 transition-colors">{link.label}</Link>)}
+            {[...navLinks, ...(user ? memberLinks : [])].map((link) => <Link key={link.href} href={link.href} className="text-sm font-medium text-slate-400 hover:text-orange-400 transition-colors">{link.label}</Link>)}
           </nav>
 
           <div className="hidden md:flex items-center gap-4">
@@ -75,7 +77,7 @@ export function Nav() {
         {mobileMenuOpen && (
           <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="md:hidden bg-[#020617]/98 border-b border-slate-800 overflow-hidden">
             <nav className="max-w-7xl mx-auto px-4 py-5 flex flex-col gap-1">
-              {navLinks.map((link) => <Link key={link.href} href={link.href} onClick={() => setMobileMenuOpen(false)} className="rounded-lg px-3 py-3 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-orange-300">{link.label}</Link>)}
+              {[...navLinks, ...(user ? memberLinks : [])].map((link) => <Link key={link.href} href={link.href} onClick={() => setMobileMenuOpen(false)} className="rounded-lg px-3 py-3 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-orange-300">{link.label}</Link>)}
               <div className="mt-3 border-t border-slate-800 pt-4">
                 {!loading && (user ? <button onClick={() => void logout()} className="w-full rounded-lg px-3 py-3 text-left text-sm font-medium text-slate-300 hover:bg-slate-800">Sign out {user.email}</button> : <Link href="/login" onClick={() => setMobileMenuOpen(false)} className="block rounded-lg bg-orange-500 px-3 py-3 text-center text-sm font-bold text-white">Sign in</Link>)}
               </div>

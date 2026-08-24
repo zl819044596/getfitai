@@ -1,6 +1,6 @@
 "use client";
 
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { ExerciseVideo } from "@/components/exercise-video";
@@ -23,7 +23,6 @@ interface ExerciseMeta {
   name: string;
   displayName: string;
   videoUrl: string;
-  youtubeId: string;
 }
 
 const allExercises: Record<string, ExerciseMeta> = {
@@ -31,223 +30,186 @@ const allExercises: Record<string, ExerciseMeta> = {
     name: "pushups",
     displayName: "Push-Ups",
     videoUrl: "/videos/train/full-body-burn/pushups.mp4",
-    youtubeId: "WDIpL0pjun0",
   },
   squats: {
     name: "squats",
     displayName: "Squats",
     videoUrl: "/videos/train/full-body-burn/squats.mp4",
-    youtubeId: "m0GcZ24pK6k",
   },
   lunges: {
     name: "lunges",
     displayName: "Lunges",
     videoUrl: "/videos/train/full-body-burn/lunges.mp4",
-    youtubeId: "MxfTNXSFiYI",
   },
   plank: {
     name: "plank",
     displayName: "Plank Hold",
     videoUrl: "/videos/train/full-body-burn/plank.mp4",
-    youtubeId: "mwlp75MS6Rg",
   },
   burpees: {
     name: "burpees",
     displayName: "Burpees",
     videoUrl: "",
-    youtubeId: "vB1yp8XLoAc",
   },
   mountain_climbers: {
     name: "mountain_climbers",
     displayName: "Mountain Climbers",
     videoUrl: "/videos/train/full-body-burn/mountain_climbers.mp4",
-    youtubeId: "cnyTQDSE884",
   },
   jumping_jacks: {
     name: "jumping_jacks",
     displayName: "Jumping Jacks",
     videoUrl: "/videos/train/full-body-burn/jumping_jacks.mp4",
-    youtubeId: "uLVt6u15L98",
   },
   high_knees: {
     name: "high_knees",
     displayName: "High Knees",
     videoUrl: "/videos/train/full-body-burn/high_knees.mp4",
-    youtubeId: "FvjmPRU3zn4",
   },
   glute_bridges: {
     name: "glute_bridges",
     displayName: "Glute Bridges",
     videoUrl: "/videos/train/full-body-burn/glute_bridges.mp4",
-    youtubeId: "Cj5zDEgmumA",
   },
   supermans: {
     name: "supermans",
     displayName: "Supermans",
     videoUrl: "/videos/train/full-body-burn/supermans.mp4",
-    youtubeId: "QNLmIgsn5LU",
   },
   squat_jumps: {
     name: "squat_jumps",
     displayName: "Squat Jumps",
     videoUrl: "",
-    youtubeId: "",
   },
   tricep_dips: {
     name: "tricep_dips",
     displayName: "Tricep Dips",
     videoUrl: "",
-    youtubeId: "8RmD5bU2nMM",
   },
   pike_pushups: {
     name: "pike_pushups",
     displayName: "Pike Push-Ups",
     videoUrl: "",
-    youtubeId: "4z8QfB3bXMU",
   },
   shoulder_taps: {
     name: "shoulder_taps",
     displayName: "Shoulder Taps",
     videoUrl: "",
-    youtubeId: "ydJ6z5zFdDs",
   },
   calf_raises: {
     name: "calf_raises",
     displayName: "Calf Raises",
     videoUrl: "",
-    youtubeId: "-M4-G8p8k6g",
   },
   wall_sit: {
     name: "wall_sit",
     displayName: "Wall Sit",
     videoUrl: "",
-    youtubeId: "cQZzQqIbgAs",
   },
   donkey_kicks: {
     name: "donkey_kicks",
     displayName: "Donkey Kicks",
     videoUrl: "",
-    youtubeId: "SJ1Xuz9D-ZQ",
   },
   neck_rolls: {
     name: "neck_rolls",
     displayName: "Neck Rolls",
     videoUrl: "",
-    youtubeId: "aFg0FS0bR30",
   },
   shoulder_stretch: {
     name: "shoulder_stretch",
     displayName: "Shoulder Stretch",
     videoUrl: "",
-    youtubeId: "aG3T6cGdLII",
   },
   chest_stretch: {
     name: "chest_stretch",
     displayName: "Chest Stretch",
     videoUrl: "",
-    youtubeId: "fH1mTK7r3MY",
   },
   standing_toe_touch: {
     name: "standing_toe_touch",
     displayName: "Standing Toe Touch",
     videoUrl: "",
-    youtubeId: "8SdGlj4vPvo",
   },
   quad_stretch: {
     name: "quad_stretch",
     displayName: "Quad Stretch",
     videoUrl: "",
-    youtubeId: "q7C1GKaMUXA",
   },
   hamstring_stretch: {
     name: "hamstring_stretch",
     displayName: "Hamstring Stretch",
     videoUrl: "",
-    youtubeId: "jPzUd7qT5pI",
   },
   cat_cow: {
     name: "cat_cow",
     displayName: "Cat-Cow",
     videoUrl: "",
-    youtubeId: "kSX0hq3X3UA",
   },
   childs_pose: {
     name: "childs_pose",
     displayName: "Child's Pose",
     videoUrl: "",
-    youtubeId: "i5GyWOhdCB4",
   },
   down_dog: {
     name: "down_dog",
     displayName: "Downward Dog",
     videoUrl: "",
-    youtubeId: "ECo2OEiTq_s",
   },
   lying_twist: {
     name: "lying_twist",
     displayName: "Lying Spinal Twist",
     videoUrl: "",
-    youtubeId: "7Zg8H3kD5DE",
   },
   star_jumps: {
     name: "star_jumps",
     displayName: "Star Jumps",
     videoUrl: "",
-    youtubeId: "MKrRZOe3hvo",
   },
   bodyweight_rows: {
     name: "bodyweight_rows",
     displayName: "Bodyweight Rows",
     videoUrl: "",
-    youtubeId: "OYUxXMGVuuU",
   },
   bicep_curls: {
     name: "bicep_curls",
     displayName: "Towel Bicep Curls",
     videoUrl: "",
-    youtubeId: "p8z4fhUWhP4",
   },
   arm_circles: {
     name: "arm_circles",
     displayName: "Arm Circles",
     videoUrl: "",
-    youtubeId: "GsukQikMecU",
   },
   wide_pushups: {
     name: "wide_pushups",
     displayName: "Wide Push-Ups",
     videoUrl: "",
-    youtubeId: "EsIdzx1J0iA",
   },
   diamond_pushups: {
     name: "diamond_pushups",
     displayName: "Diamond Push-Ups",
     videoUrl: "",
-    youtubeId: "9Df9OEdCGmU",
   },
   decline_pushups: {
     name: "decline_pushups",
     displayName: "Decline Push-Ups",
     videoUrl: "",
-    youtubeId: "0HPdYh-AXeA",
   },
   deep_breathing: {
     name: "deep_breathing",
     displayName: "Deep Breathing",
     videoUrl: "",
-    youtubeId: "Z8emmFOuhxE",
   },
   seated_forward_fold: {
     name: "seated_forward_fold",
     displayName: "Seated Forward Fold",
     videoUrl: "",
-    youtubeId: "E5FtZEVC424",
   },
   happy_baby: {
     name: "happy_baby",
     displayName: "Happy Baby",
     videoUrl: "",
-    youtubeId: "DsuQQMzFU-4",
   },
 };
 
@@ -597,6 +559,7 @@ type AppStatus = "ready" | "exercise" | "rest" | "next-up" | "complete";
 
 export function TrainSession() {
   const params = useParams();
+  const router = useRouter();
   const planId = params.planId as string;
 
   const plan = workoutPlans.find((p) => p.id === planId);
@@ -608,6 +571,11 @@ export function TrainSession() {
   const [status, setStatus] = useState<AppStatus>("ready");
   const [isPaused, setIsPaused] = useState(false);
   const [elapsedExercises, setElapsedExercises] = useState(0);
+  const [isCheckinOpen, setIsCheckinOpen] = useState(false);
+  const [rpe, setRpe] = useState<"easy" | "moderate" | "hard">("moderate");
+  const [checkinState, setCheckinState] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [checkinMessage, setCheckinMessage] = useState("");
+  const [streak, setStreak] = useState<number | null>(null);
 
   const totalExercises = plan
     ? plan.steps.filter((s) => s.type === "exercise").length
@@ -620,6 +588,18 @@ export function TrainSession() {
     setStatus("ready");
     setIsPaused(false);
     setElapsedExercises(0);
+    setIsCheckinOpen(false);
+    setCheckinState("idle");
+    setCheckinMessage("");
+    setStreak(null);
+  }, [planId]);
+
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get("checkin") === "1") {
+      window.history.replaceState({}, "", window.location.pathname);
+      setStatus("complete");
+      setIsCheckinOpen(true);
+    }
   }, [planId]);
 
   // Countdown timer
@@ -758,6 +738,47 @@ export function TrainSession() {
     }
   }, []);
 
+  const handleCheckin = useCallback(async () => {
+    if (!plan || checkinState === "submitting") return;
+
+    setCheckinState("submitting");
+    setCheckinMessage("");
+
+    try {
+      const response = await fetch("/api/checkin", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          planId: plan.id,
+          title: plan.name,
+          durationMinutes: plan.totalMinutes,
+          rpe,
+        }),
+      });
+
+      if (response.status === 401) {
+        setCheckinState("error");
+        setCheckinMessage("登录后保存训练记录，正在前往登录…");
+        const next = `/train/${plan.id}?checkin=1`;
+        window.setTimeout(() => router.push(`/login?next=${encodeURIComponent(next)}`), 700);
+        return;
+      }
+
+      if (!response.ok) {
+        throw new Error("Unable to save your workout right now.");
+      }
+
+      const data = (await response.json()) as { current_streak?: number; stats?: { current_streak?: number } };
+      setStreak(data.current_streak ?? data.stats?.current_streak ?? null);
+      setCheckinState("success");
+      setIsCheckinOpen(false);
+    } catch (error) {
+      setCheckinState("error");
+      setCheckinMessage(error instanceof Error ? error.message : "Unable to save your workout right now.");
+    }
+  }, [checkinState, plan, router, rpe]);
+
   const currentStep = plan?.steps[currentStepIdx];
   const inExerciseView = status === "exercise" && currentStep?.type === "exercise";
 
@@ -859,10 +880,26 @@ export function TrainSession() {
             <p className="text-muted-foreground mb-6">
               Great job! You completed {plan.name} ({elapsedExercises} of {totalExercises} exercises)
             </p>
+            {checkinState === "success" ? (
+              <div className="mb-5 rounded-xl border border-green-400/30 bg-green-500/10 px-4 py-3 text-sm font-semibold text-green-300">
+                ✅ 已打卡{streak !== null ? ` · 连续 ${streak} 天 🔥` : ""}
+              </div>
+            ) : null}
+            {checkinState === "error" ? (
+              <p className="mb-4 text-sm text-red-300" role="alert">{checkinMessage}</p>
+            ) : null}
             <div className="flex flex-col gap-3">
               <button
+                onClick={() => setIsCheckinOpen(true)}
+                disabled={checkinState === "success"}
+                className="flex items-center justify-center gap-2 rounded-xl bg-orange-500 py-4 font-semibold text-white transition-all hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-60 btn-glow"
+              >
+                <CheckCircle2 className="w-5 h-5" />
+                {checkinState === "success" ? "已完成打卡" : "完成训练并打卡"}
+              </button>
+              <button
                 onClick={handleRestart}
-                className="flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-4 rounded-xl transition-all btn-glow"
+                className="flex items-center justify-center gap-2 bg-muted hover:bg-muted/80 text-foreground font-semibold py-4 rounded-xl border border-border transition-colors"
               >
                 <RotateCcw className="w-5 h-5" />
                 Do It Again
@@ -875,6 +912,41 @@ export function TrainSession() {
                 More Workouts
               </Link>
             </div>
+
+            {isCheckinOpen ? (
+              <div className="fixed inset-0 z-[70] flex items-end justify-center bg-slate-950/80 p-4 backdrop-blur-sm sm:items-center" role="dialog" aria-modal="true" aria-labelledby="checkin-title">
+                <div className="w-full max-w-md rounded-2xl border border-slate-700 bg-slate-900 p-6 text-left shadow-2xl">
+                  <div className="mb-5 flex items-start justify-between gap-4">
+                    <div>
+                      <p className="text-sm font-semibold uppercase tracking-[0.16em] text-orange-400">Workout check-in</p>
+                      <h2 id="checkin-title" className="mt-1 text-xl font-bold text-white">记录这次训练</h2>
+                    </div>
+                    <button onClick={() => setIsCheckinOpen(false)} className="rounded-lg px-2 py-1 text-slate-400 hover:bg-slate-800 hover:text-white" aria-label="关闭打卡面板">✕</button>
+                  </div>
+                  <div className="mb-5 rounded-xl bg-slate-800/80 p-4 text-sm text-slate-300">
+                    <p className="font-semibold text-white">{plan.name}</p>
+                    <p className="mt-1">本次时长：{plan.totalMinutes} 分钟</p>
+                  </div>
+                  <p className="mb-3 text-sm font-medium text-slate-200">本次感受如何？</p>
+                  <div className="grid grid-cols-3 gap-2">
+                    {([
+                      ["easy", "轻松", "💚"],
+                      ["moderate", "适中", "💛"],
+                      ["hard", "吃力", "🔥"],
+                    ] as const).map(([value, label, icon]) => (
+                      <button key={value} onClick={() => setRpe(value)} className={`rounded-xl border px-2 py-3 text-sm font-semibold transition-colors ${rpe === value ? "border-orange-400 bg-orange-500/15 text-orange-200" : "border-slate-700 bg-slate-800 text-slate-300 hover:border-slate-500"}`}>
+                        <span className="block text-lg">{icon}</span>{label}
+                      </button>
+                    ))}
+                  </div>
+                  {checkinMessage ? <p className="mt-4 text-center text-sm font-medium text-amber-300" role="alert">{checkinMessage}</p> : null}
+                  <button onClick={() => void handleCheckin()} disabled={checkinState === "submitting" || checkinMessage !== ""} className="mt-6 flex w-full items-center justify-center rounded-xl bg-orange-500 py-3.5 text-sm font-bold text-white transition-colors hover:bg-orange-600 disabled:opacity-60">
+                    {checkinState === "submitting" ? "正在保存…" : "确认打卡"}
+                  </button>
+                  <p className="mt-3 text-center text-xs text-slate-500">未登录时将跳转登录，登录后可继续保存本次记录。</p>
+                </div>
+              </div>
+            ) : null}
           </div>
         </div>
       </main>
@@ -978,7 +1050,6 @@ export function TrainSession() {
             <div className="relative rounded-2xl overflow-hidden bg-black mb-4 h-[60vh] max-h-[500px] min-h-[320px]">
               <ExerciseVideo
                 videoUrl={currentStep.ex.videoUrl || undefined}
-                youtubeId={currentStep.ex.youtubeId || undefined}
                 poster={
                   currentStep.ex.videoUrl
                     ? `/images/train/full-body-burn/${currentStep.ex.name}.jpg`
