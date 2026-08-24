@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Dumbbell, Globe, Share2, MessageSquare } from "lucide-react";
+import { Dumbbell, MessageSquare } from "lucide-react";
 
 const footerLinks = {
   product: [
@@ -7,58 +7,22 @@ const footerLinks = {
     { label: "Fitness Tools", href: "/tools" },
     { label: "BMI Calculator", href: "/tools/bmi-calculator" },
     { label: "Calorie Calculator", href: "/tools/calorie-calculator" },
-    { label: "Protein Calculator", href: "/tools/protein-calculator" },
     { label: "TDEE Calculator", href: "/tools/tdee-calculator" },
-    { label: "BMR Calculator", href: "/tools/bmr-calculator" },
-    { label: "Body Fat Calculator", href: "/tools/body-fat-calculator" },
-    { label: "Macro Calculator", href: "/tools/macro-calculator" },
-    { label: "One Rep Max", href: "/tools/one-rep-max" },
-    { label: "Workout Generator", href: "/tools/workout-generator" },
-    { label: "Workout Timer", href: "/tools/workout-timer" },
-    { label: "Ideal Weight", href: "/tools/ideal-weight-calculator" },
-    { label: "Heart Rate Calculator", href: "/tools/heart-rate-calculator" },
-    { label: "Pace Calculator", href: "/tools/pace-calculator" },
-    { label: "Plate Calculator", href: "/tools/plate-calculator" },
-    { label: "Wilks Calculator", href: "/tools/wilks-calculator" },
-    { label: "Features", href: "/#features" },
     { label: "My Saved Plans", href: "/my-plans" },
   ],
   train: [
     { label: "Full Body Burn", href: "/train/full-body-burn" },
     { label: "Core Crusher", href: "/train/core-crusher" },
-    { label: "Quick Cardio", href: "/train/quick-cardio" },
-    { label: "Upper Body Push", href: "/train/upper-body-push" },
-    { label: "Lower Body Strength", href: "/train/lower-body-strength" },
-    { label: "Full Body Stretch", href: "/train/full-body-stretch" },
     { label: "HIIT Blast", href: "/train/hiit-blast" },
+    { label: "Lower Body Strength", href: "/train/lower-body-strength" },
+    { label: "Quick Cardio", href: "/train/quick-cardio" },
   ],
   resources: [
     { label: "Blog", href: "/blog" },
-    { label: "AI vs Personal Trainer", href: "/blog/ai-fitness-coach-vs-personal-trainer" },
-    { label: "Best AI Fitness Apps", href: "/blog/best-ai-fitness-apps-2026" },
-    { label: "TDEE Guide", href: "/blog/what-is-tdee-and-how-to-calculate" },
-    { label: "Protein Guide", href: "/blog/protein-intake-calculator-guide" },
-    { label: "Beginner Gym Plan", href: "/blog/beginner-gym-plan" },
-    { label: "Build Muscle Fast", href: "/blog/build-muscle-fast" },
-    { label: "How to Lose Belly Fat", href: "/blog/how-to-lose-belly-fat" },
-    { label: "Women Workout Plan", href: "/blog/women-workout-plan" },
-    { label: "Six Pack Workout", href: "/blog/six-pack-workout" },
     { label: "About Us", href: "/about" },
     { label: "Contact", href: "/contact" },
-    { label: "All Workouts", href: "/workouts/gym" },
-    { label: "Beginner Workout Routine", href: "/blog/beginner-workout-routine" },
-    { label: "Home vs Gym Workout", href: "/blog/home-vs-gym-workout" },
-    { label: "Bodyweight Workouts", href: "/blog/calisthenics-beginners-workout" },
     { label: "AI Workout Planner", href: "/blog/ai-workout-planner" },
-    { label: "Bench Press Wrist Pain", href: "/blog/bench-press-wrist-pain" },
-    { label: "How Many Calories Should I Eat", href: "/blog/how-many-calories-should-i-eat" },
-    { label: "How Much Protein Per Day", href: "/blog/how-much-protein-per-day" },
-    { label: "How to Build Muscle", href: "/blog/how-to-build-muscle" },
-    { label: "How to Use AI Workout Generator", href: "/blog/how-to-use-ai-workout-generator" },
-    { label: "Intermittent Fasting Workout", href: "/blog/intermittent-fasting-workout" },
-    { label: "Meal Prep for Muscle", href: "/blog/meal-prep-muscle" },
-    { label: "Post-Workout Recovery Tips", href: "/blog/post-workout-recovery-tips" },
-    { label: "Beginner Workouts", href: "/workouts/beginner" },
+    { label: "Beginner Gym Plan", href: "/blog/beginner-gym-plan" },
   ],
   legal: [
     { label: "Privacy Policy", href: "/privacy" },
@@ -85,16 +49,10 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-sm text-slate-400 mb-4">
-              AI-powered workout plans for everyone. No signup required.
+              AI-powered workout plans, built around you.
             </p>
             {/* Social Links */}
             <div className="flex items-center gap-3">
-              <Link href="https://twitter.com/getfitai" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:text-orange-400 hover:bg-orange-500/10 transition-colors">
-                <Globe className="w-4 h-4" />
-              </Link>
-              <Link href="https://github.com/getfitai" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:text-orange-400 hover:bg-orange-500/10 transition-colors">
-                <Share2 className="w-4 h-4" />
-              </Link>
               <Link href="/contact" className="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:text-orange-400 hover:bg-orange-500/10 transition-colors">
                 <MessageSquare className="w-4 h-4" />
               </Link>
