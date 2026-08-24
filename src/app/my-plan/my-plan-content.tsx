@@ -141,6 +141,152 @@ export function MyPlanContent() {
   }
 
   const p = plan.plan;
+  const isCycle = Array.isArray(p.weeks) && p.weeks.length > 0;
+
+  if (isCycle) {
+    const cycleLength = String(p.cycle_length ?? "4").includes("week")
+      ? String(p.cycle_length)
+      : `${p.cycle_length ?? 4} weeks`;
+    const sessionLength = String(p.session_duration ?? "").match(/min/i)
+      ? String(p.session_duration)
+      : `${p.session_duration ?? ""} min`;
+    return (
+      <section className="pt-32 pb-16 px-4 sm:px-6">
+        <div className="max-w-4xl mx-auto">
+          {/* Header */}
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-6 mb-6">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <h1 className="text-2xl font-bold text-white mb-2">{p.title}</h1>
+                <div className="flex flex-wrap gap-3 text-sm">
+                  <span className="inline-flex items-center gap-1 bg-white/20 px-3 py-1 rounded-full text-white">
+                    <CalendarRange className="w-4 h-4" />{cycleLength}
+                  </span>
+                  {p.session_duration != null && sessionLength && (
+                    <span className="inline-flex items-center gap-1 bg-white/20 px-3 py-1 rounded-full text-white">
+                      <Timer className="w-4 h-4" />{sessionLength}
+                    </span>
+                  )}
+                  {p.days_per_week != null && (
+                    <span className="inline-flex items-center gap-1 bg-white/20 px-3 py-1 rounded-full text-white">
+                      <Dumbbell className="w-4 h-4" />{p.days_per_week}× / week
+                    </span>
+                  )}
+                </div>
+              </div>
+              <Link
+                href="/my-plans"
+                className="shrink-0 p-2 bg-white/20 rounded-lg hover:bg-white/30 transition-colors"
+                title="Back to saved plans"
+              >
+                <RotateCcw className="w-5 h-5 text-white" />
+              </Link>
+            </div>
+          </div>
+
+          {p.overview && (
+            <div className="bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6 mb-6">
+              <p className="leading-7 text-slate-300">{p.overview}</p>
+            </div>
+          )}
+
+          {/* Weeks */}
+          <div className="space-y-5 mb-6">
+            {p.weeks?.map((week) => (
+              <div key={week.week} className="bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-2xl overflow-hidden">
+                <div className="px-6 py-4 border-b border-slate-700/50 flex items-center gap-3">
+                  <span className="w-8 h-8 rounded-lg bg-orange-500/20 flex items-center justify-center text-orange-400 text-sm font-bold">W{week.week}</span>
+                  <div>
+                    <h4 className="font-semibold text-white">Week {week.week}</h4>
+                    {week.focus && <p className="text-sm text-slate-400">{week.focus}</p>}
+                  </div>
+                </div>
+                <div className="grid gap-3 p-4 md:grid-cols-2">
+                  {week.days.map((day, dayIndex) => (
+                    <details key={dayIndex} className="rounded-xl border border-slate-700/70 bg-slate-950/50" open={week.days.length === 1}>
+                      <summary className="flex cursor-pointer items-center justify-between gap-3 px-4 py-3 text-sm font-medium text-white">
+                        <span>{day.day}{day.focus ? ` · ${day.focus}` : ""}</span>
+                        {day.intensity && (
+                          <span className="rounded-full bg-orange-500/15 px-2.5 py-0.5 text-xs font-medium text-orange-300">{day.intensity}</span>
+                        )}
+                      </summary>
+                      <div className="border-t border-slate-700/70 px-4 py-3 space-y-3">
+                        {(day.warmup?.length ?? 0) > 0 && (
+                          <div>
+                            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1.5">Warm-up</p>
+                            <ul className="space-y-1">
+                              {day.warmup!.map((item, i) => (
+                                <li key={i} className="flex items-start gap-2 text-sm text-slate-400">
+                                  <CheckCircle className="w-4 h-4 text-orange-500 shrink-0 mt-0.5" />{item}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                        {(day.exercises?.length ?? 0) > 0 && (
+                          <div>
+                            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1.5">Exercises</p>
+                            <div className="space-y-2">
+                              {day.exercises!.map((ex, i) => (
+                                <div key={i} className="rounded-lg border border-slate-700/60 bg-slate-900/60 p-3">
+                                  <div className="flex flex-wrap items-start justify-between gap-2">
+                                    <span className="text-sm font-medium text-white">{ex.name}</span>
+                                    <span className="text-xs text-slate-400">{ex.sets} sets · {ex.reps} · {ex.rest}{ex.weight ? ` · ${ex.weight}` : ""}</span>
+                                  </div>
+                                  {ex.notes && <p className="mt-1.5 text-xs text-slate-500">{ex.notes}</p>}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        {(day.cooldown?.length ?? 0) > 0 && (
+                          <div>
+                            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1.5">Cool-down</p>
+                            <ul className="space-y-1">
+                              {day.cooldown!.map((item, i) => (
+                                <li key={i} className="flex items-start gap-2 text-sm text-slate-400">
+                                  <CheckCircle className="w-4 h-4 text-orange-500 shrink-0 mt-0.5" />{item}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                      </div>
+                    </details>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Progression notes */}
+          {(p.progression_notes?.length ?? 0) > 0 && (
+            <div className="bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6 mb-6">
+              <h4 className="text-lg font-semibold text-white mb-4">How the program progresses</h4>
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                {p.progression_notes!.map((note, i) => (
+                  <div key={i} className="rounded-xl bg-slate-950/50 p-4">
+                    <span className="mb-2 inline-flex h-7 w-7 items-center justify-center rounded-full bg-orange-500/15 text-sm font-bold text-orange-300">{i + 1}</span>
+                    <p className="text-sm font-semibold text-slate-200">Week {i + 1}</p>
+                    <p className="mt-1 text-sm leading-6 text-slate-400">{note}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div className="text-center mt-8">
+            <Link
+              href="/my-plans"
+              className="inline-flex items-center gap-2 text-orange-400 hover:text-orange-300 text-sm transition-colors"
+            >
+              ← Back to Saved Plans
+            </Link>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="pt-32 pb-16 px-4 sm:px-6">
@@ -180,7 +326,7 @@ export function MyPlanContent() {
               Warm-up
             </h4>
             <ul className="space-y-2">
-              {p.warmup.map((item, i) => (
+              {p.warmup?.map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-slate-400">
                   <CheckCircle className="w-5 h-5 text-orange-500 shrink-0 mt-0.5" />
                   {item}
@@ -197,7 +343,7 @@ export function MyPlanContent() {
             Main Workout
           </h4>
           <div className="space-y-4">
-            {p.exercises.map((ex, i) => {
+            {p.exercises?.map((ex, i) => {
               const done = completedExercises.has(i);
               return (
                 <div
@@ -239,14 +385,14 @@ export function MyPlanContent() {
         </div>
 
         {/* Cool-down */}
-        {p.cooldown?.length > 0 && (
+        {(p.cooldown?.length ?? 0) > 0 && (
           <div className="bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6">
             <h4 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
               <span className="w-8 h-8 rounded-lg bg-orange-500/20 flex items-center justify-center text-orange-400 text-sm font-bold">C</span>
               Cool-down
             </h4>
             <ul className="space-y-2">
-              {p.cooldown.map((item, i) => (
+              {p.cooldown?.map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-slate-400">
                   <CheckCircle className="w-5 h-5 text-orange-500 shrink-0 mt-0.5" />
                   {item}
