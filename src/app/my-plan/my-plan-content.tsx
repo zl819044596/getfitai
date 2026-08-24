@@ -6,7 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
   Dumbbell, Timer, Flame, CheckCircle, RotateCcw,
-  Share2, Star, Loader2, CalendarRange
+  Loader2, CalendarRange
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
