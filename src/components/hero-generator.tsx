@@ -6,6 +6,8 @@ import {
   Dumbbell, Star, Share2
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { useAuth } from "@/components/auth-context";
 import { trackGeneratePlanStarted, trackPlanGenerated } from "@/lib/analytics";
 
 const goals = [
@@ -36,6 +38,7 @@ interface WorkoutPlan {
 }
 
 export function HeroGenerator() {
+  const { quota, isPro } = useAuth();
   const [goal, setGoal] = useState("");
   const [duration, setDuration] = useState(30);
   const [showMore, setShowMore] = useState(false);
@@ -46,6 +49,7 @@ export function HeroGenerator() {
   const [plan, setPlan] = useState<WorkoutPlan | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [quotaExceeded, setQuotaExceeded] = useState(false);
 
   const levels = [
     { id: "beginner", label: "Beginner" },
@@ -60,6 +64,11 @@ export function HeroGenerator() {
 
   async function handleGenerate() {
     if (!goal) return;
+    if (!isPro && quota?.remaining === 0) {
+      setQuotaExceeded(true);
+      return;
+    }
+    setQuotaExceeded(false);
     setLoading(true);
     setError("");
 
@@ -85,6 +94,11 @@ export function HeroGenerator() {
           }),
         }
       );
+
+      if (res.status === 402) {
+        setQuotaExceeded(true);
+        return;
+      }
 
       if (!res.ok) {
         const errData = await res.json().catch(() => ({})) as any;
@@ -319,10 +333,10 @@ export function HeroGenerator() {
       {/* Generate button */}
       <button
         onClick={handleGenerate}
-        disabled={!goal || loading}
+        disabled={!goal || loading || quotaExceeded}
         className={cn(
           "w-full py-3 rounded-xl text-sm font-bold transition-all",
-          goal && !loading
+          goal && !loading && !quotaExceeded
             ? "bg-orange-500 hover:bg-orange-600 text-white shadow-lg shadow-orange-500/25"
             : "bg-slate-800 text-slate-500 cursor-not-allowed"
         )}
@@ -343,6 +357,13 @@ export function HeroGenerator() {
       {error && (
         <div className="mt-3 p-2.5 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-[11px] text-center">
           {error}
+        </div>
+      )}
+
+      {quotaExceeded && (
+        <div className="mt-3 rounded-lg border border-orange-500/30 bg-orange-500/10 p-3 text-center">
+          <p className="text-[11px] font-semibold text-orange-100">Free limit reached — Upgrade to Pro</p>
+          <Link href="/pricing" className="mt-0.5 inline-block text-[11px] font-bold text-orange-300 hover:text-orange-200">Get unlimited workout plans →</Link>
         </div>
       )}
 
