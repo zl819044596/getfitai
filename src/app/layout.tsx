@@ -5,6 +5,7 @@ import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { softwareApplication } from "@/lib/schema";
 import { GoogleAnalytics } from "@/components/google-analytics";
+import { AuthProvider } from "@/components/auth-context";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -145,10 +146,12 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} ${outfit.variable} antialiased`}>
-        <GoogleAnalytics />
-        <Nav />
-      {children}
-      <Footer />
+        <AuthProvider>
+          <GoogleAnalytics />
+          <Nav />
+          {children}
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );

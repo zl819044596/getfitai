@@ -9,6 +9,7 @@ import { ExerciseDetailPanel } from "@/components/exercise-detail-panel"
 import { trackGeneratePlanStarted, trackPlanGenerated, trackPlanSaved } from "@/lib/analytics"
 import { getFavorites, addFavorite, removeFavorite } from "@/lib/favorites"
 import Link from "next/link"
+import { useAuth } from "@/components/auth-context"
 
 const goals = [
   { id: "muscle", label: "Build Muscle", desc: "Hypertrophy & size", icon: "💪" },
@@ -119,6 +120,7 @@ function RestTimer({ restSeconds, onComplete }: { restSeconds: number; onComplet
 }
 
 export function WorkoutGenerator() {
+  const { user, isPro, quota, setQuota } = useAuth()
   const [currentStep, setCurrentStep] = useState(0)
   const [selectedGoal, setSelectedGoal] = useState<string>("")
   const [selectedArea, setSelectedArea] = useState<string>("")
@@ -170,7 +172,10 @@ export function WorkoutGenerator() {
   }
 
   async function handleGenerate() {
-    if (!isFormValid) return
+    if (!isFormValid || (!isPro && quota?.remaining === 0)) {
+      if (!isPro && quota?.remaining === 0) setError("Free limit reached — Upgrade to Pro for unlimited workout plans.")
+      return
+    }
     setLoading(true)
     setError("")
     setPlan(null)
@@ -186,7 +191,7 @@ export function WorkoutGenerator() {
     })
 
     try {
-      const res = await fetch("https://getfitai-api.zl18672545321.workers.dev/api/generate-plan", {
+      const res = await fetch("/api/generate-plan", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -198,6 +203,12 @@ export function WorkoutGenerator() {
           notes: notes || undefined,
         }),
       })
+
+      if (res.status === 402) {
+        setQuota({ limit: quota?.limit ?? 0, used: quota?.limit ?? 0, remaining: 0 })
+        setError("Free limit reached — Upgrade to Pro for unlimited workout plans.")
+        return
+      }
 
       if (!res.ok) {
         const errData = await res.json().catch(() => ({})) as { error?: string; raw?: string }
@@ -214,7 +225,10 @@ export function WorkoutGenerator() {
         equipment: selectedEquipment,
         exercise_count: parsed.exercises?.length || 0,
       })
-      // Save plan to local storage for persistence
+      if (quota && quota.remaining > 0 && !isPro) {
+        setQuota({ ...quota, used: quota.used + 1, remaining: quota.remaining - 1 })
+      }
+      // Keep a local copy and save a cloud copy for signed-in users.
       savePlanToStorage(parsed)
       setTimeout(() => {
         resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
@@ -303,8 +317,6 @@ export function WorkoutGenerator() {
     trackPlanSaved(plan.title, "url")
   }
 
-  const WORKER_URL = "https://getfitai-api.zl18672545321.workers.dev"
-
   function generatePlanId(): string {
     return "plan_" + Date.now().toString(36) + "_" + Math.random().toString(36).substring(2, 8)
   }
@@ -329,15 +341,17 @@ export function WorkoutGenerator() {
     } catch {
       // localStorage not available
     }
-    // Also save to Worker for shareable links
-    fetch(`${WORKER_URL}/api/save-plan`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(record),
-    }).catch(() => {
-      // Silent fail — localStorage backup exists
-      console.warn("Failed to save plan to server, local copy available")
-    })
+    // Signed-in plans are also kept in the user's cloud library.
+    if (user) {
+      fetch("/api/save-plan", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(record),
+      }).catch(() => {
+        // A local copy is still available when cloud saving is temporarily unavailable.
+        console.warn("Failed to save plan to server, local copy available")
+      })
+    }
   }
 
   async function handleSendEmail() {
@@ -346,7 +360,7 @@ export function WorkoutGenerator() {
     setEmailError("")
     setEmailSent(false)
     try {
-      const res = await fetch("https://getfitai-api.zl18672545321.workers.dev/api/send-plan", {
+      const res = await fetch("/api/send-plan", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: emailValue, plan }),
@@ -651,7 +665,7 @@ export function WorkoutGenerator() {
                   ) : (
                     <Button
                       onClick={handleGenerate}
-                      disabled={!isFormValid || loading}
+                      disabled={!isFormValid || loading || (!isPro && quota?.remaining === 0)}
                       translate="no"
                       className="bg-orange-500 hover:bg-orange-600 text-white py-5 px-8 text-base shadow-xl shadow-orange-500/25 rounded-xl disabled:opacity-30"
                     >
@@ -670,7 +684,13 @@ export function WorkoutGenerator() {
                   )}
                 </div>
 
-                {error && (
+                {quota?.remaining === 0 && !isPro && (
+                  <div className="mt-4 rounded-xl border border-orange-500/30 bg-orange-500/10 p-4 text-center text-sm text-orange-100">
+                    <p className="font-semibold">Free limit reached — Upgrade to Pro</p>
+                    <Link href="/pricing" className="mt-1 inline-block font-bold text-orange-300 hover:text-orange-200">Get unlimited workout plans →</Link>
+                  </div>
+                )}
+                {error && (isPro || quota?.remaining !== 0) && (
                   <div className="mt-4 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm text-center">
                     {error}
                   </div>

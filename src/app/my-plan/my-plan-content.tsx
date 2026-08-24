@@ -10,8 +10,6 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const WORKER_URL = "https://getfitai-api.zl18672545321.workers.dev"
-
 interface SavedPlan {
   id: string;
   plan: {
@@ -43,7 +41,7 @@ export function MyPlanContent() {
     (async () => {
       // Try server first
       try {
-        const res = await fetch(`${WORKER_URL}/api/get-plan?id=${encodeURIComponent(id)}`);
+        const res = await fetch(`/api/get-plan?id=${encodeURIComponent(id)}`);
         if (res.ok) {
           const data = await res.json() as SavedPlan;
           setPlan(data);
