@@ -627,7 +627,8 @@ export function WorkoutGenerator() {
 
             {/* Form Card */}
             {!plan && (
-              <div className="bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6" translate="no">
+              <>
+                <div className="bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6" translate="no">
                 <div
                   key={currentStep}
                   className="transition-all duration-200"
@@ -696,6 +697,15 @@ export function WorkoutGenerator() {
                   </div>
                 )}
               </div>
+
+                <Link
+                  href="/tools/cycle-generator/"
+                  className="mt-4 flex items-center justify-between gap-3 rounded-xl border border-orange-500/25 bg-orange-500/10 px-4 py-3 text-sm text-orange-100 transition-colors hover:border-orange-500/50 hover:bg-orange-500/15"
+                >
+                  <span>Want a structured 4-week program?</span>
+                  <span className="font-semibold text-orange-300">Generate a full progressive cycle →</span>
+                </Link>
+              </>
             )}
 
             {/* Generated Plan Result */}

@@ -6,21 +6,39 @@ import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
   Dumbbell, Timer, Flame, CheckCircle, RotateCcw,
-  Share2, Star, Loader2
+  Share2, Star, Loader2, CalendarRange
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface SavedPlan {
   id: string;
+  type?: string;
   plan: {
     title: string;
-    duration: string;
-    intensity: string;
-    difficulty: string;
-    calories: string;
-    warmup: string[];
-    exercises: { name: string; sets: number; reps: string; rest: string; weight?: string; notes?: string }[];
-    cooldown: string[];
+    duration?: string;
+    cycle_length?: string | number;
+    days_per_week?: number;
+    session_duration?: string | number;
+    overview?: string;
+    progression_notes?: string[];
+    weeks?: {
+      week: number;
+      focus: string;
+      days: {
+        day: string;
+        focus: string;
+        intensity?: string;
+        warmup?: string[];
+        exercises?: { name: string; sets: number | string; reps: string; rest: string; weight?: string; notes?: string }[];
+        cooldown?: string[];
+      }[];
+    }[];
+    intensity?: string;
+    difficulty?: string;
+    calories?: string;
+    warmup?: string[];
+    exercises?: { name: string; sets: number; reps: string; rest: string; weight?: string; notes?: string }[];
+    cooldown?: string[];
   };
   savedAt: string;
 }

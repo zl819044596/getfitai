@@ -4,22 +4,24 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dumbbell, Timer, Flame, Star, Trash2, ExternalLink, Share2,
-  ChevronRight, RotateCcw
+  ChevronRight, RotateCcw, CalendarRange
 } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 interface SavedPlan {
   id: string;
+  type?: string;
   plan: {
     title: string;
-    duration: string;
-    intensity: string;
-    difficulty: string;
-    calories: string;
-    warmup: string[];
-    exercises: { name: string; sets: number; reps: string; rest: string; weight?: string; notes?: string }[];
-    cooldown: string[];
+    duration?: string;
+    cycle_length?: string | number;
+    intensity?: string;
+    difficulty?: string;
+    calories?: string;
+    warmup?: string[];
+    exercises?: { name: string; sets: number; reps: string; rest: string; weight?: string; notes?: string }[];
+    cooldown?: string[];
   };
   savedAt: string;
   goal?: string;
@@ -161,17 +163,26 @@ export function MyPlansClient() {
                     {item.plan.title || "Untitled Plan"}
                   </h3>
                   <div className="flex flex-wrap gap-2 text-sm mb-3">
-                    <span className="inline-flex items-center gap-1 bg-orange-500/10 text-orange-400 px-3 py-1 rounded-full">
-                      <Timer className="w-3.5 h-3.5" />
-                      {item.plan.duration}
-                    </span>
-                    <span className="inline-flex items-center gap-1 bg-orange-500/10 text-orange-400 px-3 py-1 rounded-full">
-                      <Flame className="w-3.5 h-3.5" />
-                      {item.plan.calories}
-                    </span>
-                    <span className="inline-flex items-center gap-1 bg-slate-700 text-slate-300 px-3 py-1 rounded-full">
-                      {item.plan.difficulty}
-                    </span>
+                    {item.type === "cycle" ? (
+                      <span className="inline-flex items-center gap-1 bg-orange-500/10 text-orange-400 px-3 py-1 rounded-full">
+                        <CalendarRange className="w-3.5 h-3.5" />
+                        {item.plan.cycle_length || "4 weeks"}
+                      </span>
+                    ) : (
+                      <>
+                        <span className="inline-flex items-center gap-1 bg-orange-500/10 text-orange-400 px-3 py-1 rounded-full">
+                          <Timer className="w-3.5 h-3.5" />
+                          {item.plan.duration}
+                        </span>
+                        <span className="inline-flex items-center gap-1 bg-orange-500/10 text-orange-400 px-3 py-1 rounded-full">
+                          <Flame className="w-3.5 h-3.5" />
+                          {item.plan.calories}
+                        </span>
+                        <span className="inline-flex items-center gap-1 bg-slate-700 text-slate-300 px-3 py-1 rounded-full">
+                          {item.plan.difficulty}
+                        </span>
+                      </>
+                    )}
                     <span className="text-xs text-muted-foreground px-1 py-1">
                       {new Date(item.savedAt).toLocaleDateString()}
                     </span>

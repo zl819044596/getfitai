@@ -53,11 +53,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       const data = (await response.json()) as {
         user?: AuthUser;
-        isPro?: boolean;
+        subscription?: { is_pro?: boolean };
         quota?: Quota;
       };
       setUser(data.user ?? null);
-      setIsPro(Boolean(data.isPro));
+      setIsPro(Boolean(data.subscription?.is_pro));
       setQuota(data.quota ?? null);
     } catch {
       // Keep the app usable if the auth service is temporarily unavailable.

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Activity, Calculator, ArrowRight, TrendingUp, Timer, Dumbbell, Flame, Heart, Scale } from "lucide-react";
+import { Activity, Calculator, ArrowRight, TrendingUp, Timer, Dumbbell, Flame, Heart, Scale, CalendarRange } from "lucide-react";
 
 const tools = [
   {
@@ -9,6 +9,12 @@ const tools = [
     title: "Workout Generator",
     description: "Generate personalized AI workout plans tailored to your goals and equipment.",
     href: "/tools/workout-generator",
+  },
+  {
+    icon: <CalendarRange className="w-6 h-6" />,
+    title: "4-Week Program",
+    description: "Generate a structured 4-week progressive training program.",
+    href: "/tools/cycle-generator",
   },
   {
     icon: <Calculator className="w-6 h-6" />,
