@@ -22,242 +22,232 @@ import { getExerciseImage } from "@/lib/exercise-images";
 interface ExerciseMeta {
   name: string;
   displayName: string;
-  hasVideo: boolean;
   videoUrl: string;
+  youtubeId: string;
 }
 
 const allExercises: Record<string, ExerciseMeta> = {
   pushups: {
     name: "pushups",
     displayName: "Push-Ups",
-    hasVideo: true,
     videoUrl: "/videos/train/full-body-burn/pushups.mp4",
+    youtubeId: "WDIpL0pjun0",
   },
   squats: {
     name: "squats",
     displayName: "Squats",
-    hasVideo: true,
     videoUrl: "/videos/train/full-body-burn/squats.mp4",
+    youtubeId: "m0GcZ24pK6k",
   },
   lunges: {
     name: "lunges",
     displayName: "Lunges",
-    hasVideo: true,
     videoUrl: "/videos/train/full-body-burn/lunges.mp4",
+    youtubeId: "MxfTNXSFiYI",
   },
   plank: {
     name: "plank",
     displayName: "Plank Hold",
-    hasVideo: true,
     videoUrl: "/videos/train/full-body-burn/plank.mp4",
+    youtubeId: "mwlp75MS6Rg",
   },
   burpees: {
     name: "burpees",
     displayName: "Burpees",
-    hasVideo: true,
-    videoUrl: "/videos/train/full-body-burn/burpees.mp4",
+    videoUrl: "",
+    youtubeId: "vB1yp8XLoAc",
   },
   mountain_climbers: {
     name: "mountain_climbers",
     displayName: "Mountain Climbers",
-    hasVideo: true,
     videoUrl: "/videos/train/full-body-burn/mountain_climbers.mp4",
+    youtubeId: "cnyTQDSE884",
   },
   jumping_jacks: {
     name: "jumping_jacks",
     displayName: "Jumping Jacks",
-    hasVideo: true,
     videoUrl: "/videos/train/full-body-burn/jumping_jacks.mp4",
+    youtubeId: "uLVt6u15L98",
   },
   high_knees: {
     name: "high_knees",
     displayName: "High Knees",
-    hasVideo: true,
     videoUrl: "/videos/train/full-body-burn/high_knees.mp4",
+    youtubeId: "FvjmPRU3zn4",
   },
   glute_bridges: {
     name: "glute_bridges",
     displayName: "Glute Bridges",
-    hasVideo: true,
     videoUrl: "/videos/train/full-body-burn/glute_bridges.mp4",
+    youtubeId: "Cj5zDEgmumA",
   },
-  supermans: { name: "supermans", displayName: "Supermans", hasVideo: false, videoUrl: "" },
+  supermans: {
+    name: "supermans",
+    displayName: "Supermans",
+    videoUrl: "/videos/train/full-body-burn/supermans.mp4",
+    youtubeId: "QNLmIgsn5LU",
+  },
   squat_jumps: {
     name: "squat_jumps",
     displayName: "Squat Jumps",
-    hasVideo: false,
     videoUrl: "",
+    youtubeId: "",
   },
-
-  // ── Upper Body Push exercises ──
   tricep_dips: {
     name: "tricep_dips",
     displayName: "Tricep Dips",
-    hasVideo: false,
     videoUrl: "",
+    youtubeId: "8RmD5bU2nMM",
   },
   pike_pushups: {
     name: "pike_pushups",
     displayName: "Pike Push-Ups",
-    hasVideo: false,
     videoUrl: "",
+    youtubeId: "4z8QfB3bXMU",
   },
   shoulder_taps: {
     name: "shoulder_taps",
     displayName: "Shoulder Taps",
-    hasVideo: false,
     videoUrl: "",
+    youtubeId: "ydJ6z5zFdDs",
   },
-
-  // ── Lower Body Strength exercises ──
   calf_raises: {
     name: "calf_raises",
     displayName: "Calf Raises",
-    hasVideo: false,
     videoUrl: "",
+    youtubeId: "-M4-G8p8k6g",
   },
   wall_sit: {
     name: "wall_sit",
     displayName: "Wall Sit",
-    hasVideo: false,
     videoUrl: "",
+    youtubeId: "cQZzQqIbgAs",
   },
-
   donkey_kicks: {
     name: "donkey_kicks",
     displayName: "Donkey Kicks",
-    hasVideo: false,
     videoUrl: "",
+    youtubeId: "SJ1Xuz9D-ZQ",
   },
-
-  // ── Full Body Stretch exercises ──
   neck_rolls: {
     name: "neck_rolls",
     displayName: "Neck Rolls",
-    hasVideo: false,
     videoUrl: "",
+    youtubeId: "aFg0FS0bR30",
   },
   shoulder_stretch: {
     name: "shoulder_stretch",
     displayName: "Shoulder Stretch",
-    hasVideo: false,
     videoUrl: "",
+    youtubeId: "aG3T6cGdLII",
   },
   chest_stretch: {
     name: "chest_stretch",
     displayName: "Chest Stretch",
-    hasVideo: false,
     videoUrl: "",
+    youtubeId: "fH1mTK7r3MY",
   },
   standing_toe_touch: {
     name: "standing_toe_touch",
     displayName: "Standing Toe Touch",
-    hasVideo: false,
     videoUrl: "",
+    youtubeId: "8SdGlj4vPvo",
   },
   quad_stretch: {
     name: "quad_stretch",
     displayName: "Quad Stretch",
-    hasVideo: false,
     videoUrl: "",
+    youtubeId: "q7C1GKaMUXA",
   },
   hamstring_stretch: {
     name: "hamstring_stretch",
     displayName: "Hamstring Stretch",
-    hasVideo: false,
     videoUrl: "",
+    youtubeId: "jPzUd7qT5pI",
   },
   cat_cow: {
     name: "cat_cow",
     displayName: "Cat-Cow",
-    hasVideo: false,
     videoUrl: "",
+    youtubeId: "kSX0hq3X3UA",
   },
   childs_pose: {
     name: "childs_pose",
     displayName: "Child's Pose",
-    hasVideo: false,
     videoUrl: "",
+    youtubeId: "i5GyWOhdCB4",
   },
   down_dog: {
     name: "down_dog",
     displayName: "Downward Dog",
-    hasVideo: false,
     videoUrl: "",
+    youtubeId: "ECo2OEiTq_s",
   },
   lying_twist: {
     name: "lying_twist",
     displayName: "Lying Spinal Twist",
-    hasVideo: false,
     videoUrl: "",
+    youtubeId: "7Zg8H3kD5DE",
   },
-
-  // ── HIIT Blast exercises ──
   star_jumps: {
     name: "star_jumps",
     displayName: "Star Jumps",
-    hasVideo: false,
     videoUrl: "",
+    youtubeId: "MKrRZOe3hvo",
   },
-
-  // ── Back & Biceps exercises ──
   bodyweight_rows: {
     name: "bodyweight_rows",
     displayName: "Bodyweight Rows",
-    hasVideo: false,
     videoUrl: "",
+    youtubeId: "OYUxXMGVuuU",
   },
   bicep_curls: {
     name: "bicep_curls",
     displayName: "Towel Bicep Curls",
-    hasVideo: false,
     videoUrl: "",
+    youtubeId: "p8z4fhUWhP4",
   },
-
-  // ── Chest & Triceps exercises ──
   arm_circles: {
     name: "arm_circles",
     displayName: "Arm Circles",
-    hasVideo: false,
     videoUrl: "",
+    youtubeId: "GsukQikMecU",
   },
   wide_pushups: {
     name: "wide_pushups",
     displayName: "Wide Push-Ups",
-    hasVideo: false,
     videoUrl: "",
+    youtubeId: "EsIdzx1J0iA",
   },
   diamond_pushups: {
     name: "diamond_pushups",
     displayName: "Diamond Push-Ups",
-    hasVideo: false,
     videoUrl: "",
+    youtubeId: "9Df9OEdCGmU",
   },
   decline_pushups: {
     name: "decline_pushups",
     displayName: "Decline Push-Ups",
-    hasVideo: false,
     videoUrl: "",
+    youtubeId: "0HPdYh-AXeA",
   },
-
-  // ── Evening Wind-Down exercises ──
   deep_breathing: {
     name: "deep_breathing",
     displayName: "Deep Breathing",
-    hasVideo: false,
     videoUrl: "",
+    youtubeId: "Z8emmFOuhxE",
   },
   seated_forward_fold: {
     name: "seated_forward_fold",
     displayName: "Seated Forward Fold",
-    hasVideo: false,
     videoUrl: "",
+    youtubeId: "E5FtZEVC424",
   },
   happy_baby: {
     name: "happy_baby",
     displayName: "Happy Baby",
-    hasVideo: false,
     videoUrl: "",
+    youtubeId: "DsuQQMzFU-4",
   },
 };
 
@@ -987,9 +977,10 @@ export function TrainSession() {
             {/* Exercise visual — local clips loop inline; posters handle unavailable media. */}
             <div className="relative rounded-2xl overflow-hidden bg-black mb-4 h-[60vh] max-h-[500px] min-h-[320px]">
               <ExerciseVideo
-                videoUrl={currentStep.ex.videoUrl}
+                videoUrl={currentStep.ex.videoUrl || undefined}
+                youtubeId={currentStep.ex.youtubeId || undefined}
                 poster={
-                  currentStep.ex.hasVideo
+                  currentStep.ex.videoUrl
                     ? `/images/train/full-body-burn/${currentStep.ex.name}.jpg`
                     : getExerciseImage(currentStep.ex.displayName)
                 }
