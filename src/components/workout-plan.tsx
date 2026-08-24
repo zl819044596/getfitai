@@ -22,109 +22,88 @@ interface Exercise {
 interface ExerciseDetail {
   steps: string[]
   mistakes: string[]
-  videoQuery: string
 }
 
 const EXERCISE_DETAILS: Record<string, ExerciseDetail> = {
   "push-up": {
     steps: ["Hands shoulder-width apart, body in a straight line", "Lower down with control, chest close to floor", "Push back up, arms straight but not locked"],
     mistakes: ["Hips sag or pike up", "Elbows flare out too wide (keep ~45°)", "Half reps, chest doesn't reach down"],
-    videoQuery: "push up proper form tutorial",
   },
   "pull-up": {
     steps: ["Overhand grip, slightly wider than shoulders, hang freely", "Pull with lats until chin clears the bar", "Lower with control until arms fully extend"],
     mistakes: ["Swinging body for momentum (kipping)", "Half reps, arms don't straighten", "Shrugging shoulders, not engaging back"],
-    videoQuery: "pull up proper form tutorial",
   },
   "squat": {
     steps: ["Feet shoulder-width, toes slightly outward", "Hinge hips and bend knees, track knees over toes", "Squat until thighs are at least parallel, stand and squeeze glutes"],
     mistakes: ["Knees cave inward", "Heels lift off ground", "Rounded back, not keeping spine neutral"],
-    videoQuery: "squat proper form tutorial",
   },
   "deadlift": {
     steps: ["Feet hip-width, barbell close to shins", "Chest up, shoulders back, core tight", "Drive hips forward, bar travels up legs, squeeze glutes at top"],
     mistakes: ["Rounded lower back", "Bar drifts away from body", "Knees extend too early, no hip drive"],
-    videoQuery: "deadlift proper form tutorial",
   },
   "bench press": {
     steps: ["Retract shoulder blades, puff chest up", "Grip slightly wider than shoulders, lower to mid-chest", "Press up, arms angle ~45° from body"],
     mistakes: ["Wrists bent back too far", "Bouncing bar off chest", "Butt lifts off bench"],
-    videoQuery: "bench press proper form tutorial",
   },
   "lunge": {
     steps: ["Step forward with one foot into a long stride", "Both knees bend to ~90°, back knee near floor", "Drive through front foot to stand, repeat on other side"],
     mistakes: ["Front knee goes too far past toes", "Torso leaning forward or backward", "Step too short, excess knee stress"],
-    videoQuery: "lunge proper form tutorial",
   },
   "plank": {
     steps: ["Forearms on ground, elbows directly under shoulders", "Body in a straight line, core engaged", "Breathe steadily, don't hold breath"],
     mistakes: ["Hips hike up or sag down", "Head drops down", "Holding breath"],
-    videoQuery: "plank proper form tutorial",
   },
   "burpee": {
     steps: ["Stand, squat down and place hands on floor", "Jump feet back to plank position", "Do a push-up, jump feet back in, jump up"],
     mistakes: ["Back collapses during plank", "Landing heavily, no soft knees", "Skipping the push-up (half rep)"],
-    videoQuery: "burpee proper form tutorial",
   },
   "shoulder press": {
     steps: ["Dumbbells at shoulder height, palms facing forward", "Press straight up until arms are extended", "Lower with control to starting position"],
     mistakes: ["Excessive lower back arch", "Elbows flare too wide", "Using leg drive to cheat"],
-    videoQuery: "shoulder press dumbbell form tutorial",
   },
   "bicep curl": {
     steps: ["Stand with dumbbells at your sides", "Keep upper arms fixed, curl forearms up", "Squeeze at the top for 1 second, lower slowly"],
     mistakes: ["Swinging body back and forth", "Elbows drift forward", "Dropping weight too fast, no control"],
-    videoQuery: "bicep curl proper form tutorial",
   },
   "tricep dip": {
     steps: ["Hands on edge behind you, legs straight or bent", "Lower until upper arms are parallel to floor", "Press up using triceps"],
     mistakes: ["Shoulders sink too low", "Elbows flare out wide", "Half reps"],
-    videoQuery: "tricep dip proper form tutorial",
   },
   "leg raise": {
     steps: ["Lie on back or hang, legs straight", "Use lower abs to lift legs to ~90°", "Lower with control, no swinging"],
     mistakes: ["Lower back arches off ground", "Using momentum to swing", "Legs don't lift high enough"],
-    videoQuery: "leg raise proper form tutorial",
   },
   "mountain climber": {
     steps: ["Plank position, core tight", "Alternate driving knees toward chest", "Keep upper body stable, don't raise hips"],
     mistakes: ["Hips raised too high", "Upper body shifting side to side", "Moving too fast, losing control"],
-    videoQuery: "mountain climber proper form tutorial",
   },
   "jumping jack": {
     steps: ["Stand with arms at sides", "Jump feet apart while raising arms overhead", "Jump back to starting position"],
     mistakes: ["Landing heavily", "Arms don't fully reach overhead", "Uneven rhythm"],
-    videoQuery: "jumping jack proper form tutorial",
   },
   "high knees": {
     steps: ["Run in place, lift knees as high as possible", "Pump arms in rhythm", "Land on forefeet, light and bouncy"],
     mistakes: ["Hunching forward", "Knees not lifted high enough", "Landing flat-footed and heavy"],
-    videoQuery: "high knees proper form tutorial",
   },
   "russian twist": {
     steps: ["Sit with knees bent, lean back slightly", "Clasp hands or hold weight, twist side to side", "Eyes follow hands, core drives the motion"],
     mistakes: ["Only moving arms, not torso", "Heels on floor for leverage", "Twisting range too small"],
-    videoQuery: "russian twist proper form tutorial",
   },
   "glute bridge": {
     steps: ["Lie on back, knees bent, feet flat", "Drive hips up using glutes, body in straight line", "Squeeze glutes for 2 seconds at top, lower slowly"],
     mistakes: ["Excessive lower back arch", "Feet too far or too close", "Using lower back instead of glutes"],
-    videoQuery: "glute bridge proper form tutorial",
   },
   "lat pulldown": {
     steps: ["Wide grip on bar, seated firmly, thighs fixed", "Pull with lats down to collarbone level", "Control the return, arms fully extend"],
     mistakes: ["Leaning back excessively to cheat", "Pulling with arms instead of back", "Returning too fast"],
-    videoQuery: "lat pulldown proper form tutorial",
   },
   "row": {
     steps: ["Hinge at hips ~45°, back flat", "Pull dumbbell/barbell toward sides of abdomen", "Retract shoulder blades, squeeze at top"],
     mistakes: ["Rounded back", "Pulling with arms, back not engaged", "Body rocking up and down"],
-    videoQuery: "bent over row proper form tutorial",
   },
   "chest fly": {
     steps: ["Lie or stand, elbows slightly bent", "Open arms wide like hugging a big tree", "Squeeze chest to bring arms together"],
     mistakes: ["Elbows too straight", "Range of motion too small", "Using shoulders instead of chest"],
-    videoQuery: "chest fly proper form tutorial",
   },
 }
 
@@ -135,9 +114,6 @@ function getExerciseDetail(name: string): ExerciseDetail | null {
   return key ? EXERCISE_DETAILS[key] : null
 }
 
-function getYouTubeSearchUrl(query: string): string {
-  return `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`
-}
 
 interface WorkoutPlanProps {
   plan: {
@@ -592,15 +568,6 @@ export function WorkoutPlan({ plan, onRegenerate, onAdjust }: WorkoutPlanProps) 
                       </ul>
                     </div>
 
-                    <a
-                      href={getYouTubeSearchUrl(detail.videoQuery)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-sm text-primary hover:text-primary/80 font-medium"
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                      Watch video tutorial on YouTube
-                    </a>
                   </motion.div>
                 )}
               </AnimatePresence>

@@ -1,60 +1,37 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
 
 interface ExerciseVideoProps {
-  /** YouTube video ID (e.g. "dQw4w9WgXcQ"). When provided, renders a YouTube iframe embed instead of local video. */
-  youtubeId?: string | null
+  /** Local video URL. When omitted, the poster is rendered as a static fallback. */
+  videoUrl?: string
   /** Additional classes for the container wrapper */
   className?: string
-  /** Whether to auto-play the video. Applied to both YouTube embed (autoplay=1) and local <video> (autoPlay) */
-  autoplay?: boolean
-  /** Poster image URL for local video fallback. Ignored when youtubeId is set. */
+  /** Poster image URL used while loading and as the error fallback. */
   poster?: string
-  /** Accessible title for the video. Defaults to "Exercise video" */
+  /** Accessible title for the exercise visual. */
   title?: string
 }
 
 /**
- * ExerciseVideoComponent
- *
- * Renders a YouTube iframe embed when `youtubeId` is provided.
- * Falls back to an HTML5 <video> element with controls when `youtubeId` is null/undefined.
- *
- * The container is a responsive 16:9 aspect-ratio wrapper.
+ * Renders a local, muted exercise video that loops inline. If no video is
+ * available or the media fails to load, it falls back to the supplied poster.
  */
 export function ExerciseVideo({
-  youtubeId,
+  videoUrl,
   className,
-  autoplay = false,
   poster,
   title = "Exercise video",
 }: ExerciseVideoProps) {
-  // YouTube embed mode
-  if (youtubeId) {
-    const embedUrl = `https://www.youtube.com/embed/${encodeURIComponent(youtubeId)}${
-      autoplay ? "?autoplay=1" : ""
-    }`
+  const [videoFailed, setVideoFailed] = useState(false)
 
-    return (
-      <div
-        className={cn(
-          "relative w-full aspect-video overflow-hidden rounded-2xl bg-black",
-          className
-        )}
-      >
-        <iframe
-          src={embedUrl}
-          title={title}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          className="absolute inset-0 w-full h-full"
-        />
-      </div>
-    )
-  }
+  useEffect(() => {
+    setVideoFailed(false)
+  }, [videoUrl])
 
-  // Local video fallback mode
+  const showPoster = !videoUrl || videoFailed
+
   return (
     <div
       className={cn(
@@ -62,17 +39,31 @@ export function ExerciseVideo({
         className
       )}
     >
-      <video
-        className="absolute inset-0 w-full h-full object-cover"
-        controls
-        poster={poster}
-        autoPlay={autoplay}
-        playsInline
-      >
-        <p className="p-4 text-sm text-slate-400">
+      {showPoster ? (
+        poster ? (
+          <img
+            src={poster}
+            alt={`${title} demonstration`}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        ) : null
+      ) : (
+        <video
+          key={videoUrl}
+          className="absolute inset-0 h-full w-full object-cover"
+          src={videoUrl}
+          poster={poster}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          aria-label={title}
+          onError={() => setVideoFailed(true)}
+        >
           Your browser does not support the video tag.
-        </p>
-      </video>
+        </video>
+      )}
     </div>
   )
 }
