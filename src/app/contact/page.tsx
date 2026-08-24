@@ -10,42 +10,15 @@ export default function ContactPage() {
     { name: "Contact", url: "https://www.getfitai.io/contact/" },
   ]);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.currentTarget;
-    const formData = new FormData(form);
+    const formData = new FormData(e.currentTarget);
     const name = formData.get("name") as string;
     const email = formData.get("email") as string;
     const message = formData.get("message") as string;
-
-    const btn = form.querySelector("button[type=submit]") as HTMLButtonElement;
-    const originalText = btn.innerText;
-    btn.disabled = true;
-    btn.innerText = "Sending...";
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message }),
-      });
-
-      if (res.ok) {
-        btn.innerText = "Sent!";
-        btn.classList.add("bg-green-500");
-        form.reset();
-        setTimeout(() => {
-          btn.innerText = originalText;
-          btn.classList.remove("bg-green-500");
-          btn.disabled = false;
-        }, 3000);
-      } else {
-        throw new Error("Failed");
-      }
-    } catch {
-      btn.innerText = "Failed, try again";
-      btn.disabled = false;
-    }
+    const subject = encodeURIComponent(`GetFitAI contact from ${name || "visitor"}`);
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+    window.location.href = `mailto:zl18672545321@gmail.com?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -68,7 +41,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <h3 className="font-semibold text-foreground">Email</h3>
-                <p className="text-muted-foreground text-sm">hello (at) getfitai.io</p>
+                <p className="text-muted-foreground text-sm">zl18672545321@gmail.com</p>
               </div>
             </div>
 
@@ -115,7 +88,7 @@ export default function ContactPage() {
               type="submit"
               className="w-full h-14 text-base font-semibold rounded-full bg-primary hover:bg-neutral-800 text-primary-foreground transition-all duration-300 shadow-lg shadow-black/10"
             >
-              Send Message
+              Send via Email
             </button>
           </form>
         </div>

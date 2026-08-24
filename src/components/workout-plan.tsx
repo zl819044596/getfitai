@@ -253,21 +253,15 @@ export function WorkoutPlan({ plan, onRegenerate, onAdjust }: WorkoutPlanProps) 
     setEmailSending(true)
     setEmailSent(false)
     try {
-      const res = await fetch("/api/send-plan", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, plan: { ...plan, exercises: exerciseData } }),
-      })
-      const data = await res.json().catch(() => ({})) as { success?: boolean; error?: string }
-      if (res.ok && data.success) {
-        setEmailSent(true)
-        setEmail("")
-        setTimeout(() => setEmailSent(false), 3000)
-      } else {
-        alert(data.error || "Failed to send email. Please try again.")
-      }
+      const text = `My workout plan: ${plan.title}\n${exerciseData.map(e => `- ${e.name}: ${e.sets} sets x ${e.reps}${e.weight ? ` @ ${e.weight}` : ""}`).join("\n")}`
+      const subject = encodeURIComponent(`My Workout Plan: ${plan.title}`)
+      const body = encodeURIComponent(text)
+      window.location.href = `mailto:${email}?subject=${subject}&body=${body}`
+      setEmailSent(true)
+      setEmail("")
+      setTimeout(() => setEmailSent(false), 3000)
     } catch {
-      alert("Failed to send email. Please try again.")
+      alert("Failed to open email app. Please try again.")
     } finally {
       setEmailSending(false)
     }

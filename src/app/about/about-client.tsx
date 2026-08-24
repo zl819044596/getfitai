@@ -69,8 +69,8 @@ export function AboutClient() {
             <h2 className="text-2xl font-bold text-black mb-4">Get in Touch</h2>
             <p className="text-gray-500 mb-8">Have feedback, questions, or want to collaborate?</p>
             <div className="flex flex-wrap justify-center gap-4">
-              <a href="mailto:hi@getfitai.io" className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white rounded-full font-medium hover:bg-gray-800 transition-colors">
-                <Mail className="w-5 h-5" /> hi@getfitai.io
+              <a href="mailto:zl18672545321@gmail.com" className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white rounded-full font-medium hover:bg-gray-800 transition-colors">
+                <Mail className="w-5 h-5" /> zl18672545321@gmail.com
               </a>
             </div>
           </div>

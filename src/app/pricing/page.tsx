@@ -40,14 +40,14 @@ export default function PricingPage() {
           <p className="mt-5 text-lg text-slate-400">Start free. Upgrade whenever you want unlimited plans and cloud access.</p>
         </div>
 
-        {isPro && !loading && <div className="mx-auto mt-8 flex max-w-2xl items-center justify-between gap-4 rounded-2xl border border-orange-500/30 bg-orange-500/10 px-5 py-4 text-sm text-orange-100"><span className="flex items-center gap-2 font-semibold"><Crown className="h-5 w-5 text-orange-400" /> You&apos;re on Pro.</span><a href="mailto:support@getfitai.io?subject=GetFitAI%20Pro%20subscription" className="font-bold text-orange-300 hover:text-orange-200">Manage subscription</a></div>}
+        {isPro && !loading && <div className="mx-auto mt-8 flex max-w-2xl items-center justify-between gap-4 rounded-2xl border border-orange-500/30 bg-orange-500/10 px-5 py-4 text-sm text-orange-100"><span className="flex items-center gap-2 font-semibold"><Crown className="h-5 w-5 text-orange-400" /> You&apos;re on Pro.</span><a href="mailto:zl18672545321@gmail.com?subject=GetFitAI%20Pro%20subscription" className="font-bold text-orange-300 hover:text-orange-200">Manage subscription</a></div>}
 
         <div className="mt-12 grid gap-6 md:grid-cols-2">
           <PricingCard name="Free" price="$0" description="For getting started with personalized workouts." features={freeFeatures} action={<Link href="/tools/workout-generator" className="block w-full rounded-xl border border-slate-700 px-4 py-3 text-center text-sm font-bold text-slate-100 transition-colors hover:border-orange-500 hover:text-orange-300">Start for free</Link>} />
           <PricingCard name="Pro" price="$8.99" description="For a more consistent, connected training routine." features={proFeatures} highlighted action={<button disabled={loading || isPro || subscribing} onClick={() => void startCheckout()} className="flex w-full items-center justify-center gap-2 rounded-xl bg-orange-500 px-4 py-3 text-sm font-bold text-white transition-colors hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-60">{subscribing ? <><Loader2 className="h-4 w-4 animate-spin" /> Redirecting…</> : isPro ? "You’re on Pro" : "Upgrade to Pro"}</button>} />
         </div>
         {error && <p className="mt-5 text-center text-sm text-red-400">{error}</p>}
-        <p className="mt-8 text-center text-sm text-slate-500">Questions about Pro? <a className="text-slate-300 hover:text-orange-300" href="mailto:support@getfitai.io">Contact us</a>.</p>
+        <p className="mt-8 text-center text-sm text-slate-500">Questions about Pro? <a className="text-slate-300 hover:text-orange-300" href="mailto:zl18672545321@gmail.com">Contact us</a>.</p>
       </section>
     </main>
   );

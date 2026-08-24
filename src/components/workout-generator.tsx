@@ -360,13 +360,13 @@ export function WorkoutGenerator() {
     setEmailError("")
     setEmailSent(false)
     try {
-      const res = await fetch("/api/send-plan", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: emailValue, plan }),
-      })
-      const data = await res.json() as { error?: string; id?: string }
-      if (!res.ok) throw new Error(data.error || "Failed to send")
+      const p = (plan as any).plan ?? plan
+      const exercises = Array.isArray((p as any).exercises) ? (p as any).exercises : []
+      const lines = exercises.map((e: any) => `- ${e.name}: ${e.sets} sets x ${e.reps}${e.weight ? ` @ ${e.weight}` : ""}`)
+      const title = (p as any).title || plan.title || "My Workout Plan"
+      const subject = encodeURIComponent(`My Workout Plan: ${title}`)
+      const body = encodeURIComponent(`${title}\n\n${lines.join("\n")}`)
+      window.location.href = `mailto:${emailValue}?subject=${subject}&body=${body}`
       setEmailSent(true)
       trackPlanSaved(plan.title, "email")
     } catch (err: any) {
