@@ -173,7 +173,7 @@ export function MyPlanContent() {
         </div>
 
         {/* Warm-up */}
-        {p.warmup?.length > 0 && (
+        {(p.warmup?.length ?? 0) > 0 && (
           <div className="bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6 mb-4">
             <h4 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
               <span className="w-8 h-8 rounded-lg bg-orange-500/20 flex items-center justify-center text-orange-400 text-sm font-bold">W</span>
