@@ -20,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/tools/body-fat-calculator/", priority: 0.9, changefreq: "weekly" as const },
     { path: "/tools/workout-timer/", priority: 0.9, changefreq: "weekly" as const },
     { path: "/tools/workout-generator/", priority: 0.95, changefreq: "weekly" as const },
+    { path: "/tools/cycle-generator/", priority: 0.9, changefreq: "weekly" as const },
     { path: "/tools/macro-calculator/", priority: 0.9, changefreq: "weekly" as const },
     { path: "/tools/calorie-calculator/", priority: 0.9, changefreq: "weekly" as const },
     { path: "/tools/protein-calculator/", priority: 0.9, changefreq: "weekly" as const },
