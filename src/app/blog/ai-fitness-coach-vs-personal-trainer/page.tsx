@@ -165,7 +165,7 @@ export default function BlogPost() {
               Try an AI Fitness Coach Free
             </h3>
             <p className="text-slate-400 mb-4">
-              Experience AI-powered workout planning instantly. No credit card, no signup required.
+              Experience AI-powered workout planning instantly. Start free, then sign in to save your plans.
             </p>
             <Link
               href="/workouts/home"
@@ -365,7 +365,7 @@ export default function BlogPost() {
                 Completely Free
               </h2>
               <p className="text-white/80 mb-8 max-w-xl mx-auto text-base md:text-lg">
-                Generate your personalized workout plan in under 30 seconds. No credit card, no signup required.
+                Generate your personalized workout plan in under 30 seconds. Start free, then sign in to save your plans.
               </p>
               <Link
                 href="/workouts/home"

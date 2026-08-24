@@ -11,8 +11,8 @@ const reasons = [
   },
   {
     icon: Timer,
-    title: "No Signup Required",
-    description: "Start using GetFitAI immediately. No account creation, no email verification, no data collection. Just open the site and get your free personalized training plan in under 60 seconds.",
+    title: "Start Free, Save with Sign In",
+    description: "Start using GetFitAI immediately, then sign in to save and sync your personalized training plans across devices.",
   },
   {
     icon: Sparkles,

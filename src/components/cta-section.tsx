@@ -42,7 +42,7 @@ export function CTASection() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-lg text-slate-400 mb-8 max-w-2xl mx-auto"
             >
-              Get your personalized AI workout plan and access free fitness calculators. No credit card. No signup. Start your training today.
+              Get your personalized AI workout plan and access free fitness calculators. Start free, then sign in to save your progress. Start your training today.
             </motion.p>
 
             <motion.div

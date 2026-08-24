@@ -112,7 +112,7 @@ const faqSchema = {
       name: "Are there any completely free AI fitness apps?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes, GetFitAI offers completely free AI-generated workout plans, BMI calculator, TDEE calculator, and macro tracking with no signup required. While many apps have free trials, truly unlimited free AI coaching is rare. Most premium apps charge $10-$35 per month after the trial period.",
+        text: "Yes, GetFitAI offers free AI-generated workout plans, BMI calculator, TDEE calculator, and macro tracking, with sign-in available to save and sync plans. While many apps have free trials, truly unlimited free AI coaching is rare. Most premium apps charge $10-$35 per month after the trial period.",
       },
     },
     {
@@ -164,7 +164,7 @@ export default function BlogPost() {
               Try the #1 Free AI Fitness App
             </h3>
             <p className="text-slate-400 mb-4">
-              Generate unlimited AI workout plans with GetFitAI. No credit card, no signup required.
+              Generate AI workout plans with GetFitAI. Start free, then sign in to save your plans.
             </p>
             <Link
               href="/workouts/home"
@@ -210,7 +210,7 @@ export default function BlogPost() {
               <li>Integrated BMI calculator, TDEE calculator, and macro tracker</li>
               <li>Multiple training styles: strength, hypertrophy, fat loss, endurance</li>
               <li>Progressive overload built into every plan</li>
-              <li>No signup required — instant access</li>
+              <li>Start free — sign in to save and sync</li>
             </ul>
             <p><strong>Pros:</strong></p>
             <ul>
@@ -404,7 +404,7 @@ export default function BlogPost() {
                 With AI Today
               </h2>
               <p className="text-white/80 mb-8 max-w-xl mx-auto text-base md:text-lg">
-                Generate your personalized workout plan in under 30 seconds. No credit card, no signup required.
+                Generate your personalized workout plan in under 30 seconds. Start free, then sign in to save your plans.
               </p>
               <Link
                 href="/workouts/home"
@@ -447,7 +447,7 @@ export default function BlogPost() {
               <div className="bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-xl p-6">
                 <h3 className="font-bold text-white mb-2">Are there any completely free AI fitness apps?</h3>
                 <p className="text-slate-400">
-                  Yes, GetFitAI offers completely free AI-generated workout plans, BMI calculator, TDEE calculator, and macro tracking with no signup required. While many apps have free trials, truly unlimited free AI coaching is rare. Most premium apps charge $10-$35 per month after the trial period.
+                  Yes, GetFitAI offers free AI-generated workout plans, BMI calculator, TDEE calculator, and macro tracking, with sign-in available to save and sync plans. While many apps have free trials, truly unlimited free AI coaching is rare. Most premium apps charge $10-$35 per month after the trial period.
                 </p>
               </div>
               <div className="bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-xl p-6">

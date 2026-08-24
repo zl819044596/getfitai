@@ -225,7 +225,7 @@ export function HeroGenerator() {
             Generate New Plan
           </button>
           <p className="text-[10px] text-slate-600 text-center mt-2">
-            Free &bull; No signup required &bull; AI-powered
+            Free &bull; AI-powered &bull; Sign in to save
           </p>
         </div>
       </div>
@@ -368,7 +368,7 @@ export function HeroGenerator() {
       )}
 
       <p className="text-[10px] text-slate-600 text-center mt-3">
-        Free &bull; No signup &bull; AI personalized
+        Free &bull; AI personalized &bull; Sign in to save
       </p>
     </div>
   );

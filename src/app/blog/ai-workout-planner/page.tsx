@@ -7,7 +7,7 @@ import { breadcrumbList } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "AI Workout Planner: Free Personalized Training Plans | GetFitAI",
   description:
-    "Create personalized workout plans with AI. Get custom training programs tailored to your goals, experience, and equipment. Free, no signup required.",
+    "Create personalized workout plans with AI. Get custom training programs tailored to your goals, experience, and equipment. Free to start; sign in to save and sync your plans.",
   keywords: [
     "ai workout planner",
     "ai fitness planner",
@@ -49,7 +49,7 @@ const articleSchema = {
   "@type": "Article",
   headline: "AI Workout Planner: The Future of Personalized Fitness Training (2026)",
   description:
-    "Create personalized workout plans with AI. Get custom training programs tailored to your goals, experience, and equipment. Free, no signup required.",
+    "Create personalized workout plans with AI. Get custom training programs tailored to your goals, experience, and equipment. Free to start; sign in to save and sync your plans.",
   image: "https://www.getfitai.io/og-image.webp",
   author: {
     "@type": "Organization",
@@ -89,7 +89,7 @@ const faqSchema = {
       name: "Are AI workout planners free?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Many AI workout planners offer free basic plans. GetFitAI provides completely free personalized workout generation with no signup required. Premium features like advanced periodization, nutrition integration, and progress tracking may require subscription on some platforms.",
+        text: "Many AI workout planners offer free basic plans. GetFitAI provides free personalized workout generation, with sign-in available to save and sync plans. Premium features like advanced periodization, nutrition integration, and progress tracking may require subscription on some platforms.",
       },
     },
     {
@@ -138,7 +138,7 @@ export default function BlogPost() {
                   Try Our Free AI Workout Planner
                 </h3>
                 <p className="text-slate-400 mb-4">
-                  Generate your personalized training plan in under 30 seconds. No signup, no credit card.
+                  Generate your personalized training plan in under 30 seconds. Start free, then sign in to save your plans.
                 </p>
                 <Link
                   href="/tools/workout-generator"
@@ -273,7 +273,7 @@ export default function BlogPost() {
               <div className="bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-xl p-6">
                 <h3 className="font-bold text-white mb-2">Are AI workout planners free?</h3>
                 <p className="text-slate-400">
-                  Many AI workout planners offer free basic plans. GetFitAI provides completely free personalized workout generation with no signup required. Premium features like advanced periodization may require subscription on some platforms.
+                  Many AI workout planners offer free basic plans. GetFitAI provides free personalized workout generation, with sign-in available to save and sync plans. Premium features like advanced periodization may require subscription on some platforms.
                 </p>
               </div>
               <div className="bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-xl p-6">
@@ -291,7 +291,7 @@ export default function BlogPost() {
               Create Your AI Workout Plan Now
             </h2>
             <p className="text-white/80 mb-8 max-w-xl mx-auto">
-              Free, personalized, and ready in 30 seconds. No signup required.
+              Free, personalized, and ready in 30 seconds. Sign in to save and sync your plans.
             </p>
             <Link
               href="/tools/workout-generator"

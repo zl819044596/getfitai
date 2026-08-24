@@ -157,7 +157,7 @@ export default function BlogPost() {
               Calculate Your Protein Needs
             </h3>
             <p className="text-slate-400 mb-4">
-              Get your personalized daily protein target based on your weight, activity level, and goals. Free, no signup.
+              Get your personalized daily protein target based on your weight, activity level, and goals. Free to start; sign in to save your plans.
             </p>
             <Link
               href="/tools/protein-calculator"
@@ -293,7 +293,7 @@ export default function BlogPost() {
               <Link href="/tools/protein-calculator" className="text-orange-400 hover:underline">
                 free Protein Calculator
               </Link>
-              {" "}to get your personalized daily protein target based on your weight, activity level, and goals. It takes 10 seconds and requires no signup.
+              {" "}to get your personalized daily protein target based on your weight, activity level, and goals. It takes 10 seconds, and signing in lets you save your plans.
             </p>
           </div>
 

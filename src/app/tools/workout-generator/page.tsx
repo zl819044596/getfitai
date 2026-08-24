@@ -7,7 +7,7 @@ import { breadcrumbList } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "AI Workout Generator — Free Personalized Plans | GetFitAI",
   description:
-    "Generate personalized workout plans with AI. Choose your goal, experience level, and equipment. Get a custom training plan in seconds. No signup required.",
+    "Generate personalized workout plans with AI. Choose your goal, experience level, and equipment. Get a custom training plan in seconds. Sign in to save and sync your plans.",
   alternates: {
     canonical: "https://www.getfitai.io/tools/workout-generator/",
   },

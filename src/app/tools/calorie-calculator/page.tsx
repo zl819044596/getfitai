@@ -6,7 +6,7 @@ import { breadcrumbList } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Calorie Calculator — Free TDEE & Daily Calories | GetFitAI",
   description:
-    "Calculate your daily calorie needs for free. Get your BMR, TDEE, and personalized calorie target based on your activity level. No signup required.",
+    "Calculate your daily calorie needs for free. Get your BMR, TDEE, and personalized calorie target based on your activity level. Sign in to save and sync your plans.",
   alternates: {
     canonical: "https://www.getfitai.io/tools/calorie-calculator/",
   },

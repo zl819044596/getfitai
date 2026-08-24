@@ -65,7 +65,7 @@ export function ToolsPreview() {
             15 Free Fitness Calculators & Workout Tools
           </h2>
           <p className="text-slate-400 max-w-2xl mx-auto text-lg">
-            All fitness calculators use validated formulas. Free BMI calculator, calorie calculator, body fat calculator, protein calculator, and more. No signup, no ads, instant results.
+            All fitness calculators use validated formulas. Free BMI calculator, calorie calculator, body fat calculator, protein calculator, and more. Instant results, with sign-in available to save your plans.
           </p>
         </motion.div>
 

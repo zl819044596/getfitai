@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Activity, ArrowRight, Mail, Zap, Target, Heart, MessageSquare, Code } from "lucide-react";
+import { Activity, ArrowRight, Mail, Zap, Target, Heart } from "lucide-react";
 
 export function AboutClient() {
   return (
@@ -71,12 +71,6 @@ export function AboutClient() {
             <div className="flex flex-wrap justify-center gap-4">
               <a href="mailto:hi@getfitai.io" className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white rounded-full font-medium hover:bg-gray-800 transition-colors">
                 <Mail className="w-5 h-5" /> hi@getfitai.io
-              </a>
-              <a href="https://twitter.com/getfitai" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 border border-gray-200 rounded-full font-medium hover:bg-gray-50 transition-colors">
-                <MessageSquare className="w-5 h-5" /> Twitter
-              </a>
-              <a href="https://github.com/getfitai" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 border border-gray-200 rounded-full font-medium hover:bg-gray-50 transition-colors">
-                <Code className="w-5 h-5" /> GitHub
               </a>
             </div>
           </div>
