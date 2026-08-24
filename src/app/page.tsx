@@ -6,7 +6,7 @@ import { breadcrumbList } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "GetFitAI - Free AI Workout Plans & Fitness Calculators",
   description:
-    "GetFitAI: Free AI workout plans & fitness calculators. Personalized training for muscle building, fat loss & strength. Sign in to save and sync your plans.",
+    "GetFitAI: Free AI workout plans & fitness calculators. Personalized training for muscle building, fat loss & strength. Sign in to save your plans.",
   alternates: {
     canonical: "https://www.getfitai.io/",
   },

@@ -33,7 +33,7 @@ export function softwareApplication() {
     applicationCategory: "Multimedia",
     operatingSystem: "Web",
     description:
-      "Free AI-powered workout generator, follow-along training plans, and fitness calculators. Sign in to save and sync your plans.",
+      "Free AI-powered workout generator, follow-along training plans, and fitness calculators. Sign in to save your plans.",
     offers: {
       "@type": "Offer",
       price: "0",

@@ -7,7 +7,7 @@ import { breadcrumbList } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "AI Workout Planner: Free Personalized Training Plans | GetFitAI",
   description:
-    "Create personalized workout plans with AI. Get custom training programs tailored to your goals, experience, and equipment. Free to start; sign in to save and sync your plans.",
+    "Create personalized workout plans with AI. Get custom training programs tailored to your goals, experience, and equipment. Free to start; sign in to save your plans.",
   keywords: [
     "ai workout planner",
     "ai fitness planner",
@@ -49,7 +49,7 @@ const articleSchema = {
   "@type": "Article",
   headline: "AI Workout Planner: The Future of Personalized Fitness Training (2026)",
   description:
-    "Create personalized workout plans with AI. Get custom training programs tailored to your goals, experience, and equipment. Free to start; sign in to save and sync your plans.",
+    "Create personalized workout plans with AI. Get custom training programs tailored to your goals, experience, and equipment. Free to start; sign in to save your plans.",
   image: "https://www.getfitai.io/og-image.webp",
   author: {
     "@type": "Organization",
@@ -291,7 +291,7 @@ export default function BlogPost() {
               Create Your AI Workout Plan Now
             </h2>
             <p className="text-white/80 mb-8 max-w-xl mx-auto">
-              Free, personalized, and ready in 30 seconds. Sign in to save and sync your plans.
+              Free, personalized, and ready in 30 seconds. Sign in to save your plans.
             </p>
             <Link
               href="/tools/workout-generator"

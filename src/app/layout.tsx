@@ -23,7 +23,7 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   title: "GetFitAI - Free AI Workout Generator & Fitness Tools | Personalized Plans",
   description:
-    "GetFitAI: Free AI workout generator & fitness calculators. Personalized training plans for muscle building, fat loss & strength. Sign in to save and sync your plans.",
+    "GetFitAI: Free AI workout generator & fitness calculators. Personalized training plans for muscle building, fat loss & strength. Sign in to save your plans.",
   keywords: [
     "AI workout generator",
     "free workout planner",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "GetFitAI - Free AI Workout Generator & Fitness Tools",
     description:
-      "Create personalized AI workout plans and use free fitness calculators. Sign in to save and sync your plans.",
+      "Create personalized AI workout plans and use free fitness calculators. Sign in to save your plans.",
     url: "https://www.getfitai.io",
     siteName: "GetFitAI",
     type: "website",
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "GetFitAI - Free AI Workout Generator & Fitness Tools",
     description:
-      "Create personalized AI workout plans and use free fitness calculators. Sign in to save and sync your plans.",
+      "Create personalized AI workout plans and use free fitness calculators. Sign in to save your plans.",
     images: ["https://www.getfitai.io/og-image.webp"],
   },
   verification: {

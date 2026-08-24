@@ -71,7 +71,7 @@ export default function AboutPage() {
               {
                 icon: <Shield className="w-6 h-6 text-primary-foreground" />,
                 title: "Free to Start",
-                desc: "Generate a plan instantly — no account needed. Sign in to save and sync your plans across devices.",
+                desc: "Generate a plan instantly — no account needed. Sign in to save your plans.",
               },
               {
                 icon: <Users className="w-6 h-6 text-primary-foreground" />,

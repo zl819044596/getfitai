@@ -1,14 +1,14 @@
 export const siteConfig = {
   name: "GetFitAI",
   url: "https://getfitai.io",
-  description: "Generate personalized workout plans tailored to your goals, experience, and available equipment. Sign in to save and sync your plans.",
+  description: "Generate personalized workout plans tailored to your goals, experience, and available equipment. Sign in to save your plans.",
   ogImage: "https://getfitai.io/og-image.webp",
 };
 
 export const pageSEO = {
   home: {
     title: "GetFitAI — AI Workout Generator",
-    description: "Generate personalized workout plans with AI. Tailored to your goals, experience, and equipment. Sign in to save and sync your plans. Free BMI, TDEE, and 1RM calculators included.",
+    description: "Generate personalized workout plans with AI. Tailored to your goals, experience, and equipment. Sign in to save your plans. Free BMI, TDEE, and 1RM calculators included.",
     keywords: ["AI workout generator", "fitness planner", "personalized workout", "gym workout", "home workout"],
   },
   tools: {

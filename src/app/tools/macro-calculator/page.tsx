@@ -7,7 +7,7 @@ import { breadcrumbList } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Macro Calculator — Free Protein, Carbs & Fat | GetFitAI",
   description:
-    "Calculate your daily macros for free. Get personalized protein, carb, and fat targets based on your weight and fitness goals. Sign in to save and sync your plans.",
+    "Calculate your daily macros for free. Get personalized protein, carb, and fat targets based on your weight and fitness goals. Sign in to save your plans.",
   alternates: {
     canonical: "https://www.getfitai.io/tools/macro-calculator/",
   },

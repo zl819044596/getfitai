@@ -6,7 +6,7 @@ import { breadcrumbList } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Protein Calculator — Free Daily Protein Intake | GetFitAI",
   description:
-    "Calculate your daily protein needs for free. Get personalized protein targets based on your weight, activity level, and fitness goals. Sign in to save and sync your plans.",
+    "Calculate your daily protein needs for free. Get personalized protein targets based on your weight, activity level, and fitness goals. Sign in to save your plans.",
   alternates: {
     canonical: "https://www.getfitai.io/tools/protein-calculator/",
   },

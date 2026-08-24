@@ -61,7 +61,7 @@ export function Hero() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-lg text-slate-400 max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed"
             >
-              Get personalized AI workout plans and free fitness calculators including BMI, TDEE, body fat, and 1RM. Tell us your fitness goals, equipment, and experience. Get a personalized training plan in 10 seconds. No signup to start. Sign in to save and sync your plans across devices.
+              Get personalized AI workout plans and free fitness calculators including BMI, TDEE, body fat, and 1RM. Tell us your fitness goals, equipment, and experience. Get a personalized training plan in 10 seconds. No signup to start. Sign in to save your plans.
             </motion.p>
 
             {/* CTA Buttons */}
