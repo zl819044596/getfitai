@@ -12,7 +12,6 @@ const navLinks = [
   { href: "/pricing", label: "Pricing" },
   { href: "/blog", label: "Blog" },
   { href: "/#features", label: "Features" },
-  { href: "/#testimonials", label: "Reviews" },
   { href: "/my-plans", label: "My Plans" },
 ];
 

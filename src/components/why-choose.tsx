@@ -12,7 +12,7 @@ const reasons = [
   {
     icon: Timer,
     title: "Start Free, Save with Sign In",
-    description: "Start using GetFitAI immediately, then sign in to save and sync your personalized training plans across devices.",
+    description: "Start using GetFitAI immediately, then sign in to save your personalized training plans.",
   },
   {
     icon: Sparkles,
@@ -26,8 +26,8 @@ const reasons = [
   },
   {
     icon: Trophy,
-    title: "Trusted by Users Worldwide",
-    description: "Join over 10,000 users who have already achieved their fitness goals with GetFitAI. From beginners to advanced athletes, our AI workout plans deliver real results for every fitness level.",
+    title: "Built for Every Fitness Level",
+    description: "From beginners to advanced athletes, our AI workout plans adapt to your goals, equipment, and schedule — so every session fits your level.",
   },
 ];
 

@@ -9,7 +9,6 @@ import { Features } from "@/components/features";
 import { ToolsPreview } from "@/components/tools-preview";
 import { WorkoutGenerator } from "@/components/workout-generator";
 import { WhyChoose } from "@/components/why-choose";
-import { Testimonials } from "@/components/testimonials";
 import { FAQ } from "@/components/faq";
 import { CTASection } from "@/components/cta-section";
 import { getFavorites } from "@/lib/favorites";
@@ -178,7 +177,6 @@ export default function HomeClient() {
       <ToolsPreview />
       <WorkoutGenerator />
       <WhyChoose />
-      <Testimonials />
       <FAQ />
       <CTASection />
     </main>

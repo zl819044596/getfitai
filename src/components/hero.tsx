@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, Users, Star, Zap, Dumbbell } from "lucide-react";
+import { ArrowRight, Sparkles, Dumbbell } from "lucide-react";
 import Link from "next/link";
 import { trackCtaClick } from "@/lib/analytics";
 import { HeroGenerator } from "./hero-generator";
@@ -38,7 +38,7 @@ export function Hero() {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 mb-8"
             >
               <Sparkles className="w-4 h-4 text-orange-400" />
-              <span className="text-sm font-medium text-orange-400">Trusted by 50,000+ users</span>
+              <span className="text-sm font-medium text-orange-400">Free AI Fitness Tools</span>
             </motion.div>
 
             {/* Heading - Outfit font, large, tight */}
@@ -106,29 +106,11 @@ export function Hero() {
             >
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center glow-sm">
-                  <Users className="w-6 h-6 text-orange-400" />
-                </div>
-                <div className="text-left">
-                  <div className="text-2xl font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>50K+</div>
-                  <div className="text-sm text-slate-500">Plans Generated</div>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center glow-sm">
                   <Dumbbell className="w-6 h-6 text-orange-400" />
                 </div>
                 <div className="text-left">
                   <div className="text-2xl font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>15</div>
                   <div className="text-sm text-slate-500">Free Tools</div>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center glow-sm">
-                  <Star className="w-6 h-6 text-orange-400" />
-                </div>
-                <div className="text-left">
-                  <div className="text-2xl font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>4.9★</div>
-                  <div className="text-sm text-slate-500">User Rating</div>
                 </div>
               </div>
             </motion.div>
