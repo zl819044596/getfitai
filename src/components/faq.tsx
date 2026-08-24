@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 const faqs = [
   {
     question: "Is GetFitAI really free?",
-    answer: "Yes, completely free! All features including the AI workout plan generator and fitness calculators are free to use, with no hidden fees and no account registration required.",
+    answer: "Yes, free to start! The AI workout plan generator and all fitness calculators are free to use, with no hidden fees and no credit card required. Sign in to save and sync your plans across devices.",
   },
   {
     question: "How accurate is the BMI calculator?",

@@ -46,7 +46,7 @@ export default function AboutPage() {
           <div className="prose prose-neutral max-w-none mb-16">
             <p className="text-muted-foreground mb-6">
               GetFitAI was built with a simple mission: remove the barriers between people and 
-              effective workout plans. No expensive trainers, no confusing apps, no sign-ups — 
+              effective workout plans. No expensive trainers, no confusing apps, no friction — 
               just answer a few questions and get a personalized plan in seconds.
             </p>
             <p className="text-muted-foreground mb-6">
@@ -70,8 +70,8 @@ export default function AboutPage() {
               },
               {
                 icon: <Shield className="w-6 h-6 text-primary-foreground" />,
-                title: "No Sign-up Required",
-                desc: "We don't ask for your email unless you want the plan sent to you.",
+                title: "Free to Start",
+                desc: "Generate a plan instantly — no account needed. Sign in to save and sync your plans across devices.",
               },
               {
                 icon: <Users className="w-6 h-6 text-primary-foreground" />,
