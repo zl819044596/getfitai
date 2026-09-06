@@ -89,7 +89,7 @@ const faqSchema = {
       name: "Are AI workout planners free?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Many AI workout planners offer free basic plans. GetFitAI provides free personalized workout generation, with sign-in available to save and sync plans. Premium features like advanced periodization, nutrition integration, and progress tracking may require subscription on some platforms.",
+        text: "Many AI workout planners offer free basic plans. GetFitAI provides free AI workout plans every week, with sign-in available to save your plans. Premium features like advanced periodization, nutrition integration, and progress tracking may require subscription on some platforms.",
       },
     },
     {
@@ -273,7 +273,7 @@ export default function BlogPost() {
               <div className="bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-xl p-6">
                 <h3 className="font-bold text-white mb-2">Are AI workout planners free?</h3>
                 <p className="text-slate-400">
-                  Many AI workout planners offer free basic plans. GetFitAI provides free personalized workout generation, with sign-in available to save and sync plans. Premium features like advanced periodization may require subscription on some platforms.
+                  Many AI workout planners offer free basic plans. GetFitAI provides free AI workout plans every week, with sign-in available to save your plans. Premium features like advanced periodization may require subscription on some platforms.
                 </p>
               </div>
               <div className="bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-xl p-6">

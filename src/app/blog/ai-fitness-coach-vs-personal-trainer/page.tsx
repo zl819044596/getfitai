@@ -201,7 +201,7 @@ export default function BlogPost() {
 
             <h3>AI Fitness Coach Costs</h3>
             <p>
-              AI fitness apps range from <strong>completely free</strong> (like GetFitAI) to $30 per month for premium features. Even the most expensive AI coaching platforms cost less than a single personal training session. Over a year, AI coaching costs $0-$360 — a savings of 95-98% compared to human trainers.
+              AI fitness apps range from <strong>free to start</strong> (like GetFitAI) to $30 per month for premium features. Even the most expensive AI coaching platforms cost less than a single personal training session. Over a year, AI coaching costs $0-$360 — a savings of 95-98% compared to human trainers.
             </p>
 
             <h3>The Value Proposition</h3>
@@ -362,7 +362,7 @@ export default function BlogPost() {
               <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
                 Experience AI Fitness Coaching
                 <br className="hidden md:block" />
-                Completely Free
+                Free to Start
               </h2>
               <p className="text-white/80 mb-8 max-w-xl mx-auto text-base md:text-lg">
                 Generate your personalized workout plan in under 30 seconds. Start free, then sign in to save your plans.

@@ -6,8 +6,8 @@ import { Shield, Clock, Zap, Heart, Award, Sparkles, Lock, Timer, Brain, Trophy 
 const reasons = [
   {
     icon: Lock,
-    title: "100% Free",
-    description: "No hidden fees, no credit card required. All features including the AI workout plan generator and personalized fitness calculators are completely free to use. Generate unlimited workout plans at zero cost.",
+    title: "Free to Start",
+    description: "No hidden fees, no credit card required. Get free AI-generated workout plans every week, plus unlimited access to all our fitness calculators. Upgrade to Pro for unlimited AI workout plans.",
   },
   {
     icon: Timer,

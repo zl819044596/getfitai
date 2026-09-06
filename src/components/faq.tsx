@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 const faqs = [
   {
     question: "Is GetFitAI really free?",
-    answer: "Yes, free to start! The AI workout plan generator and all fitness calculators are free to use, with no hidden fees and no credit card required. Sign in to save your plans.",
+    answer: "Yes — free to start. Every week you get free AI workout plans, and all our fitness calculators are completely free. No hidden fees, no credit card required. Sign in to save your plans, or upgrade to Pro for unlimited AI workout plans.",
   },
   {
     question: "How accurate is the BMI calculator?",
@@ -32,7 +32,7 @@ const faqs = [
   },
   {
     question: "What is GetFitAI?",
-    answer: "GetFitAI is a free AI workout plan generator that creates personalized fitness training programs based on your goals, schedule, and available equipment. It uses machine learning to adapt your plan as you progress.",
+    answer: "GetFitAI is a free-to-start AI workout plan generator that creates personalized fitness training programs based on your goals, schedule, and available equipment. It uses machine learning to adapt your plan as you progress.",
   },
   {
     question: "How is an AI workout plan different from a regular plan?",
