@@ -379,7 +379,7 @@ export default function BlogPost() {
               <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
                 Calculate Your TDEE
                 <br className="hidden md:block" />
-                Completely Free
+                Free to Use
               </h2>
               <p className="text-white/80 mb-8 max-w-xl mx-auto text-base md:text-lg">
                 Get your personalized daily calorie target plus recommendations for fat loss, maintenance, and muscle building.
