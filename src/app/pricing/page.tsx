@@ -6,7 +6,7 @@ import { Check, Crown, Loader2 } from "lucide-react";
 import { useAuth } from "@/components/auth-context";
 
 const freeFeatures = ["2 AI workout plans each week", "Personalized plan generator", "Save plans in this browser"];
-const proFeatures = ["Unlimited AI workout plans", "4-week periodized plans — coming soon", "Cloud plan saving", "Progress tracking — coming soon"];
+const proFeatures = ["Unlimited AI workout plans", "4-week progressive programs", "Cloud plan saving", "Progress tracking & achievements"];
 
 export default function PricingPage() {
   const { user, isPro, loading } = useAuth();
