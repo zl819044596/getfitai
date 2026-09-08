@@ -50,17 +50,23 @@ export function ExerciseDetailPanel({ exercise, index, total, isCompleted }: Exe
     <div className="relative hidden lg:block">
       <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-black/50">
         {/* Main Image */}
-        <Image
-          src={imageUrl}
-          alt={exercise.name}
-          width={600}
-          height={750}
-          className={cn(
-            "w-full h-[700px] object-cover transition-all duration-500",
-            isCompleted ? "grayscale-[30%]" : ""
-          )}
-          key={index}
-        />
+        {imageUrl ? (
+          <Image
+            src={imageUrl}
+            alt={exercise.name}
+            width={600}
+            height={750}
+            className={cn(
+              "w-full h-[700px] object-cover transition-all duration-500",
+              isCompleted ? "grayscale-[30%]" : ""
+            )}
+            key={index}
+          />
+        ) : (
+          <div className="flex h-[700px] items-center justify-center bg-slate-900 p-8 text-center">
+            <span className="text-2xl font-bold text-slate-300">{exercise.name}</span>
+          </div>
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-slate-950/20" />
 
         {/* Top: View Mode Switcher */}
@@ -213,23 +219,19 @@ function KeyframesView({ exercise, index, total }: { exercise: Exercise; index: 
         Exercise {index + 1} / {total} · Keyframes
       </div>
 
-      <div className="flex gap-3 mb-4">
-        <div className="flex-1 relative rounded-xl overflow-hidden border-2 border-orange-500/50">
-          <Image src={imageUrl} alt="Start Position" width={200} height={140} className="w-full h-28 object-cover" />
-          <div className="absolute bottom-2 left-2 bg-black/70 text-orange-400 text-[10px] font-bold px-2 py-0.5 rounded uppercase">
-            Start
-          </div>
+      {imageUrl ? (
+        <Image
+          src={imageUrl}
+          alt={exercise.name}
+          width={400}
+          height={224}
+          className="mb-4 h-40 w-full rounded-xl object-cover"
+        />
+      ) : (
+        <div className="mb-4 flex h-40 items-center justify-center rounded-xl bg-slate-900 p-4 text-center">
+          <span className="text-sm font-semibold text-slate-300">{exercise.name}</span>
         </div>
-        <div className="flex items-center">
-          <ChevronRight className="w-6 h-6 text-orange-400" />
-        </div>
-        <div className="flex-1 relative rounded-xl overflow-hidden border-2 border-slate-600">
-          <Image src={imageUrl} alt="End Position" width={200} height={140} className="w-full h-28 object-cover" />
-          <div className="absolute bottom-2 left-2 bg-black/70 text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded uppercase">
-            End
-          </div>
-        </div>
-      </div>
+      )}
 
       <div className="glass rounded-xl p-3">
         <div className="text-xs font-medium text-white mb-1">Key Cues</div>

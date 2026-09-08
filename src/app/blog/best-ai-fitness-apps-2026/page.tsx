@@ -109,7 +109,7 @@ const faqSchema = {
     },
     {
       "@type": "Question",
-      name: "Are there any completely free AI fitness apps?",
+      name: "Are there any free AI fitness apps?",
       acceptedAnswer: {
         "@type": "Answer",
         text: "GetFitAI and a handful of other apps are free to start. GetFitAI gives you free AI-generated workout plans every week plus free BMI, TDEE, and macro calculators, with sign-in available to save your plans. Truly unlimited free AI coaching is rare — most premium apps charge $10-$35 per month for unlimited access.",
@@ -445,7 +445,7 @@ export default function BlogPost() {
                 </p>
               </div>
               <div className="bg-slate-900/60 backdrop-blur-sm border border-slate-800 rounded-xl p-6">
-                <h3 className="font-bold text-white mb-2">Are there any completely free AI fitness apps?</h3>
+                <h3 className="font-bold text-white mb-2">Are there any free AI fitness apps?</h3>
                 <p className="text-slate-400">
                   GetFitAI and a handful of other apps are free to start. GetFitAI gives you free AI-generated workout plans every week plus free BMI, TDEE, and macro calculators, with sign-in available to save your plans. Truly unlimited free AI coaching is rare — most premium apps charge $10-$35 per month for unlimited access.
                 </p>

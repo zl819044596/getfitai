@@ -49,7 +49,7 @@ const allExercises: Record<string, ExerciseMeta> = {
   burpees: {
     name: "burpees",
     displayName: "Burpees",
-    videoUrl: "",
+    videoUrl: "/videos/train/hiit-blast/burpees.mp4",
   },
   mountain_climbers: {
     name: "mountain_climbers",
@@ -526,6 +526,23 @@ const workoutPlans: WorkoutPlan[] = [
     ],
   },
 ];
+
+const exerciseImageNames = new Set([
+  "ab_wheel", "back_extension", "battle_ropes", "bench_press", "bent_over_row",
+  "bird_dog", "calf_raise", "chest_fly", "crunch", "dead_bug", "deadlift",
+  "face_pull", "farmer_walk", "front_raise", "kettlebell_swing", "lat_pulldown",
+  "lateral_raise", "leg_curl", "leg_extension", "leg_press", "leg_raise", "pull_up",
+  "reverse_fly", "russian_twist", "shoulder_press", "shrugs", "sled_push", "step_up",
+  "tricep_dip", "tricep_pushdown", "turkish_getup", "upright_row", "wall_ball",
+])
+
+function getExercisePoster(exercise: ExerciseMeta): string | undefined {
+  if (exercise.videoUrl) return `/images/train/full-body-burn/${exercise.name}.jpg`
+
+  if (exerciseImageNames.has(exercise.name)) return `/images/exercises/${exercise.name}.jpg`
+
+  return getExerciseImage(exercise.displayName) || undefined
+}
 
 /* ─── Helpers ─── */
 
@@ -1050,11 +1067,7 @@ export function TrainSession() {
             <div className="relative rounded-2xl overflow-hidden bg-black mb-4 h-[60vh] max-h-[500px] min-h-[320px]">
               <ExerciseVideo
                 videoUrl={currentStep.ex.videoUrl || undefined}
-                poster={
-                  currentStep.ex.videoUrl
-                    ? `/images/train/full-body-burn/${currentStep.ex.name}.jpg`
-                    : getExerciseImage(currentStep.ex.displayName)
-                }
+                poster={getExercisePoster(currentStep.ex)}
                 title={currentStep.ex.displayName}
                 className="absolute inset-0 w-full h-full"
               />
