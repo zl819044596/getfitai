@@ -140,6 +140,12 @@ export default function RootLayout({
             __html: `window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()`,
           }}
         />
+        {/* Google AdSense */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1948659115664531"
+          crossOrigin="anonymous"
+        />
       </head>
       <body className={`${inter.className} ${outfit.variable} antialiased`}>
         <AuthProvider>
