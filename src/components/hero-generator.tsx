@@ -106,6 +106,14 @@ export function HeroGenerator() {
       }
 
       const parsed: WorkoutPlan = await res.json();
+      const maybeError = parsed as unknown as { error?: unknown };
+      if (parsed && typeof parsed === "object" && "error" in parsed && typeof maybeError.error === "string") {
+        throw new Error(maybeError.error);
+      }
+      if (!parsed || typeof parsed !== "object" || !Array.isArray(parsed.exercises)) {
+        throw new Error("Failed to parse the generated plan. Please try again.");
+      }
+
       setPlan(parsed);
       trackPlanGenerated({
         goal,

@@ -272,6 +272,14 @@ export function CycleGenerator() {
       }
 
       const data = (await response.json()) as CyclePlan;
+      const maybeError = data as unknown as { error?: unknown };
+      if (data && typeof data === "object" && "error" in data && typeof maybeError.error === "string") {
+        throw new Error(maybeError.error);
+      }
+      if (!data || typeof data !== "object" || !Array.isArray(data.weeks)) {
+        throw new Error("Failed to parse the generated plan. Please try again.");
+      }
+
       setPlan(data);
       setSelectedWeek(0);
       setView("week");
